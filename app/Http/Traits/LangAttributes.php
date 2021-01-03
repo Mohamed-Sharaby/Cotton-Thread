@@ -18,7 +18,7 @@ trait LangAttributes
     /**
      * @return mixed
      */
-    public function getDetails(){
+    public function getDetailsAttribute(){
         if(app()->getLocale() == 'ar')
             return $this->ar_details;
         return $this->en_details;

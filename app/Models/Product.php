@@ -33,4 +33,40 @@ class Product extends Model
     public function subCategory(){
         return $this->belongsTo(SubCategory::class);
     }
+
+    /**
+     * @return string
+     */
+    public function getPriceAfterDiscountAttribute(){
+        $price_after_discount =  ($this->attributes['price']*(100-$this->attributes['discount']))/100;
+        return number_format($price_after_discount,2,'.',',');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function product_colors(){
+        return $this->hasMany(ProductColor::class,'product_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function product_sizes(){
+        return $this->hasMany(ProductSize::class,'product_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function product_quantity(){
+        return $this->hasMany(ProductQuantity::class,'product_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function product_images(){
+        return $this->hasMany(ProductImage::class,'product_id');
+    }
 }

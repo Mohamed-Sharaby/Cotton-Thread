@@ -10,6 +10,8 @@ trait FileAttributes
      * @return null|string
      */
     public function getImageAttribute(){
+        if(strpos($this->attributes['image'],'https') !== false)
+            return $this->attributes['image'];
         return getImg($this->attributes['image']);
     }
 

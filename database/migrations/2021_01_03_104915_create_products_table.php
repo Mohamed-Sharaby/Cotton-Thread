@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price');
             $table->decimal('discount');
             $table->boolean('is_ban')->default(0);
+            $table->boolean('is_new')->default(1);
             $table->longText('ar_details');
             $table->longText('en_details');
             $table->string('image')->nullable();

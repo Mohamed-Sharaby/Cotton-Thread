@@ -62,4 +62,11 @@ class User extends Authenticatable
             $this->attributes['password']  = bcrypt($value);
         }
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function favourites(){
+        return $this->belongsTo(Favourites::class,'user_id');
+    }
 }

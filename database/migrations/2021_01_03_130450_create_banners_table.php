@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubCategoriesTable extends Migration
+class CreateBannersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateSubCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sub_categories', function (Blueprint $table) {
+        Schema::create('banners', function (Blueprint $table) {
             $table->id();
-            $table->string('ar_name');
-            $table->string('en_name');
-            $table->foreignId('category_id')->constrained('categories')
-                ->onDelete('cascade');
-            $table->string('image')->nullable();
+            $table->string('image');
+            $table->longText('ar_details')->nullable();
+            $table->longText('en_details')->nullable();
             $table->boolean('is_ban')->default(0);
-            $table->timestamp('deleted_at')->nullable();
-
             $table->timestamps();
         });
     }
@@ -34,6 +30,6 @@ class CreateSubCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_categories');
+        Schema::dropIfExists('banners');
     }
 }
