@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('en_name');
             $table->string('image')->nullable();
             $table->boolean('is_ban')->default(0);
+
             $table->timestamp('deleted_at')->nullable();
 
             $table->timestamps();

@@ -24,7 +24,7 @@ class Category extends Model
     /**
      * @var array
      */
-    protected $fillable = ['ar_name','en_name','image','is_ban'];
+    protected $fillable = ['ar_name','en_name','image','is_active'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -32,4 +32,11 @@ class Category extends Model
     public function subcategories(){
         return $this->hasMany(SubCategory::class,'category_id');
     }
+
+    public function getNameAttribute()
+    {
+        if (app()->getLocale() == "ar") return $this->ar_name;
+        return $this->en_name;
+    }
+
 }

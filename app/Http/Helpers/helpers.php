@@ -67,6 +67,7 @@ function uploader($file, $folder=''){
     return $path;
 }
 
+
 /**
  * @param $request
  * @param $img_name
@@ -92,3 +93,23 @@ function getSetting($name){
     if (!$setting) return "";
     return $setting->value;
 }
+////////////////////////////////////////////
+//function uploadImage($file, $img)
+//{
+//    return \Storage::disk('public')->putFile($file, $img);
+//}
+//
+//function deleteImage($file, $img)
+//{
+//    \Storage::disk('public')->delete($file, $img);
+//    return true;
+//}
+//
+//
+//function getImgPath($img)
+//{
+//    if (is_null($img)) {
+//        return '';
+//    }
+//    return url('/').'/storage/'.$img;
+//}
