@@ -29,7 +29,7 @@ class ProductFactory extends Factory
             'ar_details'=>$this->faker->name,
             'en_details'=>$this->faker->name,
             'price'=>$this->faker->numberBetween(100,959),
-            'discount'=>$this->faker->numberBetween(10,100)/2,
+            'discount'=>$this->faker->numberBetween(0,180)/2,
             'subcategory_id'=>$subcategory[array_rand($subcategory)],
             'image'=>$this->faker->imageUrl(),
             'is_new'=>$this->faker->boolean,

@@ -69,4 +69,12 @@ class Product extends Model
     public function product_images(){
         return $this->hasMany(ProductImage::class,'product_id');
     }
+
+    public function similarProducts(){
+        return Product::where('subcategory_id',$this->subcategory_id)
+                    ->where('is_ban',0)
+                    ->whereHas('product_quantity')->get();
+    }
+
+
 }

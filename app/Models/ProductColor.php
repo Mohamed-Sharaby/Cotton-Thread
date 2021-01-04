@@ -24,4 +24,11 @@ class ProductColor extends Model
     public function product(){
         return $this->belongsTo(Product::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function product_quantity(){
+        return $this->hasMany(ProductQuantity::class,'product_color_id');
+    }
 }

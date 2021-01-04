@@ -18,16 +18,60 @@ class ProductsCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return $this->collection->transform(function ($q){
-            return[
-                'id'=>$q->id,
-                'name'=>$q->name,
-                'image'=>$q->image,
-                'price'=>$q->price,
-                'rate'=>0,
-                'discount'=>$q->discount,
-                'price_after_discount'=>$q->price_after_discount,
+        $user = auth()->user();
+        if($request->path() == 'api/home'){
+            return $this->collection->transform(function ($q)use($user){
+                return[
+                    'id' => $q->id,
+                    'name' => $q->name,
+                    'image' => $q->image,
+                    'price' => $q->price,
+                    'rate' => 0,
+                    'discount' => $q->discount,
+                    'price_after_discount' => $q->price_after_discount,
+                    'is_favourite'=>(auth()->check())?$user->isFavourite($this->id):false,
+                    'colors' => new ProductColorsCollection($q->product_colors()->whereHas('product_quantity')->get()),
+                    'sizes' => new ProductSizesCollection($q->product_sizes()->whereHas('product_quantity')->get()),
+                ];
+            });
+        }else {
+            $data['products'] = $this->collection->transform(function ($q)use($user) {
+                return [
+                    'id' => $q->id,
+                    'name' => $q->name,
+                    'image' => $q->image,
+                    'price' => $q->price,
+                    'rate' => 0,
+                    'discount' => $q->discount,
+                    'price_after_discount' => $q->price_after_discount,
+                    'is_favourite'=>(auth()->check())?$user->isFavourite($this->id):false,
+                    'colors' => new ProductColorsCollection($q->product_colors()->whereHas('product_quantity')->get()),
+                    'sizes' => new ProductSizesCollection($q->product_sizes()->whereHas('product_quantity')->get()),
+                ];
+            });
+        }
+
+
+        if($this->resource instanceof \Illuminate\Pagination\LengthAwarePaginator){
+            $queries = array();
+            if(isset($_SERVER['QUERY_STRING'])){
+                parse_str($_SERVER['QUERY_STRING'], $queries);
+                if(isset($queries['page']))
+                    unset($queries['page']);
+            }
+
+            $data['paginate'] = [
+                'total' => $this->total(),
+                'count' => $this->count(),
+                'per_page' => $this->perPage(),
+                'next_page_url' => handelQueryInPagination($this->nextPageUrl(),$queries),
+                'prev_page_url' => handelQueryInPagination($this->previousPageUrl(),$queries),
+                'current_page' => $this->currentPage(),
+                'total_pages' => $this->lastPage(),
             ];
-        });
+        }
+
+
+        return $data;
     }
 }

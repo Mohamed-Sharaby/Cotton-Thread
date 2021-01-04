@@ -2,33 +2,34 @@
 
 namespace App\Models;
 
+use App\Http\Traits\LangAttributes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ProductSize
+ * Class District
  * @package App\Models
  */
-class ProductSize extends Model
+class District extends Model
 {
-    use HasFactory;
+    use HasFactory,LangAttributes;
 
     /**
      * @var array
      */
-    protected $fillable = ['product_id','size'];
+    protected $fillable = ['ar_name','en_name','region_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function product(){
-        return $this->belongsTo(Product::class);
+    public function region(){
+        return $this->belongsTo(Region::class);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function product_quantity(){
-        return $this->hasMany(ProductQuantity::class,'product_size_id');
+    public function addresses(){
+        return $this->hasMany(Address::class,'district_id');
     }
 }

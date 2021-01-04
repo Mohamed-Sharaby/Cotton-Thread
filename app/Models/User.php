@@ -69,4 +69,18 @@ class User extends Authenticatable
     public function favourites(){
         return $this->belongsTo(Favourites::class,'user_id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function addresses(){
+        return $this->hasMany(Address::class,'user_id');
+    }
+
+    public function isFavourite($product){
+        if(!auth()->check())
+            return false;
+        else
+            return $this->favourites()->where('product_id',$product)->exists();
+    }
 }

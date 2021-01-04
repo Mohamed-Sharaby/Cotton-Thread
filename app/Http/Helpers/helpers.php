@@ -92,3 +92,17 @@ function getSetting($name){
     if (!$setting) return "";
     return $setting->value;
 }
+
+/**
+ * @param $targetUrl
+ * @param null $query
+ * @return string
+ */
+function handelQueryInPagination($targetUrl, $query=null){
+    if($query&&$targetUrl)
+        return $targetUrl.'&'.http_build_query($query, '', '&amp;');
+    elseif ($targetUrl)
+        return $targetUrl;
+    else
+        return '';
+}
