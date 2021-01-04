@@ -27,9 +27,9 @@ class PermissionsTableSeeder extends Seeder
             'Roles',
             'Products',
             'Categories',
-            'Sliders',
-            'Branches',
-            'GuestMessages',
+            'SubCategories',
+            'Banners',
+            'Galleries',
             'Settings',
         ];
 

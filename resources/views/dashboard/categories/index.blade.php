@@ -47,8 +47,8 @@
                         <td>
                             @if($category->image)
 
-                                <a data-fancybox="gallery" href="{{$category->image}}">
-                                    <img src="{{$category->image}}" width="70" height="70"
+                                <a data-fancybox="gallery" href="{{getImgPath($category->image)}}">
+                                    <img src="{{getImgPath($category->image)}}" width="70" height="70"
                                          class="img-thumbnail" alt="cat_img">
                                 </a>
                             @else {{__('No Image')}} @endif
@@ -60,7 +60,7 @@
                                     action="{{ route('admin.active', ['id' => $category->id, 'type' => 'Category']) }}"
                                     method="post">@csrf
                                     <button type="submit"
-                                            class="{{ $category->is_active ? 'btn btn-success' : 'btn btn-warning' }}">{{ $category->is_active ? __('Active') : __('Deactivate') }}</button>
+                                            class="{{ $category->is_ban ? 'btn btn-warning' : 'btn btn-success' }}">{{ $category->is_ban ? __('Deactivate') : __('Active') }}</button>
                                 </form>
 
                                 <a href="{{url(route('admin.categories.edit',$category->id))}}"

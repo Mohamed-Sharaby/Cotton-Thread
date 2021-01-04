@@ -19,24 +19,20 @@ class Category extends Model
      */
     private $folder = 'categories';
 
-    use HasFactory,LangAttributes,FileAttributes,SoftDeletes;
+    use HasFactory,LangAttributes
+//        ,FileAttributes
+        ,SoftDeletes;
 
     /**
      * @var array
      */
-    protected $fillable = ['ar_name','en_name','image','is_active'];
+    protected $fillable = ['ar_name','en_name','image','is_ban'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function subcategories(){
         return $this->hasMany(SubCategory::class,'category_id');
-    }
-
-    public function getNameAttribute()
-    {
-        if (app()->getLocale() == "ar") return $this->ar_name;
-        return $this->en_name;
     }
 
 }

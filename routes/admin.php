@@ -8,15 +8,17 @@ Route::group(['prefix' => 'dashboard', 'middleware' =>['auth:admin','admin'], 'a
     Route::resource('admins', 'AdminController');
     Route::resource('roles', 'RoleController');
     Route::resource('categories', 'CategoryController');
-
-
+    Route::resource('sub-categories', 'SubCategoryController');
     Route::resource('products', 'ProductController');
-    Route::resource('sliders', 'SliderController');
-    Route::resource('services', 'ServiceController');
-    Route::resource('branches', 'BranchController');
-    Route::resource('guest-messages', 'GuestMessageController');
+    Route::resource('banners', 'BannerController');
+    Route::resource('product-colors', 'ProductColorController');
+    Route::resource('product-sizes', 'ProductSizeController');
+    Route::resource('product-quantities', 'ProductQuantityController');
+    Route::resource('product-images', 'ProductImageController');
+    Route::resource('galleries', 'GalleryController');
     Route::resource('settings', 'SettingController');
-
+    Route::get('/getSizes/{id}','ProductQuantityController@getSizes');
+    Route::get('/getColors/{id}','ProductQuantityController@getColors');
     Route::post('active/{id}/role', 'RoleController@active')->name('active.role');
     Route::post('active/{id}/{type}', 'DashboardController@active')->name('active');
 

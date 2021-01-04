@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.layout')
 @section('page-title')
-    اضافة منتج
+    اضافة الى المكتبة
 @endsection
 @section('content')
     <div class="page-header page-header-light">
@@ -9,7 +9,7 @@
                 <div class="breadcrumb">
                     <a href="{{route('admin.main')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>
                         {{__('Main')}}</a>
-                    <a href="{{route('admin.products.index')}}" class="breadcrumb-item">المنتجات</a>
+                    <a href="{{route('admin.galleries.index')}}" class="breadcrumb-item">مكتبة الصور والفيديو</a>
                     <span class="breadcrumb-item active">@yield('page-title')</span>
                 </div>
                 <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -21,12 +21,12 @@
         <!-- Form horizontal -->
         <div class="panel panel-flat">
             <div class="panel-heading">
-                <h3 class="panel-title"> اضافة منتج</h3>
+                <h3 class="panel-title"> اضافة الى المكتبة</h3>
             </div>
             <hr>
             <div class="panel-body">
-
-                <form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
+{{--@dd($errors->all())--}}
+                <form action="{{route('admin.galleries.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group row">
@@ -57,60 +57,15 @@
                         </div>
                     </div>
 
-
                     <div class="form-group row">
-                        <label for="price" class="col-form-label col-lg-2">السعر</label>
+                        <label for="type" class="col-form-label col-lg-2 ">النوع </label>
                         <div class="col-lg-4">
-                            {!! Form::number('price',null,[
-                            'class' =>'form-control '.($errors->has('price') ? ' is-invalid' : null),
-                            'placeholder'=> 'السعر' ,
-                            ]) !!}
-                            @error('price')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
-                        <label for="discount" class="col-form-label col-lg-2 text-lg-right">الخصم </label>
-                        <div class="col-lg-4">
-                            {!! Form::number('discount',null,[
-                            'class' =>'form-control '.($errors->has('discount') ? ' is-invalid' : null),
-                            'placeholder'=> 'الخصم' ,
-                            ]) !!}
-                            @error('discount')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="subcategory_id" class="col-form-label col-lg-2 ">القسم الفرعى</label>
-                        <div class="col-lg-4">
-                            <select name="subcategory_id" id="subcategory_id"
-                                    class="form-control {{$errors->has('subcategory_id') ? 'is-invalid' : null}}">
-                                <option disabled selected>اختر القسم الفرعى</option>
-                                @foreach($subCategories as $category)
-                                    <option
-                                        value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->ar_name}}</option>
-                                @endforeach
+                            <select name="type" id="type"
+                                    class="form-control {{$errors->has('type') ? 'is-invalid' : null}}">
+                                <option value="image" {{old('type') === 'image' ? 'selected' : ''}}>صورة</option>
+                                <option value="video" {{old('type') === 'video' ? 'selected' : ''}}>فيديو</option>
                             </select>
-                            @error('subcategory_id')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-
-                        <label for="is_new" class="col-form-label col-lg-2 text-lg-right">جديد </label>
-                        <div class="col-lg-4">
-                            <select name="is_new" id="is_new"
-                                    class="form-control {{$errors->has('is_new') ? 'is-invalid' : null}}">
-                                <option value="1" {{old('is_new') === 1 ? 'selected' : ''}}>نعم</option>
-                                <option value="0" {{old('is_new') === 0 ? 'selected' : ''}}>لا</option>
-                            </select>
-                            @error('is_new')
+                            @error('type')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -118,6 +73,36 @@
                         </div>
                     </div>
 
+                    <div class="form-group row image">
+                        <label for="image" class="col-form-label col-lg-2 my-auto">الصورة</label>
+                        <div class="col-lg-10">
+                            <input type="file" id="image"
+                                   class="form-control {{$errors->has('image') ? ' is-invalid' : null}}"
+                                   name="image">
+                            @error('image')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="video d-none">
+                        <div class="form-group row">
+                            <label for="url" class="col-form-label col-lg-2 my-auto">رابط الفيديو</label>
+                            <div class="col-lg-10">
+                                <input type="url" id="url"
+                                       oninvalid="this.setCustomValidity('رابط الفيديو مطلوب')"
+                                       onchange="this.setCustomValidity('')"
+                                       class="form-control {{$errors->has('url') ? ' is-invalid' : null}}"
+                                       name="url">
+                                @error('url')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="ar_details" class="col-form-label col-lg-2 my-auto">الوصف بالعربية</label>
                         <div class="col-lg-10">
@@ -144,19 +129,6 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="image" class="col-form-label col-lg-2 my-auto">{{__('Image')}}</label>
-                        <div class="col-lg-4">
-                            <input type="file" class="form-control {{$errors->has('image') ? ' is-invalid' : null}}"
-                                   name="image">
-                            @error('image')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
                         <button type="submit" class="btn btn-primary btn-block">{{__('Add')}}</button>
                     </div>
 
@@ -168,4 +140,24 @@
     </div>
     <!-- /content area -->
 
+@endsection
+@section('my-js')
+    <script>
+        $(document).ready(function () {
+            $("#type").change(function () {
+                if ($(this).val() === 'video') {
+                    $(".image").addClass('d-none');
+                    $(".video").removeClass('d-none');
+                    $("#video").attr('required', 'required');
+
+                } else {
+                    $(".image").removeClass('d-none');
+                    $(".video").addClass('d-none');
+                    $("#video").removeAttr('required', 'required');
+                    //$("#image").attr('required','required');
+                }
+            });
+
+        });
+    </script>
 @endsection

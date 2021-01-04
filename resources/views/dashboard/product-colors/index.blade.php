@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.layout')
 @section('page-title')
-    المنتجات
+    ألوان المنتجات
 @endsection
 @section('content')
     <div class="page-header page-header-light">
@@ -22,61 +22,36 @@
             @include('dashboard.layouts.status')
 
             <div class="panel-body mb-2">
-                <a href="{{route('admin.products.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
+                <a href="{{route('admin.product-colors.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
                                                                                              style="margin-left: 10px;"></i>
-                    اضافة منتج</a>
+                    اضافة لون منتج</a>
             </div>
             <table class="table datatable-button-init-basic table-hover responsive table-responsive display nowrap"
                    style="width:100%">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>الاسم</th>
-                    <th>القسم الفرعى</th>
-                    <th>السعر</th>
-                    <th>الصورة</th>
-                    <th>التفاصيل</th>
+                    <th>اسم المنتج</th>
+                    <th>اللون</th>
                     <th class="text-center">{{__('Operations')}}</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($products as $index => $product)
+                @foreach($colors as $index => $color)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$product->name}}</td>
-                        <td>{{$product->subcategory->name}}</td>
-                        <td>{{$product->price}}</td>
-                        <td>
-                            @if($product->image)
+                        <td>{{$color->product->name}}</td>
+                        <td>{{$color->color}}</td>
 
-                                <a data-fancybox="gallery" href="{{getImgPath($product->image)}}">
-                                    <img src="{{getImgPath($product->image)}}" width="70" height="70"
-                                         class="img-thumbnail" alt="cat_img">
-                                </a>
-                            @else {{__('No Image')}} @endif
-                        </td>
-                        <td>@include('dashboard.products.details')</td>
                         <td class="text-center">
                             <div class="btn-group text-center">
 
-                                <form
-                                    action="{{ route('admin.active', ['id' => $product->id, 'type' => 'Product']) }}"
-                                    method="post">@csrf
-                                    <button type="submit"
-                                            class="{{ $product->is_ban ? 'btn btn-warning' : 'btn btn-success' }}">{{ $product->is_ban ? __('Deactivate') : __('Active') }}</button>
-                                </form>
-
-{{--                                <a href="{{url(route('admin.products.add_quantity',$product->id))}}"--}}
-{{--                                   class="btn btn-primary btn-sm ml-2 rounded"><i--}}
-{{--                                        class="fa fa-plus mr-2"></i>اضافة كمية</a>--}}
-
-
-                                <a href="{{url(route('admin.products.edit',$product->id))}}"
+                                <a href="{{url(route('admin.product-colors.edit',$color->id))}}"
                                    class="btn btn-primary btn-sm ml-2 rounded-circle"><i
                                         class="fa fa-edit"></i></a>
 
 
-                                <form action="{{route('admin.products.destroy',$product->id)}}" method="post">
+                                <form action="{{route('admin.product-colors.destroy',$color->id)}}" method="post">
                                     @csrf
                                     {{method_field('delete')}}
 

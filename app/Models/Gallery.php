@@ -13,10 +13,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Gallery extends Model
 {
-    use HasFactory,FileAttributes,LangAttributes;
+    use HasFactory,
+//        FileAttributes,
+        LangAttributes;
 
     /**
      * @var array
      */
-    protected $fillable = ['ar_name','en_name','ar_details','url','en_details','type','is_ban'];
+    protected $fillable = ['ar_name','en_name','ar_details','url','en_details','type','is_ban','image'];
 }

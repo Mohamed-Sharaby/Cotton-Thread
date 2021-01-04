@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
+use App\Models\Gallery;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class GalleryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:Products');
+        $this->middleware('permission:Galleries');
     }
 
     /**
@@ -23,8 +23,8 @@ class ProductController extends Controller
     {
 
         return view(
-            'dashboard.products.index',
-            ['products' => Product::latest()->get()]
+            'dashboard.galleries.index',
+            ['galleries' => Gallery::latest()->get()]
         );
     }
 
@@ -34,8 +34,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $subCategories = SubCategory::whereIsBan(0)->get();
-        return view('dashboard.products.create', compact('subCategories'));
+        return view('dashboard.galleries.create');
     }
 
     /**
@@ -49,20 +48,18 @@ class ProductController extends Controller
         $data = $request->validate([
             'ar_name' => 'required|string|max:100',
             'en_name' => 'required|string|max:100',
-            'discount' => 'required',
-            'price' => 'required|numeric',
-            'is_new' => 'required|boolean',
             'ar_details' => 'required|max:2000',
             'en_details' => 'required|max:2000',
-            'subcategory_id' => 'required|exists:sub_categories,id',
-            'image' => 'required|image',
+            'type' => 'required|in:video,image',
+            'url' => 'nullable|url',
+            'image' => 'nullable|image',
         ]);
 
         if ($request->has('image')) {
             $data['image'] = uploadImage('uploads', $request->image);
         }
-        Product::create($data);
-        return redirect()->route('admin.products.index')->with('success', __('Added Successfully'));
+        Gallery::create($data);
+        return redirect()->route('admin.galleries.index')->with('success', __('Added Successfully'));
     }
 
     /**
@@ -82,10 +79,9 @@ class ProductController extends Controller
      * @param int $id
      * @return
      */
-    public function edit(Product $product)
+    public function edit(Gallery $gallery)
     {
-        $subCategories = SubCategory::all();
-        return view('dashboard.products.edit', compact('product', 'subCategories'));
+        return view('dashboard.galleries.edit', compact('gallery'));
     }
 
     /**
@@ -95,27 +91,25 @@ class ProductController extends Controller
      * @param int $id
      * @return
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Gallery $gallery)
     {
         $validator = $request->validate([
             'ar_name' => 'required|string|max:100',
             'en_name' => 'required|string|max:100',
-            'discount' => 'required',
-            'price' => 'required|numeric',
-            'is_new' => 'required|boolean',
             'ar_details' => 'required|max:2000',
             'en_details' => 'required|max:2000',
-            'subcategory_id' => 'required|exists:sub_categories,id',
-            'image' => 'nullable|image',
+            'type' => 'required|in:video,image',
+            'url' => 'required_if:type,video|url',
+            'image' => 'required_if:type,image|image',
         ]);
         if ($request->has('image')) {
-            if ($product->image) {
-                deleteImage('uploads', $product->image);
+            if ($gallery->image) {
+                deleteImage('uploads', $gallery->image);
             }
             $validator['image'] = uploadImage('uploads', $request->image);
         }
-        $product->update($validator);
-        return redirect()->route('admin.products.index')->with('success', __('Updated Successfully'));
+        $gallery->update($validator);
+        return redirect()->route('admin.galleries.index')->with('success', __('Updated Successfully'));
     }
 
     /**
@@ -124,11 +118,11 @@ class ProductController extends Controller
      * @param int $id
      * @return
      */
-    public function destroy(Product $product)
+    public function destroy(Gallery $gallery)
     {
-        deleteImage('uploads', $product->image);
-        $product->delete();
-        return redirect()->route('admin.products.index')->with('success', __('Deleted Successfully'));
+        deleteImage('uploads', $gallery->image);
+        $gallery->delete();
+        return redirect()->route('admin.galleries.index')->with('success', __('Deleted Successfully'));
     }
 
 

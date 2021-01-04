@@ -19,10 +19,10 @@ class UpdatePermissionsTableSeeder extends Seeder
             'Roles' => 'التعامل مع الصلاحيات والمناصب',
             'Products'=> 'التعامل مع المنتجات',
             'Settings'=> 'التعامل مع الاعدادات ',
-            'Categories'=> 'التعامل مع الاقسام ',
-            'Branches'=> 'التعامل مع الفروع ',
-            'Sliders'=> 'التعامل مع السلايدر ',
-            'GuestMessages'=> 'التعامل مع رسائل الزوار ',
+            'Categories'=> 'التعامل مع الاقسام الرئيسية ',
+            'SubCategories'=> 'التعامل مع الاقسام الفرعية ',
+            'Banners'=> 'التعامل مع البانرات ',
+            'Galleries'=> 'التعامل مع مكتبة الصور والفيديو ',
         ];
 
         foreach ($permissions as $key => $permission) {

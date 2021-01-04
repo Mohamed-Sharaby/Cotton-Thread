@@ -17,10 +17,13 @@ class DashboardController extends Controller
     {
         $baseClass = 'App\Models\\' . $className;
         $model = $baseClass::findOrFail($id);
-        $model->update(['is_active' => !$model->is_active]);
+        $model->update(['is_ban' => !$model->is_ban]);
 
-        if ($className == 'Admin'){
-            $model->update(['is_ban' => !$model->is_ban]);
+        if ($className == 'Category') {
+            $model->subcategories()->update(['is_ban' => $model->is_ban]);
+        }
+        if ($className == 'SubCategory') {
+            $model->products()->update(['is_ban' => $model->is_ban]);
         }
 
         return back()->with('success', __('تم التحديث بنجاح'));

@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.layout')
 
 @section('page-title')
-    {{__('Edit Category')}}
+    تعديل صورة منتج
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
                 <div class="breadcrumb">
                     <a href="{{route('admin.main')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>
                         {{__('Main')}}</a>
-                    <a href="{{route('admin.categories.index')}}" class="breadcrumb-item">{{__('Categories')}}</a>
+                    <a href="{{route('admin.product-images.index')}}" class="breadcrumb-item">صور المنتجات</a>
                     <span class="breadcrumb-item active">@yield('page-title')</span>
                 </div>
                 <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -23,35 +23,30 @@
         <!-- Form horizontal -->
         <div class="panel panel-flat">
             <div class="panel-heading">
-                <h3 class="panel-title">{{__('Edit Category')}}
-                    <span class="badge badge-info">{{$category->name}}</span>
+                <h3 class="panel-title">تعديل صور منتج
+                    <span class="badge badge-info">{{$productImage->product->name}}</span>
                 </h3>
             </div>
             <hr>
             <div class="panel-body">
 
-                <form action="{{route('admin.categories.update',$category->id)}}" method="post"
+                <form action="{{route('admin.product-images.update',$productImage->id)}}" method="post"
                       enctype="multipart/form-data">
                     @csrf
                     {{method_field('put')}}
 
-
                     <div class="form-group row">
-                        <label for="ar_name" class="control-label col-lg-2">{{__('Arabic Name')}}</label>
-                        <div class="col-lg-10">
-                            <input type="text" name="ar_name" value="{{$category->ar_name}}" class="form-control {{$errors->has('ar_name') ? 'is-invalid' : null}}">
-                            @error('ar_name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="en_name" class="control-label col-lg-2">{{__('English Name')}}</label>
-                        <div class="col-lg-10">
-                            <input type="text" name="en_name" value="{{$category->en_name}}" class="form-control {{$errors->has('ar_name') ? 'is-invalid' : null}}">
-                            @error('en_name')
+                        <label for="product_id" class="col-form-label col-lg-2 ">اسم المنتج</label>
+                        <div class="col-lg-4">
+                            <select name="product_id" id="product_id"
+                                    class="form-control {{$errors->has('product_id') ? 'is-invalid' : null}}">
+                                <option disabled selected>اختر  المنتج</option>
+                                @foreach($products as $product)
+                                    <option
+                                        value="{{$product->id}}" {{$productImage->product_id == $product->id ? 'selected' : ''}}>{{$product->ar_name}}</option>
+                                @endforeach
+                            </select>
+                            @error('product_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -70,12 +65,12 @@
                             @enderror
                         </div>
 
-                        @isset($category->image)
+                        @isset($productImage->image)
                             <div class="col-12 col-lg-6 my-auto">
-                                @if($category->image)
+                                @if($productImage->image)
 
-                                    <a data-fancybox="gallery" href="{{getImgPath($category->image)}}">
-                                        <img src="{{getImgPath($category->image)}}" width="100" height="100"
+                                    <a data-fancybox="gallery" href="{{getImgPath($productImage->image)}}">
+                                        <img src="{{getImgPath($productImage->image)}}" width="100" height="100"
                                              class="img-thumbnail">
                                     </a>
                                 @else لا يوجد صورة @endif
@@ -83,10 +78,10 @@
                         @endisset
                     </div>
 
+
                     <div class="form-group row">
                         <button type="submit" class="btn btn-success btn-block">{{__('Edit')}}</button>
                     </div>
-
                 </form>
             </div>
         </div>

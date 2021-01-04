@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.layout')
 @section('page-title')
-    الخدمات
+    الاقسام الفرعية
 @endsection
 @section('content')
     <div class="page-header page-header-light">
@@ -22,91 +22,61 @@
             @include('dashboard.layouts.status')
 
             <div class="panel-body mb-2">
-                <a href="{{route('admin.services.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
+                <a href="{{route('admin.sub-categories.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
                                                                                                style="margin-left: 10px;"></i>
-                   اضافة خدمة</a>
+                    اضافة قسم فرعى</a>
             </div>
+            {{-- {{$dataTable->table(['class'=>'table-1 responsive datatable-ajax table-hover  display nowrap'])}} --}}
             <table class="table datatable-button-init-basic table-hover responsive table-responsive display nowrap"
                    style="width:100%">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>الاسم</th>
-                    <th>المحتوى</th>
+                    <th>الاسم بالعربية</th>
+                    <th>الاسم بالانجليزية</th>
+                    <th>القسم الرئيسى</th>
                     <th>الصورة</th>
                     <th class="text-center">{{__('Operations')}}</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($services as $index => $service)
+                @foreach($subCategories as $index => $category)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$service->name}}</td>
-                        <td class="text-center">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-info" data-toggle="modal"
-                                    data-target="#{{$service->id}}">
-                                محتوى الخدمة
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="{{$service->id}}" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-info">
-                                            <h5 class="modal-title" id="exampleModalLabel"> محتوى الخدمة</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body" style="white-space: pre-line;
-                                                                      overflow-wrap: break-word;
-                                                                      text-overflow: ellipsis;">
-                                            {{$service->content}}
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">اغلاق
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
+                        <td>{{$category->ar_name}}</td>
+                        <td>{{$category->en_name}}</td>
+                        <td>{{$category->category->name}}</td>
                         <td>
-                            @if($service->image)
+                            @if($category->image)
 
-                                <a data-fancybox="gallery" href="{{getImgPath($service->image)}}">
-                                    <img src="{{getImgPath($service->image)}}" width="70" height="70"
+                                <a data-fancybox="gallery" href="{{getImgPath($category->image)}}">
+                                    <img src="{{getImgPath($category->image)}}" width="70" height="70"
                                          class="img-thumbnail" alt="cat_img">
                                 </a>
                             @else {{__('No Image')}} @endif
                         </td>
-
                         <td class="text-center">
                             <div class="btn-group text-center">
 
                                 <form
-                                    action="{{ route('admin.active', ['id' => $service->id, 'type' => 'Service']) }}"
+                                    action="{{ route('admin.active', ['id' => $category->id, 'type' => 'SubCategory']) }}"
                                     method="post">@csrf
                                     <button type="submit"
-                                            class="{{ $service->is_active ? 'btn btn-success' : 'btn btn-warning' }}">{{ $service->is_active ? __('Active') : __('Deactivate') }}</button>
+                                            class="{{ $category->is_ban ? 'btn btn-warning' : 'btn btn-success' }}">{{ $category->is_ban ? __('Deactivate') : __('Active') }}</button>
                                 </form>
 
-                                <a href="{{url(route('admin.services.edit',$service->id))}}"
+                                <a href="{{url(route('admin.sub-categories.edit',$category->id))}}"
                                    class="btn btn-primary btn-sm ml-2 rounded-circle"><i
                                         class="fa fa-edit"></i></a>
 
 
-                                <form action="{{route('admin.services.destroy',$service->id)}}" method="post">
+                                <form action="{{route('admin.sub-categories.destroy',$category->id)}}" method="post">
                                     @csrf
                                     {{method_field('delete')}}
 
                                 <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i class="fa fa-trash"></i>
                                 </button>
                                 </form>
-
                             </div>
                         </td>
                     </tr>
@@ -114,6 +84,7 @@
                 </tbody>
             </table>
         </div>
+
     <!-- /basic initialization -->
     </div>
     <!-- /content area -->

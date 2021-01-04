@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class CategoryController extends Controller
+class SubCategoryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('permission:Categories');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('permission:SubCategories');
+//    }
 
     /**
      * Display a listing of the resource.
@@ -23,8 +24,8 @@ class CategoryController extends Controller
     {
 
         return view(
-            'dashboard.categories.index',
-            ['categories' => Category::latest()->get()]
+            'dashboard.sub-categories.index',
+            ['subCategories' => SubCategory::latest()->get()]
         );
     }
 
@@ -34,7 +35,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.categories.create');
+        $categories = Category::whereIsBan(0)->get();
+        return view('dashboard.sub-categories.create',compact('categories'));
     }
 
     /**
@@ -49,13 +51,14 @@ class CategoryController extends Controller
             'ar_name' => 'required|string|max:100',
             'en_name' => 'required|string|max:100',
             'image' => 'required|image',
+            'category_id' => 'required|exists:categories,id',
         ]);
         if ($request->image){
             $data['image'] = uploadImage('uploads',$request->image);
         }
 
-        Category::create($data);
-        return redirect()->route('admin.categories.index')->with('success', __('Added Successfully'));
+        SubCategory::create($data);
+        return redirect()->route('admin.sub-categories.index')->with('success', __('Added Successfully'));
     }
 
     /**
@@ -75,9 +78,10 @@ class CategoryController extends Controller
      * @param int $id
      * @return
      */
-    public function edit(Category $category)
+    public function edit(SubCategory $subCategory)
     {
-        return view('dashboard.categories.edit', compact('category'));
+        $categories = Category::all();
+        return view('dashboard.sub-categories.edit', compact('subCategory','categories'));
     }
 
     /**
@@ -87,21 +91,22 @@ class CategoryController extends Controller
      * @param int $id
      * @return
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request,SubCategory $subCategory)
     {
         $validator = $request->validate([
             'ar_name' => 'required|string|max:100',
             'en_name' => 'required|string|max:100',
             'image' => 'nullable|image',
+            'category_id' => 'required|exists:categories,id',
         ]);
         if ($request->has('image')) {
-            if ($category->image) {
-                deleteImage('uploads',$category->image);
+            if ($subCategory->image) {
+                deleteImage('uploads',$subCategory->image);
             }
             $validator['image'] = uploadImage('uploads', $request->image);
         }
-        $category->update($validator);
-        return redirect()->route('admin.categories.index')->with('success', __('Updated Successfully'));
+        $subCategory->update($validator);
+        return redirect()->route('admin.sub-categories.index')->with('success', __('Updated Successfully'));
     }
 
     /**
@@ -110,11 +115,11 @@ class CategoryController extends Controller
      * @param int $id
      * @return
      */
-    public function destroy(Category $category)
+    public function destroy(SubCategory $subCategory)
     {
-        deleteImage('uploads', $category->image);
-        $category->delete();
-        return redirect()->route('admin.categories.index')->with('success', __('Deleted Successfully'));
+        deleteImage('uploads', $subCategory->image);
+        $subCategory->delete();
+        return redirect()->route('admin.sub-categories.index')->with('success', __('Deleted Successfully'));
     }
 
 }

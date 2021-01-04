@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class ProductImage extends Model
 {
     private $folder = 'product_images';
-    use HasFactory,FileAttributes;
+    use HasFactory
+//        ,FileAttributes
+        ;
 
     protected $fillable = ['product_id','image'];
 

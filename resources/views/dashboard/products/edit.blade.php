@@ -36,22 +36,76 @@
                     {{method_field('put')}}
 
                     <div class="form-group row">
-                        <label for="name" class="control-label col-lg-2">{{__('Name')}}</label>
+                        <label for="ar_name" class="col-form-label col-lg-2">الاسم بالعربية</label>
                         <div class="col-lg-4">
-                            <input type="text" name="name" class="form-control {{$errors->has('name') ? 'is-invalid' : null}}"
-                                   placeholder="الاسم" value="{{$product->name}}">
-                            @error('name')
+                            <input type="text" name="ar_name" value="{{$product->ar_name}}" class="form-control {{$errors->has('ar_name') ? 'is-invalid' : null}}">
+                            @error('ar_name')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
 
-                        <label for="type" class="control-label col-lg-2 text-lg-right">النوع</label>
+                        <label for="en_name" class="col-form-label col-lg-2 text-lg-right">الاسم بالانجليزية</label>
                         <div class="col-lg-4">
-                            <input type="text" name="type" class="form-control {{$errors->has('type') ? 'is-invalid' : null}}"
-                                   placeholder="الاسم" value="{{$product->type}}">
-                            @error('type')
+                            <input type="text" name="en_name" value="{{$product->en_name}}" class="form-control {{$errors->has('en_name') ? 'is-invalid' : null}}">
+
+                            @error('en_name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="price" class="col-form-label col-lg-2">السعر</label>
+                        <div class="col-lg-4">
+                            <input type="number" name="price" value="{{$product->price}}" class="form-control {{$errors->has('price') ? 'is-invalid' : null}}">
+                            @error('price')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <label for="discount" class="col-form-label col-lg-2 text-lg-right">الخصم </label>
+                        <div class="col-lg-4">
+                            <input type="number" name="discount" value="{{$product->discount}}" class="form-control {{$errors->has('discount') ? 'is-invalid' : null}}">
+                            @error('discount')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="subcategory_id" class="col-form-label col-lg-2 ">القسم الفرعى</label>
+                        <div class="col-lg-4">
+                            <select name="subcategory_id" id="subcategory_id"
+                                    class="form-control {{$errors->has('subcategory_id') ? 'is-invalid' : null}}">
+                                <option disabled selected>اختر القسم الفرعى</option>
+                                @foreach($subCategories as $category)
+                                    <option
+                                        value="{{$category->id}}" {{$product->subcategory_id == $category->id ? 'selected' : ''}}>{{$category->ar_name}}</option>
+                                @endforeach
+                            </select>
+                            @error('subcategory_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <label for="is_new" class="col-form-label col-lg-2 text-lg-right">جديد </label>
+                        <div class="col-lg-4">
+                            <select name="is_new" id="is_new"
+                                    class="form-control {{$errors->has('is_new') ? 'is-invalid' : null}}">
+                                <option value="1" {{$product->is_new === 1 ? 'selected' : ''}}>نعم</option>
+                                <option value="0" {{$product->is_new === 0 ? 'selected' : ''}}>لا</option>
+                            </select>
+                            @error('is_new')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -60,22 +114,23 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="price" class="control-label col-lg-2">السعر</label>
-                        <div class="col-lg-4">
-                            <input type="number" name="price" class="form-control {{$errors->has('price') ? 'is-invalid' : null}}"
-                                   placeholder="الاسم" value="{{$product->price}}">
-                            @error('price')
+                        <label for="ar_details" class="col-form-label col-lg-2 my-auto">الوصف بالعربية</label>
+                        <div class="col-lg-10">
+                            <textarea name="ar_details" id="ar_details" cols="30" rows="4"
+                                      class="form-control {{$errors->has('ar_details') ? 'is-invalid' : ''}}">{{$product->ar_details}}</textarea>
+                            @error('ar_details')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
-
-                        <label for="warranty" class="control-label col-lg-2 text-lg-right">فترة الضمان</label>
-                        <div class="col-lg-4">
-                            <input type="number" name="warranty" class="form-control {{$errors->has('warranty') ? 'is-invalid' : null}}"
-                                   placeholder="الاسم" value="{{$product->warranty}}">
-                            @error('warranty')
+                    </div>
+                    <div class="form-group row">
+                        <label for="en_details" class="col-form-label col-lg-2 my-auto">الوصف بالانجليزية</label>
+                        <div class="col-lg-10">
+                            <textarea name="en_details" id="en_details" cols="30" rows="4"
+                                      class="form-control {{$errors->has('en_details') ? 'is-invalid' : ''}}">{{$product->en_details}}</textarea>
+                            @error('en_details')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

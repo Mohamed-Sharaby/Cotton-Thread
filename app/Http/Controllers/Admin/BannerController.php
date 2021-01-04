@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Slider;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 
-class SliderController extends Controller
+class BannerController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('permission:Sliders');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('permission:Banners');
+//    }
 
     /**
      * Display a listing of the resource.
@@ -22,8 +22,8 @@ class SliderController extends Controller
     {
 
         return view(
-            'dashboard.sliders.index',
-            ['sliders' => Slider::latest()->get()]
+            'dashboard.banners.index',
+            ['banners' => Banner::latest()->get()]
         );
     }
 
@@ -33,7 +33,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        return view('dashboard.sliders.create');
+        return view('dashboard.banners.create');
     }
 
     /**
@@ -45,16 +45,17 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'body' => 'required|string|max:1000',
+            'ar_details' => 'required|string|max:2000',
+            'en_details' => 'required|string|max:2000',
             'image' => 'required|image',
         ]);
 
         if ($request->has('image')) {
             $data['image'] = uploadImage('uploads', $request->image);
         }
-         Slider::create($data);
+         Banner::create($data);
 
-        return redirect()->route('admin.sliders.index')->with('success', __('Added Successfully'));
+        return redirect()->route('admin.banners.index')->with('success', __('Added Successfully'));
     }
 
     /**
@@ -74,9 +75,9 @@ class SliderController extends Controller
      * @param int $id
      * @return
      */
-    public function edit(Slider $slider)
+    public function edit(Banner $banner)
     {
-        return view('dashboard.sliders.edit', compact('slider'));
+        return view('dashboard.banners.edit', compact('banner'));
     }
 
     /**
@@ -86,20 +87,21 @@ class SliderController extends Controller
      * @param int $id
      * @return
      */
-    public function update(Request $request,Slider $slider)
+    public function update(Request $request,Banner $banner)
     {
         $validator = $request->validate([
-            'body' => 'required|string|max:1000',
+            'ar_details' => 'required|string|max:2000',
+            'en_details' => 'required|string|max:2000',
             'image' => 'nullable|image',
         ]);
         if ($request->has('image')) {
-            if ($slider->image) {
-                deleteImage('uploads', $slider->image);
+            if ($banner->image) {
+                deleteImage('uploads', $banner->image);
             }
             $validator['image'] = uploadImage('uploads', $request->image);
         }
-        $slider->update($validator);
-        return redirect()->route('admin.sliders.index')->with('success', __('Updated Successfully'));
+        $banner->update($validator);
+        return redirect()->route('admin.banners.index')->with('success', __('Updated Successfully'));
     }
 
     /**
@@ -108,11 +110,11 @@ class SliderController extends Controller
      * @param int $id
      * @return
      */
-    public function destroy(Slider $slider)
+    public function destroy(Banner $banner)
     {
-        deleteImage('uploads', $slider->image);
-        $slider->delete();
-        return redirect()->route('admin.sliders.index')->with('success', __('Deleted Successfully'));
+        deleteImage('uploads', $banner->image);
+        $banner->delete();
+        return redirect()->route('admin.banners.index')->with('success', __('Deleted Successfully'));
     }
 
 }

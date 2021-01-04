@@ -57,21 +57,28 @@
                     </li>
                     {{--//////////////////////////////////////////////////////////////////////--}}
 
-                    @can('Roles')
-                        <li class="nav-item {{ request()->routeIs('admin.roles.*') ? 'nav-item-expanded nav-item-open' : '' }}">
-                            <a href="{{route('admin.roles.index')}}"
-                               class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
-                                <i class="icon-law"></i> <span>الصلاحيات والمناصب</span></a>
+                    @canany(['Admins','Roles'])
+                        <li class="nav-item nav-item-submenu {{ request()->routeIs('admin.roles.*')
+                                                                || request()->routeIs('admin.admins.*')
+                                                                ? 'nav-item-expanded nav-item-open' : '' }}">
+                            <a href="#"
+                               class="nav-link {{ request()->routeIs('admin.admins.index') ? 'active' : '' }}"><i
+                                    class="icon-law"></i> <span>الإدارة</span></a>
+                            <ul class="nav nav-group-sub">
+                                @can('Roles')
+                                    <li class="nav-item"><a href="{{route('admin.roles.index')}}"
+                                                            class="nav-link {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
+                                            الصلاحيات والمناصب</a></li>
+                                @endcan
+                                @can('Admins')
+                                    <li class="nav-item"><a href="{{route('admin.admins.index')}}"
+                                                            class="nav-link {{ request()->routeIs('admin.admins.*') ? 'active' : '' }}">
+                                            المديرين</a></li>
+                                @endcan
+                            </ul>
                         </li>
-                    @endcan
+                    @endcanany
 
-                    @can('Admins')
-                        <li class="nav-item {{ request()->routeIs('admin.admins.*') ? 'nav-item-expanded nav-item-open' : '' }}">
-                            <a href="{{route('admin.admins.index')}}"
-                               class="nav-link {{ request()->routeIs('admin.admins.index') ? 'active' : '' }}">
-                                <i class="icon-users"></i> <span>المديرين</span></a>
-                        </li>
-                    @endcan
 
                     @can('Categories')
                         <li class="nav-item {{ request()->routeIs('admin.categories.*') ? 'nav-item-expanded nav-item-open' : '' }}">
@@ -81,32 +88,64 @@
                         </li>
                     @endcan
 
-{{--                    @can('Products')--}}
-{{--                        <li class="nav-item {{ request()->routeIs('admin.products.*') ? 'nav-item-expanded nav-item-open' : '' }}">--}}
-{{--                            <a href="{{route('admin.products.index')}}"--}}
-{{--                               class="nav-link {{ request()->routeIs('admin.products.index') ? 'active' : '' }}">--}}
-{{--                                <i class="icon-server"></i> <span>المنتجات</span></a>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
+                    @can('SubCategories')
+                        <li class="nav-item {{ request()->routeIs('admin.sub-categories.*') ? 'nav-item-expanded nav-item-open' : '' }}">
+                            <a href="{{route('admin.sub-categories.index')}}"
+                               class="nav-link {{ request()->routeIs('admin.sub-categories.index') ? 'active' : '' }}">
+                                <i class="icon-database"></i> <span>الأقسام الفرعية</span></a>
+                        </li>
+                    @endcan
+
+                    @can('Products')
+                        <li class="nav-item nav-item-submenu {{ request()->routeIs('admin.products.*')
+                                                                || request()->routeIs('admin.product-colors.*')
+                                                                || request()->routeIs('admin.product-sizes.*')
+                                                                || request()->routeIs('admin.product-quantities.*')
+                                                                || request()->routeIs('admin.product-images.*')
+                                                                ? 'nav-item-expanded nav-item-open' : '' }}">
+                            <a href="#"
+                               class="nav-link {{ request()->routeIs('admin.cities.index') ? 'active' : '' }}"><i
+                                    class="icon-server"></i> <span>المنتجات</span></a>
+                            <ul class="nav nav-group-sub">
+
+                                <li class="nav-item"><a href="{{route('admin.products.index')}}"
+                                                        class="nav-link {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
+                                        <span>المنتجات</span></a></li>
+
+                                <li class="nav-item"><a href="{{route('admin.product-colors.index')}}"
+                                                        class="nav-link {{ request()->routeIs('admin.product-colors.*') ? 'active' : '' }}">
+                                        ألوان المنتجات</a></li>
 
 
+                                <li class="nav-item"><a href="{{route('admin.product-sizes.index')}}"
+                                                        class="nav-link {{ request()->routeIs('admin.product-sizes.*') ? 'active' : '' }}">
+                                        أحجام المنتجات</a></li>
+
+                                <li class="nav-item">
+                                    <a href="{{route('admin.product-quantities.index')}}"
+                                       class="nav-link {{ request()->routeIs('admin.product-quantities.*') ? 'active' : '' }}">
+                                        كمية المنتجات</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{route('admin.product-images.index')}}"
+                                       class="nav-link {{ request()->routeIs('admin.product-images.*') ? 'active' : '' }}">
+                                        صور المنتجات</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    @endcan
+
+                    @can('Banners')
+                        <li class="nav-item {{ request()->routeIs('admin.banners.*') ? 'nav-item-expanded nav-item-open' : '' }}">
+                            <a href="{{route('admin.banners.index')}}"
+                               class="nav-link {{ request()->routeIs('admin.banners.index') ? 'active' : '' }}">
+                                <i class="icon-image-compare"></i> <span>البانرات</span></a>
+                        </li>
+                    @endcan
 
 
-{{--                    @can('Branches')--}}
-{{--                        <li class="nav-item {{ request()->routeIs('admin.branches.*') ? 'nav-item-expanded nav-item-open' : '' }}">--}}
-{{--                            <a href="{{route('admin.branches.index')}}"--}}
-{{--                               class="nav-link {{ request()->routeIs('admin.branches.index') ? 'active' : '' }}">--}}
-{{--                                <i class="icon-shutter"></i> <span>الفروع</span></a>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
-
-{{--                    @can('Sales')--}}
-{{--                        <li class="nav-item {{ request()->routeIs('admin.sales.*') ? 'nav-item-expanded nav-item-open' : '' }}">--}}
-{{--                            <a href="{{route('admin.sales.index')}}"--}}
-{{--                               class="nav-link {{ request()->routeIs('admin.sales.index') ? 'active' : '' }}">--}}
-{{--                                <i class="icon-cart-add"></i> <span>مبيعات الجملة</span></a>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
 
                     @can('Settings')
                         <li class="nav-item {{ request()->routeIs('admin.settings.*') ? 'nav-item-expanded nav-item-open' : '' }}">
@@ -116,13 +155,13 @@
                         </li>
                     @endcan
 
-{{--                    @can('GuestMessages')--}}
-{{--                        <li class="nav-item {{ request()->routeIs('admin.guest-messages.*') ? 'nav-item-expanded nav-item-open' : '' }}">--}}
-{{--                            <a href="{{route('admin.guest-messages.index')}}"--}}
-{{--                               class="nav-link {{ request()->routeIs('admin.guest-messages.index') ? 'active' : '' }}">--}}
-{{--                                <i class="icon-envelop"></i> <span>رسائل الزوار</span></a>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
+                    @can('Galleries')
+                        <li class="nav-item {{ request()->routeIs('admin.galleries.*') ? 'nav-item-expanded nav-item-open' : '' }}">
+                            <a href="{{route('admin.galleries.index')}}"
+                               class="nav-link {{ request()->routeIs('admin.galleries.index') ? 'active' : '' }}">
+                                <i class="icon-gallery"></i> <span>مكتبة الصور والفيديو </span></a>
+                        </li>
+                    @endcan
 
 
                 </ul>

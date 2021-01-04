@@ -19,19 +19,21 @@ class Product extends Model
      */
     private $folder = 'products';
 
-    use HasFactory,LangAttributes,FileAttributes,SoftDeletes;
+    use HasFactory,LangAttributes
+//        ,FileAttributes
+        ,SoftDeletes;
 
     /**
      * @var array
      */
     protected $fillable = ['ar_name','en_name','price','discount','subcategory_id','is_ban',
-        'ar_details','en_details','image'];
+        'ar_details','en_details','image','is_new'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function subCategory(){
-        return $this->belongsTo(SubCategory::class);
+        return $this->belongsTo(SubCategory::class,'subcategory_id');
     }
 
     /**
