@@ -40,4 +40,12 @@ class ProductQuantity extends Model
         return $this->belongsTo(ProductSize::class,'product_size_id');
     }
 
+    public function productSize(){
+        return $this->belongsTo(ProductSize::class);
+    }
+
+    public function productColor(){
+        return $this->belongsTo(ProductColor::class);
+    }
+
 }

@@ -106,3 +106,23 @@ function handelQueryInPagination($targetUrl, $query=null){
     else
         return '';
 }
+////////////////////////////////////////////
+function uploadImage($file, $img)
+{
+    return \Storage::disk('public')->putFile($file, $img);
+}
+
+function deleteImage($file, $img)
+{
+    \Storage::disk('public')->delete($file, $img);
+    return true;
+}
+
+
+function getImgPath($img)
+{
+    if (is_null($img)) {
+        return '';
+    }
+    return url('/').'/storage/'.$img;
+}

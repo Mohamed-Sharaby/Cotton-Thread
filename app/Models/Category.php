@@ -19,7 +19,9 @@ class Category extends Model
      */
     private $folder = 'categories';
 
-    use HasFactory,LangAttributes,FileAttributes,SoftDeletes;
+    use HasFactory,LangAttributes
+//        ,FileAttributes
+        ,SoftDeletes;
 
     /**
      * @var array
@@ -32,4 +34,5 @@ class Category extends Model
     public function subcategories(){
         return $this->hasMany(SubCategory::class,'category_id');
     }
+
 }

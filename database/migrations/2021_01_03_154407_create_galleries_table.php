@@ -17,9 +17,9 @@ class CreateGalleriesTable extends Migration
             $table->id();
             $table->string('ar_name')->nullable();
             $table->string('en_name')->nullable();
-            $table->string('ar_details')->nullable();
-            $table->string('en_details')->nullable();
-            $table->text('url');
+            $table->longText('ar_details')->nullable();
+            $table->longText('en_details')->nullable();
+            $table->text('url')->nullable();
             $table->enum('type',['video','image']);
             $table->boolean('is_ban')->default(0);
             $table->timestamps();
