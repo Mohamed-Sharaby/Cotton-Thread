@@ -55,9 +55,6 @@ class GalleryController extends Controller
             'image' => 'nullable|image',
         ]);
 
-        if ($request->has('image')) {
-            $data['image'] = uploadImage('uploads', $request->image);
-        }
         Gallery::create($data);
         return redirect()->route('admin.galleries.index')->with('success', __('Added Successfully'));
     }
@@ -104,9 +101,8 @@ class GalleryController extends Controller
         ]);
         if ($request->has('image')) {
             if ($gallery->image) {
-                deleteImage('uploads', $gallery->image);
+                deleteImage('photos/galleries',$gallery->image);
             }
-            $validator['image'] = uploadImage('uploads', $request->image);
         }
         $gallery->update($validator);
         return redirect()->route('admin.galleries.index')->with('success', __('Updated Successfully'));
@@ -120,7 +116,7 @@ class GalleryController extends Controller
      */
     public function destroy(Gallery $gallery)
     {
-        deleteImage('uploads', $gallery->image);
+        deleteImage('photos/galleries',$gallery->image);
         $gallery->delete();
         return redirect()->route('admin.galleries.index')->with('success', __('Deleted Successfully'));
     }

@@ -36,7 +36,7 @@ class ProductImageController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view('dashboard.product-images.create',compact('products'));
+        return view('dashboard.product-images.create', compact('products'));
     }
 
     /**
@@ -51,10 +51,7 @@ class ProductImageController extends Controller
             'product_id' => 'required|exists:products,id',
             'image' => 'required|image',
         ]);
-        if ($request->has('image')) {
-            $data['image'] = uploadImage('uploads', $request->image);
-        }
-         ProductImage::create($data);
+        ProductImage::create($data);
         return redirect()->route('admin.product-images.index')->with('success', __('Added Successfully'));
     }
 
@@ -78,7 +75,7 @@ class ProductImageController extends Controller
     public function edit(ProductImage $productImage)
     {
         $products = Product::all();
-        return view('dashboard.product-images.edit', compact('productImage','products'));
+        return view('dashboard.product-images.edit', compact('productImage', 'products'));
     }
 
     /**
@@ -88,7 +85,7 @@ class ProductImageController extends Controller
      * @param int $id
      * @return
      */
-    public function update(Request $request,ProductImage $productImage)
+    public function update(Request $request, ProductImage $productImage)
     {
         $validator = $request->validate([
             'product_id' => 'required|exists:products,id',
@@ -96,9 +93,8 @@ class ProductImageController extends Controller
         ]);
         if ($request->has('image')) {
             if ($productImage->image) {
-                deleteImage('uploads', $productImage->image);
+                deleteImage('photos/product_images',$productImage->image);
             }
-            $validator['image'] = uploadImage('uploads', $request->image);
         }
         $productImage->update($validator);
         return redirect()->route('admin.product-images.index')->with('success', __('Updated Successfully'));
@@ -113,7 +109,7 @@ class ProductImageController extends Controller
     public function destroy(ProductImage $productImage)
     {
         if ($productImage->image) {
-            deleteImage('uploads', $productImage->image);
+            deleteImage('photos/product_images',$productImage->image);
         }
         $productImage->delete();
         return redirect()->route('admin.product-images.index')->with('success', __('Deleted Successfully'));

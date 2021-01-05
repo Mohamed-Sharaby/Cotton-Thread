@@ -46,7 +46,6 @@
                         <td>{{$category->en_name}}</td>
                         <td>
                             @if($category->image)
-
                                 <a data-fancybox="gallery" href="{{getImgPath($category->image)}}">
                                     <img src="{{getImgPath($category->image)}}" width="70" height="70"
                                          class="img-thumbnail" alt="cat_img">

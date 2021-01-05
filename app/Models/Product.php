@@ -19,9 +19,7 @@ class Product extends Model
      */
     private $folder = 'products';
 
-    use HasFactory,LangAttributes
-//        ,FileAttributes
-        ,SoftDeletes;
+    use HasFactory,LangAttributes  ,FileAttributes ,SoftDeletes;
 
     /**
      * @var array

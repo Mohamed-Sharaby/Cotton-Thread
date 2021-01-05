@@ -53,9 +53,9 @@ class SubCategoryController extends Controller
             'image' => 'required|image',
             'category_id' => 'required|exists:categories,id',
         ]);
-        if ($request->image){
-            $data['image'] = uploadImage('uploads',$request->image);
-        }
+//        if ($request->image){
+//            $data['image'] = uploadImage('uploads',$request->image);
+//        }
 
         SubCategory::create($data);
         return redirect()->route('admin.sub-categories.index')->with('success', __('Added Successfully'));
@@ -101,9 +101,8 @@ class SubCategoryController extends Controller
         ]);
         if ($request->has('image')) {
             if ($subCategory->image) {
-                deleteImage('uploads',$subCategory->image);
+                deleteImage('photos/subcategories',$subCategory->image);
             }
-            $validator['image'] = uploadImage('uploads', $request->image);
         }
         $subCategory->update($validator);
         return redirect()->route('admin.sub-categories.index')->with('success', __('Updated Successfully'));
@@ -117,7 +116,7 @@ class SubCategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
-        deleteImage('uploads', $subCategory->image);
+        deleteImage('photos/subcategories',$subCategory->image);
         $subCategory->delete();
         return redirect()->route('admin.sub-categories.index')->with('success', __('Deleted Successfully'));
     }

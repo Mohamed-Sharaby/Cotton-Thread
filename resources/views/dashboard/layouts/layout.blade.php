@@ -7,7 +7,7 @@
     <meta name="userId" content="{{ Auth::check() ? Auth::user()->id : '' }}">
     <meta name="csrf-token" content="{{csrf_token()}}">
     <title>@yield('page-title')</title>
-    <link rel="icon" href="{{asset('admin/global_assets/images/logo.png')}}">
+    <link rel="icon" href="{{asset('admin/global_assets/images/dribbble.png')}}">
     @include('dashboard.layouts.styles')
     @yield('styles')
 </head>
@@ -42,7 +42,7 @@
                     <li class="nav-item">
                         <a href="{{url('/')}}" class="nav-link " target="_blank">
                             <i class="icon-direction"></i>
-                            <span style="background-color: #f10d0d;padding: 5px 5px;">
+                            <span style="background-color: #bf4141;padding: 5px 5px;border-radius: 4px;">
 									 الإنتقال إلى موقع خيط وقطن
 								</span>
                         </a>
@@ -79,6 +79,54 @@
                         </li>
                     @endcanany
 
+
+                    @can('Users')
+                        <li class="nav-item {{ request()->routeIs('admin.users.*') ? 'nav-item-expanded nav-item-open' : '' }}">
+                            <a href="{{route('admin.users.index')}}"
+                               class="nav-link {{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                                <i class="icon-users4"></i> <span>العملاء</span></a>
+                        </li>
+                    @endcan
+
+
+
+                    @canany(['Cities','Regions','Districts'])
+                        <li class="nav-item nav-item-submenu {{ request()->routeIs('admin.cities.*')
+                                                                || request()->routeIs('admin.districts.*')
+                                                                || request()->routeIs('admin.regions.*')
+                                                                ? 'nav-item-expanded nav-item-open' : '' }}">
+                            <a href="#"
+                               class="nav-link {{ request()->routeIs('admin.cities.index') ? 'active' : '' }}"><i
+                                    class="icon-location3"></i> <span>المدن والمناطق والاحياء</span></a>
+                            <ul class="nav nav-group-sub">
+                                @can('Cities')
+                                    <li class="nav-item"><a href="{{route('admin.cities.index')}}"
+                                                            class="nav-link {{ request()->routeIs('admin.cities.*') ? 'active' : '' }}">
+                                            المدن</a></li>
+                                @endcan
+
+                                @can('Regions')
+                                    <li class="nav-item"><a href="{{route('admin.regions.index')}}"
+                                                            class="nav-link {{ request()->routeIs('admin.regions.*') ? 'active' : '' }}">
+                                            المناطق</a></li>
+                                @endcan
+
+                                @can('Districts')
+                                    <li class="nav-item"><a href="{{route('admin.districts.index')}}"
+                                                            class="nav-link {{ request()->routeIs('admin.districts.*') ? 'active' : '' }}">
+                                            الأحياء</a></li>
+                                @endcan
+                            </ul>
+                        </li>
+                    @endcanany
+
+                    @can('Users')
+                        <li class="nav-item {{ request()->routeIs('admin.addresses.*') ? 'nav-item-expanded nav-item-open' : '' }}">
+                            <a href="{{route('admin.addresses.index')}}"
+                               class="nav-link {{ request()->routeIs('admin.addresses.*') ? 'active' : '' }}"><i
+                                    class="icon-address-book2"></i> <span>عناوين العملاء</span></a>
+                        </li>
+                    @endcan
 
                     @can('Categories')
                         <li class="nav-item {{ request()->routeIs('admin.categories.*') ? 'nav-item-expanded nav-item-open' : '' }}">
@@ -160,6 +208,14 @@
                             <a href="{{route('admin.galleries.index')}}"
                                class="nav-link {{ request()->routeIs('admin.galleries.index') ? 'active' : '' }}">
                                 <i class="icon-gallery"></i> <span>مكتبة الصور والفيديو </span></a>
+                        </li>
+                    @endcan
+
+                    @can('GuestMessages')
+                        <li class="nav-item {{ request()->routeIs('admin.guest-messages.*') ? 'nav-item-expanded nav-item-open' : '' }}">
+                            <a href="{{route('admin.guest-messages.index')}}"
+                               class="nav-link {{ request()->routeIs('admin.guest-messages.index') ? 'active' : '' }}">
+                                <i class="icon-envelop"></i> <span>رسائل الزوار</span></a>
                         </li>
                     @endcan
 

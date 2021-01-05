@@ -18,9 +18,7 @@ class SubCategory extends Model
      * @var string
      */
     private $folder = 'subcategories';
-    use HasFactory,LangAttributes
-//        ,FileAttributes
-        ,SoftDeletes;
+    use HasFactory,LangAttributes ,FileAttributes ,SoftDeletes;
 
     /**
      * @var array

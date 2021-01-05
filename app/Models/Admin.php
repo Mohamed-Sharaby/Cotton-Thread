@@ -18,7 +18,6 @@ class Admin extends Authenticatable
      * @var string
      */
     private $folder = 'admins';
-    protected $table = 'admins';
 
     use HasFactory,FileAttributes,HasRoles;
 

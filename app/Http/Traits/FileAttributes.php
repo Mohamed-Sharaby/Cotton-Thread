@@ -9,20 +9,22 @@ trait FileAttributes
     /**
      * @return null|string
      */
-    public function getImageAttribute(){
-        if(strpos($this->attributes['image'],'https') !== false)
-            return $this->attributes['image'];
-        return getImg($this->attributes['image']);
-    }
+//    public function getImageAttribute(){
+//        if(strpos($this->attributes['image'],'https') !== false)
+//            return $this->attributes['image'];
+//        return getImg($this->attributes['image']);
+//    }
 
     /**
      * @param $value
      */
     public function setImageAttribute($value){
-        if (is_string($value)) {
-            $this->attributes['image'] = $value;
-        } else {
-            $this->attributes['image'] = uploader($value, $this->folder);
-        }
+       if (!empty($value)){
+           if (is_string($value)) {
+               $this->attributes['image'] = $value;
+           } else {
+               $this->attributes['image'] = uploader($value, $this->folder);
+           }
+       }
     }
 }

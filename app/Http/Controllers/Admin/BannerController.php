@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
-//    public function __construct()
-//    {
-//        $this->middleware('permission:Banners');
-//    }
+    public function __construct()
+    {
+        $this->middleware('permission:Banners');
+    }
 
     /**
      * Display a listing of the resource.
@@ -50,11 +50,7 @@ class BannerController extends Controller
             'image' => 'required|image',
         ]);
 
-        if ($request->has('image')) {
-            $data['image'] = uploadImage('uploads', $request->image);
-        }
-         Banner::create($data);
-
+        Banner::create($data);
         return redirect()->route('admin.banners.index')->with('success', __('Added Successfully'));
     }
 
@@ -87,7 +83,7 @@ class BannerController extends Controller
      * @param int $id
      * @return
      */
-    public function update(Request $request,Banner $banner)
+    public function update(Request $request, Banner $banner)
     {
         $validator = $request->validate([
             'ar_details' => 'required|string|max:2000',
@@ -96,9 +92,8 @@ class BannerController extends Controller
         ]);
         if ($request->has('image')) {
             if ($banner->image) {
-                deleteImage('uploads', $banner->image);
+                deleteImage('photos/banners',$banner->image);
             }
-            $validator['image'] = uploadImage('uploads', $request->image);
         }
         $banner->update($validator);
         return redirect()->route('admin.banners.index')->with('success', __('Updated Successfully'));
@@ -112,7 +107,7 @@ class BannerController extends Controller
      */
     public function destroy(Banner $banner)
     {
-        deleteImage('uploads', $banner->image);
+        deleteImage('photos/banners',$banner->image);
         $banner->delete();
         return redirect()->route('admin.banners.index')->with('success', __('Deleted Successfully'));
     }
