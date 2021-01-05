@@ -21,7 +21,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $pages = Setting::pluck('page')->unique();
+        $pages = Setting::all()->pluck('page')->unique();
         return view('dashboard.settings.index', compact('pages'));
     }
 
