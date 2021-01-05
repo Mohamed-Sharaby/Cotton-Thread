@@ -42,18 +42,20 @@ class Product extends Model
         return number_format($price_after_discount,2,'.',',');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function product_colors(){
-        return $this->hasMany(ProductColor::class,'product_id');
-    }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function product_colors(){
+        return $this->hasManyThrough(Color::class,ProductQuantity::class,'product_id','id','id','color_id');
+    }
+
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function product_sizes(){
-        return $this->hasMany(ProductSize::class,'product_id');
+        return $this->hasManyThrough(Size::class,ProductQuantity::class,'product_id','id','id','size_id');
     }
 
     /**
@@ -70,6 +72,9 @@ class Product extends Model
         return $this->hasMany(ProductImage::class,'product_id');
     }
 
+    /**
+     * @return mixed
+     */
     public function similarProducts(){
         return Product::where('subcategory_id',$this->subcategory_id)
                     ->where('is_ban',0)

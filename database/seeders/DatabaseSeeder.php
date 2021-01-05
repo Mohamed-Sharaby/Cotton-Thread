@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Address;
 use App\Models\City;
+use App\Models\Color;
 use App\Models\District;
 use App\Models\Favourite;
 use App\Models\Gallery;
@@ -11,6 +12,7 @@ use App\Models\ProductColor;
 use App\Models\ProductQuantity;
 use App\Models\ProductSize;
 use App\Models\Region;
+use App\Models\Size;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\SubCategory;
@@ -31,7 +33,7 @@ class DatabaseSeeder extends Seeder
 //         Product::factory(4)->create();
 //         ProductColor::factory(4)->create();
 //         ProductSize::factory(4)->create();
-//         ProductQuantity::factory(4)->create();
+         ProductQuantity::factory(4)->create();
 //         Banner::factory(4)->create();
 
 //        Banner::factory(4)->create();
@@ -40,7 +42,9 @@ class DatabaseSeeder extends Seeder
 //        City::factory(4)->create();
 //        Region::factory(4)->create();
 //        District::factory(4)->create();
-        Address::factory(4)->create();
+//        Address::factory(4)->create();
+//        Color::factory(4)->create();
+//        Size::factory(4)->create();
 
 //        $this->call(PermissionsTableSeeder::class);
 //        $this->call(UpdatePermissionsTableSeeder::class);

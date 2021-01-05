@@ -53,12 +53,12 @@ class ProductController extends Controller
             })
             ->when(($request->has('color') && $request['color']),function ($q)use($request){
                 $q->whereHas('product_colors',function (Builder $b)use($request){
-                    $b->where('color',$request['color']);
+                    $b->where('colors.id',$request['color']);
                 });
             })
             ->when(($request->has('size') && $request['size']),function ($q)use($request){
                 $q->whereHas('product_sizes',function (Builder $b)use($request){
-                    $b->where('size',$request['size']);
+                    $b->where('sizes.id',$request['size']);
                 });
             })
             ->paginate(8);
