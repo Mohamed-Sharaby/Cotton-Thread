@@ -8,18 +8,41 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * Class User
  * @package App\Models
  */
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     /**
      * @var string
      */
     private $folder = 'users';
     use HasFactory, Notifiable,FileAttributes,SoftDeletes;
+
+    // Rest omitted for brevity
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -70,6 +93,9 @@ class User extends Authenticatable
         return $this->hasMany(Favourite::class,'user_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function favProducts(){
         return $this->belongsToMany(Product::class,'favourites');
     }
@@ -81,6 +107,10 @@ class User extends Authenticatable
         return $this->hasMany(Address::class,'user_id');
     }
 
+    /**
+     * @param $product_id
+     * @return bool
+     */
     public function isFavourite($product_id){
 //        if(!auth()->check())
 //            return false;

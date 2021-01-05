@@ -607,5 +607,13 @@
     "Password Updated Successfully": "تم تحديث كلمة المرور بنجاح",
     "Comment Sent Successfully.": "تم ارسال التعليق بنجاح",
     "product removed from favourites": "تم حذف المنتج من المفضلة",
-    "product added to favourites": "تم اضافة المنتج من المفضلة"
+    "product added to favourites": "تم اضافة المنتج من المفضلة",
+    "forbidden access to address": "لا يمكن الوصول للعنوان",
+    "address not found": "العنوان غير موجود",
+    "address updated successfully": "تم تعديل العنوان بنجاح",
+    "address added successfully": "تم اضافة العنوان بنجاح",
+    "address deleted successfully": "تم حذف العنوان بنجاح",
+    "something wrong insert correct phone or password": "حدث خطاء ما من فضلك ادخل رقم صحيح او كلمة مرور صحيحة",
+    "unauthorized": "غير مسموح بالدخول",
+    "successfully logged out": "تم تسجيل الخروج بنجاح"
 }
