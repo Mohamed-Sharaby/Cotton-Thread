@@ -19,9 +19,7 @@ class Category extends Model
      */
     private $folder = 'categories';
 
-    use HasFactory,LangAttributes
-//        ,FileAttributes
-        ,SoftDeletes;
+    use HasFactory,LangAttributes,FileAttributes,SoftDeletes;
 
     /**
      * @var array

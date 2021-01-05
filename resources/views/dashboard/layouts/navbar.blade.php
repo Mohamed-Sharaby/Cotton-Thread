@@ -2,7 +2,7 @@
 <div class="navbar navbar-expand-md navbar-dark">
     <div class="navbar-brand">
         <a href="{{route('admin.main')}}" class="d-inline-block">
-            <img src="{{asset('admin/global_assets/images/logo.png')}}" alt="">
+            <img src="{{asset('admin/global_assets/images/dribbble.png')}}" alt="">
         </a>
     </div>
 

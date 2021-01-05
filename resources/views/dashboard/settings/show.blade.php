@@ -34,6 +34,18 @@
                                 <label for="{{$setting->title}}"
                                        class="col-form-label font-weight-bold col-lg-2">{{__($setting->title)}}</label>
 
+                                @if($setting->type == 'text' && $setting->name == 'address')
+                                    <div class="col-12 col-lg-10">
+                                        <input type="tel" name="{{$setting->name}}" value="{{$setting->value}}"
+                                               placeholder="العنوان " class="form-control">
+                                        @error($setting->name)
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                @endif
+
                                 @if($setting->type == 'number' && $setting->name == 'phone')
                                     <div class="col-12 col-lg-10">
                                         <input type="tel" name="{{$setting->name}}" value="{{$setting->value}}"
@@ -95,34 +107,44 @@
                                 @endif
 
                                 @if($setting->type == 'long_text')
-                                    <div class="col-12 col-lg-10">
-                        <textarea name="{{$setting->name}}" id="{{$setting->name}}" cols="30" rows="5"
-                                  placeholder="محتوى من نحن" class="form-control">{{$setting->value}}</textarea>
-                                        @error($setting->name)
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                @endif
-
-
-{{--                                @if($setting->type == 'file' && $setting->name == 'who_we_are_image')--}}
-{{--                                    <div class="col-12 col-lg-4">--}}
-{{--                                        <input type="file" name="{{$setting->name}}" class="form-control">--}}
+{{--                                    <div class="col-12 col-lg-10">--}}
+{{--                        <textarea name="{{$setting->name}}" id="{{$setting->name}}" cols="30" rows="5"--}}
+{{--                                  placeholder="محتوى من نحن" class="form-control">{{$setting->value}}</textarea>--}}
 {{--                                        @error($setting->name)--}}
 {{--                                        <div class="invalid-feedback">--}}
 {{--                                            {{ $message }}--}}
 {{--                                        </div>--}}
 {{--                                        @enderror--}}
 {{--                                    </div>--}}
-{{--                                    <div class="col-12 col-lg-4">--}}
-{{--                                        <a data-fancybox="gallery" href="{{getImgPath($setting->value)}}">--}}
-{{--                                            <img src="{{getImgPath($setting->value)}}" width="70" height="70"--}}
-{{--                                                 class="img-thumbnail">--}}
-{{--                                        </a>--}}
-{{--                                    </div>--}}
-{{--                                @endif--}}
+
+                                    <div class="col-12 col-lg-10">
+                                        <label for="{{$setting->ar_value}}"
+                                               class="col-form-label">المحتوى باللغة العربية</label>
+                                        {!! Form::textarea($setting->name.'[]',$setting->ar_value,['class'=>'form-control','rows'=>4]) !!}
+
+                                        <label for="{{$setting->en_value}}"
+                                               class="col-form-label">المحتوى باللغة الانجليزية</label>
+                                        {!! Form::textarea($setting->name.'[]',$setting->en_value,['class'=>'form-control','rows'=>4]) !!}
+                                    </div>
+                                @endif
+
+
+                                {{--                                @if($setting->type == 'file' && $setting->name == 'who_we_are_image')--}}
+                                {{--                                    <div class="col-12 col-lg-4">--}}
+                                {{--                                        <input type="file" name="{{$setting->name}}" class="form-control">--}}
+                                {{--                                        @error($setting->name)--}}
+                                {{--                                        <div class="invalid-feedback">--}}
+                                {{--                                            {{ $message }}--}}
+                                {{--                                        </div>--}}
+                                {{--                                        @enderror--}}
+                                {{--                                    </div>--}}
+                                {{--                                    <div class="col-12 col-lg-4">--}}
+                                {{--                                        <a data-fancybox="gallery" href="{{getImgPath($setting->value)}}">--}}
+                                {{--                                            <img src="{{getImgPath($setting->value)}}" width="70" height="70"--}}
+                                {{--                                                 class="img-thumbnail">--}}
+                                {{--                                        </a>--}}
+                                {{--                                    </div>--}}
+                                {{--                                @endif--}}
 
                             </div>
                         @endforeach

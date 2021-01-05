@@ -16,6 +16,15 @@ class SettingTableSeeder extends Seeder
     {
         $settings = [
             [
+                'name' => 'address',
+                'ar_value' => 'KSA',
+                'en_value' => 'KSA',
+                'type' => 'text',
+                'page' => 'إعدادات عامة',
+                'ar_title' => 'العنوان',
+                'en_title' => 'Address',
+                'slug' => 'address'
+            ],[
                 'name' => 'phone',
                 'ar_value' => '+9665123250',
                 'en_value' => '+9665123560',
@@ -23,7 +32,7 @@ class SettingTableSeeder extends Seeder
                 'page' => 'إعدادات عامة',
                 'ar_title' => 'الهاتف',
                 'en_title' => 'phone',
-                'slug' => 'الهاتف'
+                'slug' => 'phone'
             ],[
                 'name' => 'mobile',
                 'ar_value' => '+9665123250',
@@ -32,7 +41,7 @@ class SettingTableSeeder extends Seeder
                 'page' => 'إعدادات عامة',
                 'ar_title' => 'الجوال',
                 'en_title' => 'mobile',
-                'slug' => 'الجوال'
+                'slug' => 'mobile'
             ],
             [
                 'name' => 'email',
@@ -49,49 +58,79 @@ class SettingTableSeeder extends Seeder
                 'ar_value' => 'https://www.facebook.com',
                 'en_value' => 'https://www.facebook.com',
                 'type' => 'url',
-                'page' => 'إعدادات عامة',
+                'page' => 'وسائل التواصل الاجتماعى',
                 'ar_title' => 'رابط الفيس بوك',
                 'en_title' => 'facebook',
-                'slug' => 'social'
+                'slug' => 'facebook'
             ],
             [
                 'name' => 'twitter',
                 'ar_value' => 'https://www.twitter.com',
                 'en_value' => 'https://www.twitter.com',
                 'type' => 'url',
-                'page' => 'إعدادات عامة',
+                'page' => 'وسائل التواصل الاجتماعى',
                 'ar_title' => 'رابط تويتر',
                 'en_title' => 'twitter',
-                'slug' => 'social'
+                'slug' => 'twitter'
             ],
             [
                 'name' => 'instagram',
                 'ar_value' => 'https://www.instagram.com',
                 'en_value' => 'https://www.instagram.com',
                 'type' => 'url',
-                'page' => 'إعدادات عامة',
+                'page' => 'وسائل التواصل الاجتماعى',
                 'ar_title' => 'رابط  الانستجرام',
                 'en_title' => 'instagram',
-                'slug' => 'social'
+                'slug' => 'instagram'
             ], [
                 'name' => 'google',
                 'ar_value' => 'https://www.google.com',
                 'en_value' => 'https://www.google.com',
                 'type' => 'url',
-                'page' => 'إعدادات عامة',
+                'page' => 'وسائل التواصل الاجتماعى',
                 'ar_title' => 'رابط  جوجل',
                 'en_title' => 'google',
-                'slug' => 'social'
+                'slug' => 'google'
             ],
             [
                 'name' => 'about',
                 'ar_value' => 'about-us in arabic',
                 'en_value' => 'about-us in english',
-                'page' => 'إعدادات عامة',
+                'page' => 'الصفحات الثابتة',
                 'type' => 'long_text',
                 'ar_title' => 'من نحن',
-                'en_title' => 'who-we-are',
-                'slug' => 'aboutus'
+                'en_title' => 'Who-We-Are',
+                'slug' => 'about_us'
+            ],
+            [
+                'name' => 'return_policy',
+                'ar_value' => 'return_policy in arabic',
+                'en_value' => 'return_policy in english',
+                'page' => 'الصفحات الثابتة',
+                'type' => 'long_text',
+                'ar_title' => 'سياسة الاسترجاع',
+                'en_title' => 'Return Policy',
+                'slug' => 'return_policy'
+            ],
+            [
+                'name' => 'privacy_policy',
+                'ar_value' => 'privacy_policy in arabic',
+                'en_value' => 'privacy_policy in english',
+                'page' => 'الصفحات الثابتة',
+                'type' => 'long_text',
+                'ar_title' => 'سياسة الخصوصية',
+                'en_title' => 'Privacy Policy',
+                'slug' => 'privacy_policy'
+            ],
+            [
+                'name' => 'terms',
+                'ar_value' => 'terms in arabic',
+                'en_value' => 'terms in english',
+                'page' => 'الصفحات الثابتة',
+                'type' => 'long_text',
+                'ar_title' => 'الشروط والاحكام',
+                'en_title' => 'Terms and Conditions',
+                'slug' => 'terms'
             ],
 
 

@@ -58,9 +58,6 @@ class ProductController extends Controller
             'image' => 'required|image',
         ]);
 
-        if ($request->has('image')) {
-            $data['image'] = uploadImage('uploads', $request->image);
-        }
         Product::create($data);
         return redirect()->route('admin.products.index')->with('success', __('Added Successfully'));
     }
@@ -110,9 +107,8 @@ class ProductController extends Controller
         ]);
         if ($request->has('image')) {
             if ($product->image) {
-                deleteImage('uploads', $product->image);
+                deleteImage('photos/products',$product->image);
             }
-            $validator['image'] = uploadImage('uploads', $request->image);
         }
         $product->update($validator);
         return redirect()->route('admin.products.index')->with('success', __('Updated Successfully'));
@@ -126,7 +122,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        deleteImage('uploads', $product->image);
+        deleteImage('photos/products',$product->image);
         $product->delete();
         return redirect()->route('admin.products.index')->with('success', __('Deleted Successfully'));
     }

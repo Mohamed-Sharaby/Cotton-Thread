@@ -41,7 +41,9 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$color->product->name}}</td>
-                        <td>{{$color->color}}</td>
+                        <td><span>{{$color->color}}</span>
+                            <div style="height: 40px;width:40px;background-color: {{$color->color}}"></div>
+                        </td>
 
                         <td class="text-center">
                             <div class="btn-group text-center">

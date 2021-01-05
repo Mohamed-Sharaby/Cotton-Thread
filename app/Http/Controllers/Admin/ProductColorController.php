@@ -47,6 +47,7 @@ class ProductColorController extends Controller
      */
     public function store(Request $request)
     {
+       // dd($request->all());
         $data = $request->validate([
             'product_id' => 'required|exists:products,id',
             'color' => 'required|string',

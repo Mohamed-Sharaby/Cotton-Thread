@@ -17,9 +17,7 @@ class Banner extends Model
      * @var string
      */
     private  $folder = 'banners';
-    use HasFactory
-//        ,FileAttributes
-        ,LangAttributes;
+    use HasFactory ,FileAttributes ,LangAttributes;
 
     /**
      * @var array

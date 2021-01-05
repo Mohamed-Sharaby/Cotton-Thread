@@ -24,10 +24,12 @@ trait FileAttributes
      * @param $value
      */
     public function setImageAttribute($value){
-        if (is_string($value)) {
-            $this->attributes['image'] = $value;
-        } else {
-            $this->attributes['image'] = uploader($value, $this->folder);
-        }
+       if (!empty($value)){
+           if (is_string($value)) {
+               $this->attributes['image'] = $value;
+           } else {
+               $this->attributes['image'] = uploader($value, $this->folder);
+           }
+       }
     }
 }

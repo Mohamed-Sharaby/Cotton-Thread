@@ -107,10 +107,10 @@ function handelQueryInPagination($targetUrl, $query=null){
         return '';
 }
 ////////////////////////////////////////////
-function uploadImage($file, $img)
-{
-    return \Storage::disk('public')->putFile($file, $img);
-}
+//function uploadImage($file, $img)
+//{
+//    return \Storage::disk('public')->putFile($file, $img);
+//}
 
 function deleteImage($file, $img)
 {

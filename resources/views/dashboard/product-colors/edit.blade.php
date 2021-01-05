@@ -54,14 +54,15 @@
                         </div>
 
                         <label for="color" class="col-form-label col-lg-2 text-lg-right">اللون </label>
-                        <div class="col-lg-4">
-                            <input type="text" name="color" class="form-control {{$errors->has('color') ? 'is-invalid' : ''}}" value="{{$productColor->color}}">
+                        <div class="col-lg-1">
+                            <input type="color" name="color" class="form-control {{$errors->has('color') ? 'is-invalid' : ''}}" value="{{$productColor->color}}">
                             @error('color')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
+                        <div class="col-lg-1" style="height: 40px;width: 40px;background-color: {{$productColor->color}}"></div>
                     </div>
 
 

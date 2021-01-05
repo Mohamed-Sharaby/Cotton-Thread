@@ -64,8 +64,6 @@
                                 <th class="font-weight-bold">الوصف بالانجليزية</th>
                                 <td>{{$gallery->en_details}}</td>
                             </tr>
-
-
                         </table>
                     </div>
                 </div>

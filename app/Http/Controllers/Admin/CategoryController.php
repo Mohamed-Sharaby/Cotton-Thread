@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
@@ -50,9 +51,9 @@ class CategoryController extends Controller
             'en_name' => 'required|string|max:100',
             'image' => 'required|image',
         ]);
-        if ($request->image){
-            $data['image'] = uploadImage('uploads',$request->image);
-        }
+//        if ($request->image){
+//            $data['image'] = uploadImage('uploads',$request->image);
+//        }
 
         Category::create($data);
         return redirect()->route('admin.categories.index')->with('success', __('Added Successfully'));
@@ -96,9 +97,8 @@ class CategoryController extends Controller
         ]);
         if ($request->has('image')) {
             if ($category->image) {
-                deleteImage('uploads',$category->image);
+                deleteImage('photos/categories',$category->image);
             }
-            $validator['image'] = uploadImage('uploads', $request->image);
         }
         $category->update($validator);
         return redirect()->route('admin.categories.index')->with('success', __('Updated Successfully'));
@@ -112,7 +112,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        deleteImage('uploads', $category->image);
+        deleteImage('photos/categories',$category->image);
         $category->delete();
         return redirect()->route('admin.categories.index')->with('success', __('Deleted Successfully'));
     }
