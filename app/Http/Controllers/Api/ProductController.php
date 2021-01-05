@@ -17,6 +17,15 @@ class ProductController extends Controller
     use ApiResponse;
     public function index(Request $request){
         $products = Product::where('is_ban',0)->whereHas('product_quantity')
+            ->when(($request->has('is_new') && $request['is_new']),function ($q)use($request){
+                if($request['is_new'] == true)
+                    $q->where('is_new',1);
+
+            })
+            ->when(($request->has('has_discount') && $request['has_discount']),function ($q)use($request){
+                if($request['has_discount'] == true)
+                    $q->where('discount','>',0);
+            })
             ->when(($request->has('order_by') && $request['order_by']),function ($q)use($request){
                 if($request['order_by'] == 'max')
                     $q->orderBy('price','desc');

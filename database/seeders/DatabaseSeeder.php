@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Favourite;
 use App\Models\ProductColor;
 use App\Models\ProductQuantity;
 use App\Models\ProductSize;
@@ -28,10 +29,11 @@ class DatabaseSeeder extends Seeder
 //         ProductQuantity::factory(4)->create();
 //         Banner::factory(4)->create();
 
-        Banner::factory(4)->create();
+//        Banner::factory(4)->create();
+        Favourite::factory(4)->create();
 
-        $this->call(PermissionsTableSeeder::class);
-        $this->call(UpdatePermissionsTableSeeder::class);
-        $this->call(SettingTableSeeder::class);
+//        $this->call(PermissionsTableSeeder::class);
+//        $this->call(UpdatePermissionsTableSeeder::class);
+//        $this->call(SettingTableSeeder::class);
     }
 }

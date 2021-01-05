@@ -29,23 +29,15 @@ class ProductQuantity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function product_color(){
-        return $this->belongsTo(ProductColor::class,'product_color_id');
+    public function productSize(){
+        return $this->belongsTo(ProductSize::class,'product_size_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function product_size(){
-        return $this->belongsTo(ProductSize::class,'product_size_id');
-    }
-
-    public function productSize(){
-        return $this->belongsTo(ProductSize::class);
-    }
-
     public function productColor(){
-        return $this->belongsTo(ProductColor::class);
+        return $this->belongsTo(ProductColor::class,'product_color_id');
     }
 
 }

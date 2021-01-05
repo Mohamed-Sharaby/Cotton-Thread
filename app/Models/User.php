@@ -67,7 +67,11 @@ class User extends Authenticatable
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function favourites(){
-        return $this->belongsTo(Favourites::class,'user_id');
+        return $this->hasMany(Favourite::class,'user_id');
+    }
+
+    public function favProducts(){
+        return $this->belongsToMany(Product::class,'favourites');
     }
 
     /**
@@ -77,10 +81,10 @@ class User extends Authenticatable
         return $this->hasMany(Address::class,'user_id');
     }
 
-    public function isFavourite($product){
-        if(!auth()->check())
-            return false;
-        else
-            return $this->favourites()->where('product_id',$product)->exists();
+    public function isFavourite($product_id){
+//        if(!auth()->check())
+//            return false;
+//        else
+            return $this->favourites()->where('product_id',$product_id)->exists();
     }
 }
