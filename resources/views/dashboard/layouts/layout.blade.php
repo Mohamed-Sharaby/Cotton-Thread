@@ -169,11 +169,11 @@
                                                         class="nav-link {{ request()->routeIs('admin.product-sizes.*') ? 'active' : '' }}">
                                         أحجام المنتجات</a></li>
 
-                                <li class="nav-item">
-                                    <a href="{{route('admin.product-quantities.index')}}"
-                                       class="nav-link {{ request()->routeIs('admin.product-quantities.*') ? 'active' : '' }}">
-                                        كمية المنتجات</a>
-                                </li>
+{{--                                <li class="nav-item">--}}
+{{--                                    <a href="{{route('admin.product-quantities.index')}}"--}}
+{{--                                       class="nav-link {{ request()->routeIs('admin.product-quantities.*') ? 'active' : '' }}">--}}
+{{--                                        كمية المنتجات</a>--}}
+{{--                                </li>--}}
 
                                 <li class="nav-item">
                                     <a href="{{route('admin.product-images.index')}}"
