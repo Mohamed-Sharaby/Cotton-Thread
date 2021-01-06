@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collection;
 
+use App\Models\Banner;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class BannersCollection extends ResourceCollection
@@ -11,6 +12,7 @@ class BannersCollection extends ResourceCollection
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
+     * @mixin Banner
      */
     public function toArray($request)
     {

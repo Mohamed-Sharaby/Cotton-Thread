@@ -619,5 +619,12 @@
     "reset code send": "تم ارسال كود الاستعاده",
     "invalid code": "كود استعاده غير صحيح",
     "reset code is valid": "كود استعاده صحيح",
-    "user forget Invalid process": "عملية استعادة كلمة المرور مرفوضة"
+    "user forget Invalid process": "عملية استعادة كلمة المرور مرفوضة",
+    "cannot access product": "لا يمكن الوصول للمنتج",
+    "product not available": "المنتج غير متاح",
+    "item not found": "الوحده غير موجوده",
+    "product quantity not available": "الكمية غير متاحه",
+    "item quantity added": "تم زياده كمية الوحدة",
+    "item quantity minus": "تم تقليل كمية الوحدة"
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collection;
 
+use App\Models\Product;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
@@ -15,6 +16,7 @@ class ProductsCollection extends ResourceCollection
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
+     * @mixin Product
      */
     public function toArray($request)
     {

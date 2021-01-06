@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collection;
 
+use App\Models\Category;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
@@ -15,13 +16,15 @@ class CategoryCollection extends ResourceCollection
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
+     * @mixin Category
      */
     public function toArray($request)
     {
          $data['categories']=$this->collection->transform(function ($q){
             return[
-              'id'=>$q->id,
-              'name'=>$q->name
+                'id'=>$q->id,
+                'name'=>$q->name,
+                'image'=>$q->image
             ];
         });
 

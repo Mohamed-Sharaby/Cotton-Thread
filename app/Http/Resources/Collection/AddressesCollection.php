@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collection;
 
+use App\Models\Address;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class AddressesCollection extends ResourceCollection
@@ -11,6 +12,7 @@ class AddressesCollection extends ResourceCollection
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
+     * @mixin Address
      */
     public function toArray($request)
     {

@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\FavouritesController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\AddressesController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\PickersController;
+use App\Http\Controllers\Api\CartsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +45,18 @@ Route::group(['middleware'=>['jwt.check','x-lang']],function (){
        Route::apiResource('/address',AddressesController::class)->except('show');  // required auth
        Route::put('/edit-profile',[ProfileController::class,'profile']);  // required auth
        Route::put('/edit-pass',[ProfileController::class,'editPass']);  // required auth
+       Route::post('/add-to-cart/{product}',[CartsController::class,'addToCart']);  // required auth
+       Route::put('/add-qty/{item}',[CartsController::class,'addQty']);  // required auth
+       Route::put('/minus-qty/{item}',[CartsController::class,'minusQty']);  // required auth
+       Route::get('/open-cart-details',[CartsController::class,'myCartDetails']);  // required auth
        Route::post('/logout',[ProfileController::class,'logout']);  // required auth
+   });
+   Route::group(['prefix'=>'pickers'],function (){
+       Route::get('/categories',[PickersController::class,'categories']);
+       Route::get('/subcategories',[PickersController::class,'subcategories']);
+       Route::get('/cities',[PickersController::class,'cities']);
+       Route::get('/regions',[PickersController::class,'regions']);
+       Route::get('/districts',[PickersController::class,'districts']);
    });
    Route::post('/contact',[HomeController::class,'contact']);
    Route::get('/gallery/{key}',[HomeController::class,'gallery']);

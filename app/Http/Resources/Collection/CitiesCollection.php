@@ -2,27 +2,24 @@
 
 namespace App\Http\Resources\Collection;
 
-use App\Models\Gallery;
+use App\Models\City;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class GalleryCollection extends ResourceCollection
+class CitiesCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
-     * @mixin Gallery
+     * @mixin City
      */
     public function toArray($request)
     {
-        $data['gallery'] = $this->collection->transform(function ($q){
-            return [
-                'id' => $q->id,
-                'name' => $q->name,
-                'details' => $q->details,
-                'url' => $q->url,
-                'type' => $q->type,
+        $data['cities']=$this->collection->transform(function ($q){
+            return[
+                'id'=>$q->id,
+                'name'=>$q->name
             ];
         });
 

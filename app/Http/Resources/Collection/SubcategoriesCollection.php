@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collection;
 
+use App\Models\SubCategory;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 /**
@@ -15,6 +16,7 @@ class SubcategoriesCollection extends ResourceCollection
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
+     * @mixin SubCategory
      */
     public function toArray($request)
     {
@@ -23,6 +25,7 @@ class SubcategoriesCollection extends ResourceCollection
            return[
                'id'=>$q->id,
                'name'=>$q->name,
+               'image'=>$q->image,
                'category_id'=>optional($q->category)->id,
                'category_name'=>optional($q->category)->name,
            ];

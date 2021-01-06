@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collection;
 
+use App\Models\Size;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class ProductSizesCollection extends ResourceCollection
@@ -11,6 +12,7 @@ class ProductSizesCollection extends ResourceCollection
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
+     * @mixin Size
      */
     public function toArray($request)
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collection;
 
+use App\Models\RateComment;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class RatesCollection extends ResourceCollection
@@ -11,6 +12,7 @@ class RatesCollection extends ResourceCollection
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
+     * @mixin RateComment
      */
     public function toArray($request)
     {

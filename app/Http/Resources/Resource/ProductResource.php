@@ -6,6 +6,7 @@ use App\Http\Resources\Collection\ProductColorsCollection;
 use App\Http\Resources\Collection\ProductsCollection;
 use App\Http\Resources\Collection\ProductSizesCollection;
 use App\Http\Resources\Collection\RatesCollection;
+use App\Models\Product;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -19,6 +20,7 @@ class ProductResource extends JsonResource
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
+     * @mixin Product
      */
     public function toArray($request)
     {

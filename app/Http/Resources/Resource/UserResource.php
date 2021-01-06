@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Resource;
 
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
@@ -15,6 +16,7 @@ class UserResource extends JsonResource
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
+     * @mixin User
      */
     public function toArray($request)
     {

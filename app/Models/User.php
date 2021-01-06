@@ -142,4 +142,8 @@ class User extends Authenticatable implements JWTSubject
     public function getIsVerifiedAttribute(){
         return $this->attributes['confirmation_code'] === 'verified';
     }
+
+    public function carts(){
+        return $this->hasMany(Cart::class,'user_id');
+    }
 }
