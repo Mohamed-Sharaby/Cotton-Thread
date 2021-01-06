@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.layout')
 
 @section('page-title')
-    تعديل لون منتج
+    تعديل لون
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
                 <div class="breadcrumb">
                     <a href="{{route('admin.main')}}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i>
                         {{__('Main')}}</a>
-                    <a href="{{route('admin.product-colors.index')}}" class="breadcrumb-item">ألوان المنتجات</a>
+                    <a href="{{route('admin.colors.index')}}" class="breadcrumb-item">ألوان المنتجات</a>
                     <span class="breadcrumb-item active">@yield('page-title')</span>
                 </div>
                 <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
@@ -23,30 +23,24 @@
         <!-- Form horizontal -->
         <div class="panel panel-flat">
             <div class="panel-heading">
-                <h3 class="panel-title">تعديل لون منتج
-                    <span class="badge badge-info">{{$productColor->product->name}}</span>
+                <h3 class="panel-title">تعديل لون
+                    <span class="badge badge-info">{{$color->name}}</span>
                 </h3>
             </div>
             <hr>
             <div class="panel-body">
 
-                <form action="{{route('admin.product-colors.update',$productColor->id)}}" method="post"
+                <form action="{{route('admin.colors.update',$color->id)}}" method="post"
                       enctype="multipart/form-data">
                     @csrf
                     {{method_field('put')}}
 
                     <div class="form-group row">
-                        <label for="product_id" class="col-form-label col-lg-2 ">اسم المنتج</label>
+                        <label for="name" class="col-form-label col-lg-2 ">اسم اللون</label>
                         <div class="col-lg-4">
-                            <select name="product_id" id="product_id"
-                                    class="form-control {{$errors->has('product_id') ? 'is-invalid' : null}}">
-                                <option disabled selected>اختر  المنتج</option>
-                                @foreach($products as $product)
-                                    <option
-                                        value="{{$product->id}}" {{$productColor->product_id == $product->id ? 'selected' : ''}}>{{$product->ar_name}}</option>
-                                @endforeach
-                            </select>
-                            @error('product_id')
+                            <input type="text" name="name" value="{{$color->name}}" placeholder="اسم اللون"
+                                   class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}">
+                            @error('name')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -55,14 +49,14 @@
 
                         <label for="color" class="col-form-label col-lg-2 text-lg-right">اللون </label>
                         <div class="col-lg-1">
-                            <input type="color" name="color" class="form-control {{$errors->has('color') ? 'is-invalid' : ''}}" value="{{$productColor->color}}">
+                            <input type="color" name="color" class="form-control {{$errors->has('color') ? 'is-invalid' : ''}}" value="{{$color->color}}">
                             @error('color')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
-                        <div class="col-lg-1" style="height: 40px;width: 40px;background-color: {{$productColor->color}}"></div>
+                        <div class="col-lg-1" style="height: 40px;width: 40px;background-color: {{$color->color}}"></div>
                     </div>
 
 

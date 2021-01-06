@@ -25,7 +25,7 @@ class ProductImageController extends Controller
 
         return view(
             'dashboard.product-images.index',
-            ['images' => ProductImage::latest()->get()]
+            ['products' => Product::all()]
         );
     }
 
@@ -113,6 +113,40 @@ class ProductImageController extends Controller
         }
         $productImage->delete();
         return redirect()->route('admin.product-images.index')->with('success', __('Deleted Successfully'));
+    }
+
+    // add image to product
+    public function add_image($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('dashboard.product-images.add_image',compact('product'));
+    }
+    public function store_image(Request $request)
+    {
+        //dd($request->all());
+        $product = Product::findOrFail($request->product_id);
+        $request->validate([
+            'product_id'=>'required|exists:products,id',
+            'image'=>'required|image'
+        ]);
+        ProductImage::create([
+            'product_id'=>$product->id,
+            'image'=>$request->image
+        ]);
+        return redirect()->route('admin.product-images.index')->with('success','تم الاضافة بنجاح');
+    }
+
+    // delete product image
+    public function del_image($id)
+    {
+        $image = ProductImage::findOrFail($id);
+        deleteImage('photos/product_images',$image->image);
+        $image->delete();
+
+        return response()->json([
+            'status' => true,
+            'id' => $image->id,
+        ]);
     }
 
 }

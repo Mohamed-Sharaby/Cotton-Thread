@@ -51,8 +51,8 @@
                         <td>{{$user->phone ?? __('Not Found')}}</td>
                         <td class="text-center">
                             @if($user->image)
-                                <a data-fancybox="gallery" href="{{getImgPath($user->image)}}">
-                                    <img src="{{getImgPath($user->image)}}" width="70" height="70"
+                                <a data-fancybox="gallery" href="{{$user->image}}">
+                                    <img src="{{$user->image}}" width="70" height="70"
                                          class="img-thumbnail">
                                 </a>
                             @else   لا يوجد صورة  @endif

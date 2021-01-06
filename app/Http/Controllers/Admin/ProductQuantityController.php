@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductColor;
 use App\Models\ProductQuantity;
 use App\Models\ProductSize;
+use App\Models\Size;
 use Illuminate\Http\Request;
 
 class ProductQuantityController extends Controller
@@ -36,7 +38,9 @@ class ProductQuantityController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view('dashboard.product-quantities.create',compact('products'));
+        $sizes = Size::all();
+        $colors = Color::all();
+        return view('dashboard.product-quantities.create',compact('products','sizes','colors'));
     }
 
     /**
@@ -49,8 +53,8 @@ class ProductQuantityController extends Controller
     {
         $data = $request->validate([
             'product_id' => 'required|exists:products,id',
-            'product_size_id' => 'required|exists:product_sizes,id',
-            'product_color_id' => 'required|exists:product_colors,id',
+            'size_id' => 'required|exists:sizes,id',
+            'color_id' => 'required|exists:colors,id',
             'quantity'=>'required|numeric'
         ]);
          ProductQuantity::create($data);

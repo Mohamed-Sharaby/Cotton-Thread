@@ -22,7 +22,7 @@
             @include('dashboard.layouts.status')
 
             <div class="panel-body mb-2">
-                <a href="{{route('admin.product-sizes.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
+                <a href="{{route('admin.sizes.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
                                                                                              style="margin-left: 10px;"></i>
                     اضافة حجم منتج</a>
             </div>
@@ -31,7 +31,6 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>اسم المنتج</th>
                     <th>الحجم</th>
                     <th class="text-center">{{__('Operations')}}</th>
                 </tr>
@@ -40,18 +39,17 @@
                 @foreach($sizes as $index => $size)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$size->product->name}}</td>
                         <td>{{$size->size}}</td>
 
                         <td class="text-center">
                             <div class="btn-group text-center">
 
-                                <a href="{{url(route('admin.product-sizes.edit',$size->id))}}"
+                                <a href="{{url(route('admin.sizes.edit',$size->id))}}"
                                    class="btn btn-primary btn-sm ml-2 rounded-circle"><i
                                         class="fa fa-edit"></i></a>
 
 
-                                <form action="{{route('admin.product-sizes.destroy',$size->id)}}" method="post">
+                                <form action="{{route('admin.sizes.destroy',$size->id)}}" method="post">
                                     @csrf
                                     {{method_field('delete')}}
 

@@ -34,6 +34,7 @@
                     <th>الاسم</th>
                     <th>القسم الفرعى</th>
                     <th>السعر</th>
+                    <th>الكمية</th>
                     <th>الصورة</th>
                     <th>التفاصيل</th>
                     <th class="text-center">{{__('Operations')}}</th>
@@ -46,16 +47,20 @@
                         <td>{{$product->name}}</td>
                         <td>{{$product->subcategory->name}}</td>
                         <td>{{$product->price}}</td>
+                        <td>{{$product->quantity}}</td>
                         <td>
                             @if($product->image)
 
-                                <a data-fancybox="gallery" href="{{getImgPath($product->image)}}">
-                                    <img src="{{getImgPath($product->image)}}" width="70" height="70"
+                                <a data-fancybox="gallery" href="{{$product->image}}">
+                                    <img src="{{$product->image}}" width="70" height="70"
                                          class="img-thumbnail" alt="cat_img">
                                 </a>
                             @else {{__('No Image')}} @endif
                         </td>
-                        <td>@include('dashboard.products.details')</td>
+                        <td>
+                            <a href="{{url(route('admin.products.details',$product->id))}}"
+                               class="btn btn-primary btn-sm mr-2 rounded">التفاصيل</a>
+                        </td>
                         <td class="text-center">
                             <div class="btn-group text-center">
 
@@ -66,9 +71,10 @@
                                             class="{{ $product->is_ban ? 'btn btn-warning' : 'btn btn-success' }}">{{ $product->is_ban ? __('Deactivate') : __('Active') }}</button>
                                 </form>
 
-{{--                                <a href="{{url(route('admin.products.add_quantity',$product->id))}}"--}}
-{{--                                   class="btn btn-primary btn-sm ml-2 rounded"><i--}}
-{{--                                        class="fa fa-plus mr-2"></i>اضافة كمية</a>--}}
+                                <a href="{{url(route('admin.products.quantities',$product->id))}}"
+                                   class="btn btn-primary btn-sm ml-2 ">
+                                    كميات المنتج
+                                </a>
 
 
                                 <a href="{{url(route('admin.products.edit',$product->id))}}"

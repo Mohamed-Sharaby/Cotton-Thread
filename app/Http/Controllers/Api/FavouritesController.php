@@ -9,10 +9,17 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+/**
+ * Class FavouritesController
+ * @package App\Http\Controllers\Api
+ */
 class FavouritesController extends Controller
 {
     use ApiResponse;
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(){
         $user = auth()->user();
 //        $user = User::find(1);
@@ -22,6 +29,10 @@ class FavouritesController extends Controller
         return $this->apiResponse($favourites);
     }
 
+    /**
+     * @param Product $product
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function favToggle(Product $product){
         $user = auth()->user();
 //        $user = User::find(1);

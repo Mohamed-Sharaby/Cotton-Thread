@@ -9,11 +9,15 @@ trait FileAttributes
     /**
      * @return null|string
      */
-//    public function getImageAttribute(){
-//        if(strpos($this->attributes['image'],'https') !== false)
-//            return $this->attributes['image'];
-//        return getImg($this->attributes['image']);
-//    }
+    public function getImageAttribute(){
+        if(isset($this->attributes['image'])){
+            if(strpos($this->attributes['image'],'https') !== false)
+                return $this->attributes['image'];
+            return getImg($this->attributes['image']);
+        }else{
+            return '';
+        }
+    }
 
     /**
      * @param $value

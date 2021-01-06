@@ -12,9 +12,18 @@ use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
+/**
+ * Class ProductController
+ * @package App\Http\Controllers\Api
+ */
 class ProductController extends Controller
 {
     use ApiResponse;
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request){
         $products = Product::where('is_ban',0)->whereHas('product_quantity')
             ->when(($request->has('is_new') && $request['is_new']),function ($q)use($request){
@@ -44,19 +53,24 @@ class ProductController extends Controller
             })
             ->when(($request->has('color') && $request['color']),function ($q)use($request){
                 $q->whereHas('product_colors',function (Builder $b)use($request){
-                    $b->where('color',$request['color']);
+                    $b->where('colors.id',$request['color']);
                 });
             })
             ->when(($request->has('size') && $request['size']),function ($q)use($request){
                 $q->whereHas('product_sizes',function (Builder $b)use($request){
-                    $b->where('size',$request['size']);
+                    $b->where('sizes.id',$request['size']);
                 });
             })
             ->paginate(8);
         return $this->apiResponse(new ProductsCollection($products));
     }
 
-    public function proBySubcategory(Request $request,SubCategory $subCategory){
+    /**
+     * @param Request $request
+     * @param SubCategory $subCategory
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function proBySubcategory(Request $request, SubCategory $subCategory){
         $products = $subCategory->products()
             ->where('is_ban',0)
             ->whereHas('product_quantity')
@@ -76,6 +90,10 @@ class ProductController extends Controller
         return $this->apiResponse(new ProductsCollection($products));
     }
 
+    /**
+     * @param Product $product
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show(Product $product){
         return $this->apiResponse(new ProductResource($product));
     }

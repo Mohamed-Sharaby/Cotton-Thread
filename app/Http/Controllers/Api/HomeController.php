@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Collection\BannersCollection;
+use App\Http\Resources\Collection\GalleryCollection;
 use App\Http\Resources\Collection\ProductsCollection;
 use App\Http\Traits\ApiResponse;
 use App\Models\Banner;
+use App\Models\Contact;
+use App\Models\Gallery;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -43,5 +47,26 @@ class HomeController extends Controller
      */
     public function setting($key){
         return $this->apiResponse(getSetting($key));
+    }
+
+
+    /**
+     * @param $key
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function gallery($key){
+        $galleries = Gallery::where('type',$key)->where('is_ban',0)->paginate(10);
+        $galleries = new GalleryCollection($galleries);
+        return $this->apiResponse($galleries);
+    }
+
+    public function contact(Request $request){
+        $validate = Validator::make($request->all(),[
+            'message'=>'required|string'
+        ]);
+        if($validate->fails())
+            return $this->apiResponse($validate->errors()->first(),422);
+        Contact::create($request->all());
+        return $this->apiResponse(__('message send successfully'));
     }
 }
