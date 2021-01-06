@@ -146,8 +146,8 @@
 
                     @can('Products')
                         <li class="nav-item nav-item-submenu {{ request()->routeIs('admin.products.*')
-                                                                || request()->routeIs('admin.product-colors.*')
-                                                                || request()->routeIs('admin.product-sizes.*')
+                                                                || request()->routeIs('admin.colors.*')
+                                                                || request()->routeIs('admin.sizes.*')
                                                                 || request()->routeIs('admin.product-quantities.*')
                                                                 || request()->routeIs('admin.product-images.*')
                                                                 ? 'nav-item-expanded nav-item-open' : '' }}">
@@ -160,20 +160,20 @@
                                                         class="nav-link {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
                                         <span>المنتجات</span></a></li>
 
-                                <li class="nav-item"><a href="{{route('admin.product-colors.index')}}"
+                                <li class="nav-item"><a href="{{route('admin.colors.index')}}"
                                                         class="nav-link {{ request()->routeIs('admin.product-colors.*') ? 'active' : '' }}">
                                         ألوان المنتجات</a></li>
 
 
-                                <li class="nav-item"><a href="{{route('admin.product-sizes.index')}}"
+                                <li class="nav-item"><a href="{{route('admin.sizes.index')}}"
                                                         class="nav-link {{ request()->routeIs('admin.product-sizes.*') ? 'active' : '' }}">
                                         أحجام المنتجات</a></li>
 
-                                <li class="nav-item">
-                                    <a href="{{route('admin.product-quantities.index')}}"
-                                       class="nav-link {{ request()->routeIs('admin.product-quantities.*') ? 'active' : '' }}">
-                                        كمية المنتجات</a>
-                                </li>
+{{--                                <li class="nav-item">--}}
+{{--                                    <a href="{{route('admin.product-quantities.index')}}"--}}
+{{--                                       class="nav-link {{ request()->routeIs('admin.product-quantities.*') ? 'active' : '' }}">--}}
+{{--                                        كمية المنتجات</a>--}}
+{{--                                </li>--}}
 
                                 <li class="nav-item">
                                     <a href="{{route('admin.product-images.index')}}"
@@ -203,13 +203,13 @@
                         </li>
                     @endcan
 
-                    @can('Galleries')
-                        <li class="nav-item {{ request()->routeIs('admin.galleries.*') ? 'nav-item-expanded nav-item-open' : '' }}">
-                            <a href="{{route('admin.galleries.index')}}"
-                               class="nav-link {{ request()->routeIs('admin.galleries.index') ? 'active' : '' }}">
-                                <i class="icon-gallery"></i> <span>مكتبة الصور والفيديو </span></a>
-                        </li>
-                    @endcan
+{{--                    @can('Galleries')--}}
+{{--                        <li class="nav-item {{ request()->routeIs('admin.galleries.*') ? 'nav-item-expanded nav-item-open' : '' }}">--}}
+{{--                            <a href="{{route('admin.galleries.index')}}"--}}
+{{--                               class="nav-link {{ request()->routeIs('admin.galleries.index') ? 'active' : '' }}">--}}
+{{--                                <i class="icon-gallery"></i> <span>مكتبة الصور والفيديو </span></a>--}}
+{{--                        </li>--}}
+{{--                    @endcan--}}
 
                     @can('GuestMessages')
                         <li class="nav-item {{ request()->routeIs('admin.guest-messages.*') ? 'nav-item-expanded nav-item-open' : '' }}">

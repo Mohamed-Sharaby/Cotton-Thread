@@ -69,8 +69,8 @@
                             <div class="col-12 col-lg-6 my-auto">
                                 @if($productImage->image)
 
-                                    <a data-fancybox="gallery" href="{{getImgPath($productImage->image)}}">
-                                        <img src="{{getImgPath($productImage->image)}}" width="100" height="100"
+                                    <a data-fancybox="gallery" href="{{$productImage->image}}">
+                                        <img src="{{$productImage->image}}" width="100" height="100"
                                              class="img-thumbnail">
                                     </a>
                                 @else لا يوجد صورة @endif

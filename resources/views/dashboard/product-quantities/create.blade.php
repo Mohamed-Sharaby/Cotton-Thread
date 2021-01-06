@@ -47,13 +47,16 @@
                             @enderror
                         </div>
 
-                        <label for="product_size_id" class="col-form-label col-lg-2 text-lg-right">حجم المنتج</label>
+                        <label for="size_id" class="col-form-label col-lg-2 text-lg-right">حجم المنتج</label>
                         <div class="col-lg-4">
-                            <select name="product_size_id" id="product_size_id"
-                                    class="form-control {{$errors->has('product_size_id') ? 'is-invalid' : null}}">
-{{--                                <option disabled selected>اختر حجم  المنتج</option>--}}
+                            <select name="size_id" id="size_id"
+                                    class="form-control {{$errors->has('size_id') ? 'is-invalid' : null}}">
+                                <option disabled selected>اختر حجم  المنتج</option>
+                                @foreach($sizes as $size)
+                                    <option value="{{$size->id}}" {{old('size_id') == $size->id ? 'selected' : ''}}>{{$size->size}}</option>
+                                @endforeach
                             </select>
-                            @error('product_size_id')
+                            @error('size_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -61,13 +64,16 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="product_color_id" class="col-form-label col-lg-2">لون المنتج</label>
+                        <label for="color_id" class="col-form-label col-lg-2">لون المنتج</label>
                         <div class="col-lg-4">
-                            <select name="product_color_id" id="product_color_id"
-                                    class="form-control {{$errors->has('product_color_id') ? 'is-invalid' : null}}">
-{{--                                <option disabled selected>اختر لون  المنتج</option>--}}
+                            <select name="color_id" id="color_id"
+                                    class="form-control {{$errors->has('color_id') ? 'is-invalid' : null}}">
+                                <option disabled selected>اختر لون  المنتج</option>
+                                @foreach($colors as $color)
+                                    <option value="{{$color->id}}" {{old('color_id') == $color->id ? 'selected' : ''}}>{{$color->name}}</option>
+                                @endforeach
                             </select>
-                            @error('product_color_id')
+                            @error('color_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -101,48 +107,48 @@
     <!-- /content area -->
 
 @endsection
-@section('my-js')
-    <script>
-        $(document).ready(function () {
-            $('#product_id').on('change', function (e) {
-                var product_id = $(this).val();
-                if (product_id) {
-                    $.ajax({
-                        url: '/dashboard/getSizes/' + product_id,
-                        method: 'GET',
-                        type: 'json',
-                        success: function (data) {
-                            $('#product_size_id').empty();
-                            $.each(data, function (key, value) {
-                                $('#product_size_id').append('<option value="' + key + '" >' + value + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#product_size_id').empty();
-                }
-            });
-        });
+{{--@section('my-js')--}}
+{{--    <script>--}}
+{{--        $(document).ready(function () {--}}
+{{--            $('#product_id').on('change', function (e) {--}}
+{{--                var product_id = $(this).val();--}}
+{{--                if (product_id) {--}}
+{{--                    $.ajax({--}}
+{{--                        url: '/dashboard/getSizes/' + product_id,--}}
+{{--                        method: 'GET',--}}
+{{--                        type: 'json',--}}
+{{--                        success: function (data) {--}}
+{{--                            $('#product_size_id').empty();--}}
+{{--                            $.each(data, function (key, value) {--}}
+{{--                                $('#product_size_id').append('<option value="' + key + '" >' + value + '</option>');--}}
+{{--                            });--}}
+{{--                        }--}}
+{{--                    });--}}
+{{--                } else {--}}
+{{--                    $('#product_size_id').empty();--}}
+{{--                }--}}
+{{--            });--}}
+{{--        });--}}
 
-        $(document).ready(function () {
-            $('#product_id').on('change', function (e) {
-                var product_id = $(this).val();
-                if (product_id) {
-                    $.ajax({
-                        url: '/dashboard/getColors/' + product_id,
-                        method: 'GET',
-                        type: 'json',
-                        success: function (data) {
-                            $('#product_color_id').empty();
-                            $.each(data, function (key, value) {
-                                $('#product_color_id').append('<option value="' + key + '" >' + value + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#product_color_id').empty();
-                }
-            });
-        });
-    </script>
-@endsection
+{{--        $(document).ready(function () {--}}
+{{--            $('#product_id').on('change', function (e) {--}}
+{{--                var product_id = $(this).val();--}}
+{{--                if (product_id) {--}}
+{{--                    $.ajax({--}}
+{{--                        url: '/dashboard/getColors/' + product_id,--}}
+{{--                        method: 'GET',--}}
+{{--                        type: 'json',--}}
+{{--                        success: function (data) {--}}
+{{--                            $('#product_color_id').empty();--}}
+{{--                            $.each(data, function (key, value) {--}}
+{{--                                $('#product_color_id').append('<option value="' + key + '" >' + value + '</option>');--}}
+{{--                            });--}}
+{{--                        }--}}
+{{--                    });--}}
+{{--                } else {--}}
+{{--                    $('#product_color_id').empty();--}}
+{{--                }--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@endsection--}}

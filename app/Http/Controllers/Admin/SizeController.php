@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\ProductSize;
+use App\Models\Size;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
-class ProductSizeController extends Controller
+class SizeController extends Controller
 {
     public function __construct()
     {
@@ -23,8 +23,8 @@ class ProductSizeController extends Controller
     public function index()
     {
         return view(
-            'dashboard.product-sizes.index',
-            ['sizes' => ProductSize::latest()->get()]
+            'dashboard.sizes.index',
+            ['sizes' => Size::latest()->get()]
         );
     }
 
@@ -34,8 +34,7 @@ class ProductSizeController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
-        return view('dashboard.product-sizes.create',compact('products'));
+        return view('dashboard.sizes.create');
     }
 
     /**
@@ -47,11 +46,10 @@ class ProductSizeController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'product_id' => 'required|exists:products,id',
             'size' => 'required|string',
         ]);
-         ProductSize::create($data);
-        return redirect()->route('admin.product-sizes.index')->with('success', __('Added Successfully'));
+        Size::create($data);
+        return redirect()->route('admin.sizes.index')->with('success', __('Added Successfully'));
     }
 
     /**
@@ -71,10 +69,9 @@ class ProductSizeController extends Controller
      * @param int $id
      * @return
      */
-    public function edit(ProductSize $productSize)
+    public function edit(Size $size)
     {
-        $products = Product::all();
-        return view('dashboard.product-sizes.edit', compact('productSize','products'));
+        return view('dashboard.sizes.edit', compact('size'));
     }
 
     /**
@@ -84,15 +81,13 @@ class ProductSizeController extends Controller
      * @param int $id
      * @return
      */
-    public function update(Request $request,ProductSize $productSize)
+    public function update(Request $request, Size $size)
     {
         $validator = $request->validate([
-            'product_id' => 'required|exists:products,id',
             'size' => 'required|string',
         ]);
-
-        $productSize->update($validator);
-        return redirect()->route('admin.product-sizes.index')->with('success', __('Updated Successfully'));
+        $size->update($validator);
+        return redirect()->route('admin.sizes.index')->with('success', __('Updated Successfully'));
     }
 
     /**
@@ -101,10 +96,10 @@ class ProductSizeController extends Controller
      * @param int $id
      * @return
      */
-    public function destroy(ProductSize $productSize)
+    public function destroy(Size $size)
     {
-        $productSize->delete();
-        return redirect()->route('admin.product-sizes.index')->with('success', __('Deleted Successfully'));
+        $size->delete();
+        return redirect()->route('admin.sizes.index')->with('success', __('Deleted Successfully'));
     }
 
 }

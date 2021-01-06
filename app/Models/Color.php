@@ -16,12 +16,12 @@ class Color extends Model
     /**
      * @var array
      */
-    protected $fillable = ['color'];
+    protected $fillable = ['name','color'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-//    public function productQuantities(){
-//        return $this->hasMany(ProductQuantity::class,'color_id');
-//    }
+    public function productQuantities(){
+        return $this->hasMany(ProductQuantity::class,'color_id');
+    }
 }

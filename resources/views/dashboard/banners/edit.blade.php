@@ -77,9 +77,8 @@
                         @isset($banner->image)
                             <div class="col-12 col-lg-6 my-auto">
                                 @if($banner->image)
-
-                                    <a data-fancybox="gallery" href="{{getImgPath($banner->image)}}">
-                                        <img src="{{getImgPath($banner->image)}}" width="100" height="100"
+                                    <a data-fancybox="gallery" href="{{$banner->image}}">
+                                        <img src="{{$banner->image}}" width="100" height="100"
                                              class="img-thumbnail">
                                     </a>
                                 @else لا يوجد صورة @endif

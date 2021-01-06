@@ -17,7 +17,7 @@ class ProductQuantity extends Model
     /**
      * @var array
      */
-    protected $fillable = ['product_id','quantity','product_size_id','product_color_id','is_ban'];
+    protected $fillable = ['product_id','quantity','size_id','color_id','is_ban','type'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -29,15 +29,15 @@ class ProductQuantity extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function productSize(){
-        return $this->belongsTo(ProductSize::class,'product_size_id');
+    public function size(){
+        return $this->belongsTo(Size::class,'size_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function productColor(){
-        return $this->belongsTo(ProductColor::class,'product_color_id');
+    public function color(){
+        return $this->belongsTo(Color::class,'color_id');
     }
 
 }

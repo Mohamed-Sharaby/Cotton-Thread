@@ -81,8 +81,8 @@
                         </td>
                         <td>
                             @if($banner->image)
-                                <a data-fancybox="gallery" href="{{getImgPath($banner->image)}}">
-                                    <img src="{{getImgPath($banner->image)}}" width="70" height="70"
+                                <a data-fancybox="gallery" href="{{$banner->image}}">
+                                    <img src="{{$banner->image}}" width="70" height="70"
                                          class="img-thumbnail" alt="cat_img">
                                 </a>
                             @else {{__('No Image')}} @endif

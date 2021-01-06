@@ -17,7 +17,6 @@ trait FileAttributes
         }else{
             return '';
         }
-
     }
 
     /**

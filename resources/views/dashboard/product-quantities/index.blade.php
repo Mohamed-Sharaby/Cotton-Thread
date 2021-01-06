@@ -43,8 +43,8 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$quantity->product->name}}</td>
-                        <td>{{$quantity->productSize->size}}</td>
-                        <td>{{$quantity->productColor->color}}</td>
+                        <td>{{$quantity->size->size}}</td>
+                        <td>{{$quantity->color->name}}</td>
                         <td>{{$quantity->quantity}}</td>
 
                         <td class="text-center">

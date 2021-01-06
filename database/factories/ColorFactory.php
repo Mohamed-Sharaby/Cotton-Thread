@@ -22,6 +22,7 @@ class ColorFactory extends Factory
     public function definition()
     {
         return [
+            'name'=> $this->faker->safeColorName,
             'color'=> '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6)
         ];
     }

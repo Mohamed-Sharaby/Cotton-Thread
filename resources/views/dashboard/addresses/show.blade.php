@@ -30,11 +30,8 @@
                     <th>#</th>
                     <th class="font-weight-bold">اسم العنوان</th>
                     <th class="font-weight-bold">رقم الجوال</th>
-                    <th class="font-weight-bold">الحى</th>
-                    <th class="font-weight-bold">المنطقة</th>
-                    <th class="font-weight-bold">المدينة</th>
+                    <th class="font-weight-bold">التفاصيل</th>
                     <th class="font-weight-bold">الموقع على الخريطة</th>
-                    <th class="font-weight-bold">تفاصيل العنوان</th>
                     <th class="font-weight-bold">حذف</th>
                 </tr>
                 </thead>
@@ -44,9 +41,8 @@
                         <td>{{$index +1}}</td>
                         <td>{{$address->name ?? __('Not Found')}}</td>
                         <td>{{$address->phone ?? __('Not Found')}}</td>
-                        <td>{{$address->district->name ?? __('Not Found')}}</td>
-                        <td>{{$address->district->region->name ?? __('Not Found')}}</td>
-                        <td>{{$address->district->region->city->name ?? __('Not Found')}}</td>
+                        <td>@include('dashboard.addresses.details')</td>
+
                         <td class="text-center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-info show-map" data-lat="{{$address->lat}}"
@@ -54,7 +50,7 @@
                                 الموقع على الخريطة
                             </button>
                         </td>
-                        <td>{{$address->address ?? __('Not Found')}}</td>
+
                         <td class="text-center">
                             <a class="btn btn-danger btn-sm del_address" data-id="{{$address->id}}">
                                 <i class="fa fa-trash text-white"></i></a>

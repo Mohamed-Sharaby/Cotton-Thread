@@ -89,8 +89,8 @@
                             <div class="col-12 col-lg-6 my-auto">
                                 @if($subCategory->image)
 
-                                    <a data-fancybox="gallery" href="{{getImgPath($subCategory->image)}}">
-                                        <img src="{{getImgPath($subCategory->image)}}" width="100" height="100"
+                                    <a data-fancybox="gallery" href="{{$subCategory->image}}">
+                                        <img src="{{$subCategory->image}}" width="100" height="100"
                                              class="img-thumbnail">
                                     </a>
                                 @else لا يوجد صورة @endif
