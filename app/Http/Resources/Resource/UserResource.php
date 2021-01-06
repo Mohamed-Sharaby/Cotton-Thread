@@ -4,6 +4,10 @@ namespace App\Http\Resources\Resource;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * Class UserResource
+ * @package App\Http\Resources\Resource
+ */
 class UserResource extends JsonResource
 {
     /**
@@ -19,6 +23,7 @@ class UserResource extends JsonResource
             'name'=>$this->name,
             'email'=>$this->email,
             'phone'=>$this->phone,
+            'is_verified'=>$this->is_verified,
             'token'=>fix_null_string($this->token),
             'image'=>fix_null_string($this->image),
         ];

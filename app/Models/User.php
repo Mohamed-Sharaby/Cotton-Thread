@@ -112,9 +112,34 @@ class User extends Authenticatable implements JWTSubject
      * @return bool
      */
     public function isFavourite($product_id){
-//        if(!auth()->check())
-//            return false;
-//        else
+        if(!auth()->check())
+            return false;
+        else
             return $this->favourites()->where('product_id',$product_id)->exists();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rates(){
+        return $this->hasMany(RateComment::class,'user_id');
+    }
+
+    /**
+     * @param $product_id
+     * @return bool
+     */
+    public function isRated($product_id){
+        if(!auth()->check())
+            return false;
+        else
+            return $this->rates()->where('product_id',$product_id)->exists();
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsVerifiedAttribute(){
+        return $this->attributes['confirmation_code'] === 'verified';
     }
 }

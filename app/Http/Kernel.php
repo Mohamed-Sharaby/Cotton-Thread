@@ -3,6 +3,8 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminCheck;
+use App\Http\Middleware\ApiLocale;
+use App\Http\Middleware\JWTCheck;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -64,6 +66,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
+        'jwt-check' => JWTCheck::class,
+        'x-lang' => ApiLocale::class,
         'admin' => AdminCheck::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,

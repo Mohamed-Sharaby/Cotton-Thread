@@ -26,12 +26,15 @@ class ProductsCollection extends ResourceCollection
                     'name' => $q->name,
                     'image' => $q->image,
                     'price' => $q->price,
-                    'rate' => 0,
+                    'rate' => $q->avg_rate,
                     'discount' => $q->discount,
+                    'has_discount' => ((int)$q->discount>0),
                     'price_after_discount' => $q->price_after_discount,
-                    'is_favourite'=>(auth()->check())?$user->isFavourite($this->id):false,
+                    'is_favourite'=>(auth()->check())?$user->isFavourite($q->id):false,
                     'colors' => new ProductColorsCollection($q->product_colors),
                     'sizes' => new ProductSizesCollection($q->product_sizes),
+                    'is_new' => ($q->is_new===0)?false:true,
+
                 ];
             });
         }else {
@@ -41,12 +44,14 @@ class ProductsCollection extends ResourceCollection
                     'name' => $q->name,
                     'image' => $q->image,
                     'price' => $q->price,
-                    'rate' => 0,
+                    'rate' => $q->avg_rate,
                     'discount' => $q->discount,
+                    'has_discount' => ((int)$q->discount>0),
                     'price_after_discount' => $q->price_after_discount,
-                    'is_favourite'=>(auth()->check())?$user->isFavourite($this->id):false,
+                    'is_favourite'=>(auth()->check())?$user->isFavourite($q->id):false,
                     'colors' => new ProductColorsCollection($q->product_colors),
                     'sizes' => new ProductSizesCollection($q->product_sizes),
+                    'is_new' => ($q->is_new===0)?false:true,
                 ];
             });
         }

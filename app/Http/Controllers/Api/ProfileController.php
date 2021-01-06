@@ -11,10 +11,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 
+/**
+ * Class ProfileController
+ * @package App\Http\Controllers\Api
+ */
 class ProfileController extends Controller
 {
     use ApiResponse;
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function profile(Request $request){
         $validator = Validator::make($this->arrayFilter($request),[
             'name'=>'sometimes|string',
@@ -38,9 +46,32 @@ class ProfileController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function logout(){
         auth()->logout();
         return $this->apiResponse(__('successfully logged out'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function editPass(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'password'=>'required|confirmed'
+        ]);
+        if ($validator->fails())
+            return $this->apiResponse($validator->errors()->first(),422);
+        $user = auth()->user();
+        $user->update([
+            'password'=>$request->password
+        ]);
+        $token = JWTAuth::fromUser($user);
+        $user['token'] = $token;
+        return $this->apiResponse(new UserResource($user));
     }
 
     /**

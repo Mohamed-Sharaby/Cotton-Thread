@@ -27,9 +27,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([],function (){
     Route::post('register', [AuthController::class,'register']);
     Route::post('login', [AuthController::class,'login']);
+    Route::put('verify', [AuthController::class,'verify']);
 });
 
-Route::group([],function (){
+Route::group(['middleware'=>['jwt.check','x-lang']],function (){
    Route::get('/home',[HomeController::class,'index']);
    Route::get('/categories',[CategoriesController::class,'index']);
    Route::get('/subcategories/{category}',[CategoriesController::class,'subCategory']);
@@ -40,7 +41,8 @@ Route::group([],function (){
        Route::get('/favourites',[FavouritesController::class,'index']);  // required auth
        Route::post('/favourites/{product}',[FavouritesController::class,'favToggle']);  // required auth
        Route::apiResource('/address',AddressesController::class)->except('show');  // required auth
-       Route::post('/edit-profile',[ProfileController::class,'profile']);  // required auth
+       Route::put('/edit-profile',[ProfileController::class,'profile']);  // required auth
+       Route::put('/edit-pass',[ProfileController::class,'editPass']);  // required auth
        Route::post('/logout',[ProfileController::class,'logout']);  // required auth
    });
    Route::post('/contact',[HomeController::class,'contact']);

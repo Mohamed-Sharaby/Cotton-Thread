@@ -81,5 +81,14 @@ class Product extends Model
                     ->whereHas('product_quantity')->get();
     }
 
+    public function rates(){
+        return $this->hasMany(RateComment::class,'product_id');
+    }
+
+    public function getAvgRateAttribute(){
+        $avg =  $this->rates()->average('rate');
+        return number_format($avg,2,'.',',');
+    }
+
 
 }
