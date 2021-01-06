@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\ProductColor;
+use App\Models\Color;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
-class ProductColorController extends Controller
+class ColorController extends Controller
 {
     public function __construct()
     {
@@ -22,10 +22,9 @@ class ProductColorController extends Controller
      */
     public function index()
     {
-
         return view(
-            'dashboard.product-colors.index',
-            ['colors' => ProductColor::latest()->get()]
+            'dashboard.colors.index',
+            ['colors' => Color::latest()->get()]
         );
     }
 
@@ -36,7 +35,7 @@ class ProductColorController extends Controller
     public function create()
     {
         $products = Product::all();
-        return view('dashboard.product-colors.create',compact('products'));
+        return view('dashboard.colors.create',compact('products'));
     }
 
     /**
@@ -49,11 +48,11 @@ class ProductColorController extends Controller
     {
        // dd($request->all());
         $data = $request->validate([
-            'product_id' => 'required|exists:products,id',
+            'name' => 'required|string',
             'color' => 'required|string',
         ]);
-         ProductColor::create($data);
-        return redirect()->route('admin.product-colors.index')->with('success', __('Added Successfully'));
+         Color::create($data);
+        return redirect()->route('admin.colors.index')->with('success', __('Added Successfully'));
     }
 
     /**
@@ -73,10 +72,9 @@ class ProductColorController extends Controller
      * @param int $id
      * @return
      */
-    public function edit(ProductColor $productColor)
+    public function edit(Color $color)
     {
-        $products = Product::all();
-        return view('dashboard.product-colors.edit', compact('productColor','products'));
+        return view('dashboard.colors.edit', compact('color'));
     }
 
     /**
@@ -86,15 +84,15 @@ class ProductColorController extends Controller
      * @param int $id
      * @return
      */
-    public function update(Request $request,ProductColor $productColor)
+    public function update(Request $request,Color $color)
     {
         $validator = $request->validate([
-            'product_id' => 'required|exists:products,id',
+            'name' => 'required|string',
             'color' => 'required|string',
         ]);
 
-        $productColor->update($validator);
-        return redirect()->route('admin.product-colors.index')->with('success', __('Updated Successfully'));
+        $color->update($validator);
+        return redirect()->route('admin.colors.index')->with('success', __('Updated Successfully'));
     }
 
     /**
@@ -103,10 +101,10 @@ class ProductColorController extends Controller
      * @param int $id
      * @return
      */
-    public function destroy(ProductColor $productColor)
+    public function destroy(Color $color)
     {
-        $productColor->delete();
-        return redirect()->route('admin.product-colors.index')->with('success', __('Deleted Successfully'));
+        $color->delete();
+        return redirect()->route('admin.colors.index')->with('success', __('Deleted Successfully'));
     }
 
 }

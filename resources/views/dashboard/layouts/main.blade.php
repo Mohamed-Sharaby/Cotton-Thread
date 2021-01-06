@@ -131,20 +131,20 @@
             @endcan
 
 
-            @can('Galleries')
-                <div class="col-12 col-md-3">
-                    <a href="{{route('admin.galleries.index')}}">
-                        <div class="card shadow shadow-md bg-purple-600">
-                            <i class="icon-images3 icon-2x"></i>
-                            <div class="card-body text-center m-1 font-weight-bold">
-                                مكتبة الصور والفيديو
-                            </div>
-                            <label class="badge badge-dark"
-                                   style="font-size: 14px;">{{\App\Models\Gallery::count()}}</label>
-                        </div>
-                    </a>
-                </div>
-            @endcan
+{{--            @can('Galleries')--}}
+{{--                <div class="col-12 col-md-3">--}}
+{{--                    <a href="{{route('admin.galleries.index')}}">--}}
+{{--                        <div class="card shadow shadow-md bg-purple-600">--}}
+{{--                            <i class="icon-images3 icon-2x"></i>--}}
+{{--                            <div class="card-body text-center m-1 font-weight-bold">--}}
+{{--                                مكتبة الصور والفيديو--}}
+{{--                            </div>--}}
+{{--                            <label class="badge badge-dark"--}}
+{{--                                   style="font-size: 14px;">{{\App\Models\Gallery::count()}}</label>--}}
+{{--                        </div>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            @endcan--}}
 
             @can('GuestMessages')
                 <div class="col-12 col-md-3">

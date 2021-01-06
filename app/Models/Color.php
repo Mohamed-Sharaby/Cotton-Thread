@@ -16,7 +16,7 @@ class Color extends Model
     /**
      * @var array
      */
-    protected $fillable = ['color'];
+    protected $fillable = ['name','color'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

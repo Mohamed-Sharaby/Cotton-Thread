@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Color;
 use App\Models\Product;
+use App\Models\ProductQuantity;
+use App\Models\Size;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -70,7 +73,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $sizes = $product->product_sizes;
+        return view('dashboard.products.sizes', compact('product', 'sizes'));
     }
 
     /**
@@ -107,7 +112,7 @@ class ProductController extends Controller
         ]);
         if ($request->has('image')) {
             if ($product->image) {
-                deleteImage('photos/products',$product->image);
+                deleteImage('photos/products', $product->image);
             }
         }
         $product->update($validator);
@@ -122,9 +127,62 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        deleteImage('photos/products',$product->image);
+        deleteImage('photos/products', $product->image);
         $product->delete();
         return redirect()->route('admin.products.index')->with('success', __('Deleted Successfully'));
+    }
+
+
+    public function details(Product $product)
+    {
+        return view('dashboard.products.product_details', compact('product'));
+    }
+    public function addQuantity($id)
+    {
+        $product = Product::findOrFail($id);
+        $sizes = Size::all();
+        $colors = Color::all();
+        return view('dashboard.products.add_quantity', compact('product','sizes','colors'));
+    }
+
+    public function storeQuantity(Request $request,$id)
+    {
+        $request->validate([
+            'size_id' => 'required|exists:sizes,id',
+            'color_id' => 'required|exists:colors,id',
+            'quantity'=>'required|numeric'
+        ]);
+        $product = Product::findOrFail($id);
+        $product->product_quantity()->create([
+            'type'=>'increase',
+            'color_id'=> $request->color_id,
+            'size_id'=> $request->size_id,
+            'quantity'=> $request->quantity,
+        ]);
+        return redirect()->route('admin.products.index')->with('success','تم الاضافة بنجاح');
+    }
+
+
+    public function addSize($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('dashboard.products.add_size', compact('product'));
+    }
+
+
+
+    public function quantities($id)
+    {
+        $product = Product::findOrFail($id);
+        $quantities = ProductQuantity::whereProductId($id)->get();
+        return view('dashboard.products.quantities',compact('product','quantities'));
+    }
+
+    public function destroyQuantity($id)
+    {
+        $quantity = ProductQuantity::findOrFail($id);
+        $quantity->delete();
+        return back()->with('success', __('Deleted Successfully'));
     }
 
 

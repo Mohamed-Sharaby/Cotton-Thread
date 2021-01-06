@@ -33,6 +33,8 @@
                     <th class="font-weight-bold">الحى</th>
                     <th class="font-weight-bold">المنطقة</th>
                     <th class="font-weight-bold">المدينة</th>
+                    <th class="font-weight-bold">الشارع</th>
+                    <th class="font-weight-bold">رقم المنزل</th>
                     <th class="font-weight-bold">الموقع على الخريطة</th>
                     <th class="font-weight-bold">تفاصيل العنوان</th>
                     <th class="font-weight-bold">حذف</th>
@@ -47,6 +49,8 @@
                         <td>{{$address->district->name ?? __('Not Found')}}</td>
                         <td>{{$address->district->region->name ?? __('Not Found')}}</td>
                         <td>{{$address->district->region->city->name ?? __('Not Found')}}</td>
+                        <td>{{$address->street ?? __('Not Found')}}</td>
+                        <td>{{$address->house_num ?? __('Not Found')}}</td>
                         <td class="text-center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-info show-map" data-lat="{{$address->lat}}"
