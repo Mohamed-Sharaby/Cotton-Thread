@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Collection\ProductQuantityCollection;
 use App\Http\Resources\Collection\ProductsCollection;
 use App\Http\Resources\Resource\ProductResource;
 use App\Http\Traits\ApiResponse;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductQuantity;
 use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -96,5 +98,24 @@ class ProductController extends Controller
      */
     public function show(Product $product){
         return $this->apiResponse(new ProductResource($product));
+    }
+
+    /**
+     * @param Request $request
+     * @param Product $product
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function details(Request $request, Product $product){
+        $productQuantity = ProductQuantity::where('product_id',$product->id)
+            ->where('is_ban',0)
+            ->when(($request['size_id']!=null),function ($q)use($request){
+                $q->where('size_id',$request['size_id']);
+            })
+            ->when(($request['color_id']!=null),function ($q)use($request){
+                $q->where('color_id',$request['color_id']);
+            });
+        if(!$productQuantity->exists())
+            return $this->apiResponse(__('product not available'),422);
+        return $this->apiResponse(new ProductQuantityCollection($productQuantity->get()),200);
     }
 }

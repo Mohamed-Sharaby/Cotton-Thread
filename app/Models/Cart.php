@@ -45,6 +45,7 @@ class Cart extends Model
      * @param $productQuantity
      * @param $request
      * @return array
+     * when internet found
      */
     public static function addToCart($productQuantity, $request){
         $user = auth()->user();
@@ -76,25 +77,43 @@ class Cart extends Model
         $product = $productQuantity->product;
         if(!$product)
             return [__('product not available'),422];
+        $this->itemUpdateOrCreate($productQuantity, $request, $product);
+
+        return [__('item added to cart'),200];
+    }
+
+    public function getSumCartOrdersAttribute(){
+        $sum_orders = $this->cartItems()->selectRaw('SUM(cart_items.price*
+        (1-((cart_items.discount)/100))*
+        cart_items.quantity) as sum')->first()->sum;
+        return number_format($sum_orders,2,'.',',');
+    }
+
+    /**
+     * @param $productQuantity
+     * @param $request
+     * @param $product
+     */
+    public function itemUpdateOrCreate($productQuantity, $request, $product)
+    {
         // add items to cart
-        $item = $this->cartItems()->where('product_quantity_id',$productQuantity->id);
-        if($item->exists()){
+        $item = $this->cartItems()->where('product_quantity_id', $productQuantity->id);
+        if ($item->exists()) {
             $item->update([
-                'quantity'=>$item->first()->quantity + $request['quantity'],
-                'price'=>fix_null_double(optional($product)->price),
-                'discount'=>fix_null_double(optional($product)->discount),
+                'quantity' => $item->first()->quantity + $request['quantity'],
+                'price' => fix_null_double(optional($product)->price),
+                'discount' => fix_null_double(optional($product)->discount),
             ]);
-        }else{
+        } else {
             $this->cartItems()->create([
-                'product_quantity_id'=>$productQuantity->id,
-                'quantity'=>$request['quantity'],
-                'price'=>fix_null_double(optional($product)->price),
-                'discount'=>fix_null_double(optional($product)->discount),
+                'product_quantity_id' => $productQuantity->id,
+                'quantity' => $request['quantity'],
+                'price' => fix_null_double(optional($product)->price),
+                'discount' => fix_null_double(optional($product)->discount),
             ]);
         }
         // minus product quantity
         $new_quantity = $productQuantity->quantity - $request['quantity'];
-        $productQuantity->update(['quantity'=>$new_quantity]);
-        return [__('item added to cart'),200];
+        $productQuantity->update(['quantity' => $new_quantity]);
     }
 }

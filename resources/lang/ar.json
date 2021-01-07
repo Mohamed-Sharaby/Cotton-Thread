@@ -624,6 +624,8 @@
     "product not available": "المنتج غير متاح",
     "item not found": "الوحده غير موجوده",
     "product quantity not available": "الكمية غير متاحه",
+    "cart access denied": "لايمكن الوصول للطلب",
+    "address access denied": "لايمكن الوصول للعنوان",
     "item quantity added": "تم زياده كمية الوحدة",
     "item quantity minus": "تم تقليل كمية الوحدة"
 

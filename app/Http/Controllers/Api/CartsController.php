@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Collection\CartItemsCollection;
+use App\Http\Resources\Collection\CartsCollection;
+use App\Http\Resources\Resource\CartResource;
 use App\Http\Traits\ApiResponse;
 use App\Models\Cart;
 use App\Models\CartItem;
@@ -24,8 +26,11 @@ class CartsController extends Controller
      * @param Request $request
      * @param Product $product
      * @return \Illuminate\Http\JsonResponse
+     *  add to cart when internet found
      */
     public function addToCart(Request $request, Product $product){
+        $user = auth()->user();
+
         $validator = Validator::make($request->all(),[
             'size_id'=>'required|numeric|exists:sizes,id',
             'color_id'=>'required|numeric|exists:colors,id',
@@ -46,7 +51,6 @@ class CartsController extends Controller
 
         if(!$productQuantity->exists() || $product->is_ban)
             return $this->apiResponse(__('product not available'),422);
-        $user = auth()->user();
         $productQuantity = $productQuantity->first();
         $openCart = $user->carts()->where('status','open');
         if($openCart->exists()){
@@ -93,12 +97,80 @@ class CartsController extends Controller
         return $this->apiResponse($result[0],$result[1]);
     }
 
-    public function myCartDetails(){
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function openCartDetails(){
         $user = auth()->user();
         $cart = $user->carts()->where('status','open');
         if(!$cart)
             return $this->apiResponse(__('cart not found'),404);
-        $cartItems = $cart->first()->cartItems;
-        return $this->apiResponse(new CartItemsCollection($cartItems),200);
+        return $this->apiResponse(new CartResource($cart->first()),200);
+    }
+
+    public function localCart(Request $request){
+        $user = auth()->user();
+        $validator = Validator::make($request->all(),[
+           '*.product_id'=>'required|numeric|exists:products,id',
+           '*.size_id'=>'required|numeric|exists:sizes,id',
+           '*.color_id'=>'required|numeric|exists:colors,id',
+           '*.quantity'=>'required|numeric',
+        ]);
+        if($validator->fails())
+            return $this->apiResponse($validator->errors()->first(),422);
+        foreach ($request->all() as $item){
+            $product  = Product::find($item['product_id']);
+            if($product->is_ban)
+                return $this->apiResponse(__('cannot access product'),422);
+            $productQuantity = $product->product_quantity()
+                        ->where('color_id',$item['color_id'])
+                        ->where('size_id',$item['size_id'])
+                        ->where('quantity','>=',$item['quantity']);
+            $proQty = $productQuantity->first();
+            if(!$productQuantity->exists() || $proQty->is_ban)
+                return $this->apiResponse(__('product not available'),422);
+            $openCart = $user->carts()->where('status','open');
+            if($openCart->exists()){
+                $openCart = $openCart->first();
+                $openCart->itemUpdateOrCreate($proQty,$item,$product);
+            }else{
+                // open new cart
+                $openCart = Cart::create(['user_id'=>$user->id, 'status'=>'open']);
+                $openCart->itemUpdateOrCreate($proQty,$item,$product);
+            }
+        }
+        return $this->apiResponse(['cart_id'=>$openCart->id]);
+    }
+
+    public function allCarts(Request $request){
+        $user = auth()->user();
+        $carts = $user->carts();
+        if(!$carts->exists())
+            return $this->apiResponse(__('cart not found'),404);
+        $carts = $carts->when(($request['status']!=''),function ($q)use($request){
+            $q->where('status',$request['status']);
+        })->paginate(8);
+        return $this->apiResponse(new CartsCollection($carts),200);
+    }
+
+    public function submitCart(Request $request,Cart $cart){
+        $user = auth()->user();
+        $validator = Validator::make($request->all(),[
+            'address_id'=>'required|numeric|exists:addresses,id',
+            'coupon_id'=>'sometimes|nullable|numeric|exists:coupons,id',
+            'payment'=>'required|string|in:COD,wallet,credit,bank_transaction',
+            'transaction_image'=>'required_if:payment,bank_transaction',
+            'comment'=>'sometimes|nullable|string',
+        ]);
+        if($validator->fails())
+            return $this->apiResponse($validator->errors()->first(),422);
+        if($cart->user_id != $user->id || $cart->status != 'open')
+            return $this->apiResponse(__('cart access denied'),403);
+        if(!$user->addresses()->where('id',$request['address_id'])->exists())
+            return $this->apiResponse(__('address access denied'),403);
+        $inputs = $request->all();
+        $inputs['status']='confirmed';
+        $cart->update($inputs);
+        return $this->apiResponse(['cart_id'=>$cart->id]);
     }
 }

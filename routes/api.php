@@ -39,6 +39,7 @@ Route::group(['middleware'=>['jwt.check','x-lang']],function (){
    Route::get('/products/',[ProductController::class,'index']);
    Route::get('/products/{subCategory}',[ProductController::class,'proBySubcategory']);
    Route::get('/product/{product}',[ProductController::class,'show']);
+   Route::get('/product-details/{product}',[ProductController::class,'details']);
    Route::group(['middleware'=>'auth:api'],function (){
        Route::get('/favourites',[FavouritesController::class,'index']);  // required auth
        Route::post('/favourites/{product}',[FavouritesController::class,'favToggle']);  // required auth
@@ -48,7 +49,10 @@ Route::group(['middleware'=>['jwt.check','x-lang']],function (){
        Route::post('/add-to-cart/{product}',[CartsController::class,'addToCart']);  // required auth
        Route::put('/add-qty/{item}',[CartsController::class,'addQty']);  // required auth
        Route::put('/minus-qty/{item}',[CartsController::class,'minusQty']);  // required auth
-       Route::get('/open-cart-details',[CartsController::class,'myCartDetails']);  // required auth
+       Route::get('/open-cart-details',[CartsController::class,'openCartDetails']);  // required auth
+       Route::post('/local/cart',[CartsController::class,'localCart']);  // required auth
+       Route::get('/all/carts',[CartsController::class,'allCarts']);  // required auth
+       Route::post('/submit/cart/{cart}',[CartsController::class,'submitCart']);  // required auth
        Route::post('/logout',[ProfileController::class,'logout']);  // required auth
    });
    Route::group(['prefix'=>'pickers'],function (){

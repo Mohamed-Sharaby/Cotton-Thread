@@ -71,5 +71,11 @@ class CartItem extends Model
         return [__('item quantity minus'),200];
     }
 
-
+    /**
+     * @return string
+     */
+    public function getPriceAfterDiscountAttribute(){
+        $price_after_discount =  ($this->attributes['price']*(100-$this->attributes['discount']))/100;
+        return number_format($price_after_discount,2,'.',',');
+    }
 }
