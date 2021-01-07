@@ -185,6 +185,27 @@
                         </li>
                     @endcan
 
+{{--                    @can('Coupons')--}}
+                        <li class="nav-item">
+                            <a href="{{route('admin.coupons.index')}}" class="nav-link {{ request()->routeIs('admin.coupons.*') ? 'active' : '' }}">
+                                <i class="icon-code"></i>
+                                <span>
+                                 الكوبونات
+                                </span>
+                            </a>
+                        </li>
+{{--                    @endcan--}}
+
+{{--                    @can('Carts')--}}
+                        <li class="nav-item {{ request()->routeIs('admin.carts.*') ? 'nav-item-expanded nav-item-open' : '' }}">
+                            <a href="{{route('admin.carts.index')}}"
+                               class="nav-link {{ request()->routeIs('admin.carts.*') ? 'active' : '' }}"><i
+                                    class="icon-database"></i> <span>    الطلبات </span></a>
+                        </li>
+
+{{--                    @endcan--}}
+
+
                     @can('Banners')
                         <li class="nav-item {{ request()->routeIs('admin.banners.*') ? 'nav-item-expanded nav-item-open' : '' }}">
                             <a href="{{route('admin.banners.index')}}"

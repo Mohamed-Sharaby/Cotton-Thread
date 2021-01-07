@@ -46,7 +46,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$product->name}}</td>
                         <td>{{$product->subcategory->name}}</td>
-                        <td>{{$product->price}}</td>
+                        <td>{{$product->priceAfterDiscount}}</td>
                         <td>{{$product->quantity}}</td>
                         <td>
                             @if($product->image)
@@ -63,6 +63,10 @@
                         </td>
                         <td class="text-center">
                             <div class="btn-group text-center">
+
+                                <a href="{{url(route('admin.products.rates',$product->id))}}"
+                                   class="btn btn-primary btn-sm mr-2 rounded">التعليقات</a>
+
 
                                 <form
                                     action="{{ route('admin.active', ['id' => $product->id, 'type' => 'Product']) }}"

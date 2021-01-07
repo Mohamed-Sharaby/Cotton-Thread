@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Setting;
 
 
@@ -6,7 +7,8 @@ use App\Models\Setting;
  * @param $item
  * @return string
  */
-function fix_null_string($item){
+function fix_null_string($item)
+{
     return blank($item) ? '' : $item;
 }
 
@@ -14,7 +16,8 @@ function fix_null_string($item){
  * @param $item
  * @return int
  */
-function fix_null($item){
+function fix_null($item)
+{
     return blank($item) ? 0 : $item;
 }
 
@@ -22,15 +25,17 @@ function fix_null($item){
  * @param $item
  * @return float|int
  */
-function fix_null_double($item){
-    return blank($item) ? 0 : floatval(round($item,2));
+function fix_null_double($item)
+{
+    return blank($item) ? 0 : floatval(round($item, 2));
 }
 
 /**
  * @param $filename
  * @return null|string
  */
-function getImg($filename){
+function getImg($filename)
+{
     if (!empty($filename)) {
         $base_url = url('/');
         return $base_url . '/storage/' . $filename;
@@ -43,8 +48,9 @@ function getImg($filename){
  * @param $folder
  * @return string
  */
-function uploadPath($folder){
-    return 'photos/'.$folder;
+function uploadPath($folder)
+{
+    return 'photos/' . $folder;
 }
 
 /**
@@ -52,7 +58,8 @@ function uploadPath($folder){
  * @param $folder_name
  * @return bool
  */
-function deleteImgWithPath($img_name, $folder_name){
+function deleteImgWithPath($img_name, $folder_name)
+{
     \Storage::disk('public')->delete(uploadPath($folder_name), $img_name);
     return True;
 }
@@ -62,7 +69,8 @@ function deleteImgWithPath($img_name, $folder_name){
  * @param string $folder
  * @return mixed
  */
-function uploader($file, $folder=''){
+function uploader($file, $folder = '')
+{
     $path = \Storage::disk('public')->putFile(uploadPath($folder), $file);
     return $path;
 }
@@ -74,11 +82,12 @@ function uploader($file, $folder=''){
  * @param null $onIdObject
  * @return bool
  */
-function multiUploader($request, $img_name, $model, $onIdObject = null){
+function multiUploader($request, $img_name, $model, $onIdObject = null)
+{
     foreach ($request[$img_name] as $image) {
-        $filename = rand(99999, 99999999).$image->getClientOriginalName();
-        $path = \Storage::disk('public')->putFileAs($onIdObject->path, $image,$filename);
-        $model->create(['file_type'=>$onIdObject->getMorphClass(), 'file_id'=>$onIdObject->id,'type'=>'image','file'=>$path]);
+        $filename = rand(99999, 99999999) . $image->getClientOriginalName();
+        $path = \Storage::disk('public')->putFileAs($onIdObject->path, $image, $filename);
+        $model->create(['file_type' => $onIdObject->getMorphClass(), 'file_id' => $onIdObject->id, 'type' => 'image', 'file' => $path]);
     }
     return true;
 }
@@ -87,8 +96,9 @@ function multiUploader($request, $img_name, $model, $onIdObject = null){
  * @param $name
  * @return string
  */
-function getSetting($name){
-    $setting= Setting::where('name',$name)->first();
+function getSetting($name)
+{
+    $setting = Setting::where('name', $name)->first();
     if (!$setting) return "";
     return $setting->value;
 }
@@ -98,31 +108,48 @@ function getSetting($name){
  * @param null $query
  * @return string
  */
-function handelQueryInPagination($targetUrl, $query=null){
-    if($query&&$targetUrl)
-        return $targetUrl.'&'.http_build_query($query, '', '&amp;');
+function handelQueryInPagination($targetUrl, $query = null)
+{
+    if ($query && $targetUrl)
+        return $targetUrl . '&' . http_build_query($query, '', '&amp;');
     elseif ($targetUrl)
         return $targetUrl;
     else
         return '';
 }
+
 ////////////////////////////////////////////
 //function uploadImage($file, $img)
 //{
 //    return \Storage::disk('public')->putFile($file, $img);
 //}
 
-function deleteImage($file, $img)
-{
-    \Storage::disk('public')->delete($file, $img);
-    return true;
+if (!function_exists('deleteImage')) {
+    function deleteImage($file, $img)
+    {
+        \Storage::disk('public')->delete($file, $img);
+        return true;
+    }
 }
 
-
-function getImgPath($img)
-{
-    if (is_null($img)) {
-        return '';
+if (!function_exists('getImgPath')) {
+    function getImgPath($img)
+    {
+        if (is_null($img)) {
+            return '';
+        }
+        return url('/') . '/storage/' . $img;
     }
-    return url('/').'/storage/'.$img;
+}
+
+if (!function_exists('cart_status')){
+    function cart_status()
+    {
+        return [
+            'open' => 'في انتظار الموافقة',
+            'confirmed' => 'تم تأكيد الطلب',
+            'on_delivery' => 'جارى التوصيل',
+            'finished' => 'تم التوصيل',
+        ];
+    }
 }

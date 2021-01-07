@@ -93,9 +93,7 @@ class Product extends Model
 
     public function getQuantityAttribute()
     {
-        $increase = $this->product_quantity()->whereType('increase')->sum('quantity');
-        $decrease = $this->product_quantity()->whereType('decrease')->sum('quantity');
-        return $increase - $decrease ;
+        return $this->product_quantity()->sum('quantity');
     }
 
 }

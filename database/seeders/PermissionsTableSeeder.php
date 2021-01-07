@@ -34,6 +34,8 @@ class PermissionsTableSeeder extends Seeder
             'Categories',
             'SubCategories',
             'Banners',
+            'Carts',
+            'Coupons',
             'Galleries',
             'Settings',
             'GuestMessages',
