@@ -58,12 +58,12 @@
 {{--                                    @endif--}}
 {{--                                </td>--}}
 {{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <th class="font-weight-bold">القيمة المضافة</th>--}}
-{{--                                <td>--}}
+                            <tr>
+                                <th class="font-weight-bold">الضريبة</th>
+                                <td>
 {{--                                    {{$cart->total_products_price * $tax->value / 100}}ريال--}}
-{{--                                </td>--}}
-{{--                            </tr>--}}
+                                </td>
+                            </tr>
                             <tr>
                                 <th class="font-weight-bold">المجموع النهائى</th>
                                 <td>
