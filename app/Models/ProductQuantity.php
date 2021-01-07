@@ -17,7 +17,7 @@ class ProductQuantity extends Model
     /**
      * @var array
      */
-    protected $fillable = ['product_id','quantity','size_id','color_id','is_ban','type'];
+    protected $fillable = ['product_id','quantity','size_id','color_id','is_ban'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

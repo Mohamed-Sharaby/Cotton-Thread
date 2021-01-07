@@ -23,13 +23,13 @@ use App\Http\Controllers\Api\CartsController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-Route::group([],function (){
+Route::group(['middleware'=>'x-lang'],function (){
     Route::post('register', [AuthController::class,'register']);
     Route::post('login', [AuthController::class,'login']);
     Route::put('verify', [AuthController::class,'verify']);
+    Route::post('forget1', [AuthController::class,'forget1']);
+    Route::post('forget2', [AuthController::class,'forget2']);
+    Route::post('forget3', [AuthController::class,'forget3']);
 });
 
 Route::group(['middleware'=>['jwt.check','x-lang']],function (){
@@ -40,7 +40,7 @@ Route::group(['middleware'=>['jwt.check','x-lang']],function (){
    Route::get('/products/{subCategory}',[ProductController::class,'proBySubcategory']);
    Route::get('/product/{product}',[ProductController::class,'show']);
    Route::get('/product-details/{product}',[ProductController::class,'details']);
-   Route::group(['middleware'=>'auth:api'],function (){
+   Route::group(['middleware'=>['auth:api','x-lang']],function (){
        Route::get('/favourites',[FavouritesController::class,'index']);  // required auth
        Route::post('/favourites/{product}',[FavouritesController::class,'favToggle']);  // required auth
        Route::apiResource('/address',AddressesController::class)->except('show');  // required auth
@@ -53,6 +53,7 @@ Route::group(['middleware'=>['jwt.check','x-lang']],function (){
        Route::post('/local/cart',[CartsController::class,'localCart']);  // required auth
        Route::get('/all/carts',[CartsController::class,'allCarts']);  // required auth
        Route::post('/submit/cart/{cart}',[CartsController::class,'submitCart']);  // required auth
+       Route::get('/wallet',[HomeController::class,'wallet']);  // required auth
        Route::post('/logout',[ProfileController::class,'logout']);  // required auth
    });
    Route::group(['prefix'=>'pickers'],function (){

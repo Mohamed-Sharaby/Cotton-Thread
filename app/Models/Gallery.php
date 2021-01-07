@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Model;
 class Gallery extends Model
 {
 
+    /**
+     * @var string
+     */
     private  $folder = 'galleries';
     use HasFactory, FileAttributes, LangAttributes;
 

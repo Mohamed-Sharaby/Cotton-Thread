@@ -25,6 +25,10 @@ class Setting extends Model
             return $this->ar_value;
         return $this->en_value;
     }
+
+    /**
+     * @return mixed
+     */
     public function getTitleAttribute(){
         if(app()->getLocale() == 'ar')
             return $this->ar_title;

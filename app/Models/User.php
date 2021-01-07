@@ -143,7 +143,17 @@ class User extends Authenticatable implements JWTSubject
         return $this->attributes['confirmation_code'] === 'verified';
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function carts(){
         return $this->hasMany(Cart::class,'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function wallet(){
+        return $this->hasOne(Wallet::class,'user_id');
     }
 }

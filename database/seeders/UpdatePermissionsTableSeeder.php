@@ -26,6 +26,8 @@ class UpdatePermissionsTableSeeder extends Seeder
             'Settings'=> 'التعامل مع الاعدادات ',
             'Categories'=> 'التعامل مع الاقسام الرئيسية ',
             'SubCategories'=> 'التعامل مع الاقسام الفرعية ',
+            'Coupons'=> 'التعامل مع الكوبونات ',
+            'carts'=> 'التعامل مع الطلبات ',
             'Banners'=> 'التعامل مع البانرات ',
             'Galleries'=> 'التعامل مع مكتبة الصور والفيديو ',
             'GuestMessages'=> 'التعامل مع رسائل الزوار   ',

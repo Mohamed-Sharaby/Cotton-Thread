@@ -21,7 +21,7 @@ class Size extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-//    public function productQuantities(){
-//        return $this->hasMany(ProductQuantity::class,'size_id');
-//    }
+    public function productQuantities(){
+        return $this->hasMany(ProductQuantity::class,'size_id');
+    }
 }

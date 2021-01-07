@@ -24,6 +24,7 @@ class CartsCollection extends ResourceCollection
                 'comment' => fix_null_string($q->comment),
                 'delivered_at' => fix_null_string($q->delivered_at),
                 'sum_cart_orders' => $q->sum_cart_orders,
+                'total' => $q->total,
             ];
         });
         if($this->resource instanceof \Illuminate\Pagination\LengthAwarePaginator){

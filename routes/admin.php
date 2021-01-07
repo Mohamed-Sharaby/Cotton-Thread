@@ -18,6 +18,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' =>['auth:admin','admin'], 'a
     Route::resource('banners', 'BannerController');
     Route::resource('colors', 'ColorController');
     Route::resource('sizes', 'SizeController');
+    Route::resource('coupons', 'CouponController');
+    Route::resource('carts', 'CartController');
     Route::resource('product-quantities', 'ProductQuantityController');
     Route::resource('product-images', 'ProductImageController');
 //    Route::resource('galleries', 'GalleryController');
@@ -39,6 +41,9 @@ Route::group(['prefix' => 'dashboard', 'middleware' =>['auth:admin','admin'], 'a
     Route::delete('delete/image/{image}', 'ProductImageController@del_image');
     Route::get('product_images/{id}/add', 'ProductImageController@add_image')->name('products.add_image');
     Route::post('product_images/{id}/add', 'ProductImageController@store_image')->name('products.store_image');
+
+    Route::get('rates/{product}', 'ProductController@getRates')->name('products.rates');
+    Route::delete('destroy_rate/{id}', 'ProductController@destroyRate')->name('products.destroy_rate');
 });
 
 

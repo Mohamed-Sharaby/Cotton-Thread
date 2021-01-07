@@ -10,6 +10,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * Class AddressesController
+ * @package App\Http\Controllers\Api
+ */
 class AddressesController extends Controller
 {
     use ApiResponse;

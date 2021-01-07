@@ -95,6 +95,10 @@ class AuthController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function forget1(Request $request)
     {
         $rules = [
@@ -109,6 +113,10 @@ class AuthController extends Controller
         return $this->apiResponse(__('reset code send'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function forget2(Request $request)
     {
         $rules = [
@@ -123,6 +131,10 @@ class AuthController extends Controller
         return $this->apiResponse(__('reset code is valid'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function forget3(Request $request)
     {
         $rules = [

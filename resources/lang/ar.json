@@ -557,6 +557,14 @@
     "complaint":"شكوي",
     "request":"طلب",
     "inquiry":"إستفسار",
+    "open":"فى إنتظار الموافقة",
+    "confirmed":"تم تأكيد الطلب",
+    "on_delivery":"جارى التوصيل",
+    "finished":"تم التوصيل",
+    "COD":"الدفع عند الاستلام",
+    "wallet":"المحفظة",
+    "bank_transaction":"تحويل بنكى",
+    "credit":"بطاقة ائتمان",
     "cart_status_change":"تغيير حالة الطلب",
     "Bank Transfare Status":"حالة اتحويل البنكى ",
     "Notification Title":"عنوان الاشعار",
@@ -627,6 +635,8 @@
     "cart access denied": "لايمكن الوصول للطلب",
     "address access denied": "لايمكن الوصول للعنوان",
     "item quantity added": "تم زياده كمية الوحدة",
-    "item quantity minus": "تم تقليل كمية الوحدة"
+    "item quantity minus": "تم تقليل كمية الوحدة",
+    "wallet amount not sufficient": "مبلغ المحفظة غير كافٍ",
+    "user does not have a wallet": "المستخدم ليس لدية محفظة"
 
 }

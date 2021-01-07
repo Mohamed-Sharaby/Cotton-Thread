@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductQuantity;
+use App\Models\RateComment;
 use App\Models\Size;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -182,6 +183,20 @@ class ProductController extends Controller
     {
         $quantity = ProductQuantity::findOrFail($id);
         $quantity->delete();
+        return back()->with('success', __('Deleted Successfully'));
+    }
+
+
+    public function getRates(Product $product)
+    {
+        $rates = $product->rates;
+        return view('dashboard.products.rates', compact('rates', 'product'));
+    }
+
+    public function destroyRate($id)
+    {
+        $rate = RateComment::findOrFail($id);
+        $rate->delete();
         return back()->with('success', __('Deleted Successfully'));
     }
 

@@ -69,6 +69,10 @@ class CartsController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function addQty(Request $request, CartItem $item){
+        $user = auth()->user();
+        $cart = $item->cart;
+        if($cart->user_id != $user->id || $cart->status != 'open')
+            return $this->apiResponse(__('cart access denied'),403);
         $validator = Validator::make($request->all(),[
             'quantity'=>'required|numeric'
         ]);
@@ -86,6 +90,10 @@ class CartsController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function minusQty(Request $request, CartItem $item){
+        $user = auth()->user();
+        $cart = $item->cart;
+        if($cart->user_id != $user->id || $cart->status != 'open')
+            return $this->apiResponse(__('cart access denied'),403);
         $validator = Validator::make($request->all(),[
             'quantity'=>'required|numeric'
         ]);
@@ -103,11 +111,15 @@ class CartsController extends Controller
     public function openCartDetails(){
         $user = auth()->user();
         $cart = $user->carts()->where('status','open');
-        if(!$cart)
+        if(!$cart->exists())
             return $this->apiResponse(__('cart not found'),404);
         return $this->apiResponse(new CartResource($cart->first()),200);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function localCart(Request $request){
         $user = auth()->user();
         $validator = Validator::make($request->all(),[
@@ -142,6 +154,10 @@ class CartsController extends Controller
         return $this->apiResponse(['cart_id'=>$openCart->id]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function allCarts(Request $request){
         $user = auth()->user();
         $carts = $user->carts();
@@ -153,7 +169,12 @@ class CartsController extends Controller
         return $this->apiResponse(new CartsCollection($carts),200);
     }
 
-    public function submitCart(Request $request,Cart $cart){
+    /**
+     * @param Request $request
+     * @param Cart $cart
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function submitCart(Request $request, Cart $cart){
         $user = auth()->user();
         $validator = Validator::make($request->all(),[
             'address_id'=>'required|numeric|exists:addresses,id',
@@ -170,7 +191,20 @@ class CartsController extends Controller
             return $this->apiResponse(__('address access denied'),403);
         $inputs = $request->all();
         $inputs['status']='confirmed';
-        $cart->update($inputs);
+        if($request['payment']=='wallet'){
+            $wallet  = $user->wallet;
+            if(!$wallet)
+                return $this->apiResponse(__('user does not have a wallet'));
+            $amount = $wallet->amount;
+            if((float)$amount >= (float)$cart->total){
+                $user->wallet()->update(['amount'=>$amount-$cart->total]);
+                $cart->update($inputs);
+            }else{
+                return $this->apiResponse(__('wallet amount not sufficient'),400);
+            }
+        }else{
+            $cart->update($inputs);
+        }
         return $this->apiResponse(['cart_id'=>$cart->id]);
     }
 }

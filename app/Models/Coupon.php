@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Coupon
+ * @package App\Models
+ */
 class Coupon extends Model
 {
     use HasFactory,LangAttributes,SoftDeletes;

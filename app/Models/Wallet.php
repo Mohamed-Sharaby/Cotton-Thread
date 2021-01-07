@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Contact
+ * Class Wallet
  * @package App\Models
  */
-class Contact extends Model
+class Wallet extends Model
 {
     use HasFactory;
 
     /**
      * @var array
      */
-    protected $fillable =['name','email','phone','message'];
+    protected $fillable = ['user_id','amount'];
 }

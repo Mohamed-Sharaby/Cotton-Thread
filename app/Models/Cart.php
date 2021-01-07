@@ -12,13 +12,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Cart extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     /**
      * @var array
      */
     protected $fillable = ['user_id','address_id','status','payment',
         'coupon_id','comment','delivered_at','transaction_image'];
+
+    /**
+     * @var array
+     */
+    protected $dates = ['delivered_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -78,10 +83,12 @@ class Cart extends Model
         if(!$product)
             return [__('product not available'),422];
         $this->itemUpdateOrCreate($productQuantity, $request, $product);
-
         return [__('item added to cart'),200];
     }
 
+    /**
+     * @return string
+     */
     public function getSumCartOrdersAttribute(){
         $sum_orders = $this->cartItems()->selectRaw('SUM(cart_items.price*
         (1-((cart_items.discount)/100))*
@@ -97,23 +104,52 @@ class Cart extends Model
     public function itemUpdateOrCreate($productQuantity, $request, $product)
     {
         // add items to cart
-        $item = $this->cartItems()->where('product_quantity_id', $productQuantity->id);
-        if ($item->exists()) {
+        $item = $this->cartItems()->where('product_quantity_id',$productQuantity->id);
+        if($item->exists()){
             $item->update([
-                'quantity' => $item->first()->quantity + $request['quantity'],
-                'price' => fix_null_double(optional($product)->price),
-                'discount' => fix_null_double(optional($product)->discount),
+                'quantity'=>$item->first()->quantity + $request['quantity'],
+                'price'=>fix_null_double(optional($product)->price),
+                'discount'=>fix_null_double(optional($product)->discount),
             ]);
-        } else {
+        }else{
             $this->cartItems()->create([
-                'product_quantity_id' => $productQuantity->id,
-                'quantity' => $request['quantity'],
-                'price' => fix_null_double(optional($product)->price),
-                'discount' => fix_null_double(optional($product)->discount),
+                'product_quantity_id'=>$productQuantity->id,
+                'quantity'=>$request['quantity'],
+                'price'=>fix_null_double(optional($product)->price),
+                'discount'=>fix_null_double(optional($product)->discount),
             ]);
         }
         // minus product quantity
         $new_quantity = $productQuantity->quantity - $request['quantity'];
         $productQuantity->update(['quantity' => $new_quantity]);
     }
+
+
+    /**
+     * @return float|int
+     */
+    public function getTotalProductsPriceAttribute()
+    {
+        $total = 0;
+        foreach ($this->cartItems as $item) {
+            $total += $item->productQuantity->product->priceAfterDiscount * $item->quantity;
+        }
+        return $total;
+    }
+
+
+    /**
+     * @return float|string
+     */
+    public function getTotalAttribute(){
+        $sum_orders = floatval($this->sum_cart_orders);
+        if(!getSetting('tax_percentage'))
+            return $sum_orders;
+        else{
+            $tax = 1-(floatval(getSetting('tax_percentage'))/100)*$sum_orders;
+            $total = $tax + $sum_orders;
+            return number_format($total,2,'.',',');
+        }
+    }
+
 }

@@ -19,7 +19,7 @@ class Product extends Model
      */
     private $folder = 'products';
 
-    use HasFactory,LangAttributes  ,FileAttributes ,SoftDeletes;
+    use HasFactory,LangAttributes,FileAttributes,SoftDeletes;
 
     /**
      * @var array
@@ -81,21 +81,28 @@ class Product extends Model
                     ->whereHas('product_quantity')->get();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function rates(){
         return $this->hasMany(RateComment::class,'product_id');
     }
 
+    /**
+     * @return string
+     */
     public function getAvgRateAttribute(){
         $avg =  $this->rates()->average('rate');
         return number_format($avg,2,'.',',');
     }
 
 
+    /**
+     * @return mixed
+     */
     public function getQuantityAttribute()
     {
-        $increase = $this->product_quantity()->whereType('increase')->sum('quantity');
-        $decrease = $this->product_quantity()->whereType('decrease')->sum('quantity');
-        return $increase - $decrease ;
+        return $this->product_quantity()->sum('quantity');
     }
 
 }

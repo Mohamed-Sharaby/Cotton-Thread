@@ -14,6 +14,10 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * Class HomeController
+ * @package App\Http\Controllers\Api
+ */
 class HomeController extends Controller
 {
     use ApiResponse;
@@ -60,6 +64,10 @@ class HomeController extends Controller
         return $this->apiResponse($galleries);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function contact(Request $request){
         $validate = Validator::make($request->all(),[
             'message'=>'required|string'
@@ -68,5 +76,13 @@ class HomeController extends Controller
             return $this->apiResponse($validate->errors()->first(),422);
         Contact::create($request->all());
         return $this->apiResponse(__('message send successfully'));
+    }
+
+    public function wallet(){
+        $user = auth()->user();
+        $wallet  = $user->wallet;
+        if(!$wallet)
+            return $this->apiResponse(__('user does not have a wallet'));
+        return $this->apiResponse($wallet->amount);
     }
 }

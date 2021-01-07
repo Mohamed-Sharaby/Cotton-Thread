@@ -35,6 +35,7 @@ class ProductResource extends JsonResource
             'is_rated'=> (auth()->check())?$user->isRated($this->id):false,
             'price_after_discount' => $this->price_after_discount,
             'is_favourite'=>(auth()->check())?$user->isFavourite($this->id):false,
+            'images' => $this->product_images->pluck('image'),
             'colors' => new ProductColorsCollection($this->product_colors),
             'sizes' => new ProductSizesCollection($this->product_sizes),
             'rates' => new RatesCollection($this->rates),

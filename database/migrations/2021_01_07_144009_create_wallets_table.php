@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTypeToProductQuantitiesTable extends Migration
+class CreateWalletsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddTypeToProductQuantitiesTable extends Migration
      */
     public function up()
     {
-        Schema::table('product_quantities', function (Blueprint $table) {
-            $table->enum('type',['decrease','increase']);
+        Schema::create('wallets', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->decimal('amount')->default(0);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddTypeToProductQuantitiesTable extends Migration
      */
     public function down()
     {
-        Schema::table('product_quantities', function (Blueprint $table) {
-            $table->dropColumn('type');
-        });
+        Schema::dropIfExists('wallets');
     }
 }

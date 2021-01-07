@@ -41,6 +41,7 @@ class CartResource extends JsonResource
             ];
         });
         $data['sum_cart_orders'] = $this->sum_cart_orders;
+        $data['total'] = $this->total;
 
         return $data;
     }

@@ -62,10 +62,17 @@
 
                             <tr>
                                 <th class="font-weight-bold">الخصم</th>
-                                <td>{{$product->discount}}</td>
+                                <td>{{$product->discount}} %</td>
 
+                                <th class="font-weight-bold">السعر بعد الخصم</th>
+                                <td>{{$product->priceAfterDiscount}}</td>
+                            </tr>
+                            <tr>
                                 <th class="font-weight-bold">جديد</th>
                                 <td>{{$product->is_new == 1 ? 'نعم' : 'لا'}}</td>
+
+                                <th class="font-weight-bold">تاريخ اضافة المنتج</th>
+                                <td>{{$product->created_at->format('Y.m.d') ?? __('Not Found')}}</td>
                             </tr>
 
                             <tr>
@@ -77,9 +84,10 @@
                             </tr>
 
                             <tr>
-                                <th class="font-weight-bold">تاريخ اضافة المنتج</th>
-                                <td>{{$product->created_at->format('Y.m.d') ?? __('Not Found')}}</td>
+                                <th class="font-weight-bold">متوسط تقييمات المنتج</th>
+                                <td>{{$product->avgRate}}</td>
                             </tr>
+
 
                             <tr>
                                 <th class="font-weight-bold">  الصور التوضيحية  </th>
@@ -96,9 +104,6 @@
                                     @endif
                                 </td>
                             </tr>
-
-
-
                         </table>
                     </div>
                 </div>
