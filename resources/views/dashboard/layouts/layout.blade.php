@@ -202,7 +202,6 @@
                                class="nav-link {{ request()->routeIs('admin.carts.*') ? 'active' : '' }}"><i
                                     class="icon-database"></i> <span>    الطلبات </span></a>
                         </li>
-
                     @endcan
 
 
@@ -239,7 +238,6 @@
                                 <i class="icon-envelop"></i> <span>رسائل الزوار</span></a>
                         </li>
                     @endcan
-
 
                 </ul>
             </div>
