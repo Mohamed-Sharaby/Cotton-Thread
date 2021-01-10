@@ -45,8 +45,8 @@ class SettingTableSeeder extends Seeder
             ],
             [
                 'name' => 'email',
-                'ar_value' => 'hi@gmail.com',
-                'en_value' => 'hi@gmail.com',
+                'ar_value' => 'admin@admin.com',
+                'en_value' => 'admin@admin.com',
                 'type' => 'email',
                 'page' => 'إعدادات عامة',
                 'ar_title' => 'البريد الالكترونى',

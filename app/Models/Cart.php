@@ -45,6 +45,10 @@ class Cart extends Model
         return $this->belongsTo(Address::class,'address_id');
     }
 
+    public function coupon()
+    {
+        return $this->belongsTo(Coupon::class,'coupon_id');
+    }
 
     /**
      * @param $productQuantity

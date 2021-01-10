@@ -191,6 +191,21 @@
                 </div>
             @endcan
 
+                @can('Carts')
+                <div class="col-12 col-md-3">
+                    <a href="{{route('admin.carts.index')}}">
+                        <div class="card shadow shadow-md bg-danger-800">
+                            <i class="icon-cart-add icon-2x"></i>
+                            <div class="card-body text-center m-1 font-weight-bold">
+                                الطلبات
+                            </div>
+                            <label class="badge badge-dark"
+                                   style="font-size: 14px;">{{\App\Models\Cart::count()}}</label>
+                        </div>
+                    </a>
+                </div>
+            @endcan
+
 
 
             @can('Settings')
@@ -202,7 +217,7 @@
                                 الإعدادات
                             </div>
                             <label class="badge badge-dark"
-                                   style="font-size: 14px;">{{\App\Models\Setting::count()}}</label>
+                                   style="font-size: 14px;">{{\App\Models\Setting::all()->pluck('page')->unique()->count()}}</label>
                         </div>
                     </a>
                 </div>

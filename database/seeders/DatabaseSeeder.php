@@ -30,27 +30,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
-        Category::factory(4)->create();
-        SubCategory::factory(4)->create();
-        Color::factory(4)->create();
-        Size::factory(4)->create();
-        Product::factory(4)->create();
-        //ProductColor::factory(4)->create();
-        //ProductSize::factory(4)->create();
-        ProductQuantity::factory(4)->create();
-        Banner::factory(4)->create();
-        Favourite::factory(4)->create();
-        Gallery::factory(4)->create();
-        City::factory(4)->create();
-        Region::factory(4)->create();
-        District::factory(4)->create();
-        Address::factory(4)->create();
-        RateComment::factory(4)->create();
-
-        $this->call(PermissionsTableSeeder::class);
-        $this->call(UpdatePermissionsTableSeeder::class);
-        $this->call(SettingTableSeeder::class);
+//        User::factory(10)->create();
+//        Category::factory(4)->create();
+//        SubCategory::factory(4)->create();
+//        Color::factory(4)->create();
+//        Size::factory(4)->create();
+//        Product::factory(4)->create();
+//        ProductQuantity::factory(4)->create();
+//        Banner::factory(4)->create();
+//        Favourite::factory(4)->create();
+//        Gallery::factory(4)->create();
+//        City::factory(4)->create();
+//        Region::factory(4)->create();
+//        District::factory(4)->create();
+//        Address::factory(4)->create();
+//        RateComment::factory(4)->create();
+//
+//        $this->call(PermissionsTableSeeder::class);
+//        $this->call(UpdatePermissionsTableSeeder::class);
+//        $this->call(SettingTableSeeder::class);
+        $this->call(AddTaxToSettingTableSeeder::class);
 
     }
 }

@@ -200,7 +200,7 @@
                         <li class="nav-item {{ request()->routeIs('admin.carts.*') ? 'nav-item-expanded nav-item-open' : '' }}">
                             <a href="{{route('admin.carts.index')}}"
                                class="nav-link {{ request()->routeIs('admin.carts.*') ? 'active' : '' }}"><i
-                                    class="icon-database"></i> <span>    الطلبات </span></a>
+                                    class="icon-cart-add"></i> <span>    الطلبات </span></a>
                         </li>
                     @endcan
 

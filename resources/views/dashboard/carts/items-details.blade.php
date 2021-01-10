@@ -19,7 +19,7 @@
                     <th class="font-weight-bold">سعر المنتج</th>
                     <th class="font-weight-bold">خصومات</th>
                     <th class="font-weight-bold">السعر بعد الخصم</th>
-                    <th class="font-weight-bold">اجمالى السعر</th>
+                    <th class="font-weight-bold">اجمالى سعر المنتج</th>
 {{--                    <th class="font-weight-bold"> حذف</th>--}}
                 </tr>
                 </thead>
@@ -29,14 +29,17 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$item->productQuantity->product->name ?? ''}}</td>
                         <td>{{$item->productQuantity->size->size ?? ''}}</td>
-                        <td>{{$item->productQuantity->color->color ?? ''}}</td>
+                        <td class="text-center">
+                            <div style="width: 40px;height: 40px;background-color:{{$item->productQuantity->color->color}} "></div>
+                            {{$item->productQuantity->color->name ?? ''}}
+                        </td>
                         <td>{{$item->quantity ?? ''}}</td>
                         <td>
                             @if($item->productQuantity->product->image)
                                 <a data-fancybox="gallery"
                                    href="{{$item->productQuantity->product->image}}">
                                     <img src="{{$item->productQuantity->product->image}}"
-                                         width="70" height="70" class="img-thumbnail"
+                                         width="60" height="60" class="img-thumbnail"
                                          alt="product_img">
                                 </a>
                             @else {{__('No Image')}} @endif
