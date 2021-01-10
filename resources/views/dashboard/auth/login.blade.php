@@ -25,10 +25,9 @@
                 <div class="card mb-0 shadow shadow-lg">
                     <div class="card-body">
                         <div class="text-center mb-3">
-{{--            <img src="{{asset('admin/global_assets/images/logo-light.png')}}" alt="logo">--}}
+        <img src="{{asset('admin/global_assets/images/logo/logo.png')}}" alt="logo">
                             <h5 class="mb-0 mt-1">لوحة التحكم | تسجيل الدخول</h5>
                         </div>
-{{--@dd($errors->all())--}}
                         <div class="form-group form-group-feedback form-group-feedback-left">
                             <input type="email" class="form-control @error('email') is-invalid @enderror"
                                    oninvalid="this.setCustomValidity('البريد الالكترونى مطلوب')"
