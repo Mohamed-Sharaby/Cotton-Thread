@@ -108,12 +108,11 @@ class ProductImageController extends Controller
      */
     public function destroy(ProductImage $productImage)
     {
-        if ($productImage->image) {
-            deleteImage('photos/product_images',$productImage->image);
-        }
         $productImage->delete();
         return redirect()->route('admin.product-images.index')->with('success', __('Deleted Successfully'));
     }
+
+
 
     // add image to product
     public function add_image($id)
@@ -140,7 +139,8 @@ class ProductImageController extends Controller
     public function del_image($id)
     {
         $image = ProductImage::findOrFail($id);
-        deleteImage('photos/product_images',$image->image);
+        $imagee = str_replace(url('/') . '/storage/','',$image->image);
+        deleteImage('photos/product_images',$imagee);
         $image->delete();
 
         return response()->json([

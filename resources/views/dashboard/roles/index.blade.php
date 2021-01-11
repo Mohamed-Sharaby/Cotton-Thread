@@ -106,29 +106,29 @@
                                     <button disabled class="btn btn-success">مفعل</button>
                                 @endif
 
-{{--                                @if(!$role->hasAllPermissions(\Spatie\Permission\Models\Permission::all()))--}}
-                                    @if(!auth()->user()->hasRole($role))
-                                        <a href="{{route('admin.roles.edit',$role->id)}}"
-                                           class="btn btn-primary btn-sm ml-2 rounded-circle"><i
-                                                class="fa fa-edit"></i></a>
-                                    @endif
-{{--                                @endif--}}
+                                {{--                                @if(!$role->hasAllPermissions(\Spatie\Permission\Models\Permission::all()))--}}
+                                @if(!auth()->user()->hasRole($role))
+                                    <a href="{{route('admin.roles.edit',$role->id)}}"
+                                       class="btn btn-primary btn-sm ml-2 rounded-circle"><i
+                                            class="fa fa-edit"></i></a>
+                                @endif
+                                {{--                                @endif--}}
 
 
                                 @if(!$role->hasAllPermissions(\Spatie\Permission\Models\Permission::all()))
                                     @if( !auth()->user()->hasRole($role))
-{{--                                        {!! Form::open([--}}
-{{--                                                        'action' => ['Admin\RoleController@destroy',$role->id],--}}
-{{--                                                        'method' => 'delete'--}}
-{{--                                                        ]) !!}--}}
-                                            <form action="{{route('admin.roles.destroy',$role->id)}}" method="post">
-                                                {{method_field('delete')}}
-                                                @csrf
 
-                                        <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i
-                                                class="fa fa-trash"></i></button>
-                                            </form>
-{{--                                        {!! Form::close() !!}--}}
+{{--                                        <form action="{{route('admin.roles.destroy',$role->id)}}" method="post">--}}
+{{--                                            {{method_field('delete')}}--}}
+{{--                                            @csrf--}}
+
+{{--                                            <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
+{{--                                                    class="fa fa-trash"></i></button>--}}
+{{--                                        </form>--}}
+                                            <button data-url="{{route('admin.roles.destroy',$role->id)}}"
+                                                    class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                     @else
                                         <button class="btn btn-danger btn-sm ml-2 rounded-circle" disabled><i
                                                 class="fa fa-trash"></i>
@@ -153,13 +153,12 @@
 @endsection
 
 @section('my-js')
-<!--
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script> -->
-<script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script>
 
-  $(document).ready(function() {
-    ;
-} );
-</script>
+        $(document).ready(function () {
+            ;
+        });
+    </script>
 @endsection

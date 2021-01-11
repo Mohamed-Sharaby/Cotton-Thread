@@ -86,7 +86,8 @@ class UserController extends Controller
         $validator = $request->validated();
         if ($request->image) {
             if ($user->image){
-                deleteImage('photos/users', $user->image);
+                $image = str_replace(url('/') . '/storage/','',$user->image);
+                deleteImage('photos/users',$image);
             }
         }
 
@@ -102,13 +103,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if (auth()->user()->id == $user->id) {
-            return redirect(route('admin.users.index'))->with('error', __('Sorry .. You cant delete your membership'));
-        }
-        if ($user->image){
-            deleteImage('photos/users', $user->image);
-        }
+//        if (auth()->user()->id === $user->id) {
+//            return redirect(route('admin.users.index'))->with('error', __('Sorry .. You cant delete your membership'));
+//        }
         $user->delete();
-        return redirect(route('admin.users.index'))->with('success', 'تم الحذف بنجاح');
+        return 'Done';
+        //return redirect(route('admin.users.index'))->with('success', 'تم الحذف بنجاح');
     }
 }

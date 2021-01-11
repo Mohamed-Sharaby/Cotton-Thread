@@ -99,7 +99,8 @@ class SizeController extends Controller
     public function destroy(Size $size)
     {
         $size->delete();
-        return redirect()->route('admin.sizes.index')->with('success', __('Deleted Successfully'));
+        return 'Done';
+//        return redirect()->route('admin.sizes.index')->with('success', __('Deleted Successfully'));
     }
 
 }

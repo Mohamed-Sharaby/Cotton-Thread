@@ -29,7 +29,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' =>['auth:admin','admin'], 'a
     Route::get('/getColors/{id}','ProductQuantityController@getColors');
     Route::post('active/{id}/role', 'RoleController@active')->name('active.role');
     Route::post('active/{id}/{type}', 'DashboardController@active')->name('active');
-    Route::delete('delete/address/{address}', 'AddressesController@del_address');
+    Route::delete('delete/address/{address}', 'AddressesController@del_address')->name('del_address');
 
     Route::get('details/{product}', 'ProductController@details')->name('products.details');
     Route::get('quantities/{product}', 'ProductController@quantities')->name('products.quantities');

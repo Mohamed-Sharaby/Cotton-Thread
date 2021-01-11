@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.layout')
 @section('page-title')
-   المديرين
+    المديرين
 @endsection
 @section('content')
     <div class="page-header page-header-light">
@@ -21,11 +21,11 @@
         <div class="panel panel-flat">
             @include('dashboard.layouts.status')
 
-                <div class="panel-body mb-2">
-                    <a href="{{route('admin.admins.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
-                                                                                               style="margin-left: 10px;"></i>
-                       اضافة مدير</a>
-                </div>
+            <div class="panel-body mb-2">
+                <a href="{{route('admin.admins.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
+                                                                                           style="margin-left: 10px;"></i>
+                    اضافة مدير</a>
+            </div>
 
             <table class="table datatable-button-init-basic table-hover responsive table-responsive display nowrap"
                    style="width:100%">
@@ -58,11 +58,13 @@
                         <td class="text-center">
                             <div class="btn-group text-center">
 
-                                    @if(!$admin->hasRole('Super Admin'))
-                                        @if(auth()->id() != $admin->id)
+                                @if(!$admin->hasRole('Super Admin'))
+                                    @if(auth()->id() != $admin->id)
 
-                                            @if($role->is_active == 0)
-                                            <button disabled="disabled" class="btn btn-sm btn-warning disabled">المنصب معطل</button>
+                                        @if($role->is_active == 0)
+                                            <button disabled="disabled" class="btn btn-sm btn-warning disabled">المنصب
+                                                معطل
+                                            </button>
                                         @else
                                             <form
                                                 action="{{ route('admin.active', ['id' => $admin->id, 'type' => 'Admin']) }}"
@@ -71,44 +73,46 @@
                                                         class="{{ $admin->is_ban ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-success' }}">{{ $admin->is_ban ? 'غير مفعل' : ' مفعل' }}</button>
                                             </form>
                                         @endif
-                                        @else
-                                            <button disabled class="btn btn-sm btn-success">مفعل</button>
-                                        @endif
                                     @else
-                                        <button disabled="disabled"
-                                                class="btn btn-sm btn-success">مفعل</button>
+                                        <button disabled class="btn btn-sm btn-success">مفعل</button>
                                     @endif
+                                @else
+                                    <button disabled="disabled"
+                                            class="btn btn-sm btn-success">مفعل
+                                    </button>
+                                @endif
 
-{{--                                    @if(!$admin->hasRole('Super Admin') || auth()->user()->id == 1)--}}
-                                        <div class=" text-center">
-                                            <a href="{{url(route('admin.admins.edit',$admin->id))}}"
-                                               class="btn btn-primary btn-sm ml-2 rounded-circle"><i
-                                                    class="fa fa-edit"></i></a>
-                                        </div>
-{{--                                    @else--}}
-{{--                                        <button disabled class="btn btn-primary btn-sm ml-2 rounded-circle"><i class="fa fa-edit"></i>--}}
-{{--                                        </button>--}}
-{{--                                    @endif--}}
+                                {{--                                    @if(!$admin->hasRole('Super Admin') || auth()->user()->id == 1)--}}
+                                <div class=" text-center">
+                                    <a href="{{url(route('admin.admins.edit',$admin->id))}}"
+                                       class="btn btn-primary btn-sm ml-2 rounded-circle"><i
+                                            class="fa fa-edit"></i></a>
+                                </div>
+                                {{--                                    @else--}}
+                                {{--                                        <button disabled class="btn btn-primary btn-sm ml-2 rounded-circle"><i class="fa fa-edit"></i>--}}
+                                {{--                                        </button>--}}
+                                {{--                                    @endif--}}
 
 
 
 
-                                    @if(!$admin->hasRole('Super Admin'))
-{{--                                        {!! Form::open([--}}
-{{--                                                        'action' => ['Admin\AdminController@destroy',$admin->id],--}}
-{{--                                                        'method' => 'delete'--}}
-{{--                                                        ]) !!}--}}
-                                            <form action="{{route('admin.admins.destroy',$admin->id)}}" method="post">
-                                                @csrf
-                                                {{method_field('delete')}}
+                                @if(!$admin->hasRole('Super Admin'))
 
-                                        <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i class="fa fa-trash"></i></button>
-                                            </form>
-{{--                                                {!! Form::close() !!}--}}
-                                    @else
-                                        <button disabled class="btn btn-danger btn-sm ml-2 rounded-circle"><i class="fa fa-trash"></i>
+{{--                                    <form action="{{route('admin.admins.destroy',$admin->id)}}" method="post">--}}
+{{--                                        @csrf--}}
+{{--                                        {{method_field('delete')}}--}}
+{{--                                        <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
+{{--                                                class="fa fa-trash"></i></button>--}}
+{{--                                    </form>--}}
+                                        <button data-url="{{route('admin.admins.destroy',$admin->id)}}"
+                                                class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                            <i class="fa fa-trash"></i>
                                         </button>
-                                    @endif
+                                @else
+                                    <button disabled class="btn btn-danger btn-sm ml-2 rounded-circle"><i
+                                            class="fa fa-trash"></i>
+                                    </button>
+                                @endif
 
                             </div>
                         </td>
@@ -124,12 +128,12 @@
 @endsection
 @section('my-js')
 
-<script async src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script async src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
-<!-- <script async>
+    <script async src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script async src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <!-- <script async>
 
-  $(document).ready(function() {
-    ;
-} );
-</script> -->
+      $(document).ready(function() {
+        ;
+    } );
+    </script> -->
 @endsection

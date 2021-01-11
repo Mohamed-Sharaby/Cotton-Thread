@@ -118,6 +118,7 @@ class AdminController extends Controller
         }
 
         $admin->delete();
-        return redirect(route('admin.admins.index'))->with('success', 'تم الحذف بنجاح');
+        return 'Done';
+//        return redirect(route('admin.admins.index'))->with('success', 'تم الحذف بنجاح');
     }
 }

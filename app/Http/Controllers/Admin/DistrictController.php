@@ -92,7 +92,8 @@ class DistrictController extends Controller
     public function destroy(District $district)
     {
         $district->delete();
-        return redirect(route('admin.districts.index'))->with('success', 'تم الحذف بنجاح');
+        return 'Done';
+//        return redirect(route('admin.districts.index'))->with('success', 'تم الحذف بنجاح');
     }
 
 

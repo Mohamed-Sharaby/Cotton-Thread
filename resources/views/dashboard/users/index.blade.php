@@ -74,13 +74,16 @@
                                         class="fa fa-edit"></i></a>
 
 
-                                    <form action="{{route('admin.users.destroy',$user->id)}}" method="post">
-                                        @csrf
-                                        {{method_field('delete')}}
-                                <button class="btn btn-danger btn-sm ml-2 rounded-circle">
-                                    <i class="fa fa-trash"></i></button>
-                                    </form>
-
+{{--                                <form action="{{route('admin.users.destroy',$user->id)}}" method="post">--}}
+{{--                                    @csrf--}}
+{{--                                    {{method_field('delete')}}--}}
+{{--                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle">--}}
+{{--                                        <i class="fa fa-trash"></i></button>--}}
+{{--                                </form>--}}
+                                    <button data-url="{{route('admin.users.destroy',$user->id)}}"
+                                            class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
 
                             </div>
                         </td>
@@ -98,12 +101,12 @@
 @endsection
 @section('my-js')
 
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
-<script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script>
 
-  $(document).ready(function() {
-    ;
-} );
-</script>
+        $(document).ready(function () {
+            ;
+        });
+    </script>
 @endsection

@@ -21,12 +21,6 @@
 <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.css" rel="stylesheet" >
 <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" > -->
 
-
-
-
-
-
-
 <link href="{{asset('admin/css/customize.css')}}" rel="stylesheet" type="text/css">
 <!-- /global stylesheets -->
 
@@ -47,6 +41,9 @@
     .mx-6 {
         margin-left: 10rem !important;
         margin-right: 10rem !important;
+    }
+    .swal-footer{
+        text-align: center!important;
     }
 
 </style>

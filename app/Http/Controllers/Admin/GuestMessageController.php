@@ -20,8 +20,8 @@ class GuestMessageController extends Controller
      */
     public function index()
     {
-        $messages = Contact::all();
-        return view('dashboard.guest-messages.index', compact('messages'));
+        $contacts = Contact::all();
+        return view('dashboard.guest-messages.index', compact('contacts'));
     }
 
     /**
@@ -85,10 +85,11 @@ class GuestMessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function destroy(Contact $contact)
+    public function destroy($id)
     {
+        $contact = Contact::findOrFail($id);
         $contact->delete();
-
-        return redirect(route('admin.guest-messages.index'))->with('success', 'تم الحذف بنجاح');
+        return 'Done';
+        // return redirect(route('admin.guest-messages.index'))->with('success', 'تم الحذف بنجاح');
     }
 }

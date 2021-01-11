@@ -24,4 +24,16 @@ class Banner extends Model
      */
     protected $fillable = ['image','ar_details','en_details','is_ban'];
 
+
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($model) {
+            if ($model->image) {
+                $image = str_replace(url('/') . '/storage/', '', $model->image);
+                deleteImage('photos/banners', $image);
+            }
+        });
+    }
 }

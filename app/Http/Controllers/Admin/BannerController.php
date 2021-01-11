@@ -92,7 +92,8 @@ class BannerController extends Controller
         ]);
         if ($request->has('image')) {
             if ($banner->image) {
-                deleteImage('photos/banners',$banner->image);
+                $image = str_replace(url('/') . '/storage/','',$banner->image);
+                deleteImage('photos/banners',$image);
             }
         }
         $banner->update($validator);
@@ -107,9 +108,9 @@ class BannerController extends Controller
      */
     public function destroy(Banner $banner)
     {
-        deleteImage('photos/banners',$banner->image);
         $banner->delete();
-        return redirect()->route('admin.banners.index')->with('success', __('Deleted Successfully'));
+        return 'Done';
+//        return redirect()->route('admin.banners.index')->with('success', __('Deleted Successfully'));
     }
 
 }
