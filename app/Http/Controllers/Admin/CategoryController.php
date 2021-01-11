@@ -97,7 +97,8 @@ class CategoryController extends Controller
         ]);
         if ($request->has('image')) {
             if ($category->image) {
-                deleteImage('photos/categories',$category->image);
+                $image = str_replace(url('/') . '/storage/','',$category->image);
+                deleteImage('photos/categories',$image);
             }
         }
         $category->update($validator);
@@ -112,9 +113,19 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        deleteImage('photos/categories',$category->image);
+        if ($category->subcategories){
+            foreach ($category->subcategories as $subcategory){
+                if ($subcategory->products){
+                    foreach ($subcategory->products as $product){
+                        $product->delete();
+                    }
+                }
+                $subcategory->delete();
+            }
+        }
         $category->delete();
-        return redirect()->route('admin.categories.index')->with('success', __('Deleted Successfully'));
+        return 'Done';
+//        return redirect()->route('admin.categories.index')->with('success', __('Deleted Successfully'));
     }
 
 }

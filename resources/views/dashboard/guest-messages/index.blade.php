@@ -29,26 +29,26 @@
                     <th>البريد الالكترونى</th>
                     <th> رقم الجوال</th>
                     <th class="text-center"> محتوى الرسالة</th>
+                    <th class="text-center">التاريخ</th>
                     <th class="text-center">العمليات</th>
-
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($messages as $index => $message)
+                @foreach($contacts as $index => $contact)
                     <tr>
                         <td>{{$index +1}}</td>
-                        <td>{{$message->name ?? __('Not Found')}}</td>
-                        <td>{{$message->email ?? __('Not Found')}}</td>
-                        <td>{{$message->phone ?? __('Not Found')}}</td>
+                        <td>{{$contact->name ?? __('Not Found')}}</td>
+                        <td>{{$contact->email ?? __('Not Found')}}</td>
+                        <td>{{$contact->phone ?? __('Not Found')}}</td>
                         <td class="text-center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-info" data-toggle="modal"
-                                    data-target="#{{$message->id}}">
+                                    data-target="#{{$contact->id}}">
                                 عرض
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="{{$message->id}}" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="{{$contact->id}}" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -61,7 +61,7 @@
                                         <div class="modal-body" style="white-space: pre-line;
                                                                       overflow-wrap: break-word;
                                                                       text-overflow: ellipsis;">
-                                            {{$message->message}}
+                                            {{$contact->message}}
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
@@ -72,16 +72,21 @@
                                 </div>
                             </div>
                         </td>
-
+                        <td>{{$contact->created_at->format('Y.m.d')}}</td>
                         <td class="text-center">
 
-                            <form action="{{route('admin.guest-messages.destroy',$message->id)}}" method="post">
-                                @csrf
-                                {{method_field('delete')}}
+                            {{--                            <form action="{{route('admin.guest-messages.destroy',$contact->id)}}" method="post">--}}
+                            {{--                                @csrf--}}
+                            {{--                                {{method_field('delete')}}--}}
 
-                                <button class="btn btn-danger btn-sm rounded-circle"><i class="fa fa-trash"></i>
-                                </button>
-                            </form>
+                            {{--                                <button class="btn btn-danger btn-sm rounded-circle"><i class="fa fa-trash"></i>--}}
+                            {{--                                </button>--}}
+                            {{--                            </form>--}}
+                            <button data-url="{{route('admin.guest-messages.destroy',$contact->id)}}"
+                                    class="btn btn-danger rounded-circle btn-sm delete" title="Delete">
+                                <i class="fa fa-trash"></i>
+                            </button>
+
                         </td>
 
                     </tr>
@@ -94,5 +99,13 @@
     <!-- /content area -->
 @endsection
 @section('my-js')
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            ;
+        } );
+    </script>
 @endsection
 

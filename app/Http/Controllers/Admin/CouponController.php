@@ -83,7 +83,8 @@ class CouponController extends Controller
     public function destroy(Coupon $coupon)
     {
         $coupon->delete();
-        return redirect()->route($this->redirectRoute($coupon))->with('success', __('Deleted Successfully'));
+        return 'Done';
+//        return redirect()->route($this->redirectRoute($coupon))->with('success', __('Deleted Successfully'));
     }
 
 

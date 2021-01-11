@@ -59,14 +59,19 @@
                                             class="{{ $quantity->is_ban ? 'btn btn-warning' : 'btn btn-success' }}">{{ $quantity->is_ban ? __('Deactivate') : __('Active') }}</button>
                                 </form>
 
-                                <form action="{{route('admin.products.destroy_quantity',$quantity->id)}}" method="post">
-                                    @csrf
-                                    {{method_field('delete')}}
+{{--                                <form action="{{route('admin.products.destroy_quantity',$quantity->id)}}" method="post">--}}
+{{--                                    @csrf--}}
+{{--                                    {{method_field('delete')}}--}}
 
-                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i
-                                            class="fa fa-trash"></i>
-                                    </button>
-                                </form>
+{{--                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
+{{--                                            class="fa fa-trash"></i>--}}
+{{--                                    </button>--}}
+{{--                                </form>--}}
+
+                                <button data-url="{{route('admin.products.destroy_quantity',$quantity->id)}}"
+                                        class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </button>
 
                             </div>
                         </td>

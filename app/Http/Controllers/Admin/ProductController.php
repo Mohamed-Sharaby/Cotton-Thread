@@ -128,9 +128,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        deleteImage('photos/products', $product->image);
         $product->delete();
-        return redirect()->route('admin.products.index')->with('success', __('Deleted Successfully'));
+        return 'Done';
+//        return redirect()->route('admin.products.index')->with('success', __('Deleted Successfully'));
     }
 
 
@@ -183,7 +183,8 @@ class ProductController extends Controller
     {
         $quantity = ProductQuantity::findOrFail($id);
         $quantity->delete();
-        return back()->with('success', __('Deleted Successfully'));
+        return 'Done';
+//        return back()->with('success', __('Deleted Successfully'));
     }
 
 
@@ -197,7 +198,8 @@ class ProductController extends Controller
     {
         $rate = RateComment::findOrFail($id);
         $rate->delete();
-        return back()->with('success', __('Deleted Successfully'));
+        return 'Done';
+//        return back()->with('success', __('Deleted Successfully'));
     }
 
 

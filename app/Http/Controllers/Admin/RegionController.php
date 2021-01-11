@@ -91,7 +91,8 @@ class RegionController extends Controller
     public function destroy(Region $region)
     {
         $region->delete();
-        return redirect(route('admin.regions.index'))->with('success', 'تم الحذف بنجاح');
+        return 'Done';
+//        return redirect(route('admin.regions.index'))->with('success', 'تم الحذف بنجاح');
     }
 
 

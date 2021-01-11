@@ -57,13 +57,17 @@
                                     class="{{ $rate->is_ban ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-success' }}">{{ $rate->is_ban ? 'غير مفعل' : ' مفعل' }}</button>
                         </form>
 
-                            {!! Form::open([
-                            'route' => ['admin.products.destroy_rate',$rate->id],
-                            'method' => 'delete'
-                            ]) !!}
-                            <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i
-                                    class="fa fa-trash"></i></button>
-                            {!! Form::close() !!}
+{{--                            {!! Form::open([--}}
+{{--                            'route' => ['admin.products.destroy_rate',$rate->id],--}}
+{{--                            'method' => 'delete'--}}
+{{--                            ]) !!}--}}
+{{--                            <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
+{{--                                    class="fa fa-trash"></i></button>--}}
+{{--                            {!! Form::close() !!}--}}
+                        <button data-url="{{route('admin.products.destroy_rate',$rate->id)}}"
+                                class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                            <i class="fa fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
                 @endforeach
@@ -77,6 +81,13 @@
 @endsection
 
 @section('my-js')
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script>
 
+        $(document).ready(function() {
+            ;
+        } );
+    </script>
 @endsection
 

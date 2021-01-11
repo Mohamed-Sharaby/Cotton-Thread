@@ -60,14 +60,18 @@
                                         class="fa fa-edit"></i></a>
 
 
-                                <form action="{{route('admin.galleries.destroy',$gallery->id)}}" method="post">
-                                    @csrf
-                                    {{method_field('delete')}}
+{{--                                <form action="{{route('admin.galleries.destroy',$gallery->id)}}" method="post">--}}
+{{--                                    @csrf--}}
+{{--                                    {{method_field('delete')}}--}}
 
-                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i
-                                            class="fa fa-trash"></i>
-                                    </button>
-                                </form>
+{{--                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
+{{--                                            class="fa fa-trash"></i>--}}
+{{--                                    </button>--}}
+{{--                                </form>--}}
+                                <button data-url="{{route('admin.galleries.destroy',$gallery->id)}}"
+                                        class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </button>
 
                             </div>
                         </td>

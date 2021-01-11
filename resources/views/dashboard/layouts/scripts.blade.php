@@ -67,14 +67,14 @@
 	$(document).ready(function() {
 		CKEDITOR.config.language = "{{app()->getLocale()}}";
 
-		$(document).on('click', 'button.btn.btn-danger', function(e) {
-			let confirmResult = confirm('{{__('هل انت متأكد من حذف هذا البيان؟')}}');
-			if (confirmResult) {
+		{{--$(document).on('click', 'button.btn.btn-danger', function(e) {--}}
+		{{--	let confirmResult = confirm('{{__('هل انت متأكد من حذف هذا البيان؟')}}');--}}
+		{{--	if (confirmResult) {--}}
 
-			} else {
-				e.preventDefault();
-			}
-		});
+		{{--	} else {--}}
+		{{--		e.preventDefault();--}}
+		{{--	}--}}
+		{{--});--}}
 
 		$(document).on('click', '.del_img', function(e) {
 			let confirmResult = confirm('{{__('Are you sure you want to delete this Photo ? ')}}');
@@ -93,3 +93,46 @@
 </script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+<script>
+
+    $(document).on('click', ".delete", function (event) {
+        let cur = $(this);
+        let url = $(this).attr('data-url');
+
+        swal({
+            title: "تأكيد الحذف",
+            text: "هل أنت متاكد من حذف هذا البيان ؟",
+            icon: "warning",
+            buttons: ["الغاء", "موافق"],
+            dangerMode: true,
+
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: url,
+                    type: "delete",
+                    success: function (data) {
+                        swal("تم الحذف بنجاح", "تم الحذف بنجاح", 'success', {buttons: "موافق"});
+                        cur.parents('tr').fadeOut(700);
+                        cur.parents('tr').remove(700);
+                    },
+                    error: function (error) {
+                        console.log('there is an error ', error)
+                    }
+                });
+            } else {
+                swal("تم الالغاء", "تم إلغاء الحذف", 'error', {buttons: "موافق"});
+            }
+        });
+    });
+</script>

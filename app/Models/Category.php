@@ -19,18 +19,30 @@ class Category extends Model
      */
     private $folder = 'categories';
 
-    use HasFactory,LangAttributes,FileAttributes,SoftDeletes;
+    use HasFactory, LangAttributes, FileAttributes, SoftDeletes;
 
     /**
      * @var array
      */
-    protected $fillable = ['ar_name','en_name','image','is_ban'];
+    protected $fillable = ['ar_name', 'en_name', 'image', 'is_ban'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function subcategories(){
-        return $this->hasMany(SubCategory::class,'category_id');
+    public function subcategories()
+    {
+        return $this->hasMany(SubCategory::class, 'category_id');
     }
 
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($model) {
+            if ($model->image) {
+                $image = str_replace(url('/') . '/storage/', '', $model->image);
+                deleteImage('photos/categories', $image);
+            }
+        });
+    }
 }

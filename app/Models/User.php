@@ -20,7 +20,7 @@ class User extends Authenticatable implements JWTSubject
      * @var string
      */
     private $folder = 'users';
-    use HasFactory, Notifiable,FileAttributes,SoftDeletes;
+    use HasFactory, Notifiable, FileAttributes, SoftDeletes;
 
     // Rest omitted for brevity
 
@@ -49,7 +49,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $fillable = ['name','email','phone','password','is_ban','confirmation_code','reset_code','image'];
+    protected $fillable = ['name', 'email', 'phone', 'password', 'is_ban', 'confirmation_code', 'reset_code', 'image'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -73,87 +73,128 @@ class User extends Authenticatable implements JWTSubject
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function fcm_tokens(){
-        return $this->morphMany(FcmToken::class,'userable');
+    public function fcm_tokens()
+    {
+        return $this->morphMany(FcmToken::class, 'userable');
     }
 
     /**
      * @param $value
      */
-    public function setPasswordAttribute($value){
-        if(isset($value)){
-            $this->attributes['password']  = bcrypt($value);
+    public function setPasswordAttribute($value)
+    {
+        if (isset($value)) {
+            $this->attributes['password'] = bcrypt($value);
         }
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function favourites(){
-        return $this->hasMany(Favourite::class,'user_id');
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class, 'user_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function favProducts(){
-        return $this->belongsToMany(Product::class,'favourites');
+    public function favProducts()
+    {
+        return $this->belongsToMany(Product::class, 'favourites');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function addresses(){
-        return $this->hasMany(Address::class,'user_id');
+    public function addresses()
+    {
+        return $this->hasMany(Address::class, 'user_id');
     }
 
     /**
      * @param $product_id
      * @return bool
      */
-    public function isFavourite($product_id){
-        if(!auth()->check())
+    public function isFavourite($product_id)
+    {
+        if (!auth()->check())
             return false;
         else
-            return $this->favourites()->where('product_id',$product_id)->exists();
+            return $this->favourites()->where('product_id', $product_id)->exists();
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function rates(){
-        return $this->hasMany(RateComment::class,'user_id');
+    public function rates()
+    {
+        return $this->hasMany(RateComment::class, 'user_id');
     }
 
     /**
      * @param $product_id
      * @return bool
      */
-    public function isRated($product_id){
-        if(!auth()->check())
+    public function isRated($product_id)
+    {
+        if (!auth()->check())
             return false;
         else
-            return $this->rates()->where('product_id',$product_id)->exists();
+            return $this->rates()->where('product_id', $product_id)->exists();
     }
 
     /**
      * @return bool
      */
-    public function getIsVerifiedAttribute(){
+    public function getIsVerifiedAttribute()
+    {
         return $this->attributes['confirmation_code'] === 'verified';
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function carts(){
-        return $this->hasMany(Cart::class,'user_id');
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'user_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function wallet(){
-        return $this->hasOne(Wallet::class,'user_id');
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class, 'user_id');
+    }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($model) {
+            if ($model->image) {
+                $image = str_replace(url('/') . '/storage/', '', $model->image);
+                deleteImage('photos/users', $image);
+            }
+
+            if ($model->rates) {
+                foreach ($model->rates as $rate) {
+                    $rate->delete();
+                }
+            }
+
+            if ($model->addresses) {
+                foreach ($model->addresses as $address) {
+                    $address->delete();
+                }
+            }
+
+            if ($model->favourites) {
+                foreach ($model->favourites as $favourite) {
+                    $favourite->delete();
+                }
+            }
+        });
     }
 }

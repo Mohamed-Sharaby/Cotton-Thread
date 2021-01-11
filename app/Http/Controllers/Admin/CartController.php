@@ -136,7 +136,8 @@ class CartController extends Controller
     public function destroy(Cart $cart)
     {
         $cart->delete();
-        return redirect(route('admin.carts.index'))->with('success', 'تم الحذف بنجاح');
+        return 'Done';
+//        return redirect(route('admin.carts.index'))->with('success', 'تم الحذف بنجاح');
     }
 
 

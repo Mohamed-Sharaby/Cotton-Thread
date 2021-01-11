@@ -23,7 +23,7 @@
 
             <div class="panel-body mb-2">
                 <a href="{{route('admin.sub-categories.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
-                                                                                               style="margin-left: 10px;"></i>
+                                                                                                   style="margin-left: 10px;"></i>
                     اضافة قسم فرعى</a>
             </div>
             {{-- {{$dataTable->table(['class'=>'table-1 responsive datatable-ajax table-hover  display nowrap'])}} --}}
@@ -45,7 +45,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$category->ar_name}}</td>
                         <td>{{$category->en_name}}</td>
-                        <td>{{$category->category->name}}</td>
+                        <td>{{$category->category->name ?? ''}}</td>
                         <td>
                             @if($category->image)
 
@@ -70,13 +70,17 @@
                                         class="fa fa-edit"></i></a>
 
 
-                                <form action="{{route('admin.sub-categories.destroy',$category->id)}}" method="post">
-                                    @csrf
-                                    {{method_field('delete')}}
-
-                                <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i class="fa fa-trash"></i>
+{{--                                <form action="{{route('admin.sub-categories.destroy',$category->id)}}" method="post">--}}
+{{--                                    @csrf--}}
+{{--                                    {{method_field('delete')}}--}}
+{{--                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
+{{--                                            class="fa fa-trash"></i>--}}
+{{--                                    </button>--}}
+{{--                                </form>--}}
+                                <button data-url="{{route('admin.sub-categories.destroy',$category->id)}}"
+                                        class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                    <i class="fa fa-trash"></i>
                                 </button>
-                                </form>
                             </div>
                         </td>
                     </tr>
@@ -85,7 +89,7 @@
             </table>
         </div>
 
-    <!-- /basic initialization -->
+        <!-- /basic initialization -->
     </div>
     <!-- /content area -->
 @endsection

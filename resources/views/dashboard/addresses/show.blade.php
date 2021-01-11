@@ -52,8 +52,13 @@
                         </td>
 
                         <td class="text-center">
-                            <a class="btn btn-danger btn-sm del_address" data-id="{{$address->id}}">
-                                <i class="fa fa-trash text-white"></i></a>
+{{--                            <a class="btn btn-danger btn-sm del_address" data-id="{{$address->id}}">--}}
+{{--                                <i class="fa fa-trash text-white"></i></a>--}}
+
+                            <button data-url="{{route('admin.del_address',$address->id)}}"
+                                    class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                <i class="fa fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -105,27 +110,27 @@
             })
 
 
-            $(document).on('click', '.del_address', function (e) {
-                let confirmResult = confirm('هل أنت متأكد من حذف هذا العنوان');
-                if (confirmResult) {
-                    var id = $(this).data("id");
-                    $.ajax({
-                        type: 'delete',
-                        url: "/dashboard/delete/address/" + id,
-                        data: {
-                            '_token': '{{csrf_token()}}',
-                            'id': id,
-                        },
-                        success: function (data) {
+            {{--$(document).on('click', '.del_address', function (e) {--}}
+            {{--    let confirmResult = confirm('هل أنت متأكد من حذف هذا العنوان');--}}
+            {{--    if (confirmResult) {--}}
+            {{--        var id = $(this).data("id");--}}
+            {{--        $.ajax({--}}
+            {{--            type: 'delete',--}}
+            {{--            url: "/dashboard/delete/address/" + id,--}}
+            {{--            data: {--}}
+            {{--                '_token': '{{csrf_token()}}',--}}
+            {{--                'id': id,--}}
+            {{--            },--}}
+            {{--            success: function (data) {--}}
 
-                            $('.msg').css('display', 'block');
-                            $('.address' + data.id).remove();
-                        }
-                    });
-                } else {
-                    e.preventDefault();
-                }
-            });
+            {{--                $('.msg').css('display', 'block');--}}
+            {{--                $('.address' + data.id).remove();--}}
+            {{--            }--}}
+            {{--        });--}}
+            {{--    } else {--}}
+            {{--        e.preventDefault();--}}
+            {{--    }--}}
+            {{--});--}}
         });
 
     </script>

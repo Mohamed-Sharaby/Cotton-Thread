@@ -105,4 +105,16 @@ class Product extends Model
         return $this->product_quantity()->sum('quantity');
     }
 
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($model) {
+            if ($model->image) {
+                $image = str_replace(url('/') . '/storage/', '', $model->image);
+                deleteImage('photos/products', $image);
+            }
+        });
+    }
+
 }

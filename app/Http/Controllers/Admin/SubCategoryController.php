@@ -116,9 +116,14 @@ class SubCategoryController extends Controller
      */
     public function destroy(SubCategory $subCategory)
     {
-        deleteImage('photos/subcategories',$subCategory->image);
+        if ($subCategory->products){
+            foreach ($subCategory->products as $product){
+                $product->delete();
+            }
+        }
         $subCategory->delete();
-        return redirect()->route('admin.sub-categories.index')->with('success', __('Deleted Successfully'));
+        return 'Done';
+        //return redirect()->route('admin.sub-categories.index')->with('success', __('Deleted Successfully'));
     }
 
 }
