@@ -11,6 +11,7 @@ use App\Models\Banner;
 use App\Models\Contact;
 use App\Models\Gallery;
 use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -84,5 +85,18 @@ class HomeController extends Controller
         if(!$wallet)
             return $this->apiResponse(__('user does not have a wallet'));
         return $this->apiResponse($wallet->amount);
+    }
+
+
+    public function allSetting(){
+        $settings  = Setting::all();
+        $settings = $settings->mapWithKeys(function ($q){
+            $value = $q->value;
+            if ($q->type == 'file') {
+                $value = getImg($q->value);
+            }
+            return [$q->name => $value];
+        });
+        return $this->apiResponse($settings);
     }
 }
