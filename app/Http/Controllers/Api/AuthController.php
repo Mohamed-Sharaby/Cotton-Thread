@@ -29,7 +29,7 @@ class AuthController extends Controller
             'email'=>'required|email|unique:users,email',
             'phone'=>'required|numeric|unique:users,phone',
             'password'=>'required|string|confirmed',
-            'type'=>'required|string|in:sandroid,ios',
+            'type'=>'required|string|in:android,ios',
             'fcm'=>'required|string',
         ]);
         if($validate->fails())
