@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de1d87b9-e7bc-433d-bd1d-972c1476a1c6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/ar.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/ar.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+              <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -42,8 +42,17 @@
       <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="122" column="30" selection-start-line="122" selection-start-column="20" selection-end-line="122" selection-end-column="30" />
+            <state relative-caret-position="374">
+              <caret line="138" column="64" selection-start-line="138" selection-start-column="38" selection-end-line="138" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ar.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/lang/ar.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="640" column="57" selection-start-line="640" selection-start-column="57" selection-end-line="640" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -115,7 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/lang/ar.json" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" />
         <option value="$PROJECT_DIR$/app/Models/Cart.php" />
         <option value="$PROJECT_DIR$/app/Models/User.php" />
@@ -166,6 +174,7 @@
         <option value="$PROJECT_DIR$/app/Http/Resources/Collection/RatesCollection.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/resources/lang/ar.json" />
       </list>
     </option>
   </component>
@@ -389,7 +398,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="User&#9;null&#9;null&#10;app.js&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/js/app.js&#10;api&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;ar.json&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/lang/ar.json&#10;2021_01_07_144009_create_wallets_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_07_144009_create_wallets_table.php&#10;cart.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Models/Cart.php&#10;2021_01_06_123559_create_carts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_123559_create_carts_table.php&#10;ar.js&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/lang/ar.json&#10;Api/CartsController&#9;null&#9;null&#10;Api/PickersController&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Controllers/Api/PickersController.php&#10;Product&#9;null&#9;null&#10;2021_01_06_090812_create_rate_comments_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_090812_create_rate_comments_table.php&#10;auth.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/auth.php&#10;2021_01_05_163320_drop_product_color_size_to_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_163320_drop_product_color_size_to_product_quantities_table.php&#10;2021_01_05_162907_add_color_id_size_id_to_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162907_add_color_id_size_id_to_product_quantities_table.php&#10;2021_01_05_162117_create_sizes_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162117_create_sizes_table.php&#10;2021_01_05_162016_create_colors_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162016_create_colors_table.php&#10;jwt.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/jwt.php&#10;JWTCheck&#9;null&#9;null&#10;2021_01_05_122255_add_street_house_num_to_addresses_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_122255_add_street_house_num_to_addresses_table.php&#10;AddressFactory&#9;null&#9;null&#10;help&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;user&#9;null&#9;null&#10;Collection/ProductColorsCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/ProductColorsCollection.php&#10;helpe&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;Collection/CategoryCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/CategoryCollection.php&#10;2021_01_04_075023_create_contacts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_075023_create_contacts_table.php&#10;2021_01_04_073907_create_addresses_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_073907_create_addresses_table.php&#10;2021_01_04_072420_create_cities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_072420_create_cities_table.php&#10;2021_01_04_072738_create_regions_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_072738_create_regions_table.php&#10;2021_01_04_073010_create_districts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_073010_create_districts_table.php&#10;2021_01_03_154407_create_galleries_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_154407_create_galleries_table.php&#10;2021_01_03_153244_create_favourites_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_153244_create_favourites_table.php&#10;2021_01_03_151327_create_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_151327_create_product_quantities_table.php&#10;2021_01_03_150902_create_product_sizes_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_150902_create_product_sizes_table.php&#10;2021_01_03_150838_create_product_colors_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_150838_create_product_colors_table.php&#10;Collection/BannersCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/BannersCollection.php&#10;2021_01_03_130450_create_banners_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_130450_create_banners_table.php&#10;FileAttribute&#9;null&#9;null&#10;app.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/app.php&#10;2021_01_03_101104_create_fcm_tokens_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_101104_create_fcm_tokens_table.php" />
+    <property name="SearchEverywhereHistoryKey" value="ar.json&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/lang/ar.json&#10;User&#9;null&#9;null&#10;app.js&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/js/app.js&#10;api&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;2021_01_07_144009_create_wallets_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_07_144009_create_wallets_table.php&#10;cart.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Models/Cart.php&#10;2021_01_06_123559_create_carts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_123559_create_carts_table.php&#10;ar.js&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/lang/ar.json&#10;Api/CartsController&#9;null&#9;null&#10;Api/PickersController&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Controllers/Api/PickersController.php&#10;Product&#9;null&#9;null&#10;2021_01_06_090812_create_rate_comments_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_090812_create_rate_comments_table.php&#10;auth.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/auth.php&#10;2021_01_05_163320_drop_product_color_size_to_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_163320_drop_product_color_size_to_product_quantities_table.php&#10;2021_01_05_162907_add_color_id_size_id_to_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162907_add_color_id_size_id_to_product_quantities_table.php&#10;2021_01_05_162117_create_sizes_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162117_create_sizes_table.php&#10;2021_01_05_162016_create_colors_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162016_create_colors_table.php&#10;jwt.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/jwt.php&#10;JWTCheck&#9;null&#9;null&#10;2021_01_05_122255_add_street_house_num_to_addresses_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_122255_add_street_house_num_to_addresses_table.php&#10;AddressFactory&#9;null&#9;null&#10;help&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;user&#9;null&#9;null&#10;Collection/ProductColorsCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/ProductColorsCollection.php&#10;helpe&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;Collection/CategoryCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/CategoryCollection.php&#10;2021_01_04_075023_create_contacts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_075023_create_contacts_table.php&#10;2021_01_04_073907_create_addresses_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_073907_create_addresses_table.php&#10;2021_01_04_072420_create_cities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_072420_create_cities_table.php&#10;2021_01_04_072738_create_regions_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_072738_create_regions_table.php&#10;2021_01_04_073010_create_districts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_073010_create_districts_table.php&#10;2021_01_03_154407_create_galleries_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_154407_create_galleries_table.php&#10;2021_01_03_153244_create_favourites_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_153244_create_favourites_table.php&#10;2021_01_03_151327_create_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_151327_create_product_quantities_table.php&#10;2021_01_03_150902_create_product_sizes_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_150902_create_product_sizes_table.php&#10;2021_01_03_150838_create_product_colors_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_150838_create_product_colors_table.php&#10;Collection/BannersCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/BannersCollection.php&#10;2021_01_03_130450_create_banners_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_130450_create_banners_table.php&#10;FileAttribute&#9;null&#9;null&#10;app.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/app.php&#10;2021_01_03_101104_create_fcm_tokens_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_101104_create_fcm_tokens_table.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../vue_cotton" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -440,12 +449,12 @@
       <workItem from="1610865104442" duration="11613000" />
       <workItem from="1610959321749" duration="1009000" />
       <workItem from="1610969048713" duration="2076000" />
-      <workItem from="1610973176604" duration="2261000" />
+      <workItem from="1610973176604" duration="2599000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147039000" />
+    <option name="totallyTimeSpent" value="147377000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -507,7 +516,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/site/home/categories.blade.php" />
     <entry file="file://$PROJECT_DIR$/resources/js/components/site/home/Categories.vue" />
     <entry file="file://$PROJECT_DIR$/resources/js/components/site/home/NewProducts.vue" />
     <entry file="file://$PROJECT_DIR$/resources/js/components/site/home/OffersBanners.vue" />
@@ -708,17 +716,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="122" column="30" selection-start-line="122" selection-start-column="20" selection-end-line="122" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
+          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="138" column="64" selection-start-line="138" selection-start-column="38" selection-end-line="138" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/ar.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="640" column="57" selection-start-line="640" selection-start-column="57" selection-end-line="640" selection-end-column="57" />
         </state>
       </provider>
     </entry>
