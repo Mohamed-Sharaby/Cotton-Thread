@@ -1,0 +1,238 @@
+/********************** start my button **************/
+.btn-hvr{
+  font-family: 'Almarai-Bold';
+    text-align: center;
+    color: #FFF;
+    font-size: 20px;
+    border: none;
+    padding: 0 50px;
+    margin: 22px auto;
+    display: block;
+    background-color: #784E29;
+    cursor: pointer;
+    position: relative;
+    z-index: 20;
+    transition: all .5s ease-in-out;
+    overflow: hidden;
+    border: 2px solid #784E29;
+    border-radius: 30px /30px;
+    width: max-content;
+    height: 50px;
+    line-height: 50px;
+    min-width: 200px;
+}
+.btn-hvr::after{
+  content: "";
+    display: inline-block;
+    position: absolute;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    padding: 5px;
+    border-radius: 50%;
+    margin-left: -45px;
+    transition: all .5s ease-in-out;
+    margin-top: 20px;
+    right: 0;
+    left: 0;
+}
+.btn-hvr:hover::after,
+.btn-hvr:focus::after{
+  transform: scale(10, 10) rotate(360deg) skew(80deg);
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+    border-radius: 50%;
+}
+.btn-hvr:hover , .btn-hvr:focus{
+  background-color: #fff;
+  color: #784E29;
+}
+.btn-hvr span{
+  margin-right: 10px;
+}
+/*********** Responsive ****************/
+@media (max-width: 991px) {
+  .btn-hvr{
+    font-size: 17px;
+    padding: 0 20px;
+    height: 50px;
+    line-height: 50px;
+  }
+}
+/********************** end my button **************/
+/************************/
+.social li {
+    display: inline-block !important;
+    line-height: 1 !important;
+}
+.social li a{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    text-align: center;
+    font-size: 18px;
+    background-color: transparent;
+    position: relative;
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    z-index: 1;
+    display: block;
+}
+.social li:last-child a{
+    margin: 0;
+}
+.social li a:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+/*    background-color: #FF003D;*/
+    border-radius: 50%;
+    -webkit-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+            transform: scale(0);
+    z-index: -1;
+}
+ul.social  li a:hover , ul.social  li a:focus{
+    color: #fff !important;
+}
+ul.social  li a:hover:before ,
+ul.social  li a:focus:before {
+    -webkit-transform: scale(.9);
+        -ms-transform: scale(.9);
+            transform: scale(.9);
+}
+ul.social  li .icon-f:before{
+  background-color: #3b5999;
+}
+ul.social  li .icon-tw:before{
+  background-color: #55acee;
+}
+ul.social  li .icon-ig:before {
+  background-color: #BD0095;
+}
+ul.social  li .icon-g:before {
+  background-color: #dd4b39;
+}
+ul.social  li .icon-in:before {
+  background-color: #187BB4;
+}
+ul.social  li .icon-y:before {
+  background-color: #C12816;
+}
+ul.social  li .icon-snap:before {
+  background-color: #FFFC00;
+}
+/*
+@media (max-width: 767px) {
+    .social li a{
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+}
+}
+*/
+    /* Social Button Icon Styling */
+    .social-buttons {
+      display: inline-block;
+      padding: 20px;
+      padding-bottom: 5px;
+      border-radius: 10px;
+      text-align: center;
+      margin: 20px 10px;
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+     -webkit-box-pack: center;
+         -ms-flex-pack: center;
+             justify-content: center
+    }
+    .social-buttons .social-margin {
+      margin-right: 15px;
+    }
+    .social-buttons a,
+    .social-buttons a:hover,
+    .social-buttons a:focus,
+    .social-buttons a:active {
+      text-decoration: none;
+    }
+    .social-buttons .social-icon {
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      border: 5px solid;
+      text-align: center;
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      line-height: 1px;
+      -webkit-transition: all 0.5s;
+      -o-transition: all 0.5s;
+      transition: all 0.5s;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center
+    }
+    .social-buttons .social-icon:hover {
+      -webkit-transform:scale(1.2);
+          -ms-transform:scale(1.2);
+              transform:scale(1.2);
+      border-radius: 50%;
+    }
+    .social-buttons .social-icon.facebook {
+      font-size: 22px;
+      border-color: #3b5998;
+      background-color: #3b5998;
+      color: #ffffff;
+    }
+    .social-buttons .social-icon.facebook:hover {
+      background-color: #ffffff;
+      color: #3b5998;
+      border-radius: 50%;
+    }
+    .social-buttons .social-icon.twitter {
+      font-size: 22px;
+      border-color: #55acee;
+      background-color: #55acee;
+      color: #ffffff;
+    }
+    .social-buttons .social-icon.gmail {
+      font-size: 22px;
+      border-color: #CF4C3C;
+      background-color: #CF4C3C;
+      color: #fff;
+    }
+    .social-buttons .social-icon.twitter:hover {
+      background-color: #ffffff;
+      color: #55acee;
+    }
+    .social-buttons .social-icon.instagram {
+      font-size: 22px;
+      padding-left: 2px;
+      border-color: #eed3f1;
+      background: -o-radial-gradient(33% 100%, circle, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
+      background: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
+      color: #ffffff;
+    }
+    .social-buttons .social-icon.instagram:hover {
+      background: #ffffff;
+      color: #9b36b7;
+    }
+    .social-buttons .social-icon.gmail:hover {
+      background: #ffffff;
+      color: #CF4C3C;
+    }

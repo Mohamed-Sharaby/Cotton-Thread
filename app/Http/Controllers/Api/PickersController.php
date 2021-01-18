@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Collection\CategoryCollection;
 use App\Http\Resources\Collection\CitiesCollection;
+use App\Http\Resources\Collection\ColorsCollection;
 use App\Http\Resources\Collection\DistrictsCollection;
 use App\Http\Resources\Collection\RegionsCollection;
+use App\Http\Resources\Collection\SizesCollection;
 use App\Http\Resources\Collection\SubcategoriesCollection;
 use App\Http\Traits\ApiResponse;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Color;
 use App\Models\District;
 use App\Models\Region;
+use App\Models\Size;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -89,6 +93,21 @@ class PickersController extends Controller
         return $this->apiResponse(new DistrictsCollection($districts));
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function colors(){
+        $colors = Color::all();
+        return $this->apiResponse(new ColorsCollection($colors));
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sizes(){
+        $sizes = Size::all();
+        return $this->apiResponse(new SizesCollection($sizes));
+    }
 
     /**
      * @param Request $request

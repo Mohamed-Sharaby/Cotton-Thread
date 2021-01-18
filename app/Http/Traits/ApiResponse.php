@@ -14,6 +14,6 @@ trait ApiResponse
         }else{
             $res['message'] = $data;
         }
-        return response()->json($res,$status);
+        return response()->json($res);
     }
 }

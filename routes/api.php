@@ -62,8 +62,11 @@ Route::group(['middleware'=>['jwt.check','x-lang']],function (){
        Route::get('/cities',[PickersController::class,'cities']);
        Route::get('/regions',[PickersController::class,'regions']);
        Route::get('/districts',[PickersController::class,'districts']);
+       Route::get('/colors',[PickersController::class,'colors']);
+       Route::get('/sizes',[PickersController::class,'sizes']);
    });
    Route::post('/contact',[HomeController::class,'contact']);
    Route::get('/gallery/{key}',[HomeController::class,'gallery']);
    Route::get('/setting/{key}',[HomeController::class,'setting']);
+   Route::get('/setting',[HomeController::class,'allSetting']);
 });

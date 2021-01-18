@@ -70,7 +70,7 @@
                                                 action="{{ route('admin.active', ['id' => $admin->id, 'type' => 'Admin']) }}"
                                                 method="post">@csrf
                                                 <button type="submit"
-                                                        class="{{ $admin->is_ban ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-success' }}">{{ $admin->is_ban ? 'غير مفعل' : ' مفعل' }}</button>
+                                                        class="{{ $admin->is_ban ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-success' }}">{{ $admin->is_ban ? 'معطل ' : ' مفعل' }}</button>
                                             </form>
                                         @endif
                                     @else
