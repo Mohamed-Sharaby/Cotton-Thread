@@ -83,8 +83,7 @@ class HomeController extends Controller
         $user = auth()->user();
         $wallet  = $user->wallet;
         if(!$wallet)
-           $user->wallet()->create(['amount'=>0]);
-        $user->wallet()->refresh();
+            $wallet = $user->wallet()->create(['amount'=>0]);
         return $this->apiResponse($wallet->amount);
     }
 
