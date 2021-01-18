@@ -540,6 +540,8 @@ input[type=number]::-webkit-outer-spin-button {
     vertical-align: middle;
     height: 120px;
     width: 100%;
+    max-width: 300px;
+    float: left;
 }
 .nav-icon{
     background-color: #ffffff;
@@ -987,6 +989,7 @@ div#nav-icon1:before {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+            max-width: 800px;
 }
 .navy ul.nav > li {
     display: inline-block;
@@ -1467,6 +1470,7 @@ display: flex;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+            float: none;
     }
     .search-form .form-group input.form-control{
         height: 40px;

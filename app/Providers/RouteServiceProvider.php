@@ -29,6 +29,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     // protected $namespace = 'App\\Http\\Controllers';
      protected $admin_namespace = 'App\Http\Controllers\Admin';
+     protected $site_namespace = 'App\Http\Controllers\Site';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -46,7 +47,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
-                ->namespace($this->namespace)
+                ->namespace($this->site_namespace)
                 ->group(base_path('routes/web.php'));
 
             Route::middleware('web')
