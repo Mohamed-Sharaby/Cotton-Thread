@@ -35,6 +35,12 @@ class Category extends Model
     }
 
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_ban', 0);
+    }
+
+
     protected static function boot()
     {
         parent::boot();

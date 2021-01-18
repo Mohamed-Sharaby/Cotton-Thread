@@ -34,6 +34,12 @@ class Product extends Model
         return $this->belongsTo(SubCategory::class,'subcategory_id');
     }
 
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_ban', 0);
+    }
+
     /**
      * @return string
      */

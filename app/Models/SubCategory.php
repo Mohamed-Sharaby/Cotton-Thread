@@ -39,6 +39,11 @@ class SubCategory extends Model
         return $this->hasMany(Product::class,'subcategory_id');
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_ban', 0);
+    }
+
 
     protected static function boot()
     {

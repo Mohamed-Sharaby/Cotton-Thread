@@ -75,35 +75,10 @@ a:hover, a:focus {
 
 /****** start header ***/
 .my-header {
-    height: 60vh;
-    display: block;
-    width: 100%;
-    position: relative;
-}
-.my-header .swiper-button-next ,.my-header
-.swiper-container-rtl .swiper-button-prev {
-    color: #FFF;
-    transition: .5s all;
-    display: none;
-}
-.my-header .swiper-button-next:hover ,.my-header
-.swiper-container-rtl .swiper-button-prev:hover {
-    color: #EA9C51;
-}
-.my-header .swiper-pagination-bullet-active {
-    opacity: 1;
-    background: #FFF;
-}
-
-.my-header .swiper-container-rtl .swiper-button-next {
-    left: 40px;
-}
-.my-header .swiper-container-rtl .swiper-button-prev{
-        right: 40px;
-
-}
-.swiper-container-horizontal>.swiper-pagination-bullets{
-    bottom: 30px;
+  height: 60vh;
+  display: block;
+  width: 100%;
+  position: relative;
 }
 
 .my-header > img {
@@ -1320,9 +1295,6 @@ table.dataTable > tbody > tr.child ul.dtr-details {
 }
 
 @media (max-width: 767px) {
-    .my-header .swiper-button-next:after,.my-header .swiper-container-rtl .swiper-button-prev:after{
-    font-size: 25px
-}
   .head-title {
     margin: 0 auto 14px auto;
   }
