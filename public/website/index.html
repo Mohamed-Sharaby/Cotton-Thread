@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- /////////////////////||||||||||||||||||||||||||||| Start Layout |||||||||||||||||||||||||||| -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>راديان</title>
+    <link rel="icon" href="img/logo2.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/animate.css">
+   
+   <link rel="stylesheet" href="css/bee3D.min.css">
+   
+    <link rel="stylesheet" href="css/demo.css">
+  
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-rtl.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- /////////////////////||||||||||||||||||||||||||||| End Layout |||||||||||||||||||||||||||| -->
+</head>
+
+<body>
+
+
+    <!-- |||||||||||||||||||||||||| Start Navbar  ||||||||||||||||||||||||||||||||||||||-->
+
+    <nav class="navbar  navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="فنون التعليم"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right ">
+                    <li class="active"><a href="index.html"> الرئيسية <span class="sr-only">(current)</span> </a></li>
+                    <li><a href="domains.html">المجالات</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                    <li><i class="fas fa-search"></i></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- /////////////////////||||||||||||||||||||||||||||| Start Header |||||||||||||||||||||||||||| -->
+
+    <div class="header-top">
+        <img src="img/4.png">
+        <div class="date-header">
+            <div>
+                <img src="img/logo.png">
+            </div>
+            <p>زخر الاستشارى راديان بكوبكة من كفاءات الفنيه ذات الخبرات المميزة فى جميع النشاطات و التخصصات الهندسية المختلفة.</p>
+            <a href="#" class="more"> المزيد</a>
+        </div>
+    </div>
+    <div class="slaider">
+        <article class="example">
+            <section class="bee3D--slide">
+                <div class="bee3D--inner">
+                     <img src="img/icon.png">
+                </div>
+            </section>
+            <section class="bee3D--slide">
+                <div class="bee3D--inner">
+                     <img src="img/icon2.png">
+                </div>
+            </section>
+            <section class="bee3D--slide">
+                <div class="bee3D--inner">
+                    <img src="img/icon3.png">
+                </div>
+            </section>
+            <section class="bee3D--slide">
+                <div class="bee3D--inner">
+                    <img src="img/icon2.png">
+                </div>
+            </section>
+            <section class="bee3D--slide">
+                <div class="bee3D--inner">
+                    <img src="img/icon2.png">
+                </div>
+            </section>
+            <section class="bee3D--slide">
+                <div class="bee3D--inner">
+                    <img src="img/icon2.png">
+                </div>
+            </section>
+            <section class="bee3D--slide">
+                <div class="bee3D--inner">
+                     <img src="img/icon2.png">
+                </div>
+            </section>
+
+
+
+             Navigation Arrows 
+            <span class="bee3D--nav bee3D--nav__prev"><i class="fas fa-chevron-circle-left"></i></span>
+            <span class="bee3D--nav bee3D--nav__next"><i class="fas fa-chevron-circle-right"></i></span>
+
+
+        </article>
+    </div>
+    <!-- /////////////////////||||||||||||||||||||||||||||| End Header |||||||||||||||||||||||||||| -->
+
+
+    <!-- /////////////////////||||||||||||||||||||||||||||| Start Content |||||||||||||||||||||||||||| -->
+
+    <!-- /////////////////////||||||||||||||||||||||||||||| End Content |||||||||||||||||||||||||||| -->
+
+
+    <!-- /////////////////////||||||||||||||||||||||||||||| Start Footer |||||||||||||||||||||||||||| -->
+
+    <!-- /////////////////////||||||||||||||||||||||||||||| End Footer |||||||||||||||||||||||||||| -->
+
+
+    <!-- /////////////////////||||||||||||||||||||||||||||| Start Script |||||||||||||||||||||||||||| -->
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/bee3D.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+
+    </script>
+      <script>
+        var element = document.querySelector('.example');
+
+        var slider = new Bee3D(element, {
+            effect: 'coverflow',
+            listeners: {
+                keys: true
+            },
+            navigation: {
+                enabled: true
+            }
+        });
+    </script>
+
+    <!-- /////////////////////||||||||||||||||||||||||||||| End Script |||||||||||||||||||||||||||| -->
+</body>
+
+</html>
