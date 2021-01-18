@@ -637,6 +637,7 @@
     "item quantity added": "تم زياده كمية الوحدة",
     "item quantity minus": "تم تقليل كمية الوحدة",
     "wallet amount not sufficient": "مبلغ المحفظة غير كافٍ",
-    "user does not have a wallet": "المستخدم ليس لدية محفظة"
+    "user does not have a wallet": "المستخدم ليس لدية محفظة",
+    "comment added successfully": "تم اضافة التعليق بنجاح"
 
 }
