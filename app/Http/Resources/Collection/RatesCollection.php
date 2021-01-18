@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Collection;
 
 use App\Models\RateComment;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class RatesCollection extends ResourceCollection
@@ -23,7 +24,7 @@ class RatesCollection extends ResourceCollection
                 'comment'=>fix_null_string($q->comment),
                 'user_name'=>fix_null_string(optional($q->user)->name),
                 'user_image'=>fix_null_string(optional($q->user)->image),
-                'rate_date'=> fix_null_string($q->created_at->formate('d M Y , h:i a'))
+                'rate_date'=> fix_null_string(Carbon::parse($q->created_at)->format('d M Y , h:i a'))
             ];
         });
     }
