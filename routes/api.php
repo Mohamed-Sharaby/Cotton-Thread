@@ -41,6 +41,7 @@ Route::group(['middleware'=>['jwt.check','x-lang']],function (){
    Route::get('/product/{product}',[ProductController::class,'show']);
    Route::get('/product-details/{product}',[ProductController::class,'details']);
    Route::group(['middleware'=>['auth:api','x-lang']],function (){
+       Route::get('/add-comment/{product}',[ProductController::class,'addComment']);  // required auth
        Route::get('/favourites',[FavouritesController::class,'index']);  // required auth
        Route::post('/favourites/{product}',[FavouritesController::class,'favToggle']);  // required auth
        Route::apiResource('/address',AddressesController::class)->except('show');  // required auth

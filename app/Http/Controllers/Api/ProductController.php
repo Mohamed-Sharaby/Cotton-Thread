@@ -13,6 +13,7 @@ use App\Models\ProductQuantity;
 use App\Models\SubCategory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * Class ProductController
@@ -117,5 +118,25 @@ class ProductController extends Controller
         if(!$productQuantity->exists())
             return $this->apiResponse(__('product not available'),422);
         return $this->apiResponse(new ProductQuantityCollection($productQuantity->get()),200);
+    }
+
+    public function addComment(Request $request,Product $product){
+        $user = auth()->user();
+        $validator = Validator::make($request->all(),[
+            'comment'=>'required|string',
+            'rate'=>'required|numeric|between:0.1,5.0',
+        ]);
+        if($validator->fails()){
+            return $this->apiResponse($validator->errors()->first());
+        }
+        $product->rates()->create([
+            'user_id'=>$user->id,
+            'comment'=>$request['comment'],
+            'rate'=>$request['rate'],
+            'is_ban'=>1
+        ]);
+
+        return $this->apiResponse(__('comment added successfully'));
+
     }
 }
