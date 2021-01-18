@@ -83,7 +83,7 @@ class HomeController extends Controller
         $user = auth()->user();
         $wallet  = $user->wallet;
         if(!$wallet)
-            return $this->apiResponse(__('user does not have a wallet'));
+           $user->wallet()->create(['amount'=>0]);
         return $this->apiResponse($wallet->amount);
     }
 
