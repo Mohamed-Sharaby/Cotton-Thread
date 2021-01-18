@@ -118,7 +118,8 @@ class GalleryController extends Controller
     {
         deleteImage('photos/galleries',$gallery->image);
         $gallery->delete();
-        return redirect()->route('admin.galleries.index')->with('success', __('Deleted Successfully'));
+        return 'Done';
+//        return redirect()->route('admin.galleries.index')->with('success', __('Deleted Successfully'));
     }
 
 

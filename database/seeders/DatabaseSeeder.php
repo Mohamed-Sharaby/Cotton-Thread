@@ -36,8 +36,6 @@ class DatabaseSeeder extends Seeder
         Color::factory(4)->create();
         Size::factory(4)->create();
         Product::factory(4)->create();
-        //ProductColor::factory(4)->create();
-        //ProductSize::factory(4)->create();
         ProductQuantity::factory(4)->create();
         Banner::factory(4)->create();
         Favourite::factory(4)->create();
@@ -51,6 +49,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsTableSeeder::class);
         $this->call(UpdatePermissionsTableSeeder::class);
         $this->call(SettingTableSeeder::class);
+        $this->call(AddTaxToSettingTableSeeder::class);
 
     }
 }

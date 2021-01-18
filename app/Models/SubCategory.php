@@ -38,4 +38,17 @@ class SubCategory extends Model
     public function products(){
         return $this->hasMany(Product::class,'subcategory_id');
     }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($model) {
+            if ($model->image) {
+                $image = str_replace(url('/') . '/storage/', '', $model->image);
+                deleteImage('photos/subcategories', $image);
+            }
+        });
+    }
+
 }

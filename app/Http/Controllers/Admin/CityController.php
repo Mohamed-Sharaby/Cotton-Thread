@@ -91,6 +91,7 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         $city->delete();
-        return redirect(route('admin.cities.index'))->with('success', 'تم الحذف بنجاح');
+        return 'Done';
+//        return redirect(route('admin.cities.index'))->with('success', 'تم الحذف بنجاح');
     }
 }

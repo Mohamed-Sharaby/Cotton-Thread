@@ -23,8 +23,8 @@
 
             <div class="panel-body mb-2">
                 <a href="{{route('admin.banners.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
-                                                                                               style="margin-left: 10px;"></i>
-                   اضافة بانر</a>
+                                                                                            style="margin-left: 10px;"></i>
+                    اضافة بانر</a>
             </div>
             <table class="table datatable-button-init-basic table-hover responsive table-responsive display nowrap"
                    style="width:100%">
@@ -103,14 +103,18 @@
                                         class="fa fa-edit"></i></a>
 
 
-                                <form action="{{route('admin.banners.destroy',$banner->id)}}" method="post">
-                                    @csrf
-                                    {{method_field('delete')}}
+{{--                                <form action="{{route('admin.banners.destroy',$banner->id)}}" method="post">--}}
+{{--                                    @csrf--}}
+{{--                                    {{method_field('delete')}}--}}
 
-                                <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i class="fa fa-trash"></i>
+{{--                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
+{{--                                            class="fa fa-trash"></i>--}}
+{{--                                    </button>--}}
+{{--                                </form>--}}
+                                <button data-url="{{route('admin.banners.destroy',$banner->id)}}"
+                                        class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                    <i class="fa fa-trash"></i>
                                 </button>
-                                </form>
-
                             </div>
                         </td>
                     </tr>
@@ -118,7 +122,7 @@
                 </tbody>
             </table>
         </div>
-    <!-- /basic initialization -->
+        <!-- /basic initialization -->
     </div>
     <!-- /content area -->
 @endsection

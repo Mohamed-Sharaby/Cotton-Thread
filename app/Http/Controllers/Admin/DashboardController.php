@@ -21,6 +21,11 @@ class DashboardController extends Controller
 
         if ($className == 'Category') {
             $model->subcategories()->update(['is_ban' => $model->is_ban]);
+            foreach ($model->subcategories as $subcategory){
+                foreach ($subcategory->products as $product){
+                    $product->update(['is_ban' => $model->is_ban]);
+                }
+            }
         }
         if ($className == 'SubCategory') {
             $model->products()->update(['is_ban' => $model->is_ban]);

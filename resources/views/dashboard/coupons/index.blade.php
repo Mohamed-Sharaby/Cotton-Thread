@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.layout')
 @section('page-title')
-الكوبونات
+    الكوبونات
 @endsection
 @section('content')
     <div class="page-header page-header-light">
@@ -33,7 +33,7 @@
                     <th>#</th>
                     <th>الاسم بالعربية</th>
                     <th>الاسم بالانجليزية</th>
-                    <th>كود </th>
+                    <th>كود</th>
                     <th>نسبة الخصم</th>
                     <th class="text-center">{{__('Operations')}}</th>
                 </tr>
@@ -55,13 +55,18 @@
                                         class="fa fa-edit"></i></a>
 
 
-                                <form action="{{route('admin.coupons.destroy',$coupon->id)}}" method="post">
-                                    @csrf
-                                    {{method_field('delete')}}
+{{--                                <form action="{{route('admin.coupons.destroy',$coupon->id)}}" method="post">--}}
+{{--                                    @csrf--}}
+{{--                                    {{method_field('delete')}}--}}
 
-                                <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i class="fa fa-trash"></i>
+{{--                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
+{{--                                            class="fa fa-trash"></i>--}}
+{{--                                    </button>--}}
+{{--                                </form>--}}
+                                <button data-url="{{route('admin.coupons.destroy',$coupon->id)}}"
+                                        class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                    <i class="fa fa-trash"></i>
                                 </button>
-                                </form>
                             </div>
                         </td>
                     </tr>
@@ -72,11 +77,18 @@
         <!-- /basic initialization -->
     </div>
     <!-- /content area -->
-{{--    {{$coupons->links()}}--}}
+    {{--    {{$coupons->links()}}--}}
 
 @endsection
 
 @section('my-js')
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script>
 
+        $(document).ready(function () {
+            ;
+        });
+    </script>
 @endsection
 

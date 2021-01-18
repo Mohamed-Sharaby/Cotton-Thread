@@ -32,7 +32,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('is_active','1')->get();
+        $roles = Role::where('is_active', '1')->get();
         return view('dashboard.admins.create', compact('roles'));
     }
 
@@ -51,7 +51,6 @@ class AdminController extends Controller
         unset($validator['roles']);
 
         $admin = Admin::create($validator);
-//        $admin->syncPermissions($permissions);
         $admin->syncRoles($roles);
         return redirect(route('admin.admins.index'))->with('success', 'تم الاضافة بنجاح');
     }
@@ -76,9 +75,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $admin = Admin::findOrFail($id);
-
         $roles = Role::all();
-
         return view('dashboard.admins.edit', compact('admin', 'roles'));
     }
 
@@ -98,7 +95,6 @@ class AdminController extends Controller
         unset($validator['roles']);
 
         $admin->syncRoles($roles);
-
         $admin->update($validator);
         return redirect(route('admin.admins.index'))->with('success', 'تم التعديل بنجاح');
 
@@ -118,6 +114,7 @@ class AdminController extends Controller
         }
 
         $admin->delete();
-        return redirect(route('admin.admins.index'))->with('success', 'تم الحذف بنجاح');
+        return 'Done';
+//        return redirect(route('admin.admins.index'))->with('success', 'تم الحذف بنجاح');
     }
 }

@@ -53,32 +53,39 @@
     <!-- /content area -->
 @endsection
 @section('my-js')
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script>
 
-
-
-    <script async>
-        $(document).on('click', '.del_address', function (e) {
-            let confirmResult = confirm('هل أنت متأكد من حذف هذا العنوان');
-            if (confirmResult) {
-                var id = $(this).data("id");
-                $.ajax({
-                    type: 'delete',
-                    url: "/dashboard/delete/address/"+id,
-                    data: {
-                        '_token': '{{csrf_token()}}',
-                        'id': id,
-                    },
-                    success: function (data) {
-
-                        $('.msg').css('display','block');
-                        $('.address'+data.id).remove();
-                    }
-                });
-            } else {
-                e.preventDefault();
-            }
-        });
+        $(document).ready(function() {
+            ;
+        } );
     </script>
+
+
+{{--    <script async>--}}
+{{--        $(document).on('click', '.del_address', function (e) {--}}
+{{--            let confirmResult = confirm('هل أنت متأكد من حذف هذا العنوان');--}}
+{{--            if (confirmResult) {--}}
+{{--                var id = $(this).data("id");--}}
+{{--                $.ajax({--}}
+{{--                    type: 'delete',--}}
+{{--                    url: "/dashboard/delete/address/"+id,--}}
+{{--                    data: {--}}
+{{--                        '_token': '{{csrf_token()}}',--}}
+{{--                        'id': id,--}}
+{{--                    },--}}
+{{--                    success: function (data) {--}}
+
+{{--                        $('.msg').css('display','block');--}}
+{{--                        $('.address'+data.id).remove();--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            } else {--}}
+{{--                e.preventDefault();--}}
+{{--            }--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection
 
 

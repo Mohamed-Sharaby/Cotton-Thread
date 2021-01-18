@@ -7,7 +7,7 @@
     <meta name="userId" content="{{ Auth::check() ? Auth::user()->id : '' }}">
     <meta name="csrf-token" content="{{csrf_token()}}">
     <title>@yield('page-title')</title>
-    <link rel="icon" href="{{asset('admin/global_assets/images/dribbble.png')}}">
+    <link rel="icon" href="{{asset('admin/global_assets/images/logo/favicon.png')}}">
     @include('dashboard.layouts.styles')
     @yield('styles')
 </head>
@@ -42,7 +42,7 @@
                     <li class="nav-item">
                         <a href="{{url('/')}}" class="nav-link " target="_blank">
                             <i class="icon-direction"></i>
-                            <span style="background-color: #bf4141;padding: 5px 5px;border-radius: 4px;">
+                            <span style="background-color: #EA9C51;padding: 5px 5px;border-radius: 4px;">
 									 الإنتقال إلى موقع خيط وقطن
 								</span>
                         </a>
@@ -200,7 +200,7 @@
                         <li class="nav-item {{ request()->routeIs('admin.carts.*') ? 'nav-item-expanded nav-item-open' : '' }}">
                             <a href="{{route('admin.carts.index')}}"
                                class="nav-link {{ request()->routeIs('admin.carts.*') ? 'active' : '' }}"><i
-                                    class="icon-database"></i> <span>    الطلبات </span></a>
+                                    class="icon-cart-add"></i> <span>    الطلبات </span></a>
                         </li>
                     @endcan
 

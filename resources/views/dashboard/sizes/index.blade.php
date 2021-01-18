@@ -23,7 +23,7 @@
 
             <div class="panel-body mb-2">
                 <a href="{{route('admin.sizes.create')}}" class="btn btn-primary mr-3"><i class="icon-add"
-                                                                                             style="margin-left: 10px;"></i>
+                                                                                          style="margin-left: 10px;"></i>
                     اضافة حجم منتج</a>
             </div>
             <table class="table datatable-button-init-basic table-hover responsive table-responsive display nowrap"
@@ -49,15 +49,18 @@
                                         class="fa fa-edit"></i></a>
 
 
-                                <form action="{{route('admin.sizes.destroy',$size->id)}}" method="post">
-                                    @csrf
-                                    {{method_field('delete')}}
+{{--                                <form action="{{route('admin.sizes.destroy',$size->id)}}" method="post">--}}
+{{--                                    @csrf--}}
+{{--                                    {{method_field('delete')}}--}}
 
-                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i
-                                            class="fa fa-trash"></i>
-                                    </button>
-                                </form>
-
+{{--                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
+{{--                                            class="fa fa-trash"></i>--}}
+{{--                                    </button>--}}
+{{--                                </form>--}}
+                                <button data-url="{{route('admin.sizes.destroy',$size->id)}}"
+                                        class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                    <i class="fa fa-trash"></i>
+                                </button>
                             </div>
                         </td>
                     </tr>

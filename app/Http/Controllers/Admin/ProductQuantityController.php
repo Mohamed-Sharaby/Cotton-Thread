@@ -113,7 +113,8 @@ class ProductQuantityController extends Controller
     public function destroy(ProductQuantity $productQuantity)
     {
         $productQuantity->delete();
-        return redirect()->route('admin.product-quantities.index')->with('success', __('Deleted Successfully'));
+        return 'Done';
+//        return redirect()->route('admin.product-quantities.index')->with('success', __('Deleted Successfully'));
     }
 
 
