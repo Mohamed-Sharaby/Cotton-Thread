@@ -34,7 +34,7 @@ class ProductsCollection extends ResourceCollection
                     'price_after_discount' => $q->price_after_discount,
                     'is_favourite'=>(auth()->check())?$user->isFavourite($q->id):false,
                     'colors' => new ProductColorsCollection($q->product_colors),
-                    'sizes' => new ProductSizesCollection($q->product_sizes),
+//                    'sizes' => new ProductSizesCollection($q->product_sizes),
                     'is_new' => ($q->is_new===0)?false:true,
 
                 ];
@@ -52,7 +52,7 @@ class ProductsCollection extends ResourceCollection
                     'price_after_discount' => $q->price_after_discount,
                     'is_favourite'=>(auth()->check())?$user->isFavourite($q->id):false,
                     'colors' => new ProductColorsCollection($q->product_colors),
-                    'sizes' => new ProductSizesCollection($q->product_sizes),
+//                    'sizes' => new ProductSizesCollection($q->product_sizes),
                     'is_new' => ($q->is_new===0)?false:true,
                 ];
             });

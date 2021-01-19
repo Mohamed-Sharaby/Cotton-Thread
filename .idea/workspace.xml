@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de1d87b9-e7bc-433d-bd1d-972c1476a1c6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Collection/ProductColorsCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Collection/ProductColorsCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Collection/ProductsCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Collection/ProductsCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Resource/ProductResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Resource/ProductResource.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,29 +32,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="138" column="64" selection-start-line="138" selection-start-column="38" selection-end-line="138" selection-end-column="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="222">
-              <caret line="85" column="60" selection-start-line="85" selection-start-column="60" selection-end-line="85" selection-end-column="60" />
+              <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="119" column="49" lean-forward="true" selection-start-line="119" selection-start-column="49" selection-end-line="119" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductResource.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Resources/Resource/ProductResource.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="441">
+              <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -60,17 +62,17 @@
       <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Models/Product.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="86" column="25" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="25" />
+            <state relative-caret-position="171">
+              <caret line="56" column="5" lean-forward="true" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/User.php">
+      <file leaf-file-name="Color.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/Color.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="129" column="25" selection-start-line="129" selection-start-column="20" selection-end-line="129" selection-end-column="25" />
+            <state relative-caret-position="273">
+              <caret line="23" column="37" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -112,6 +114,7 @@
       <find>{{</find>
       <find>../img/Assets-Printing/tit-img.png</find>
       <find>rate</find>
+      <find>color</find>
     </findStrings>
     <replaceStrings>
       <replace>href=&quot;#&quot;</replace>
@@ -124,9 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" />
-        <option value="$PROJECT_DIR$/app/Models/Cart.php" />
-        <option value="$PROJECT_DIR$/app/Models/User.php" />
         <option value="$PROJECT_DIR$/app/Models/Wallet.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ProfileController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Site/LoginController.php" />
@@ -175,6 +175,9 @@
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/resources/lang/ar.json" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/Collection/ProductColorsCollection.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/Collection/ProductsCollection.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/Resource/ProductResource.php" />
       </list>
     </option>
   </component>
@@ -366,7 +369,7 @@
               <item name="cotton" type="b2602c69:ProjectViewProjectNode" />
               <item name="cotton" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Providers" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cotton" type="b2602c69:ProjectViewProjectNode" />
@@ -449,12 +452,14 @@
       <workItem from="1610865104442" duration="11613000" />
       <workItem from="1610959321749" duration="1009000" />
       <workItem from="1610969048713" duration="2076000" />
-      <workItem from="1610973176604" duration="4340000" />
+      <workItem from="1610973176604" duration="4997000" />
+      <workItem from="1611050405965" duration="24000" />
+      <workItem from="1611056933611" duration="1072000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149118000" />
+    <option name="totallyTimeSpent" value="150871000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -463,11 +468,11 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50067115" side_tool="true" weight="0.35612535" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.32905984" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32905984" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.30341882" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29261744" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26442954" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3295302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -485,22 +490,22 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2590604" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30067113" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32905984" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" weight="0.3295302" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49932885" visible="true" weight="0.35612535" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49932885" visible="true" weight="0.30341882" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50067115" side_tool="true" weight="0.35612535" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32905984" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -516,9 +521,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/js/components/site/home/Categories.vue" />
-    <entry file="file://$PROJECT_DIR$/resources/js/components/site/home/NewProducts.vue" />
-    <entry file="file://$PROJECT_DIR$/resources/js/components/site/home/OffersBanners.vue" />
     <entry file="file://$PROJECT_DIR$/resources/js/components/site/home/ProductsOffer.vue" />
     <entry file="file://$PROJECT_DIR$/resources/js/components/site/modals/AddToCart.vue" />
     <entry file="file://$PROJECT_DIR$/resources/views/site/home/offers-banners.blade.php" />
@@ -660,24 +662,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Collection/ProductQuantityCollection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-133">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Resource/ProductResource.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="40" column="30" lean-forward="true" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -697,22 +685,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
+        <state relative-caret-position="2583">
           <caret line="129" column="25" selection-start-line="129" selection-start-column="20" selection-end-line="129" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="86" column="25" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -723,17 +697,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php">
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="138" column="64" selection-start-line="138" selection-start-column="38" selection-end-line="138" selection-end-column="64" />
+        <state relative-caret-position="399">
+          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="56" column="5" lean-forward="true" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Color.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
-          <caret line="85" column="60" selection-start-line="85" selection-start-column="60" selection-end-line="85" selection-end-column="60" />
+          <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Collection/ProductsCollection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-809">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Collection/ProductColorsCollection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Resource/ProductResource.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Collection/ProductQuantityCollection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="119" column="49" lean-forward="true" selection-start-line="119" selection-start-column="49" selection-end-line="119" selection-end-column="49" />
         </state>
       </provider>
     </entry>
