@@ -19,7 +19,15 @@ class ProductColorsCollection extends ResourceCollection
         return $this->collection->transform(function ($q){
             return[
                 'id'=>$q->id,
-                'color'=>$q->color
+                'color'=>$q->color,
+                'sizes'=>$q->productQuantities->transform(function ($i){
+                    return[
+                        'id' => $i->size_id,
+                        'size' => fix_null_string(optional($i->size)->size),
+                        'quantity' => $i->quantity,
+                        'unique_id' => $i->id
+                    ];
+                })
             ];
         });
     }
