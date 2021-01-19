@@ -148,8 +148,12 @@ if (!function_exists('cart_status')){
         return [
             'open' => 'في انتظار الموافقة',
             'confirmed' => 'تم تأكيد الطلب',
-            'on_delivery' => 'جارى التوصيل',
             'finished' => 'تم التوصيل',
+            'refused' => 'تم رفض الطلب',
+            'canceled' => 'تم الالغاء',
+
         ];
     }
 }
+
+

@@ -10,16 +10,14 @@
                 <h1>المنتجات</h1>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('/')}}">الرئيسية</a></li>
-                    <li class="breadcrumb-item"><a href="{{url('categories')}}">الأقسام</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('website.categories.index')}}">الأقسام</a></li>
                     <li class="breadcrumb-item active" aria-current="page">المنتجات</li>
                 </ol>
                 <div class="styled_tabs">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#">حريمى </a></li>
-                        <li><a href="#">رجالى</a></li>
-                        <li><a href="#">أطفال</a></li>
-                        <li><a href="#">أحذية</a></li>
-                        <li><a href="#">شنط</a></li>
+                        @foreach($categories as $category)
+                            <li><a href="{{route('website.categories.subCategories',$category->id)}}">{{$category->name}}</a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
