@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collection;
 
+use App\Http\Resources\Resource\CartResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class CartsCollection extends ResourceCollection
@@ -25,6 +26,7 @@ class CartsCollection extends ResourceCollection
                 'delivered_at' => fix_null_string($q->delivered_at),
                 'sum_cart_orders' => $q->sum_cart_orders,
                 'total' => $q->total,
+                'items'=> new CartResource($q)
             ];
         });
         if($this->resource instanceof \Illuminate\Pagination\LengthAwarePaginator){
