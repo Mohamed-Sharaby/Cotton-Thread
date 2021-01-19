@@ -25,7 +25,9 @@ class AddressesCollection extends ResourceCollection
                 'name' => fix_null_string($q->name),
                 'phone' => fix_null_string($q->phone),
                 'is_default' => ($q->is_default)?true:false,
-                'address' => $q->address,
+                'street' => fix_null_string($q->street),
+                'house_num' => fix_null_string($q->house_num),
+                'address' => fix_null_string($q->address),
                 'lat' => fix_null_string($q->lat),
                 'lng' => fix_null_string($q->lng),
             ];
