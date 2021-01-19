@@ -179,7 +179,7 @@ return [
         'password_confirmation' => 'تأكيد كلمة المرور',
         'city'                  => 'المدينة',
         'country'               => 'الدولة',
-        'address'               => 'عنوان السكن',
+        'address'               => 'العنوان ',
         'phone'                 => 'الجوال',
         'mobile'                => 'الجوال',
         'age'                   => 'العمر',

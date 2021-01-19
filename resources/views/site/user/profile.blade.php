@@ -15,19 +15,21 @@
 <section class="all-sections">
     <div class="container">
         <div class="my_info">
-            <a href="{{asset('website/img/user.png')}}" data-fancybox="gallery" class="user_img"> <img src="{{asset('website/img/user.png')}}"> </a>
+            <a href="{{auth()->user()->image}}" data-fancybox="gallery" class="user_img">
+                <img src="{{auth()->user()->image}}">
+            </a>
             <ul class="user_info">
                 <li>
                     <p>اسم المستخدم</p>
-                    <h4>ريم فارس</h4>
+                    <h4>{{auth()->user()->name}} </h4>
                 </li>
                 <li>
                     <p>البريد الإلكترونى</p>
-                    <h4>reem@faris.com</h4>
+                    <h4>{{auth()->user()->email}}</h4>
                 </li>
                 <li>
                     <p>رقم الجوال</p>
-                    <h4>+964384765</h4>
+                    <h4>{{auth()->user()->phone}}</h4>
                 </li>
                 <li>
                     <p>المدينة</p>
