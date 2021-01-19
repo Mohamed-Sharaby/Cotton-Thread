@@ -2,11 +2,13 @@
 
 
 use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\ProductController;
+use App\Http\Controllers\Site\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'website.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    //Route::get('/categories', [HomeController::class, 'categories'])->name('categories');
+    Route::get('/pages/{page}', [HomeController::class, 'page']);
 
     Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
         Route::get('/', [HomeController::class, 'categories'])->name('index');
@@ -14,17 +16,24 @@ Route::group(['as' => 'website.'], function () {
     });
 
     Route::group(['as' => 'products.', 'prefix' => 'products'], function () {
-        Route::GET('/{id?}', 'ProductController@index')->name('index');
-        Route::GET('single/{product}', 'ProductController@show')->name('single');
+        Route::GET('/{id?}', [ProductController::class, 'index'])->name('index');
+        Route::GET('single/{product}', [ProductController::class, 'show'])->name('single');
+    });
+
+
+    Route::group(['prefix' => 'user', 'as' => 'users.', 'middleware' => 'auth'], function () {
+
+        Route::GET('profile', [UserController::class,'profile'])->name('profile');
+        Route::resource('addresses','AddressController');
+        Route::get('regions/{id}','AddressController@regions');
+        Route::get('districts/{id}','AddressController@districts');
+
     });
 
 
 });
 
 
-Route::get('/about', function () {
-    return view('site.about');
-});
 Route::get('/cart', function () {
     return view('site.cart');
 });
@@ -42,9 +51,7 @@ Route::get('/multimedia', function () {
 Route::get('/new-products', function () {
     return view('site.new-products');
 });
-//Route::get('/all-products', function () {
-//    return view('site.all-products');
-//});
+
 Route::get('/news', function () {
     return view('site.news');
 });
@@ -63,18 +70,11 @@ Route::get('/payment', function () {
 Route::get('/booking-done', function () {
     return view('site.booking-done');
 });
-Route::get('/return-policy', function () {
-    return view('site.return-policy');
-});
-Route::get('/privacy-policy', function () {
-    return view('site.privacy-policy');
-});
-Route::get('/profile-add-address', function () {
-    return view('site.profile-add-address');
-});
-Route::get('/profile-addresses', function () {
-    return view('site.profile-addresses');
-});
+//
+//Route::get('/profile-add-address', function () {
+//    return view('site.profile-add-address');
+//});
+
 Route::get('/profile-edit', function () {
     return view('site.profile-edit');
 });
@@ -91,9 +91,8 @@ Route::get('/profile', function () {
     return view('site.profile');
 });
 Route::get('/register', function () {
-    return view('site.register');
+    return view('site.auth.register');
 });
-
 
 Route::get('/reset', function () {
     return view('site.forget');
@@ -105,9 +104,6 @@ Route::get('/change-pass', function () {
     return view('site.change-password');
 });
 
-Route::get('/return-policy', function () {
-    return view('site.return-policy');
-});
 Route::get('/search-result', function () {
     return view('site.search-result');
 });
@@ -117,12 +113,4 @@ Route::get('/sign-in', function () {
 Route::get('/single-order', function () {
     return view('site.single-order');
 });
-Route::get('/single-product', function () {
-    return view('site.single-product');
-});
-Route::get('/usage-policy', function () {
-    return view('site.usage-policy');
-});
-Route::get('/terms-conditions', function () {
-    return view('site.terms-conditions');
-});
+

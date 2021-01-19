@@ -11,11 +11,12 @@
                 <div class="rate_in">
                     <ul class="stars">
                         <!-- add class (.yellowed) to the number of rates --->
-                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                        <li><i class="fas fa-star"></i></li>
-                        <li><i class="fas fa-star"></i></li>
+                        @for($i=0; $i< $product->avg_rate; $i++)
+                            <li class="yellowed"><i class="fas fa-star"></i></li>
+                        @endfor
+                        @for($i=0;$i<(5-$product->avg_rate);$i++)
+                            <li><i class="fas fa-star"></i></li>
+                        @endfor
                     </ul>
                     <p class="rate_ratio">{{$product->avg_rate}}</p>
                 </div>

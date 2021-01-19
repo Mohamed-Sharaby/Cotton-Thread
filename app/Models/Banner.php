@@ -25,6 +25,11 @@ class Banner extends Model
     protected $fillable = ['image','ar_details','en_details','is_ban'];
 
 
+    public function scopeActive($query)
+    {
+        return $query->where('is_ban', 0);
+    }
+
 
     protected static function boot()
     {
