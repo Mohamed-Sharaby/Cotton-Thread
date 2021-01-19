@@ -25,6 +25,7 @@ class CartResource extends JsonResource
             return[
                 'id'=>$q->id,
                 'product_name'=>fix_null_string(optional(optional($q->productQuantity)->product)->name),
+                'product_image'=>fix_null_string(optional(optional($q->productQuantity)->product)->image),
                 'quantity'=>$q->quantity,
                 'price'=>$q->price,
                 'discount'=>$q->discount,
