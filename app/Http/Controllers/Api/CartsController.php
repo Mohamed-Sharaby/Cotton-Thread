@@ -213,12 +213,18 @@ class CartsController extends Controller
      * @param Cart $cart
      * @return \Illuminate\Http\JsonResponse
      */
-    public function deleteCart(Cart $cart){
+    public function changeCartStatus(Request $request,Cart $cart){
         $user = auth()->user();
+        $validator = Validator::make($request->all(),[
+            'status'=>'required|string|in:canceled,finished',
+        ]);
+        if($validator->fails()){
+            return $this->apiResponse($validator->errors()->first(),422);
+        }
         if($cart->status != 'open' || $user->id != $cart->user_id)
             return $this->apiResponse(__('cart access denied'),403);
-        $cart->update(['status'=>'canceled']);
-        return $this->apiResponse(__('cart deleted successfully'),200);
+        $cart->update(['status'=>$request['status']]);
+        return $this->apiResponse(__('cart canceled successfully'),200);
     }
 
 
