@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Collection\AddressesCollection;
+use App\Http\Resources\Resource\AddressResource;
 use App\Http\Traits\ApiResponse;
 use App\Models\Address;
 use App\Models\User;
@@ -26,7 +27,7 @@ class AddressesController extends Controller
     {
         $user = auth()->user();
 //        $user = User::find(1);
-        $addresses = new AddressesCollection($user->addresses);
+        $addresses['addresses'] = AddressResource::collection($user->addresses);
         return $this->apiResponse($addresses);
     }
 
@@ -43,8 +44,9 @@ class AddressesController extends Controller
         $validate = Validator::make($request->all(), $this->addressValidation());
         if($validate->fails())
             return $this->apiResponse($validate->errors()->first(),422);
-        $user->addresses()->create($request->all());
-        return $this->apiResponse(__('address added successfully'));
+        $address = $user->addresses()->create($request->all());
+        $address->refresh();
+        return $this->apiResponse(new AddressResource($address));
     }
 
     /**
@@ -78,7 +80,8 @@ class AddressesController extends Controller
         if($validate->fails())
             return $this->apiResponse($validate->errors()->first(),422);
         $address->update($request->all());
-        return $this->apiResponse(__('address updated successfully'));
+        $address->refresh();
+        return $this->apiResponse(new AddressResource($address));
     }
 
     /**
