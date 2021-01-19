@@ -638,6 +638,10 @@
     "item quantity minus": "تم تقليل كمية الوحدة",
     "wallet amount not sufficient": "مبلغ المحفظة غير كافٍ",
     "user does not have a wallet": "المستخدم ليس لدية محفظة",
-    "comment added successfully": "تم اضافة التعليق بنجاح"
+    "comment added successfully": "تم اضافة التعليق بنجاح",
+    "item access denied": "لا يمكن الوصول للمنتج",
+    "cart deleted successfully": "تم حذف الطلب بنجاح",
+    "item deleted successfully": "تم حذف المنتج من العربه بنجاح"
+
 
 }
