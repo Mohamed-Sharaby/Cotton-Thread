@@ -207,4 +207,34 @@ class CartsController extends Controller
         }
         return $this->apiResponse(['cart_id'=>$cart->id]);
     }
+
+
+    /**
+     * @param Cart $cart
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function deleteCart(Cart $cart){
+        $user = auth()->user();
+        if($cart->status != 'open' || $user->id != $cart->user_id)
+            return $this->apiResponse(__('cart access denied'),403);
+        $cart->update(['status'=>'canceled']);
+        return $this->apiResponse(__('cart deleted successfully'),200);
+    }
+
+
+    /**
+     * @param CartItem $item
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function deleteItem(CartItem $item){
+        $user = auth()->user();
+        $cart = $item->cart()->where('status','open')
+            ->where('user_id',$user->id);
+        if(!$cart->exists())
+            return $this->apiResponse(__('item access denied'),403);
+        $item->delete();
+        return $this->apiResponse(__('item deleted successfully'),200);
+
+    }
 }
