@@ -26,6 +26,8 @@ class CartResource extends JsonResource
                 'id'=>$q->id,
                 'product_name'=>fix_null_string(optional(optional($q->productQuantity)->product)->name),
                 'product_image'=>fix_null_string(optional(optional($q->productQuantity)->product)->image),
+                'category_id'=>fix_null_string(optional(optional(optional($q->productQuantity)->product)->subCategory)->category_id),
+                'category_name'=>fix_null_string(optional(optional(optional(optional($q->productQuantity)->product)->subCategory)->category)->name),
                 'quantity'=>$q->quantity,
                 'price'=>$q->price,
                 'discount'=>$q->discount,
@@ -43,6 +45,8 @@ class CartResource extends JsonResource
         });
         $data['sum_cart_orders'] = $this->sum_cart_orders;
         $data['total'] = $this->total;
+        $data['delivery_fess'] = number_format($this->delivery_cost,2,'.',',');
+        $data['tax_fess'] = number_format($this->tax,2,'.',',');
 
         return $data;
     }

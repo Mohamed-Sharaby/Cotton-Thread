@@ -142,18 +142,37 @@ class Cart extends Model
     }
 
 
+
+
+    public function getTaxAttribute(){
+        $sum_orders = $this->cartItems()->selectRaw('SUM(cart_items.price*
+        (1-((cart_items.discount)/100))* cart_items.quantity) as sum')->first()->sum;
+        $tax = (1-(floatval(getSetting('tax_percentage'))/100))*$sum_orders;
+        return $tax;
+//        return number_format($tax,2,'.',',');
+    }
+
+    public function getDeliveryCostAttribute(){
+        $sum_orders =  $this->cartItems()->selectRaw('SUM(cart_items.price*
+        (1-((cart_items.discount)/100))* cart_items.quantity) as sum')->first()->sum;
+        $delivery_cost = (1-(floatval(getSetting('delivery_cost_percentage'))/100))*$sum_orders;
+        return $delivery_cost;
+//        return number_format($delivery_cost,2,'.',',');
+    }
+
     /**
      * @return float|string
      */
     public function getTotalAttribute(){
-        $sum_orders = floatval($this->sum_cart_orders);
-        if(!getSetting('tax_percentage'))
-            return $sum_orders;
-        else{
-            $tax = 1-(floatval(getSetting('tax_percentage'))/100)*$sum_orders;
-            $total = $tax + $sum_orders;
+        $sum_orders = $this->cartItems()->selectRaw('SUM(cart_items.price*
+        (1-((cart_items.discount)/100))* cart_items.quantity) as sum')->first()->sum;
+//        if(!getSetting('tax_percentage'))
+//            return $sum_orders;
+//        else{
+            $tax = floatval($this->tax);
+            $delivery_cost = floatval($this->delivery_cost);
+            $total = $tax + $sum_orders + $delivery_cost;
             return number_format($total,2,'.',',');
-        }
+//        }
     }
-
 }
