@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\AddressesController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PickersController;
 use App\Http\Controllers\Api\CartsController;
+use App\Http\Controllers\Api\NotificationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,7 @@ Route::group(['middleware'=>['jwt.check','x-lang']],function (){
        Route::delete('/cart-item/{item}',[CartsController::class,'deleteItem']);  // required auth
        Route::post('/submit/cart/{cart}',[CartsController::class,'submitCart']);  // required auth
        Route::get('/wallet',[HomeController::class,'wallet']);  // required auth
+       Route::get('/notifications',[NotificationsController::class,'index']);  // required auth
        Route::post('/logout',[ProfileController::class,'logout']);  // required auth
    });
    Route::group(['prefix'=>'pickers'],function (){
