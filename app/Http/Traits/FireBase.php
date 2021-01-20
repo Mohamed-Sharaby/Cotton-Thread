@@ -55,7 +55,7 @@ class FireBase
     public static function notification($notifiable,$title,$body,$data)
     {
         Log::info($notifiable);
-        $notify = $notifiable->tokens();
+        $notify = $notifiable->fcm_tokens();
         if ($notify->where('type','android')->exists()) {
             self::notifyByFirebase($title, $body, [$notify->first()->token], $data, false);
         }
