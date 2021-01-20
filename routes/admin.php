@@ -2,9 +2,18 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('dashboard', 'AuthController@showLoginForm')->name('admin.login');
+Route::post('dashboard', 'AuthController@login');
+
+
+Route::post('admin/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth:admin')
+    ->name('admin.logout');
+
 Route::group(['prefix' => 'dashboard', 'middleware' =>['auth:admin','admin'], 'as' => 'admin.'], function () {
 
-    Route::get('/', 'DashboardController@index')->name('main');
+    Route::get('/main', 'DashboardController@index')->name('main');
     Route::resource('admins', 'AdminController');
     Route::resource('roles', 'RoleController');
     Route::resource('users', 'UserController');
@@ -47,8 +56,5 @@ Route::group(['prefix' => 'dashboard', 'middleware' =>['auth:admin','admin'], 'a
 });
 
 
-//Route::get('/dashboard', function () {
-//    return view('dashboard');
-//})->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

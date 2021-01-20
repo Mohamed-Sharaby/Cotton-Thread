@@ -20,14 +20,17 @@
         <!-- Content area -->
         <div class="content d-flex justify-content-center align-items-center">
             <!-- Login card -->
-            <form class="login-form" method="POST" action="{{ route('login') }}">
+
+            <form class="login-form" method="POST" action="{{ route('admin.login') }}">
                 @csrf
+
                 <div class="card mb-0 shadow shadow-lg">
                     <div class="card-body">
                         <div class="text-center mb-3">
-        <img src="{{asset('admin/global_assets/images/logo/logo.png')}}" alt="logo">
+                            <img src="{{asset('admin/global_assets/images/logo/logo.png')}}" alt="logo">
                             <h5 class="mb-0 mt-1">لوحة التحكم | تسجيل الدخول</h5>
                         </div>
+                        @include('dashboard.layouts.status')
                         <div class="form-group form-group-feedback form-group-feedback-left">
                             <input type="email" class="form-control @error('email') is-invalid @enderror"
                                    oninvalid="this.setCustomValidity('البريد الالكترونى مطلوب')"
@@ -46,7 +49,7 @@
 
                         <div class="form-group form-group-feedback form-group-feedback-left">
                             <input type="password" placeholder="كلمة المرور" name="password"
-                                   oninvalid="this.setCustomValidity('كلمة المرور')"
+                                   oninvalid="this.setCustomValidity('كلمة المرور مطلوبة')"
                                    onchange="this.setCustomValidity('')"
                                    class="form-control @error('password') is-invalid @enderror" required
                                    autocomplete="current-password">

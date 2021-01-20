@@ -10,14 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     *
-     * @return
-     */
+
     public function create()
     {
-        return view('dashboard.auth.login');
+        return view('site.auth.login');
     }
 
     /**

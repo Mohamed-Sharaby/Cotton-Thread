@@ -7,7 +7,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    <meta name="csrf-token" content="true">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="HandheldFriendly" content="true">
     <link rel="dns-prefetch" href="//www.instagram.com">
     <link rel="dns-prefetch" href="//www.linkedin.com">
@@ -188,9 +188,14 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{url('/')}}">
+                                            <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
                                                 تسجيل الخروج
                                             </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                  class="d-none">
+                                                @csrf
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>
@@ -457,6 +462,15 @@
 <script src="{{asset('website/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('website/js/fontawesome.min.js')}}"></script>
 <script src="{{asset('website/js/wow.min.js')}}"></script>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
