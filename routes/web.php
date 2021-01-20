@@ -5,6 +5,9 @@ use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Notifications\GeneralNotification;
+use Illuminate\Support\Facades\Notification;
+use App\Models\User;
 
 Route::group(['as' => 'website.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -33,6 +36,10 @@ Route::group(['as' => 'website.'], function () {
 
 });
 
+Route::get('moniem/notify',function (\Illuminate\Http\Request $request){
+    $user = User::find($request['user_id']);
+    Notification::send($user,new GeneralNotification($request->except(['user_id'])));
+});
 
 Route::get('/cart', function () {
     return view('site.cart');
