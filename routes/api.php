@@ -52,6 +52,7 @@ Route::group(['middleware'=>['jwt.check','x-lang']],function (){
        Route::put('/minus-qty/{item}',[CartsController::class,'minusQty']);  // required auth
        Route::get('/open-cart-details',[CartsController::class,'openCartDetails']);  // required auth
        Route::post('/local/cart',[CartsController::class,'localCart']);  // required auth
+       Route::get('/check/coupon',[CartsController::class,'checkCoupon']);  // required auth
        Route::get('/all/carts',[CartsController::class,'allCarts']);  // required auth
        Route::put('/cart/{cart}',[CartsController::class,'changeCartStatus']);  // required auth
        Route::delete('/cart-item/{item}',[CartsController::class,'deleteItem']);  // required auth
