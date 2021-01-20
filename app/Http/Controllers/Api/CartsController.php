@@ -175,7 +175,7 @@ class CartsController extends Controller
         }else{
             $openCart->update($inputs);
         }
-        return $this->apiResponse(['cart_id'=>$openCart->id]);
+        return $this->apiResponse(new CartResource($openCart));
     }
 
     /**
