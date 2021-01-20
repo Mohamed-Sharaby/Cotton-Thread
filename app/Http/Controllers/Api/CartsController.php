@@ -9,6 +9,7 @@ use App\Http\Resources\Resource\CartResource;
 use App\Http\Traits\ApiResponse;
 use App\Models\Cart;
 use App\Models\CartItem;
+use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\ProductQuantity;
 use Illuminate\Http\Request;
@@ -123,14 +124,20 @@ class CartsController extends Controller
     public function localCart(Request $request){
         $user = auth()->user();
         $validator = Validator::make($request->all(),[
-           '*.product_id'=>'required|numeric|exists:products,id',
-           '*.size_id'=>'required|numeric|exists:sizes,id',
-           '*.color_id'=>'required|numeric|exists:colors,id',
-           '*.quantity'=>'required|numeric',
+            'order.*.product_id'=>'required|numeric|exists:products,id',
+            'order.*.size_id'=>'required|numeric|exists:sizes,id',
+            'order.*.color_id'=>'required|numeric|exists:colors,id',
+            'order.*.quantity'=>'required|numeric',
+            'address_id'=>'required|numeric|exists:addresses,id',
+            'coupon'=>'sometimes|nullable|string|exists:coupons,code',
+            'payment'=>'required|string|in:COD,wallet,credit,bank_transaction',
+            'transaction_image'=>'required_if:payment,bank_transaction',
+            'comment'=>'sometimes|nullable|string',
         ]);
         if($validator->fails())
             return $this->apiResponse($validator->errors()->first(),422);
-        foreach ($request->all() as $item){
+
+        foreach ($request['order'] as $item){
             $product  = Product::find($item['product_id']);
             if($product->is_ban)
                 return $this->apiResponse(__('cannot access product'),422);
@@ -150,6 +157,23 @@ class CartsController extends Controller
                 $openCart = Cart::create(['user_id'=>$user->id, 'status'=>'open']);
                 $openCart->itemUpdateOrCreate($proQty,$item,$product);
             }
+        }
+        $openCart->refresh();
+        $inputs = $request->only(['address_id','coupon','payment','transaction_image','comment']);
+        $inputs['status'] = 'confirmed';
+        if($request['payment']=='wallet'){
+            $wallet  = $user->wallet;
+            if(!$wallet)
+                return $this->apiResponse(__('user does not have a wallet'));
+            $amount = $wallet->amount;
+            if((float)$amount >= (float)$openCart->total){
+                $user->wallet()->update(['amount'=>$amount-$openCart->total]);
+                $openCart->update($inputs);
+            }else{
+                return $this->apiResponse(__('wallet amount not sufficient'),400);
+            }
+        }else{
+            $openCart->update($inputs);
         }
         return $this->apiResponse(['cart_id'=>$openCart->id]);
     }
@@ -243,4 +267,19 @@ class CartsController extends Controller
         return $this->apiResponse(__('item deleted successfully'),200);
 
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function checkCoupon(Request $request){
+        $validator = Validator::make($request->all(),[
+            'coupon'=>'required|string|exists:coupons,code',
+        ]);
+        if($validator->fails())
+            return $this->apiResponse($validator->errors()->first(),422);
+        $coupon = Coupon::where('code',$request['coupon'])->first();
+        return $this->apiResponse($coupon->discount);
+    }
+
 }
