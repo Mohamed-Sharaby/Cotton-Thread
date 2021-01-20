@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de1d87b9-e7bc-433d-bd1d-972c1476a1c6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CartsController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CartsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="249">
-              <caret line="176" column="9" lean-forward="true" selection-start-line="176" selection-start-column="9" selection-end-line="176" selection-end-column="9" />
+            <state relative-caret-position="287">
+              <caret line="177" column="62" selection-start-line="177" selection-start-column="62" selection-end-line="177" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -60,11 +58,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cart.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Cart.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Models/Cart.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="163" column="7" lean-forward="true" selection-start-line="163" selection-start-column="7" selection-end-line="163" selection-end-column="7" />
+            <state relative-caret-position="226">
+              <caret line="162" lean-forward="true" selection-start-line="162" selection-end-line="162" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FcmToken.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Models/FcmToken.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="86" column="72" selection-start-line="86" selection-start-column="72" selection-end-line="86" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -109,8 +121,8 @@
       <find>sum</find>
       <find>discount</find>
       <find>unauthorized</find>
-      <find>localCart</find>
       <find>tax</find>
+      <find>localCart</find>
     </findStrings>
     <replaceStrings>
       <replace>href=&quot;#&quot;</replace>
@@ -161,7 +173,6 @@
         <option value="$PROJECT_DIR$/app/Http/Traits/ApiResponse.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Collection/RatesCollection.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Collection/ProductColorsCollection.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Collection/ProductsCollection.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Collection/CartsCollection.php" />
@@ -172,9 +183,10 @@
         <option value="$PROJECT_DIR$/app/Http/Resources/Resource/CartResource.php" />
         <option value="$PROJECT_DIR$/resources/lang/ar.json" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Resource/ProductResource.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Models/Cart.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" />
       </list>
     </option>
   </component>
@@ -359,6 +371,14 @@
               <item name="cotton" type="b2602c69:ProjectViewProjectNode" />
               <item name="cotton" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cotton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cotton" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -445,12 +465,12 @@
       <workItem from="1611050405965" duration="24000" />
       <workItem from="1611056933611" duration="12482000" />
       <workItem from="1611134342949" duration="1001000" />
-      <workItem from="1611141364443" duration="2405000" />
+      <workItem from="1611141364443" duration="4997000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165687000" />
+    <option name="totallyTimeSpent" value="168279000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -512,13 +532,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthenticatedSessionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/LoginRequest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -666,13 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Resources/Collection/ProductsCollection.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-809">
@@ -778,13 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="176" column="9" lean-forward="true" selection-start-line="176" selection-start-column="9" selection-end-line="176" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -794,8 +793,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Cart.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="163" column="7" lean-forward="true" selection-start-line="163" selection-start-column="7" selection-end-line="163" selection-end-column="7" />
+        <state relative-caret-position="226">
+          <caret line="162" lean-forward="true" selection-start-line="162" selection-end-line="162" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/FcmToken.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="86" column="72" selection-start-line="86" selection-start-column="72" selection-end-line="86" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="177" column="62" selection-start-line="177" selection-start-column="62" selection-end-line="177" selection-end-column="62" />
         </state>
       </provider>
     </entry>
