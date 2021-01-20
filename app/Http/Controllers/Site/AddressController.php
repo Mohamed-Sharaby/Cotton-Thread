@@ -48,21 +48,36 @@ class AddressController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(Address $address)
     {
-        //
+        return view('site.user.edit-address',compact('address'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Address $address)
     {
-        //
+        //dd($request->all());
+        $request->validate([
+            'name' => 'nullable|string|max:191',
+            'city_id' => 'required|exists:cities,id',
+            'region_id' => 'required|exists:regions,id',
+            'district_id' => 'required|exists:districts,id',
+            'phone' => 'nullable',
+            'street' => 'nullable',
+            'house_num' => 'nullable',
+            'address' => 'required',
+        ]);
+        $address->update($request->all());
+        return redirect(route('website.users.addresses.index'))->with('success', __('Address Updated Successfully'));
+
     }
 
 
-    public function destroy($id)
+    public function destroy(Address $address)
     {
-        //
+        $address->delete();
+        return 'Done';
+        //return redirect(route('website.users.addresses.index'));
     }
 
 

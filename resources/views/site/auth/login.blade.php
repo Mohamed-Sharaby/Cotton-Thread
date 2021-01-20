@@ -8,25 +8,26 @@
 <section class="static-page all-sections">
     <div class="container">
         <div class="row">
-            <form class="static-page-form">
+            <form class="static-page-form" id="loginForm" autocomplete="off">
+                @csrf
                 <a href="{{url('/')}}">
                     <img src="{{asset('website/img/logo-wide.png')}}">
                 </a>
                 <h2>تسجيل دخول </h2>
                 <div class="input-wrap">
-                    <input type="text" placeholder="رقم الجوال">
+                    <input type="text" placeholder="رقم الجوال" name="phone">
                     <div class="hov-input">
                         <label>رقم الجوال</label>
                     </div>
                 </div>
                 <div class="input-wrap">
-                    <input type="password" placeholder="........">
+                    <input type="password" placeholder="........" name="password">
                     <div class="hov-input">
                         <label>كلمة المرور</label>
                     </div>
                 </div>
                 <div class="form">
-                    <input id="check" type="checkbox" />
+                    <input id="check" type="checkbox" name="remember" value="1"/>
                     <label for="check" style="--d: '+d+' px">
                         <svg viewBox="0,0,50,50">
                             <path d="M5 30 L 20 45 L 45 5"></path>
@@ -36,7 +37,7 @@
                 </div>
                 <a class="forget-pass" href="{{url('/reset')}}">نسيت كلمة المرور ؟</a>
                 <button type="submit" class="btn-hvr">تسجيل دخول</button>
-                <a href="{{url('register')}}" class="btn-hvr bg-w">انشاء حساب</a>
+                <a href="{{route('register')}}" class="btn-hvr bg-w">انشاء حساب</a>
                 <span class="media-tit">او سجل بحساب التواصل الاجتماعى</span>
                 <ul class="social">
                     <li><a href="www.facebook.com" target="_blank" class="icon-f"><i class="fab fa-facebook"></i></a></li>
@@ -51,4 +52,5 @@
 <!-- /////////////////////||||||||||||||||||||||||||||| End Section |||||||||||||||||||||||||||| -->
 @endsection
 @section('scripts')
+    <script src="{{asset('website/js/user/login.js')}}"></script>
 @endsection
