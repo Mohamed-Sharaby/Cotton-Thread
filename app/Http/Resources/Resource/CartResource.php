@@ -14,14 +14,24 @@ class CartResource extends JsonResource
      */
     public function toArray($request)
     {
-        $data['cart_id'] = $this->id;
+        $data['id'] = $this->id;
         $data['address'] = fix_null_string(optional($this->address)->address);
         $data['status'] = $this->status;
         $data['payment'] = fix_null_string($this->payment);
         $data['transaction_image'] = fix_null_string(getImg($this->transaction_image));
         $data['comment'] = fix_null_string($this->comment);
         $data['delivered_at'] = fix_null_string($this->delivered_at);
-        $data['items'] = $this->cartItems->transform(function ($q){
+        $data['sum_cart_orders'] = $this->sum_cart_orders;
+        $data['total'] = $this->total;
+        $data['items']=[
+            'cart_id' => $this->id,
+            'address' => fix_null_string(optional($this->address)->address),
+            'status' => $this->status,
+            'payment' => fix_null_string($this->payment),
+            'transaction_image' => fix_null_string(getImg($this->transaction_image)),
+            'comment' => fix_null_string($this->comment),
+            'delivered_at' => fix_null_string($this->delivered_at),
+            'items' => $this->cartItems->transform(function ($q){
             return[
                 'id'=>$q->id,
                 'product_name'=>fix_null_string(optional(optional($q->productQuantity)->product)->name),
@@ -42,11 +52,13 @@ class CartResource extends JsonResource
                     'color' => fix_null_string(optional(optional($q->productQuantity)->size)->size),
                 ],
             ];
-        });
-        $data['sum_cart_orders'] = $this->sum_cart_orders;
-        $data['total'] = $this->total;
-        $data['delivery_fess'] = number_format($this->delivery_cost,2,'.',',');
-        $data['tax_fess'] = number_format($this->tax,2,'.',',');
+        }),
+            'sum_cart_orders' => $this->sum_cart_orders,
+            'total' => $this->total,
+            'delivery_fess' => number_format($this->delivery_cost,2,'.',','),
+            'tax_fess' => number_format($this->tax,2,'.',','),
+        ];
+
 
         return $data;
     }
