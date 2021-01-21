@@ -14,16 +14,7 @@ class CartResource extends JsonResource
      */
     public function toArray($request)
     {
-        $data['id'] = $this->id;
-        $data['address'] = fix_null_string(optional($this->address)->address);
-        $data['status'] = $this->status;
-        $data['payment'] = fix_null_string($this->payment);
-        $data['transaction_image'] = fix_null_string(getImg($this->transaction_image));
-        $data['comment'] = fix_null_string($this->comment);
-        $data['delivered_at'] = fix_null_string($this->delivered_at);
-        $data['sum_cart_orders'] = $this->sum_cart_orders;
-        $data['total'] = $this->total;
-        $data['items']=[
+        $data=[
             'cart_id' => $this->id,
             'address' => fix_null_string(optional($this->address)->address),
             'status' => $this->status,
