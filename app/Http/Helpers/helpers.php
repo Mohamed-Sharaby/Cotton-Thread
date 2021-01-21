@@ -157,3 +157,10 @@ if (!function_exists('cart_status')){
 }
 
 
+function handleArrayKeyNotExists($array,$key){
+    if(array_key_exists($key,$array))
+        return $array[$key];
+    else
+        return '';
+}
+
