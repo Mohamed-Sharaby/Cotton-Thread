@@ -15,9 +15,9 @@
                 </a>
                 <h2>تسجيل دخول </h2>
                 <div class="input-wrap">
-                    <input type="text" placeholder="رقم الجوال" name="phone">
+                    <input type="email" placeholder="البريد الالكترونى " name="email">
                     <div class="hov-input">
-                        <label>رقم الجوال</label>
+                        <label>البريد الالكترونى</label>
                     </div>
                 </div>
                 <div class="input-wrap">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="form">
-                    <input id="check" type="checkbox" name="remember" value="1"/>
+                    <input id="check" type="checkbox" name="remember" />
                     <label for="check" style="--d: '+d+' px">
                         <svg viewBox="0,0,50,50">
                             <path d="M5 30 L 20 45 L 45 5"></path>
