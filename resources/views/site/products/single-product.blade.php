@@ -24,9 +24,11 @@
                         <div class="img-pro-slider">
                             <div class="swiper-container gallery-top">
                                 <div class="swiper-wrapper">
-                                    @foreach($product->product_images as $image)
                                     <div class="swiper-slide"
-                                         style="background-image:url({{$image->image}})"></div>
+                                         style="background-image:url({{$product->image}})"></div>
+                                    @foreach($product->product_images as $image)
+                                        <div class="swiper-slide"
+                                             style="background-image:url({{$image->image}})"></div>
                                     @endforeach
                                 </div>
                                 <!-- Add Arrows -->
@@ -36,8 +38,8 @@
                             <div class="swiper-container gallery-thumbs">
                                 <div class="swiper-wrapper">
                                     @foreach($product->product_images as $image)
-                                    <div class="swiper-slide"
-                                         style="background-image:url({{$image->image}})"></div>
+                                        <div class="swiper-slide"
+                                             style="background-image:url({{$image->image}})"></div>
                                     @endforeach
                                 </div>
                             </div>
@@ -46,7 +48,17 @@
                     <div class="col-md-6 col-xs-12">
                         <div class="product-deitails">
                             <h1> {{$product->name}}</h1>
-                            <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
+                            @if(auth()->check())
+                                @if (checkFav($product->id))
+                                    <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
+                                @else
+                                    <button onclick="addToFavourite({{$product->id}})" class="likerr "><i
+                                            class="fas fa-heart"></i></button>
+                                @endif
+                            @else
+                                <button href="/login" class="likerr"><i class="fas fa-heart"></i></button>
+                            @endif
+
                             <div class="rate_in">
                                 <ul class="stars">
                                     <!-- add class (.yellowed) to the number of rates --->
@@ -111,6 +123,7 @@
                     </div>
                 </div>
                 <div class="styled_tabs">
+                    @include('dashboard.layouts.status')
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#product-deitails-k">تفاصيل المنتج </a></li>
                         <li><a data-toggle="tab" href="#product-rating-k">التقييمات</a></li>
@@ -123,7 +136,7 @@
                             </p>
                         </div>
                         <div id="product-rating-k" class="tab-pane fade">
-                           @include('site.products.product-rates')
+                            @include('site.products.product-rates')
                         </div>
                     </div>
                 </div>

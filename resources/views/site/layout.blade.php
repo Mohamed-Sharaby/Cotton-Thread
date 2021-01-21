@@ -118,8 +118,10 @@
                         <li><a href="{{url('/')}}" class="{{ Request::is('/') ? 'active' : '' }}">الرئيسية</a></li>
                         <li><a href="{{url('categories')}}" class="{{ Request::is('categories') ? 'active' : '' }}">الأقسام</a>
                         </li>
-                        <li><a href="{{url('new-products')}}" class="{{ Request::is('new-products') ? 'active' : '' }}">المنتجات
+
+                        <li><a href="{{url('/products/new')}}" class="{{ Request::is('products/new') ? 'active' : '' }}">المنتجات
                                 الجديدة</a></li>
+
                         <li><a href="{{url('offers')}}" class="{{ Request::is('offers') ? 'active' : '' }}">العروض</a>
                         </li>
                         <li><a href="{{url('about')}}" class="{{ Request::is('about') ? 'active' : '' }}">من نحن</a>
@@ -155,7 +157,7 @@
                                     <button type="button" class="nav-icon close-menu"><i class="fas fa-times"></i>
                                     </button>
                                     @if (auth()->user()->image)
-                                        <img src="{{asset('website/img/user.png')}}" class="rads_im">
+                                        <img src="{{auth()->user()->image}}" class="rads_im">
                                     @else
                                         <img src="{{auth()->user()->image}}" class="rads_im">
                                     @endif
@@ -168,12 +170,12 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{url('profile-orders')}}">
+                                            <a href="{{route('website.orders.index')}}">
                                                 طلباتى
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{url('profile-wallet')}}">
+                                            <a href="{{route('website.users.wallet')}}">
                                                 المحفظة
                                             </a>
                                         </li>
@@ -481,6 +483,26 @@
         "timeOut": "6000",
         "newestOnTop": false,
     }
+
+    function addToFavourite(product_id) {
+        $.ajax({
+            url: '/favourite/add/' + product_id,
+            type: 'GET',
+            success: function (data) {
+                toastr.success("{{__('Added To Your favourites')}}");
+               // $("#f" + product_id).addClass("wished-item");
+                //$("#f" + product_id).tooltip('hide').attr("data-original-title", "Remove from favourites").tooltip('show');
+               // $(".toggle-fav").addClass("added-to-wishlist").html("<i class='ti-heart'></i> Added to Wishlist");
+            },
+            error: function (data) {
+                toastr.success("{{__('Removed From the favourites')}}");
+               // $("#f" + product_id).removeClass("wished-item");
+               // $("#f" + product_id).tooltip('hide').attr("data-original-title", "Add to favourites").tooltip('show');
+               // $(".toggle-fav").removeClass("added-to-wishlist").html("<i class='ti-heart'></i> Add to Wishlist");
+            }
+        });
+    }
+
 </script>
 <script>
     $(function () {

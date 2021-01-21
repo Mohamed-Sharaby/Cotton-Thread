@@ -142,7 +142,7 @@ if (!function_exists('getImgPath')) {
     }
 }
 
-if (!function_exists('cart_status')){
+if (!function_exists('cart_status')) {
     function cart_status()
     {
         return [
@@ -151,14 +151,38 @@ if (!function_exists('cart_status')){
             'finished' => 'تم التوصيل',
             'refused' => 'تم رفض الطلب',
             'canceled' => 'تم الالغاء',
+        ];
+    }
+}
 
+if (!function_exists('payment_types')) {
+    function payment_types()
+    {
+        return [
+            'COD' => 'الدفع عند الاستلام',
+            'wallet' => 'المحفظة',
+            'bank_transaction' => 'تحويل بنكى',
+            'credit' => ' بطاقة ائتمان',
         ];
     }
 }
 
 
-function handleArrayKeyNotExists($array,$key){
-    if(array_key_exists($key,$array))
+if (!function_exists('checkFav')) {
+    function checkFav($product_id)
+    {
+        $favourites = \App\Models\Favourite::where('product_id', $product_id)->where('user_id', auth()->user()->id)->first();
+        if ($favourites) {
+            return true;
+        }
+        return false;
+    }
+}
+
+
+function handleArrayKeyNotExists($array, $key)
+{
+    if (array_key_exists($key, $array))
         return $array[$key];
     else
         return '';

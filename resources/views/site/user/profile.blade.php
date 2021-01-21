@@ -31,16 +31,19 @@
                     <p>رقم الجوال</p>
                     <h4>{{auth()->user()->phone}}</h4>
                 </li>
-                <li>
-                    <p>المدينة</p>
-                    <h4>السعودية - القصيم - بريدة</h4>
-                </li>
+{{--                <li>--}}
+{{--                    <p>المدينة</p>--}}
+{{--                    <h4>السعودية - القصيم - بريدة</h4>--}}
+{{--                </li>--}}
             </ul>
         </div>
         <div class="flx_anchors">
-            <button type="button" class="btn-hvr" data-toggle="modal" data-target="#resetPassModal">
+{{--            <button type="button" class="btn-hvr" data-toggle="modal" data-target="#resetPassModal">--}}
+{{--                تعديل الحساب--}}
+{{--            </button>--}}
+            <a type="button" href="{{route('website.users.editProfile')}}" class="btn-hvr" >
                 تعديل الحساب
-            </button>
+            </a>
         </div>
     </div>
 </section>
@@ -49,4 +52,5 @@
 @endsection
 @section('scripts')
 <script src="{{asset('website/js/jquery.fancybox.min.js')}}"></script>
+<script src="{{asset('website/js/user/order.js')}}"></script>
 @endsection

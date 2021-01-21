@@ -5,7 +5,16 @@
                 <div class="swiper-slide">
                     <div class="flex_prod">
                         <!--- add (.i_liked) class if it is favourite -->
-                        <button type="button" class="likerr"><i class="fas fa-heart"></i></button>
+                        @if(auth()->check())
+                            @if (checkFav($product->id))
+                                <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
+                            @else
+                                <button onclick="addToFavourite({{$product->id}})" class="likerr "><i
+                                        class="fas fa-heart"></i></button>
+                            @endif
+                        @else
+                            <button href="/login" class="likerr"><i class="fas fa-heart"></i></button>
+                    @endif
                         <!-- -->
 
                         <a href="{{route('website.products.single',$pro->id)}}" class="im_prod">

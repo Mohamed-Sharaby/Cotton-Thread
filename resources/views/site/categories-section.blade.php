@@ -7,12 +7,14 @@
         <div class="styled_tabs">
             <ul class="nav nav-tabs">
                 @foreach($categories as $category)
-                    <li class=""><a data-toggle="tab" href="#{{$category->id}}">{{$category->name}}</a></li>
+                    <li class="">
+                        <a data-toggle="tab" href="#{{$category->id}}">{{$category->name}}</a>
+                    </li>
                 @endforeach
             </ul>
             <div class="tab-content">
                 @foreach($categories as $category)
-                    <div id="{{$category->id}}" class="tab-pane fade">
+                    <div id="{{$category->id}}" class="tab-pane fade active">
                         <div class="theProds">
                             <div class="flex_row">
                                 <div class="row">
@@ -21,9 +23,16 @@
                                             <div class="col-md-3 col-sm-4 col-xs-6">
                                                 <div class="flex_prod">
                                                     <!--- add (.i_liked) class if it is favourite -->
-                                                    <button type="button" class="likerr i_liked"><i
-                                                            class="fas fa-heart"></i>
-                                                    </button>
+                                                    @if(auth()->check())
+                                                        @if (checkFav($product->id))
+                                                            <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
+                                                        @else
+                                                            <button onclick="addToFavourite({{$product->id}})" class="likerr "><i
+                                                                    class="fas fa-heart"></i></button>
+                                                        @endif
+                                                    @else
+                                                        <button href="/login" class="likerr"><i class="fas fa-heart"></i></button>
+                                                @endif
                                                     <!-- -->
                                                     <a href="{{route('website.products.single',$product->id)}}" class="im_prod">
                                                         <img src="{{$product->image}}"
