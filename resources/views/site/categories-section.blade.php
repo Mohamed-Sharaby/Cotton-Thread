@@ -14,7 +14,7 @@
             </ul>
             <div class="tab-content">
                 @foreach($categories as $category)
-                    <div id="{{$category->id}}" class="tab-pane fade active">
+                    <div id="{{$category->id}}" class="tab-pane fade ">
                         <div class="theProds">
                             <div class="flex_row">
                                 <div class="row">
