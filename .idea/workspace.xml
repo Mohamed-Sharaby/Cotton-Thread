@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de1d87b9-e7bc-433d-bd1d-972c1476a1c6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/NotificationsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/NotificationsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Helpers/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Helpers/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/Resource/CartResource.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Resource/CartResource.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Resources/Resource/NotificationResource.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="61" column="33" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="33" />
+            <state relative-caret-position="209">
+              <caret line="60" column="33" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -46,8 +44,8 @@
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="38" column="25" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="25" />
+            <state relative-caret-position="287">
+              <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -61,11 +59,55 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotificationsController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NotificationsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/NotificationsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="315">
+              <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+              <folding>
+                <element signature="e#44#80#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CartResource.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Resources/Resource/CartResource.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="320">
+              <caret line="59" column="10" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
+              <folding>
+                <element signature="e#793#2109#2#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CartsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="339">
+              <caret line="288" column="27" selection-start-line="288" selection-start-column="20" selection-end-line="288" selection-end-column="27" />
+              <folding>
+                <element signature="e#765#2260#0#PHP" />
+                <element signature="e#2387#3055#0#PHP" />
+                <element signature="e#3182#3854#0#PHP" />
+                <element signature="e#4314#7097#0#PHP" />
+                <element signature="e#7195#7632#0#PHP" />
+                <element signature="e#7755#9356#0#PHP" />
+                <element signature="e#9449#10059#0#PHP" />
+                <element signature="e#10182#10555#0#PHP" />
+                <element signature="e#10653#11062#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CartsCollection.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Resources/Collection/CartsCollection.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="27" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -94,8 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add</find>
-      <find>to</find>
       <find>size</find>
       <find>product_quantity</find>
       <find>$routeMiddleware</find>
@@ -124,6 +164,8 @@
       <find>token</find>
       <find>token()</find>
       <find>$this</find>
+      <find>cart</find>
+      <find>cart/</find>
     </findStrings>
     <replaceStrings>
       <replace>href=&quot;#&quot;</replace>
@@ -178,17 +220,17 @@
         <option value="$PROJECT_DIR$/app/Http/Resources/Resource/ProductResource.php" />
         <option value="$PROJECT_DIR$/app/Models/Cart.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" />
-        <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/app/Notifications/CustomDbChannel.php" />
         <option value="$PROJECT_DIR$/app/Notifications/GeneralNotification.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Traits/FireBase.php" />
-        <option value="$PROJECT_DIR$/app/Http/Resources/Resource/CartResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Helpers/helpers.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Resource/NotificationResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Collection/NotificationsCollection.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/NotificationsController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/Resource/CartResource.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
       </list>
     </option>
   </component>
@@ -373,7 +415,23 @@
               <item name="cotton" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cotton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cotton" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cotton" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cotton" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="Collection" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cotton" type="b2602c69:ProjectViewProjectNode" />
@@ -475,12 +533,12 @@
       <workItem from="1611056933611" duration="12482000" />
       <workItem from="1611134342949" duration="1001000" />
       <workItem from="1611141364443" duration="8402000" />
-      <workItem from="1611215797896" duration="3322000" />
+      <workItem from="1611215797896" duration="5104000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175006000" />
+    <option name="totallyTimeSpent" value="176788000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -492,8 +550,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32905984" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" visible="true" weight="0.36752138" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27651006" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932885" weight="0.36752138" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27651006" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3295302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -694,13 +752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Collection/CartsCollection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Product.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
@@ -781,13 +832,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="61" column="33" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Traits/FireBase.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
@@ -797,8 +841,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="38" column="25" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="25" />
+        <state relative-caret-position="287">
+          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -806,20 +850,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
           <caret line="159" column="32" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Resource/CartResource.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="177" column="46" selection-start-line="177" selection-start-column="46" selection-end-line="177" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -859,8 +889,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/NotificationsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="315">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <element signature="e#44#80#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Collection/CartsCollection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="27" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Resource/CartResource.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="59" column="10" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
+          <folding>
+            <element signature="e#793#2109#2#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="288" column="27" selection-start-line="288" selection-start-column="20" selection-end-line="288" selection-end-column="27" />
+          <folding>
+            <element signature="e#765#2260#0#PHP" />
+            <element signature="e#2387#3055#0#PHP" />
+            <element signature="e#3182#3854#0#PHP" />
+            <element signature="e#4314#7097#0#PHP" />
+            <element signature="e#7195#7632#0#PHP" />
+            <element signature="e#7755#9356#0#PHP" />
+            <element signature="e#9449#10059#0#PHP" />
+            <element signature="e#10182#10555#0#PHP" />
+            <element signature="e#10653#11062#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="28" selection-end-line="60" selection-end-column="33" />
         </state>
       </provider>
     </entry>

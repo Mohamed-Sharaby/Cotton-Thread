@@ -282,4 +282,16 @@ class CartsController extends Controller
         return $this->apiResponse($coupon->discount);
     }
 
+    /**
+     * @param Cart $cart
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function details(Cart $cart){
+        $user = auth()->user();
+        if($user->id == $cart->user_id){
+            return $this->apiResponse(__('cart access denied'),403);
+        }
+        return $this->apiResponse(new CartResource($cart));
+    }
+
 }
