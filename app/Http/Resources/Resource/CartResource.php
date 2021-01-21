@@ -21,7 +21,7 @@ class CartResource extends JsonResource
         $data['transaction_image'] = fix_null_string(getImg($this->transaction_image));
         $data['comment'] = fix_null_string($this->comment);
         $data['delivered_at'] = fix_null_string($this->delivered_at);
-        $data['cart_items'] = $this->cartItems->transform(function ($q){
+        $data['items'] = $this->cartItems->transform(function ($q){
             return[
                 'id'=>$q->id,
                 'product_name'=>fix_null_string(optional(optional($q->productQuantity)->product)->name),
