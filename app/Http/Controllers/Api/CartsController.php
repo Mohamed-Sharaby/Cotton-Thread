@@ -288,7 +288,7 @@ class CartsController extends Controller
      */
     public function details(Cart $cart){
         $user = auth()->user();
-        if($user->id == $cart->user_id){
+        if($user->id =! $cart->user_id){
             return $this->apiResponse(__('cart access denied'),403);
         }
         return $this->apiResponse(new CartResource($cart));
