@@ -16,8 +16,11 @@ class AddressResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'district_id'=> fix_null(optional($this->district)->id),
             'district'=> fix_null_string(optional($this->district)->name),
+            'region_id'=> fix_null(optional($this->region())->id),
             'region'=> fix_null_string(optional($this->region())->name),
+            'city_id'=> fix_null(optional($this->city())->id),
             'city'=> fix_null_string(optional($this->city())->name),
             'name' => fix_null_string($this->name),
             'phone' => fix_null_string($this->phone),
