@@ -20,7 +20,7 @@
 
                     @if(count($addresses) > 0)
                     @foreach($addresses as $address)
-                        <div class="col-md-6 col-xs-12">
+                        <div class="col-md-6 col-xs-12 addr">
                             <div class="addres-wrap">
                                 <h4>التوصيل على عنوان المنزل</h4>
                                 <span class="name-u">
@@ -30,8 +30,15 @@
                                 <span class="addres2-u">{{$address->district->region->name}}</span>
                                 <span class="country-u">{{$address->district->region->city->name}}</span>
                                 <a href="tell:{{$address->phone}}" class="phone-u">{{$address->phone}}</a>
-                                <a href="{{url('profile-add-address')}}">تغيير العنوان</a>
-                                <button class="delete"><i class="fas fa-trash-alt"></i></button>
+                                <a href="{{route('website.users.addresses.edit',$address->id)}}">تغيير العنوان</a>
+
+{{--                                <button class="delete" ><i class="fas fa-trash-alt"></i></button>--}}
+
+                                <button data-url="{{route('website.users.addresses.destroy',$address->id)}}"
+                                        class="delete" id="delete_address" title="Delete">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+
                             </div>
                         </div>
                     @endforeach
@@ -47,11 +54,12 @@
     <!-- /////////////////////||||||||||||||||||||||||||||| End Section |||||||||||||||||||||||||||| -->
 @endsection
 @section('scripts')
-    <script>
-        $(document).ready(function () {
-            $(".delete").on("click", function () {
-                $(this).parent().remove();
-            })
-        })
-    </script>
+    <script src="{{asset('website/js/user/address.js')}}"></script>
+{{--    <script>--}}
+{{--        $(document).ready(function () {--}}
+{{--            $(".delete").on("click", function () {--}}
+{{--                $(this).parent().remove();--}}
+{{--            })--}}
+{{--        })--}}
+{{--    </script>--}}
 @endsection

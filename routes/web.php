@@ -9,8 +9,14 @@ use App\Notifications\GeneralNotification;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 
+
+//require __DIR__ . '/auth.php';
+
 Route::group(['as' => 'website.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/about', [HomeController::class, 'about'])->name('about');
+    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+    Route::post('/contact', [HomeController::class, 'postContact'])->name('postContact');
     Route::get('/pages/{page}', [HomeController::class, 'page']);
 
     Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
@@ -24,12 +30,12 @@ Route::group(['as' => 'website.'], function () {
     });
 
 
-    Route::group(['prefix' => 'user', 'as' => 'users.', 'middleware' => 'auth'], function () {
+    Route::group(['prefix' => 'user', 'as' => 'users.', 'middleware' => 'auth:web'], function () {
 
-        Route::GET('profile', [UserController::class,'profile'])->name('profile');
-        Route::resource('addresses','AddressController');
-        Route::get('regions/{id}','AddressController@regions');
-        Route::get('districts/{id}','AddressController@districts');
+        Route::GET('profile', [UserController::class, 'profile'])->name('profile');
+        Route::resource('addresses', 'AddressController');
+        Route::get('regions/{id}', 'AddressController@regions');
+        Route::get('districts/{id}', 'AddressController@districts');
 
     });
 
@@ -47,9 +53,6 @@ Route::get('/cart', function () {
 
 Route::get('/change-password', function () {
     return view('site.change-password');
-});
-Route::get('/contact', function () {
-    return view('site.contact');
 });
 
 Route::get('/multimedia', function () {
@@ -77,10 +80,6 @@ Route::get('/payment', function () {
 Route::get('/booking-done', function () {
     return view('site.booking-done');
 });
-//
-//Route::get('/profile-add-address', function () {
-//    return view('site.profile-add-address');
-//});
 
 Route::get('/profile-edit', function () {
     return view('site.profile-edit');
@@ -93,12 +92,6 @@ Route::get('/profile-orders', function () {
 });
 Route::get('/profile-wallet', function () {
     return view('site.profile-wallet');
-});
-Route::get('/profile', function () {
-    return view('site.profile');
-});
-Route::get('/register', function () {
-    return view('site.auth.register');
 });
 
 Route::get('/reset', function () {
@@ -114,9 +107,7 @@ Route::get('/change-pass', function () {
 Route::get('/search-result', function () {
     return view('site.search-result');
 });
-Route::get('/sign-in', function () {
-    return view('site.sign-in');
-});
+
 Route::get('/single-order', function () {
     return view('site.single-order');
 });

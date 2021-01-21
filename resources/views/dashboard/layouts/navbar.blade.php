@@ -41,13 +41,13 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{{ route('logout') }}" class="dropdown-item"
+                    <a href="{{ route('admin.logout') }}" class="dropdown-item"
                        onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                         <i class="icon-switch2"></i>
                         <span>تسجيل الخروج </span>
                     </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </div>
