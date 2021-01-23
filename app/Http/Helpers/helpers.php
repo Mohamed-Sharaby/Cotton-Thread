@@ -188,3 +188,12 @@ function handleArrayKeyNotExists($array, $key)
         return '';
 }
 
+if (!function_exists('cart')){
+    function cart()
+    {
+        if (auth()->guest()) return 0;
+        $cart = auth()->user()->carts()->firstWhere('status', 'open');
+        if (!$cart) return 0;
+        return $cart->cartItems()->count();
+    }
+}

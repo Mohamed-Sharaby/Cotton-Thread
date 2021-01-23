@@ -15,16 +15,21 @@
     <!-- /////////////////////||||||||||| start profile edit |||||||||||||||||||| -->
     <section class="all-sections">
         <div class="container">
-            @include('dashboard.layouts.status')
+
             <form action="{{route('website.users.updateProfile')}}" method="post" enctype="multipart/form-data"
                   autocomplete="off">
                 @csrf
                 <div class="row">
 
+                    <div class="col-xs-12 text-center"> @include('dashboard.layouts.status')</div>
+
                     <div class="col-xs-12">
-                        @if(auth()->user()->image)
-                            <img src="{{auth()->user()->image}}" alt="user-img" width="60" height="60">
-                        @endif
+                        <div class="text-center">
+                            @if(auth()->user()->image)
+                                <img src="{{auth()->user()->image}}" class="rounded-circle" alt="user-img" width="100"
+                                     height="100">
+                            @endif
+                        </div>
                         <input type="file" class="filepond" name="image" accept="image/png, image/jpeg, image/gif"
                                id="imginput"/>
                     </div>
@@ -81,7 +86,7 @@
                             <input type="password" name="password_confirmation" placeholder="**********" readonly
                                    onfocus="this.removeAttribute('readonly');" required>
                             <div class="hov-input">
-                                <label>من فضلك ادخل كلمة المرور</label>
+                                <label>تأكيد كلمة المرور</label>
                             </div>
                         </div>
                     </div>

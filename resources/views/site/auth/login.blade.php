@@ -14,10 +14,16 @@
                     <img src="{{asset('website/img/logo-wide.png')}}">
                 </a>
                 <h2>تسجيل دخول </h2>
+{{--                <div class="input-wrap">--}}
+{{--                    <input type="email" placeholder="البريد الالكترونى " name="email">--}}
+{{--                    <div class="hov-input">--}}
+{{--                        <label>البريد الالكترونى</label>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="input-wrap">
-                    <input type="email" placeholder="البريد الالكترونى " name="email">
+                    <input type="text" placeholder="رقم الجوال" name="phone">
                     <div class="hov-input">
-                        <label>البريد الالكترونى</label>
+                        <label>رقم الجوال</label>
                     </div>
                 </div>
                 <div class="input-wrap">
@@ -35,7 +41,7 @@
                     </label>
                     تذكرنى؟
                 </div>
-                <a class="forget-pass" href="{{url('/reset')}}">نسيت كلمة المرور ؟</a>
+                <a class="forget-pass" href="{{route('website.resetForm')}}">نسيت كلمة المرور ؟</a>
                 <button type="submit" class="btn-hvr">تسجيل دخول</button>
                 <a href="{{route('register')}}" class="btn-hvr bg-w">انشاء حساب</a>
                 <span class="media-tit">او سجل بحساب التواصل الاجتماعى</span>

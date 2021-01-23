@@ -3,15 +3,16 @@
         <!--- add (.i_liked) class if it is favourite -->
         @if(auth()->check())
             @if (checkFav($product->id))
-                <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
+                <button  onclick="addToFavourite({{$product->id}})" class="likerr i_liked"><i class="fas fa-heart"></i></button>
             @else
                 <button onclick="addToFavourite({{$product->id}})" class="likerr "><i
-                        class="fas fa-heart"></i></button>
+                        class="fas fa-heart"></i>
+                </button>
             @endif
         @else
-            <button href="/login" class="likerr"><i class="fas fa-heart"></i></button>
-    @endif
-        <!-- -->
+            <a href="/login" class="likerr"><i class="fas fa-heart"></i></a>
+        @endif
+
         <a href="{{route('website.products.single',$product->id)}}" class="im_prod">
             <img src="{{$product->image}}" alt="product name">
         </a>
