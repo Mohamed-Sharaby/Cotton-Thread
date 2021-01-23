@@ -197,3 +197,12 @@ if (!function_exists('cart')){
         return $cart->cartItems()->count();
     }
 }
+
+if (!function_exists('cartItems')){
+    function cartItems(){
+        if (auth()->guest()) return null;
+        $cart = auth()->user()->carts()->firstWhere('status', 'open');
+        if (!$cart) return null;
+        return $cart->cartItems;
+    }
+}

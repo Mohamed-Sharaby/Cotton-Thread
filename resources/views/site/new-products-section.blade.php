@@ -58,6 +58,6 @@
                 @endforeach
             </div>
         </div>
-        <a class="btn-hvr see_more" href="{{route('website.products.index')}}">عرض المزيد</a>
+        <a class="btn-hvr see_more" href="{{route('website.products.new')}}">عرض المزيد</a>
     </div>
 </section>

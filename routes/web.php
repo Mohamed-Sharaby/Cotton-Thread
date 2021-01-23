@@ -66,6 +66,9 @@ Route::group(['as' => 'website.'], function () {
         Route::get('/', 'CartController@index')->name('index');
         Route::Post('add', 'CartController@AddItemToCart')->name('add');
 
+        Route::get('pay-off', 'CartController@payOff')->name('payOff');
+        Route::post('pay-off', 'CartController@submitPayOff')->name('submitPayOff');
+
     });
 
 
@@ -77,13 +80,7 @@ Route::get('moniem/notify', function (\Illuminate\Http\Request $request) {
     return response()->json('notification send');
 });
 
-Route::get('/cart', function () {
-    return view('site.cart');
-});
 
-Route::get('/change-password', function () {
-    return view('site.change-password');
-});
 
 Route::get('/multimedia', function () {
     return view('site.multimedia');

@@ -50,9 +50,15 @@
                                         @include('site.products.product-component',['product'=>$product])
                                     @endforeach
                                 </div>
-                                <a class="btn-hvr see_more" href="#">عرض المزيد</a>
+                               <div class="row">
+                                   <div class="col-12 text-center">
+                                       {!! $products->links() !!}
+                                   </div>
+                               </div>
+{{--                                <a class="btn-hvr see_more" href="#">عرض المزيد</a>--}}
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
