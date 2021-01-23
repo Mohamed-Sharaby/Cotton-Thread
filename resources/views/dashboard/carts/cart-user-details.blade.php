@@ -3,7 +3,7 @@
         <th class="font-weight-bold">بيانات العميل</th>
         <td>@include('dashboard.carts.user_details')</td>
         <th class="font-weight-bold">تاريخ الطلب</th>
-        <td>{{$cart->created_at->format('Y.m.d') ?? __('Not Found')}}</td>
+        <td>{{optional($cart->created_at)->format('Y.m.d') ?? __('Not Found')}}</td>
     </tr>
     <tr>
         <th class="font-weight-bold">اجمالى تكلفة الطلب</th>
@@ -21,7 +21,7 @@
     </tr>
     <tr>
         <th class="font-weight-bold">وقت وصول الطلب</th>
-        <td>{{$cart->delivered_at->format('Y.m.d') ?? __('Not Found')}}</td>
+        <td>{{optional($cart->delivered_at)->format('Y.m.d') ?? __('Not Found')}}</td>
     </tr>
 
 </table>

@@ -119,7 +119,8 @@
                         <li><a href="{{url('categories')}}" class="{{ Request::is('categories') ? 'active' : '' }}">الأقسام</a>
                         </li>
 
-                        <li><a href="{{url('/products/new')}}" class="{{ Request::is('products/new') ? 'active' : '' }}">المنتجات
+                        <li><a href="{{url('/products/new')}}"
+                               class="{{ Request::is('products/new') ? 'active' : '' }}">المنتجات
                                 الجديدة</a></li>
 
                         <li><a href="{{url('offers')}}" class="{{ Request::is('offers') ? 'active' : '' }}">العروض</a>
@@ -243,7 +244,8 @@
                     <li>
                         <a href="javascript:void(0)" class="menu-toggle">
                                 <span class="nav-icon"> <i class="fas fa-shopping-bag"></i>
-                                    <span class="badge">3</span>
+                                    <span
+                                        class="badge cart-count {{ cart() > 0 ? cart() : 'hidden' }}">{{cart()}}</span>
                                 </span>
                         </a>
                         <div class="side-menu notifi-menu">
@@ -279,96 +281,98 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="flexx cart_item">
-                                        <button class="nav-icon remove_item"><i class="far fa-trash-alt"></i></button>
-                                        <span class="bell">
-                                                <img src="{{asset('website/img/asset2.jpg')}}">
-                                            </span>
-                                        <div class="notify">
-                                            <h4>مجموعة الصابون الطبيعى</h4>
-                                            <h5 class="sec_name">خيط وقطن</h5>
-                                            <div class="theQnt"> الكمية :
-                                                <div class="number-input">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepUp()"
-                                                            class="plus"><i class="fas fa-plus"></i></button>
-                                                    <input class="quantity" min="1" max="30" value="1" type="number">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepDown()"
-                                                            class="minus"><i class="fas fa-minus">
-                                                        </i></button>
-                                                </div>
-                                            </div>
-                                            <p class="old_price">300 ريال </p>
-                                            <p class="i_price">140 ريال </p>
-                                            <p class="hint">الشحن مجانا لفترة محدودة</p>
-                                        </div>
+{{--                                <li>--}}
+{{--                                    <div class="flexx cart_item">--}}
+{{--                                        <button class="nav-icon remove_item"><i class="far fa-trash-alt"></i></button>--}}
+{{--                                        <span class="bell">--}}
+{{--                                                <img src="{{asset('website/img/asset2.jpg')}}">--}}
+{{--                                            </span>--}}
+{{--                                        <div class="notify">--}}
+{{--                                            <h4>مجموعة الصابون الطبيعى</h4>--}}
+{{--                                            <h5 class="sec_name">خيط وقطن</h5>--}}
+{{--                                            <div class="theQnt"> الكمية :--}}
+{{--                                                <div class="number-input">--}}
+{{--                                                    <button type="button"--}}
+{{--                                                            onclick="this.parentNode.querySelector('.quantity').stepUp()"--}}
+{{--                                                            class="plus"><i class="fas fa-plus"></i></button>--}}
+{{--                                                    <input class="quantity" min="1" max="30" value="1" type="number">--}}
+{{--                                                    <button type="button"--}}
+{{--                                                            onclick="this.parentNode.querySelector('.quantity').stepDown()"--}}
+{{--                                                            class="minus"><i class="fas fa-minus">--}}
+{{--                                                        </i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <p class="old_price">300 ريال </p>--}}
+{{--                                            <p class="i_price">140 ريال </p>--}}
+{{--                                            <p class="hint">الشحن مجانا لفترة محدودة</p>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <div class="flexx cart_item">--}}
+{{--                                        <button class="nav-icon remove_item"><i class="far fa-trash-alt"></i></button>--}}
+{{--                                        <span class="bell">--}}
+{{--                                                <img src="{{asset('website/img/asset16.jpg')}}">--}}
+{{--                                            </span>--}}
+{{--                                        <div class="notify">--}}
+{{--                                            <h4>مجموعة الصابون الطبيعى</h4>--}}
+{{--                                            <h5 class="sec_name">خيط وقطن</h5>--}}
+{{--                                            <div class="theQnt"> الكمية :--}}
+{{--                                                <div class="number-input">--}}
+{{--                                                    <button type="button"--}}
+{{--                                                            onclick="this.parentNode.querySelector('.quantity').stepUp()"--}}
+{{--                                                            class="plus"><i class="fas fa-plus"></i></button>--}}
+{{--                                                    <input class="quantity" min="1" max="30" value="1" type="number">--}}
+{{--                                                    <button type="button"--}}
+{{--                                                            onclick="this.parentNode.querySelector('.quantity').stepDown()"--}}
+{{--                                                            class="minus"><i class="fas fa-minus">--}}
+{{--                                                        </i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <p class="old_price">300 ريال </p>--}}
+{{--                                            <p class="i_price">140 ريال </p>--}}
+{{--                                            <p class="hint">الشحن مجانا لفترة محدودة</p>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <div class="flexx cart_item">--}}
+{{--                                        <button class="nav-icon remove_item"><i class="far fa-trash-alt"></i></button>--}}
+{{--                                        <span class="bell">--}}
+{{--                                                <img src="{{asset('website/img/asset6.jpg')}}">--}}
+{{--                                            </span>--}}
+{{--                                        <div class="notify">--}}
+{{--                                            <h4>مجموعة الصابون الطبيعى</h4>--}}
+{{--                                            <h5 class="sec_name">خيط وقطن</h5>--}}
+{{--                                            <div class="theQnt"> الكمية :--}}
+{{--                                                <div class="number-input">--}}
+{{--                                                    <button type="button"--}}
+{{--                                                            onclick="this.parentNode.querySelector('.quantity').stepUp()"--}}
+{{--                                                            class="plus"><i class="fas fa-plus"></i></button>--}}
+{{--                                                    <input class="quantity" min="1" max="30" value="1" type="number">--}}
+{{--                                                    <button type="button"--}}
+{{--                                                            onclick="this.parentNode.querySelector('.quantity').stepDown()"--}}
+{{--                                                            class="minus"><i class="fas fa-minus">--}}
+{{--                                                        </i></button>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <p class="old_price">300 ريال </p>--}}
+{{--                                            <p class="i_price">140 ريال </p>--}}
+{{--                                            <p class="hint">الشحن مجانا لفترة محدودة</p>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
+                                @if(!auth()->check())
+                                    <div class="lock">
+                                        <img src="{{asset('website/img/lock.png')}}">
+                                        <p>
+                                            من فضلك قم بتسجيل الدخول لكى يتم عملية الشراء والدفع وأكثر
+                                        </p>
+                                        <a href="{{route('login')}}" class="btn-hvr">
+                                            تسجيل الدخول
+                                        </a>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="flexx cart_item">
-                                        <button class="nav-icon remove_item"><i class="far fa-trash-alt"></i></button>
-                                        <span class="bell">
-                                                <img src="{{asset('website/img/asset16.jpg')}}">
-                                            </span>
-                                        <div class="notify">
-                                            <h4>مجموعة الصابون الطبيعى</h4>
-                                            <h5 class="sec_name">خيط وقطن</h5>
-                                            <div class="theQnt"> الكمية :
-                                                <div class="number-input">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepUp()"
-                                                            class="plus"><i class="fas fa-plus"></i></button>
-                                                    <input class="quantity" min="1" max="30" value="1" type="number">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepDown()"
-                                                            class="minus"><i class="fas fa-minus">
-                                                        </i></button>
-                                                </div>
-                                            </div>
-                                            <p class="old_price">300 ريال </p>
-                                            <p class="i_price">140 ريال </p>
-                                            <p class="hint">الشحن مجانا لفترة محدودة</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flexx cart_item">
-                                        <button class="nav-icon remove_item"><i class="far fa-trash-alt"></i></button>
-                                        <span class="bell">
-                                                <img src="{{asset('website/img/asset6.jpg')}}">
-                                            </span>
-                                        <div class="notify">
-                                            <h4>مجموعة الصابون الطبيعى</h4>
-                                            <h5 class="sec_name">خيط وقطن</h5>
-                                            <div class="theQnt"> الكمية :
-                                                <div class="number-input">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepUp()"
-                                                            class="plus"><i class="fas fa-plus"></i></button>
-                                                    <input class="quantity" min="1" max="30" value="1" type="number">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepDown()"
-                                                            class="minus"><i class="fas fa-minus">
-                                                        </i></button>
-                                                </div>
-                                            </div>
-                                            <p class="old_price">300 ريال </p>
-                                            <p class="i_price">140 ريال </p>
-                                            <p class="hint">الشحن مجانا لفترة محدودة</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <div class="lock">
-                                    <img src="{{asset('website/img/lock.png')}}">
-                                    <p>
-                                        من فضلك قم بتسجيل الدخول لكى يتم عملية الشراء والدفع وأكثر
-                                    </p>
-                                    <a href="{{url('register')}}" class="btn-hvr">
-                                        تسجيل جديد
-                                    </a>
-                                </div>
+                                @endif
                             </ul>
                         </div>
                     </li>
@@ -481,7 +485,7 @@
         "closeButton": true,
         "positionClass": "toast-top-right",
         "timeOut": "6000",
-        "newestOnTop": false,
+        "newestOnTop": true,
     }
 
     function addToFavourite(product_id) {
@@ -490,18 +494,19 @@
             type: 'GET',
             success: function (data) {
                 toastr.success("{{__('Added To Your favourites')}}");
-               // $("#f" + product_id).addClass("wished-item");
+                // $("#f" + product_id).addClass("wished-item");
                 //$("#f" + product_id).tooltip('hide').attr("data-original-title", "Remove from favourites").tooltip('show');
-               // $(".toggle-fav").addClass("added-to-wishlist").html("<i class='ti-heart'></i> Added to Wishlist");
+                // $(".toggle-fav").addClass("added-to-wishlist").html("<i class='ti-heart'></i> Added to Wishlist");
             },
             error: function (data) {
                 toastr.success("{{__('Removed From the favourites')}}");
-               // $("#f" + product_id).removeClass("wished-item");
-               // $("#f" + product_id).tooltip('hide').attr("data-original-title", "Add to favourites").tooltip('show');
-               // $(".toggle-fav").removeClass("added-to-wishlist").html("<i class='ti-heart'></i> Add to Wishlist");
+                // $("#f" + product_id).removeClass("wished-item");
+                // $("#f" + product_id).tooltip('hide').attr("data-original-title", "Add to favourites").tooltip('show');
+                // $(".toggle-fav").removeClass("added-to-wishlist").html("<i class='ti-heart'></i> Add to Wishlist");
             }
         });
     }
+
 
 </script>
 <script>

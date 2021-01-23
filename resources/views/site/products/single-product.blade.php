@@ -50,13 +50,14 @@
                             <h1> {{$product->name}}</h1>
                             @if(auth()->check())
                                 @if (checkFav($product->id))
-                                    <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
+                                    <button  onclick="addToFavourite({{$product->id}})" class="likerr i_liked"><i class="fas fa-heart"></i></button>
                                 @else
                                     <button onclick="addToFavourite({{$product->id}})" class="likerr "><i
-                                            class="fas fa-heart"></i></button>
+                                            class="fas fa-heart"></i>
+                                    </button>
                                 @endif
                             @else
-                                <button href="/login" class="likerr"><i class="fas fa-heart"></i></button>
+                                <a href="/login" class="likerr"><i class="fas fa-heart"></i></a>
                             @endif
 
                             <div class="rate_in">
@@ -79,14 +80,15 @@
                                 الكمية المتوفرة: <span> متبقى {{$product->quantity}}</span>
                             </div>
                             <p>{{$product->details}}</p>
-                            <form action="{{url('/')}}">
+                            <form method="POST" id="cartForm">
+                                <input type="hidden" name="product_id" value="{{$product->id}}">
                                 <div class="cart_blocks">
                                     <div class="cont_block">
                                         <label class="lbl_block">الألوان المتاحة</label>
                                         <div class="custom_radio clr_radio">
                                             @foreach($product->product_colors as $color)
                                                 <div class="rad_n">
-                                                    <input type="radio" id="color-{{$color->id}}" name="color"/>
+                                                    <input type="radio" id="color-{{$color->id}}" name="color" value="{{$color->id}}"/>
                                                     <label for="color-{{$color->id}}"
                                                            style="background-color: {{$color->color}};"></label>
                                                 </div>
@@ -98,7 +100,7 @@
                                         <div class="custom_radio txt_radio">
                                             @foreach($product->product_sizes as $size)
                                                 <div class="rad_n">
-                                                    <input type="radio" id="size-{{$size->id}}" name="size"/>
+                                                    <input type="radio" id="size-{{$size->id}}" name="size" value="{{$size->id}}"/>
                                                     <label for="size-{{$size->id}}">{{$size->size}}</label>
                                                 </div>
                                             @endforeach
@@ -109,13 +111,19 @@
                                         <div class="number-input">
                                             <div onclick="this.parentNode.querySelector('.quantity').stepUp()"
                                                  class="plus"><i class="fas fa-plus"></i></div>
-                                            <input class="quantity" min="1" name="quantity" value="0" type="number">
+                                            <input class="quantity" min="1"   name="quantity" value="1" type="number">
                                             <div onclick="this.parentNode.querySelector('.quantity').stepDown()"
                                                  class="minus"><i class="fas fa-minus"></i></div>
                                         </div>
-                                        <a class="btn-hvr" href="{{url('/cart')}}">
+                                        @if(auth()->check())
+                                        <button type="submit" class="btn-hvr"  >
                                             اضافة للسلة <span><i class="fas fa-cart-plus"></i></span>
-                                        </a>
+                                        </button>
+                                        @else
+                                            <a class="btn-hvr" href="{{url('/login')}}">
+                                                اضافة للسلة <span><i class="fas fa-cart-plus"></i></span>
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </form>
@@ -150,6 +158,7 @@
     <!-- /////////////////////||||||||||||||||||||||||||||| End Section |||||||||||||||||||||||||||| -->
 @endsection
 @section('scripts')
+    <script src="{{asset('website/js/user/cart.js')}}"></script>
     <script src="{{asset('website/js/swiper-bundle.min.js')}}"></script>
     <script>
         var swiper = new Swiper('.row .wrapper-k .swiper-container', {
@@ -201,4 +210,5 @@
         });
 
     </script>
+
 @endsection

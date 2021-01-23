@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Site\AuthController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\UserController;
@@ -19,12 +20,18 @@ Route::group(['as' => 'website.'], function () {
     Route::post('/contact', [HomeController::class, 'postContact'])->name('postContact');
     Route::get('/pages/{page}', [HomeController::class, 'page']);
 
+
+    Route::get('reset', [AuthController::class, 'resetForm'])->name('resetForm');
+    Route::get('send-code', [AuthController::class, 'sendCode'])->name('sendCode');
+    Route::post('/change-password', [AuthController::class, 'changePassword'])->name('changePassword');
+
+
     Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
         Route::get('/', [HomeController::class, 'categories'])->name('index');
         Route::get('/sub-categories/{id}', [HomeController::class, 'subCategories'])->name('subCategories');
     });
 
-    Route::group([ 'prefix' => 'products','as' => 'products.'], function () {
+    Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
         Route::get('/new', [ProductController::class, 'newProducts'])->name('new');
         Route::GET('/{id?}', [ProductController::class, 'index'])->name('index');
         Route::GET('single/{product}', [ProductController::class, 'show'])->name('single');
@@ -55,13 +62,18 @@ Route::group(['as' => 'website.'], function () {
         Route::post('remove-item/{id}', 'OrderController@removeItem')->name('removeItem');
     });
 
+    Route::group(['prefix' => 'cart', 'as' => 'carts.', 'middleware' => 'auth'], function () {
+        Route::get('/', 'CartController@index')->name('index');
+        Route::Post('add', 'CartController@AddItemToCart')->name('add');
+
+    });
 
 
 });
 
-Route::get('moniem/notify',function (\Illuminate\Http\Request $request){
+Route::get('moniem/notify', function (\Illuminate\Http\Request $request) {
     $user = User::find($request['user_id']);
-    Notification::send($user,new GeneralNotification($request->except(['user_id'])));
+    Notification::send($user, new GeneralNotification($request->except(['user_id'])));
     return response()->json('notification send');
 });
 
@@ -99,13 +111,6 @@ Route::get('/profile-notifications', function () {
     return view('site.profile-notifications');
 });
 
-
-Route::get('/reset', function () {
-    return view('site.forget');
-});
-Route::get('/check-code', function () {
-    return view('site.check-code');
-});
 Route::get('/change-pass', function () {
     return view('site.change-password');
 });
