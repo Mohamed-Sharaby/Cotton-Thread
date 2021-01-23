@@ -16,26 +16,10 @@ class CartController extends Controller
 {
     public function index()
     {
-        $my_cart = Cart::firstOrCreate(['user_id' => auth()->id(), 'status' => 'open']);
-        $cart = $my_cart->items;
+        $user = auth()->user();
+        $cart = $user->carts()->where('status','open')->first();
 
-        if (count($cart) > 0) {
-            $result = [];
-            foreach ($cart as $single) {
-                if (empty($single['offer_id'])) {
-                    $single['item'] = ProductSize::with('product')->findOrFail($single['product_size_id']);
-                    $single['type'] = 'product';
-                } else {
-                    $single['item'] = Offer::findOrFail($single['offer_id']);
-                    $single['type'] = 'offer';
-                }
-                $result[] = $single;
-            }
-            $cart = $result;
-        }
-        $discount_val = $my_cart->coupon_val ?? 0;
-
-        return view('site.cart.index', compact('cart', 'discount_val'));
+        return view('site.cart.index', compact('cart'));
     }
 
 
@@ -80,39 +64,17 @@ class CartController extends Controller
             return response()->json(['status' => true, 'msg' => 'Added Successfully']);
         }
 
-       // return response()->json(['status' => true, 'msg' => 'Added Successfully']);
     }
 
+    public function payOff()
+    {
+        $cart = Cart::firstOrCreate(['user_id' => auth()->id(), 'status' => 'open']);
 
-//    public function addToCart($request)
-//    {
-//        $current_user = auth()->check() ? auth()->user() : (auth('api')->check() ? auth('api')->user() : []);
-//        $cart = Cart::firstOrCreate(['user_id' => $current_user->id, 'status' => 'open']);
-////dd($cart);
-//        $qty = $request->quantity ?? 1;
-//        $item = ['quantity' => $qty];
-//
-//        $product_size = Size::findOrFail($request->size);
-//        $product_color = Color::findOrFail($request->color);
-//
-//        if ($product_size->quantity < $qty) return response()->json(['value' => false, 'msg' => __('Quantity out of stock')]);
-//
-//        $price = $product_size->product->priceAfterDiscount;
-//
-//        $item['size_id'] = $product_size->id;
-//        $item['color_id'] = $product_color->id;
-//        $item['price'] = $price * $qty;
-//        $item['price_before_discount'] = $product_size->price * $qty;
-//
-//        // update in database
-//        if (!is_null($request->item_id)) {
-//            $cart_item = CartItem::find($request->item_id);
-//            optional($cart_item)->update($item);
-//        } elseif (!is_null($request->product_id)) {
-//            $cart->cartItems()->create($item);
-//        } else {
-//            if ($cart->cartItems()->where('size_id', $product_size->id)->first()) $cart->cartItems()->where('size_id', $product_size->id)->update($item);
-//            else $cart->cartItems()->create($item);
-//        }
-//    }
+        if (!$cart) return back();
+
+        $total = $cart->cartItems()->sum('price');
+
+        //$banks = Bank::whereIsActive(1)->get();
+        return view('site.cart.payment', compact('total', 'cart'));
+    }
 }

@@ -84,10 +84,11 @@
                     <div class="sha7n_adrs">
                         <select class="js-select2 form-control" title="عنوان الشحن">
                             <option selected disabled>عنوان الشحن </option>
-                            <option>قصيم </option>
-                            <option>بريدة </option>
+                            @foreach(\App\Models\Address::where('user_id',auth()->id())->get() as $address)
+                                <option value="{{$address->id}}">{{$address->name}} </option>
+                            @endforeach
                         </select>
-                        <a href="{{url('profile-add-address')}}" class="to_new_adrs">
+                        <a href="{{route('website.users.addresses.create')}}" class="to_new_adrs">
                             <i class="fas fa-plus"></i>إضافة عنوان اخر
                         </a>
                     </div>

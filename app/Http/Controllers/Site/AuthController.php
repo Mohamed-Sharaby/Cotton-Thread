@@ -26,7 +26,7 @@ class AuthController extends Controller
         $user = User::wherePhone($request->phone)->first();
         if ($user->reset_code) {
             $code = $user->reset_code;
-        } else $code = '6666';
+        } else $code = '1234';
 
         $user->update(['reset_code' => $code]);
         $phone = $user->phone;

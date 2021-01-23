@@ -32,26 +32,26 @@
 
                     <input type="hidden" name="phone" value="{{$phone}}">
                     <div class="input-wrap">
-                        <input type="text" placeholder="الكود" name="code" value="{{old('code')}}">
+                        <input type="text" placeholder="1234" name="code" value="{{old('code')}}">
                         <div class="hov-input">
                             <label>******</label>
                         </div>
                     </div>
 
                     <div class="input-wrap">
-                        <input type="password" placeholder="........" name="password">
+                        <input type="password" placeholder="كلمة المرور" name="password">
                         <div class="hov-input">
                             <label>كلمة المرور</label>
                         </div>
                     </div>
                     <div class="input-wrap">
-                        <input type="password" placeholder="........" name="password_confirmation">
+                        <input type="password" placeholder="تأكيد كلمة المرور" name="password_confirmation">
                         <div class="hov-input">
                             <label> تأكيد كلمة المرور </label>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-hvr">متابعة</button>
+                    <button type="submit" class="btn-hvr">حفظ</button>
                 </form>
             </div>
         </div>
