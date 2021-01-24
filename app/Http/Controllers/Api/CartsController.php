@@ -114,7 +114,7 @@ class CartsController extends Controller
         $cart = $user->carts()->where('status','open');
         if(!$cart->exists())
             return $this->apiResponse(__('cart not found'),404);
-        return $this->apiResponse(new CartResource($cart->first()),200);
+        return $this->apiResponse(new CartResource($cart->first(),true),200);
     }
 
     /**
@@ -175,7 +175,7 @@ class CartsController extends Controller
         }else{
             $openCart->update($inputs);
         }
-        return $this->apiResponse(new CartResource($openCart));
+        return $this->apiResponse(new CartResource($openCart,true));
     }
 
     /**
@@ -291,7 +291,7 @@ class CartsController extends Controller
         if($user->id =! $cart->user_id){
             return $this->apiResponse(__('cart access denied'),403);
         }
-        return $this->apiResponse(new CartResource($cart));
+        return $this->apiResponse(new CartResource($cart,true));
     }
 
 }
