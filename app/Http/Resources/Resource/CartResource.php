@@ -78,7 +78,7 @@ class CartResource extends JsonResource
                     ],
                     'size' =>[
                         'id' => fix_null_string(optional(optional($q->productQuantity)->size)->id),
-                        'color' => fix_null_string(optional(optional($q->productQuantity)->size)->size),
+                        'size' => fix_null_string(optional(optional($q->productQuantity)->size)->size),
                     ],
                 ];
             });
