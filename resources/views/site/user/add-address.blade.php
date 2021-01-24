@@ -12,7 +12,7 @@
     <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{url('/')}}">الرئيسية</a></li>
-            <li class="breadcrumb-item"><a href="{{url('/profile')}}">حسابى</a></li>
+            <li class="breadcrumb-item"><a href="{{route('website.users.profile')}}">حسابى</a></li>
             <li class="breadcrumb-item active" aria-current="page">إضافة عنوان</li>
         </ol>
     </div>

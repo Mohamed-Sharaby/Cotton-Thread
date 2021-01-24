@@ -85,6 +85,20 @@
         <link rel="stylesheet" href="{{asset('website/scss/first.css')}}">
     </noscript>
     <!-- /////////////////////|||||||End Layout |||||||||||||||||||| -->
+    <style>
+        .items_r .cart_item .remove_item1 {
+            font-size: 20px;
+            z-index: 9;
+        }
+
+        .remove_item1 {
+            color: #000000 !important;
+            position: absolute;
+            right: -6px;
+            background-color: #fff !important;
+            box-shadow: 0px 6px 12px 0px rgba(234, 234, 234, 1);
+        }
+    </style>
 </head>
 <body>
 <div class="body-overlay"></div>
@@ -118,8 +132,11 @@
                         <li><a href="{{url('/')}}" class="{{ Request::is('/') ? 'active' : '' }}">الرئيسية</a></li>
                         <li><a href="{{url('categories')}}" class="{{ Request::is('categories') ? 'active' : '' }}">الأقسام</a>
                         </li>
-                        <li><a href="{{url('new-products')}}" class="{{ Request::is('new-products') ? 'active' : '' }}">المنتجات
+
+                        <li><a href="{{url('/products/new')}}"
+                               class="{{ Request::is('products/new') ? 'active' : '' }}">المنتجات
                                 الجديدة</a></li>
+
                         <li><a href="{{url('offers')}}" class="{{ Request::is('offers') ? 'active' : '' }}">العروض</a>
                         </li>
                         <li><a href="{{url('about')}}" class="{{ Request::is('about') ? 'active' : '' }}">من نحن</a>
@@ -134,9 +151,11 @@
                 <ul class="nav-tools">
                     <!-- /////////////////////||||||||||| Start Searchbar |||||||||||||||||||| -->
                     <li>
-                        <form action="{{url('search-result')}}" method="GET" class="search-form" role="search">
+                        <form action="{{route('website.products.index')}}" method="GET" class="search-form"
+                              role="search">
                             <div class="form-group" id="search">
-                                <input type="text" class="form-control" placeholder="بحث">
+                                <input type="text" class="form-control" placeholder="بحث" name="q"
+                                       value="{{ request('q') }}">
                                 <button type="submit" class="form-control form-control-submit">بحث</button>
                                 <span class="nav-icon"> <i class="fas fa-search"></i></span>
                             </div>
@@ -155,7 +174,7 @@
                                     <button type="button" class="nav-icon close-menu"><i class="fas fa-times"></i>
                                     </button>
                                     @if (auth()->user()->image)
-                                        <img src="{{asset('website/img/user.png')}}" class="rads_im">
+                                        <img src="{{auth()->user()->image}}" class="rads_im">
                                     @else
                                         <img src="{{auth()->user()->image}}" class="rads_im">
                                     @endif
@@ -168,12 +187,12 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{url('profile-orders')}}">
+                                            <a href="{{route('website.orders.index')}}">
                                                 طلباتى
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{url('profile-wallet')}}">
+                                            <a href="{{route('website.users.wallet')}}">
                                                 المحفظة
                                             </a>
                                         </li>
@@ -228,7 +247,7 @@
                                 </div>
                             </div>
                         </li>
-                @endif
+                    @endif
                 <!-- /////////////////////||||||||||| End Sign up/In Links  |||||||||||||||||||| -->
                     <!-- /////////////////////||||||||||| Start favourite |||||||||||||||||||| -->
                     <li>
@@ -238,139 +257,78 @@
                     </li>
                     <!-- /////////////////////||||||||||| End favourite |||||||||||||||||||| -->
                     <!-- /////////////////////||||||||||| Start Nav Cart |||||||||||||||||||| -->
-                    <li>
-                        <a href="javascript:void(0)" class="menu-toggle">
+                    @auth()
+                        <li>
+                            <a href="javascript:void(0)" class="menu-toggle">
                                 <span class="nav-icon"> <i class="fas fa-shopping-bag"></i>
-                                    <span class="badge">3</span>
+                                    <span
+                                        class="badge cart-count {{ cart() > 0 ? cart() : 'hidden' }}">{{cart()}}</span>
                                 </span>
-                        </a>
-                        <div class="side-menu notifi-menu">
-                            <button type="button" class="nav-icon close-menu"><i class="fas fa-times"></i></button>
-                            <div class="fixed-li">
-                                <a href="{{url('cart')}}" class="btn-hvr"><span class="z-span">عرض السلة</span></a>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="flexx cart_item">
-                                        <button class="nav-icon remove_item"><i class="far fa-trash-alt"></i></button>
-                                        <span class="bell">
-                                                <img src="{{asset('website/img/asset8.jpg')}}">
-                                            </span>
-                                        <div class="notify">
-                                            <h4>مجموعة الصابون الطبيعى</h4>
-                                            <h5 class="sec_name">خيط وقطن</h5>
-                                            <div class="theQnt"> الكمية :
-                                                <div class="number-input">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepUp()"
-                                                            class="plus"><i class="fas fa-plus"></i></button>
-                                                    <input class="quantity" min="1" max="30" value="1" type="number">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepDown()"
-                                                            class="minus"><i class="fas fa-minus">
-                                                        </i></button>
-                                                </div>
-                                            </div>
-                                            <p class="old_price">300 ريال </p>
-                                            <p class="i_price">140 ريال </p>
-                                            <p class="hint">الشحن مجانا لفترة محدودة</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flexx cart_item">
-                                        <button class="nav-icon remove_item"><i class="far fa-trash-alt"></i></button>
-                                        <span class="bell">
-                                                <img src="{{asset('website/img/asset2.jpg')}}">
-                                            </span>
-                                        <div class="notify">
-                                            <h4>مجموعة الصابون الطبيعى</h4>
-                                            <h5 class="sec_name">خيط وقطن</h5>
-                                            <div class="theQnt"> الكمية :
-                                                <div class="number-input">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepUp()"
-                                                            class="plus"><i class="fas fa-plus"></i></button>
-                                                    <input class="quantity" min="1" max="30" value="1" type="number">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepDown()"
-                                                            class="minus"><i class="fas fa-minus">
-                                                        </i></button>
-                                                </div>
-                                            </div>
-                                            <p class="old_price">300 ريال </p>
-                                            <p class="i_price">140 ريال </p>
-                                            <p class="hint">الشحن مجانا لفترة محدودة</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flexx cart_item">
-                                        <button class="nav-icon remove_item"><i class="far fa-trash-alt"></i></button>
-                                        <span class="bell">
-                                                <img src="{{asset('website/img/asset16.jpg')}}">
-                                            </span>
-                                        <div class="notify">
-                                            <h4>مجموعة الصابون الطبيعى</h4>
-                                            <h5 class="sec_name">خيط وقطن</h5>
-                                            <div class="theQnt"> الكمية :
-                                                <div class="number-input">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepUp()"
-                                                            class="plus"><i class="fas fa-plus"></i></button>
-                                                    <input class="quantity" min="1" max="30" value="1" type="number">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepDown()"
-                                                            class="minus"><i class="fas fa-minus">
-                                                        </i></button>
-                                                </div>
-                                            </div>
-                                            <p class="old_price">300 ريال </p>
-                                            <p class="i_price">140 ريال </p>
-                                            <p class="hint">الشحن مجانا لفترة محدودة</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="flexx cart_item">
-                                        <button class="nav-icon remove_item"><i class="far fa-trash-alt"></i></button>
-                                        <span class="bell">
-                                                <img src="{{asset('website/img/asset6.jpg')}}">
-                                            </span>
-                                        <div class="notify">
-                                            <h4>مجموعة الصابون الطبيعى</h4>
-                                            <h5 class="sec_name">خيط وقطن</h5>
-                                            <div class="theQnt"> الكمية :
-                                                <div class="number-input">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepUp()"
-                                                            class="plus"><i class="fas fa-plus"></i></button>
-                                                    <input class="quantity" min="1" max="30" value="1" type="number">
-                                                    <button type="button"
-                                                            onclick="this.parentNode.querySelector('.quantity').stepDown()"
-                                                            class="minus"><i class="fas fa-minus">
-                                                        </i></button>
-                                                </div>
-                                            </div>
-                                            <p class="old_price">300 ريال </p>
-                                            <p class="i_price">140 ريال </p>
-                                            <p class="hint">الشحن مجانا لفترة محدودة</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <div class="lock">
-                                    <img src="{{asset('website/img/lock.png')}}">
-                                    <p>
-                                        من فضلك قم بتسجيل الدخول لكى يتم عملية الشراء والدفع وأكثر
-                                    </p>
-                                    <a href="{{url('register')}}" class="btn-hvr">
-                                        تسجيل جديد
+                            </a>
+                            <div class="side-menu notifi-menu">
+                                <button type="button" class="nav-icon close-menu"><i class="fas fa-times"></i></button>
+                                <div class="fixed-li">
+                                    <a href="{{route('website.carts.index')}}" class="btn-hvr">
+                                        <span class="z-span">عرض السلة</span>
                                     </a>
                                 </div>
-                            </ul>
-                        </div>
-                    </li>
-                    <!-- /////////////////////||||||||||| End Nav Cart |||||||||||||||||||| -->
+                                <ul>
+                                    @if(cartItems())
+                                        @foreach(cartItems() as $item)
+                                            <li>
+                                                <div class="flexx cart_item">
+                                                    <button class="nav-icon remove_item1"
+                                                            data-url="{{route('website.orders.removeItem',$item->id)}}">
+                                                        <i class="far fa-trash-alt"></i>
+                                                    </button>
+                                                    <span class="bell">
+                                                <img src="{{$item->productQuantity->product->image}}">
+                                            </span>
+                                                    <div class="notify">
+                                                        <h4>{{$item->productQuantity->product->name ?? ''}}</h4>
+                                                        <h5 class="sec_name">{{$item->productQuantity->product->subcategory->name ?? ''}}</h5>
+                                                        <div class="theQnt"> الكمية :
+                                                            <div class="number-input">
+                                                                <button type="button"
+                                                                        onclick="this.parentNode.querySelector('.quantity').stepUp()"
+                                                                        class="plus"><i class="fas fa-plus"></i>
+                                                                </button>
+                                                                <input class="quantity" min="1" max="30"
+                                                                       value="{{$item->quantity}}" type="number">
+                                                                <button type="button"
+                                                                        onclick="this.parentNode.querySelector('.quantity').stepDown()"
+                                                                        class="minus"><i class="fas fa-minus">
+                                                                    </i></button>
+                                                            </div>
+                                                        </div>
+                                                        <p class="old_price">{{$item->productQuantity->product->price ?? 'لا يوجد'}}
+                                                            ريال </p>
+                                                        <p class="i_price">{{$item->productQuantity->product->priceAfterDiscount ?? 'لا يوجد'}}
+                                                            ريال </p>
+                                                        <p class="hint">الشحن مجانا لفترة محدودة</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    @endif
+
+
+                                    @if(!auth()->check())
+                                        <div class="lock">
+                                            <img src="{{asset('website/img/lock.png')}}">
+                                            <p>
+                                                من فضلك قم بتسجيل الدخول لكى يتم عملية الشراء والدفع وأكثر
+                                            </p>
+                                            <a href="{{route('login')}}" class="btn-hvr">
+                                                تسجيل الدخول
+                                            </a>
+                                        </div>
+                                    @endif
+                                </ul>
+                            </div>
+                        </li>
+                @endauth
+                <!-- /////////////////////||||||||||| End Nav Cart |||||||||||||||||||| -->
                 </ul>
             </div>
         </div>
@@ -479,8 +437,29 @@
         "closeButton": true,
         "positionClass": "toast-top-right",
         "timeOut": "6000",
-        "newestOnTop": false,
+        "newestOnTop": true,
     }
+
+    function addToFavourite(product_id) {
+        $.ajax({
+            url: '/favourite/add/' + product_id,
+            type: 'GET',
+            success: function (data) {
+                toastr.success("{{__('Added To Your favourites')}}");
+                // $("#f" + product_id).addClass("wished-item");
+                //$("#f" + product_id).tooltip('hide').attr("data-original-title", "Remove from favourites").tooltip('show');
+                // $(".toggle-fav").addClass("added-to-wishlist").html("<i class='ti-heart'></i> Added to Wishlist");
+            },
+            error: function (data) {
+                toastr.success("{{__('Removed From the favourites')}}");
+                // $("#f" + product_id).removeClass("wished-item");
+                // $("#f" + product_id).tooltip('hide').attr("data-original-title", "Add to favourites").tooltip('show');
+                // $(".toggle-fav").removeClass("added-to-wishlist").html("<i class='ti-heart'></i> Add to Wishlist");
+            }
+        });
+    }
+
+
 </script>
 <script>
     $(function () {
@@ -540,6 +519,7 @@
         $(this).parent(".cart_item").parents(".col-md-6.col-xs-12").fadeOut(300);
     });
 </script>
+<script src="{{asset('website/js/user/order.js')}}"></script>
 @yield('scripts')
 <!-- /////////////////////||||||||||||||||||||||||||||| End Script |||||||||||||||||||||||||||| -->
 </body>

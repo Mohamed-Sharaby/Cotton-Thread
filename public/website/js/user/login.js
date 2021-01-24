@@ -3,7 +3,7 @@ loginForm.submit(function(e) {
     e.preventDefault();
     var formData = loginForm.serialize();
     $.ajax({
-        url: '/login',
+        url: 'login',
         type: 'POST',
         data: formData,
         success: function(data) {

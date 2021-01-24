@@ -5,11 +5,12 @@
                 <p class="rate_ratio">{{$product->avg_rate}}</p>
                 <ul class="stars">
                     <!-- add class (.yellowed) to the number of rates --->
-                    <li class="yellowed"><i class="fas fa-star"></i></li>
-                    <li class="yellowed"><i class="fas fa-star"></i></li>
-                    <li class="yellowed"><i class="fas fa-star"></i></li>
-                    <li class="yellowed"><i class="fas fa-star"></i></li>
-                    <li><i class="fas fa-star"></i></li>
+                    @for($i=0; $i< $product->avg_rate; $i++)
+                        <li class="yellowed"><i class="fas fa-star"></i></li>
+                    @endfor
+                    @for($i=0;$i<(5-$product->avg_rate);$i++)
+                        <li><i class="fas fa-star"></i></li>
+                    @endfor
                 </ul>
                 <span>التقييم الكلى</span>
             </div>
@@ -66,10 +67,12 @@
             </div>
         </div>
     </div>
+
 {{--    @if($can_rate)--}}
     <div class="col-md-6 col-xs-12">
         <div class="your-rating">
-            <form class="add_comment_form">
+            <form class="add_comment_form" action="{{route('website.products.rate')}}" method="post">
+                @csrf
                 <h3>إضافة تقييمك</h3>
                 <div class="form__group field">
                     <input type="text" class="form__field" placeholder="الاسم" id='name' name="name"
@@ -135,7 +138,10 @@
                         </ul>
                     </div>
                 </div>
-                <textarea placeholder="إضافة تعليق" required name="comment">{{old('comment')}}</textarea>
+                <textarea placeholder="إضافة تعليق" required
+                          oninvalid="this.setCustomValidity('{{__('Comment Required')}}')"
+                          onchange="this.setCustomValidity('')"
+                          name="comment">{{old('comment')}}</textarea>
                 <button type="submit" class="btn-hvr" id="add_comment_btn">إضافة</button>
             </form>
         </div>

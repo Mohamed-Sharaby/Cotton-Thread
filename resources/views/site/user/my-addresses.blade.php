@@ -8,7 +8,7 @@
     <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{url('/')}}">الرئيسية</a></li>
-            <li class="breadcrumb-item"><a href="{{url('/categories')}}">حسابى</a></li>
+            <li class="breadcrumb-item"><a href="{{route('website.users.profile')}}">حسابى</a></li>
             <li class="breadcrumb-item active" aria-current="page">عناوينى</li>
         </ol>
     </div>

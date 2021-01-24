@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Site\AuthController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\UserController;
@@ -19,48 +20,70 @@ Route::group(['as' => 'website.'], function () {
     Route::post('/contact', [HomeController::class, 'postContact'])->name('postContact');
     Route::get('/pages/{page}', [HomeController::class, 'page']);
 
+
+    Route::get('reset', [AuthController::class, 'resetForm'])->name('resetForm');
+    Route::get('send-code', [AuthController::class, 'sendCode'])->name('sendCode');
+    Route::post('/change-password', [AuthController::class, 'changePassword'])->name('changePassword');
+
+
     Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
         Route::get('/', [HomeController::class, 'categories'])->name('index');
         Route::get('/sub-categories/{id}', [HomeController::class, 'subCategories'])->name('subCategories');
     });
 
-    Route::group(['as' => 'products.', 'prefix' => 'products'], function () {
+    Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+        Route::get('/new', [ProductController::class, 'newProducts'])->name('new');
         Route::GET('/{id?}', [ProductController::class, 'index'])->name('index');
         Route::GET('single/{product}', [ProductController::class, 'show'])->name('single');
+        Route::Post('rate', [ProductController::class, 'rate'])->name('rate');
     });
 
+    Route::group(['prefix' => 'favourite', 'as' => 'favourites.', 'middleware' => 'auth'], function () {
+        Route::get('add/{product_id}', 'FavouriteController@addToFavourite')->name('addToFavourite');
+        Route::get('/', 'FavouriteController@index')->name('index');
+        Route::get('delete/{id}/', 'FavouriteController@destroy')->name('destroy');
+    });
 
     Route::group(['prefix' => 'user', 'as' => 'users.', 'middleware' => 'auth:web'], function () {
-
         Route::GET('profile', [UserController::class, 'profile'])->name('profile');
+        Route::get('profile-edit', [UserController::class, 'editProfile'])->name('editProfile');
+        Route::post('profile-edit', [UserController::class, 'updateProfile'])->name('updateProfile');
+        Route::GET('wallet', [UserController::class, 'wallet'])->name('wallet');
         Route::resource('addresses', 'AddressController');
         Route::get('regions/{id}', 'AddressController@regions');
         Route::get('districts/{id}', 'AddressController@districts');
+    });
+
+    Route::group(['prefix' => 'orders', 'as' => 'orders.', 'middleware' => 'auth'], function () {
+        Route::get('/', 'OrderController@index')->name('index');
+        Route::get('{id}', 'OrderController@show')->name('show');
+        Route::delete('delete/{id}', 'OrderController@delete')->name('delete');
+        Route::post('cancel/{id}', 'OrderController@cancel')->name('cancel');
+        Route::post('remove-item/{id}', 'OrderController@removeItem')->name('removeItem');
+    });
+
+    Route::group(['prefix' => 'cart', 'as' => 'carts.', 'middleware' => 'auth'], function () {
+        Route::get('/', 'CartController@index')->name('index');
+        Route::Post('add', 'CartController@AddItemToCart')->name('add');
+
+        Route::get('pay-off', 'CartController@payOff')->name('payOff');
+        Route::post('pay-off', 'CartController@submitPayOff')->name('submitPayOff');
 
     });
 
 
 });
 
-Route::get('moniem/notify',function (\Illuminate\Http\Request $request){
+Route::get('moniem/notify', function (\Illuminate\Http\Request $request) {
     $user = User::find($request['user_id']);
-    Notification::send($user,new GeneralNotification($request->except(['user_id'])));
+    Notification::send($user, new GeneralNotification($request->except(['user_id'])));
     return response()->json('notification send');
 });
 
-Route::get('/cart', function () {
-    return view('site.cart');
-});
 
-Route::get('/change-password', function () {
-    return view('site.change-password');
-});
 
 Route::get('/multimedia', function () {
     return view('site.multimedia');
-});
-Route::get('/new-products', function () {
-    return view('site.new-products');
 });
 
 Route::get('/news', function () {
@@ -69,9 +92,7 @@ Route::get('/news', function () {
 Route::get('/offers', function () {
     return view('site.offers');
 });
-Route::get('/favourite', function () {
-    return view('site.favourite');
-});
+
 Route::get('/order-summary', function () {
     return view('site.order-summary');
 });
@@ -82,25 +103,11 @@ Route::get('/booking-done', function () {
     return view('site.booking-done');
 });
 
-Route::get('/profile-edit', function () {
-    return view('site.profile-edit');
-});
+
 Route::get('/profile-notifications', function () {
     return view('site.profile-notifications');
 });
-Route::get('/profile-orders', function () {
-    return view('site.profile-orders');
-});
-Route::get('/profile-wallet', function () {
-    return view('site.profile-wallet');
-});
 
-Route::get('/reset', function () {
-    return view('site.forget');
-});
-Route::get('/check-code', function () {
-    return view('site.check-code');
-});
 Route::get('/change-pass', function () {
     return view('site.change-password');
 });

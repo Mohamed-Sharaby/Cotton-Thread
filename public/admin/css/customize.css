@@ -492,7 +492,7 @@ table.dataTable.dtr-inline.collapsed
         background: url("../global_assets/images/shopping.png") no-repeat bottom
             left fixed;
         background-size: auto 180px;
-        min-height: 80vh;
+        /*min-height: 80vh;*/
     }
 }
 input.form-control[type="file"] {

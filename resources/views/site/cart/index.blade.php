@@ -18,19 +18,21 @@
         <div class="row">
             <div class="col-md-9 col-xs-12">
                 <div class="items_r">
+                    @if($cart)
+                    @foreach($cart->cartItems as $item)
                     <div class="flexx cart_item">
                         <button class="nav-icon remove_item"> <i class="far fa-trash-alt"></i> </button>
                         <div class="item_dtls">
-                            <a href="{{url('single-product')}}" class="i_img">
-                                <img src="{{asset('website/img/asset8.jpg')}}" onerror="this.src='{{asset('website/img/logo.png')}}'" loading="lazy" decoding="async">
-                                <div class="abs_badg off_b">خصم 15%</div>
+                            <a href="{{route('website.products.single',$item->productQuantity->product->id)}}" class="i_img">
+                                <img src="{{$item->productQuantity->product->image}}" onerror="this.src='{{asset('website/img/logo.png')}}'" loading="lazy" decoding="async">
+                                <div class="abs_badg off_b">خصم {{$item->productQuantity->product->discount}}%</div>
                             </a>
                             <div class="right_dtls">
-                                <a href="{{url('single-product')}}" class="item_nm">مجموعة الصابون الطبيعى</a>
-                                <span class="spanSec">خيط القطن</span>
+                                <a href="{{url('single-product')}}" class="item_nm">{{$item->productQuantity->product->name}}</a>
+                                <span class="spanSec">{{$item->productQuantity->product->subcategory->name}}</span>
                                 <div class="i_prices">
-                                    <p class="old_price"><span>300</span><span> ر.س</span></p>
-                                    <p class="new_price"><span class="current_price">100</span><span> ر.س</span></p>
+                                    <p class="old_price"><span>{{$item->productQuantity->product->price}}</span><span> ر.س</span></p>
+                                    <p class="new_price"><span class="current_price">{{$item->productQuantity->product->priceAfterDiscount}}</span><span> ر.س</span></p>
                                     <p class="hint">الشحن مجانا لفترة محدودة!</p>
                                 </div>
                             </div>
@@ -38,7 +40,7 @@
                         <div>
                             <div class="number-input">
                                 <button type="button" onclick="this.parentNode.querySelector('.quantity').stepUp()" class="plus"> <i class="fas fa-plus"></i> </button>
-                                <input class="quantity" min="1" max="30" value="1" type="number">
+                                <input class="quantity" name="quantity[]" min="1" max="30" value="{{$item->quantity}}" type="number">
                                 <button type="button" onclick="this.parentNode.querySelector('.quantity').stepDown()" class="minus"> <i class="fas fa-minus">
                                     </i> </button>
                             </div>
@@ -47,64 +49,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flexx cart_item">
-                        <button class="nav-icon remove_item"> <i class="far fa-trash-alt"></i> </button>
-                        <div class="item_dtls">
-                            <a href="{{url('single-product')}}" class="i_img">
-                                <img src="{{asset('website/img/asset14.jpg')}}" onerror="this.src='{{asset('website/img/logo.png')}}'" loading="lazy" decoding="async">
-                                <div class="abs_badg off_b">خصم 15%</div>
-                            </a>
-                            <div class="right_dtls">
-                                <a href="{{url('single-product')}}" class="item_nm">مجموعة الصابون الطبيعى</a>
-                                <span class="spanSec">خيط القطن</span>
-                                <div class="i_prices">
-                                    <p class="old_price"><span>300</span><span> ر.س</span></p>
-                                    <p class="new_price"><span class="current_price">100</span><span> ر.س</span></p>
-                                    <p class="hint">الشحن مجانا لفترة محدودة!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="number-input">
-                                <button type="button" onclick="this.parentNode.querySelector('.quantity').stepUp()" class="plus"> <i class="fas fa-plus"></i> </button>
-                                <input class="quantity" min="1" max="30" value="3" type="number">
-                                <button type="button" onclick="this.parentNode.querySelector('.quantity').stepDown()" class="minus"> <i class="fas fa-minus">
-                                    </i> </button>
-                            </div>
-                            <div class="left_price">
-                                <span class="updatePrice"></span><span>ر.س</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flexx cart_item">
-                        <button class="nav-icon remove_item"> <i class="far fa-trash-alt"></i> </button>
-                        <div class="item_dtls">
-                            <a href="{{url('single-product')}}" class="i_img">
-                                <img src="{{asset('website/img/asset12.jpg')}}" onerror="this.src='{{asset('website/img/logo.png')}}'" loading="lazy" decoding="async">
-                                <div class="abs_badg off_b">خصم 15%</div>
-                            </a>
-                            <div class="right_dtls">
-                                <a href="{{url('single-product')}}" class="item_nm">مجموعة الصابون الطبيعى</a>
-                                <span class="spanSec">خيط القطن</span>
-                                <div class="i_prices">
-                                    <p class="old_price"><span>300</span><span> ر.س</span></p>
-                                    <p class="new_price"><span class="current_price">100</span><span> ر.س</span></p>
-                                    <p class="hint">الشحن مجانا لفترة محدودة!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="number-input">
-                                <button type="button" onclick="this.parentNode.querySelector('.quantity').stepUp()" class="plus"> <i class="fas fa-plus"></i> </button>
-                                <input class="quantity" min="1" max="30" value="12" type="number">
-                                <button type="button" onclick="this.parentNode.querySelector('.quantity').stepDown()" class="minus"> <i class="fas fa-minus">
-                                    </i> </button>
-                            </div>
-                            <div class="left_price">
-                                <span class="updatePrice"></span><span>ر.س</span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                    @else
+                    <p class="alert alert-danger">لا يوجد</p>
+                    @endif
                 </div>
             </div>
             <div class="col-md-3 col-xs-12">
@@ -114,7 +62,7 @@
                     <div class="copounbar">
                         <p class="paycolor"><i class="fas fa-percentage"></i> هل لديك كوبون خصم؟ <b>ادخل الكود هنا</b></p>
                         <form action="#" class="coupon-form">
-                            <input type="text" name="code" placeholder="الكود">
+                            <input type="text" name="code" placeholder="الكود" @guest disabled title={{__('Login First')}} @endguest>
                             <button type="submit" class="btn-hvr" type="submit">
                                 تحقق
                             </button>
@@ -141,18 +89,19 @@
                             ر.س</span>
                     </p>
                     <!--- start choose address --->
-                    <div class="sha7n_adrs">
-                        <select class="js-select2 form-control" title="عنوان الشحن">
-                            <option selected disabled>عنوان الشحن </option>
-                            <option>قصيم </option>
-                            <option>بريدة </option>
-                        </select>
-                        <a href="{{url('profile-add-address')}}" class="to_new_adrs">
-                            <i class="fas fa-plus"></i>إضافة عنوان اخر
-                        </a>
-                    </div>
+{{--                    <div class="sha7n_adrs">--}}
+{{--                        <select class="js-select2 form-control" title="عنوان الشحن">--}}
+{{--                            <option selected disabled>عنوان الشحن </option>--}}
+{{--                            @foreach(\App\Models\Address::where('user_id',auth()->id())->get() as $address)--}}
+{{--                                <option value="{{$address->id}}">{{$address->name}} </option>--}}
+{{--                            @endforeach--}}
+{{--                        </select>--}}
+{{--                        <a href="{{route('website.users.addresses.create')}}" class="to_new_adrs">--}}
+{{--                            <i class="fas fa-plus"></i>إضافة عنوان اخر--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
                     <!--- end choose address --->
-                    <a href="{{url('payment')}}" class="btn-hvr submit_cart" type="submit">
+                    <a href="{{route('website.carts.payOff')}}" class="btn-hvr submit_cart" type="submit">
                         تكملة الدفع
                     </a>
                 </div>

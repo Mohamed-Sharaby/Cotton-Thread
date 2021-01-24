@@ -102,6 +102,15 @@ class Product extends Model
         return number_format($avg,2,'.',',');
     }
 
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class);
+    }
+
+    public function getFavAttribute()
+    {
+        return $this->favourites()->where('user_id', auth()->id())->exists();
+    }
 
     /**
      * @return mixed
