@@ -26,7 +26,9 @@ class CartsCollection extends ResourceCollection
                 'delivered_at' => fix_null_string($q->delivered_at),
                 'sum_cart_orders' => $q->sum_cart_orders,
                 'total' => $q->total,
-                'items'=> new CartResource($q)
+                'delivery_fess' => number_format($q->delivery_cost,2,'.',','),
+                'tax_fess' => number_format($q->tax,2,'.',','),
+                'items'=> new CartResource($q,false)
             ];
         });
         if($this->resource instanceof \Illuminate\Pagination\LengthAwarePaginator){
