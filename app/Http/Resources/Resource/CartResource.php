@@ -31,7 +31,7 @@ class CartResource extends JsonResource
                 'payment' => fix_null_string($this->payment),
                 'transaction_image' => fix_null_string(getImg($this->transaction_image)),
                 'comment' => fix_null_string($this->comment),
-                'delivered_at' => fix_null_string(Carbon::parse($this->delivered_at)->format('d-m-Y')),
+                'delivered_at' => ($this->delivered_at)?Carbon::parse($this->delivered_at)->format('d-m-Y'):'',
                 'sum_cart_orders' => $this->sum_cart_orders,
                 'total' => $this->total,
                 'delivery_fess' => number_format($this->delivery_cost,2,'.',','),
