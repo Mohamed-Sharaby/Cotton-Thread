@@ -188,7 +188,7 @@ function handleArrayKeyNotExists($array, $key)
         return '';
 }
 
-if (!function_exists('cart')){
+if (!function_exists('cart')) {
     function cart()
     {
         if (auth()->guest()) return 0;
@@ -198,11 +198,36 @@ if (!function_exists('cart')){
     }
 }
 
-if (!function_exists('cartItems')){
-    function cartItems(){
+if (!function_exists('cartItems')) {
+    function cartItems()
+    {
         if (auth()->guest()) return null;
         $cart = auth()->user()->carts()->firstWhere('status', 'open');
         if (!$cart) return null;
         return $cart->cartItems;
+    }
+}
+
+
+if (!function_exists('getSetting')) {
+    function getSetting($name)
+    {
+        $setting = \App\Models\Setting::where('name', $name)->first();
+        if (!$setting) {
+            return "";
+        }
+        return $setting->value;
+    }
+}
+
+
+if (!function_exists('price_after_coupon_discount')) {
+    function price_after_coupon_discount($coupon, $price)
+    {
+        if (!$coupon) {
+            return $price;
+        }
+        $price = round( ($price * $coupon->discount / 100), 2);
+        return $price;
     }
 }
