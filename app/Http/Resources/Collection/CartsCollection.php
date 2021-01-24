@@ -24,7 +24,7 @@ class CartsCollection extends ResourceCollection
                 'payment' => fix_null_string($q->payment),
                 'transaction_image' => fix_null_string(getImg($q->transaction_image)),
                 'comment' => fix_null_string($q->comment),
-                'delivered_at' => fix_null_string(Carbon::parse($q->delivered_at)->format('d-m-Y')),
+                'delivered_at' => ($q->delivered_at)?Carbon::parse($q->delivered_at)->format('d-m-Y'):'',
                 'sum_cart_orders' => $q->sum_cart_orders,
                 'total' => $q->total,
                 'delivery_fess' => number_format($q->delivery_cost,2,'.',','),
