@@ -305,7 +305,7 @@
                                                             ريال </p>
                                                         <p class="i_price">{{$item->productQuantity->product->priceAfterDiscount ?? 'لا يوجد'}}
                                                             ريال </p>
-                                                        <p class="hint">الشحن مجانا لفترة محدودة</p>
+{{--                                                        <p class="hint">الشحن مجانا لفترة محدودة</p>--}}
                                                     </div>
                                                 </div>
                                             </li>

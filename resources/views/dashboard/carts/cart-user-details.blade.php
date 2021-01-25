@@ -15,7 +15,13 @@
     </tr>
     <tr>
         <th class="font-weight-bold">العنوان</th>
-        <td>@include('dashboard.carts.address_details')</td>
+        <td>
+            @if($cart->address)
+            @include('dashboard.carts.address_details')
+            @else
+            لا يوجد
+            @endif
+        </td>
         <th class="font-weight-bold">حالة الطلب</th>
         <td>{{__($cart->status)}}</td>
     </tr>

@@ -1,8 +1,12 @@
 <?php
 
 
+use App\Http\Controllers\Site\AddressController;
 use App\Http\Controllers\Site\AuthController;
+use App\Http\Controllers\Site\CartController;
+use App\Http\Controllers\Site\FavouriteController;
 use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\OrderController;
 use App\Http\Controllers\Site\ProductController;
 use App\Http\Controllers\Site\UserController;
 use Illuminate\Support\Facades\Route;
@@ -40,8 +44,8 @@ Route::group(['as' => 'website.'], function () {
 
     Route::group(['prefix' => 'favourite', 'as' => 'favourites.', 'middleware' => 'auth'], function () {
         Route::get('add/{product_id}', 'FavouriteController@addToFavourite')->name('addToFavourite');
-        Route::get('/', 'FavouriteController@index')->name('index');
-        Route::get('delete/{id}/', 'FavouriteController@destroy')->name('destroy');
+        Route::get('/',  [FavouriteController::class, 'index'])->name('index');
+        Route::get('delete/{id}/', [FavouriteController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['prefix' => 'user', 'as' => 'users.', 'middleware' => 'auth:web'], function () {
@@ -50,24 +54,26 @@ Route::group(['as' => 'website.'], function () {
         Route::post('profile-edit', [UserController::class, 'updateProfile'])->name('updateProfile');
         Route::GET('wallet', [UserController::class, 'wallet'])->name('wallet');
         Route::resource('addresses', 'AddressController');
-        Route::get('regions/{id}', 'AddressController@regions');
-        Route::get('districts/{id}', 'AddressController@districts');
+        Route::get('regions/{id}', [AddressController::class, 'regions']);
+        Route::get('districts/{id}', [AddressController::class, 'districts']);
     });
 
     Route::group(['prefix' => 'orders', 'as' => 'orders.', 'middleware' => 'auth'], function () {
-        Route::get('/', 'OrderController@index')->name('index');
-        Route::get('{id}', 'OrderController@show')->name('show');
-        Route::delete('delete/{id}', 'OrderController@delete')->name('delete');
-        Route::post('cancel/{id}', 'OrderController@cancel')->name('cancel');
-        Route::post('remove-item/{id}', 'OrderController@removeItem')->name('removeItem');
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::get('{id}', [OrderController::class, 'show'])->name('show');
+        Route::delete('delete/{id}', [OrderController::class, 'delete'])->name('delete');
+        Route::post('cancel/{id}', [OrderController::class, 'cancel'])->name('cancel');
+        Route::post('remove-item/{id}', [OrderController::class, 'removeItem'])->name('removeItem');
     });
 
     Route::group(['prefix' => 'cart', 'as' => 'carts.', 'middleware' => 'auth'], function () {
-        Route::get('/', 'CartController@index')->name('index');
-        Route::Post('add', 'CartController@AddItemToCart')->name('add');
+        Route::get('/', [CartController::class, 'index'])->name('index');
+        Route::Post('add', [CartController::class, 'AddItemToCart'])->name('add');
+        Route::post('remove/{id}',  [CartController::class, 'removeFromCart'])->name('removeFromCart');
+        Route::Post('coupon',  [CartController::class, 'applyCoupon'])->name('applyCoupon');
 
-        Route::get('pay-off', 'CartController@payOff')->name('payOff');
-        Route::post('pay-off', 'CartController@submitPayOff')->name('submitPayOff');
+        Route::get('pay-off', [CartController::class, 'payOff'])->name('payOff');
+        Route::post('pay-off', [CartController::class, 'submitPayOff'])->name('submitPayOff');
 
     });
 
@@ -103,14 +109,13 @@ Route::get('/booking-done', function () {
     return view('site.booking-done');
 });
 
-
 Route::get('/profile-notifications', function () {
     return view('site.profile-notifications');
 });
 
-Route::get('/change-pass', function () {
-    return view('site.change-password');
-});
+//Route::get('/change-pass', function () {
+//    return view('site.change-password');
+//});
 
 Route::get('/search-result', function () {
     return view('site.search-result');
