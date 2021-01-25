@@ -18,13 +18,22 @@ class Cart extends Model
      * @var array
      */
     protected $fillable = ['user_id','address_id','status','payment',
-        'coupon_id','comment','delivered_at','transaction_image'];
+        'coupon_id','comment','delivered_at','transaction_image','coupon_perc','coupon_val'];
 
     /**
      * @var array
      */
     protected $dates = ['delivered_at'];
 
+    public function getTransactionImageAttribute(){
+        if(isset($this->attributes['transaction_image'])){
+            if(strpos($this->attributes['transaction_image'],'https') !== false)
+                return $this->attributes['transaction_image'];
+            return getImg($this->attributes['transaction_image']);
+        }else{
+            return '';
+        }
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

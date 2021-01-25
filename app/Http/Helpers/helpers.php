@@ -145,13 +145,14 @@ if (!function_exists('getImgPath')) {
 if (!function_exists('cart_status')) {
     function cart_status()
     {
-        return [
-            'open' => 'في انتظار الموافقة',
+        $status =  [
+            'open' => 'في انتظار تأكيد العميل',
             'confirmed' => 'تم تأكيد الطلب',
             'finished' => 'تم التوصيل',
             'refused' => 'تم رفض الطلب',
             'canceled' => 'تم الالغاء',
         ];
+        return $status;
     }
 }
 
@@ -227,7 +228,7 @@ if (!function_exists('price_after_coupon_discount')) {
         if (!$coupon) {
             return $price;
         }
-        $price = round( ($price * $coupon->discount / 100), 2);
+        $price = round(($price * $coupon->discount / 100), 2);
         return $price;
     }
 }

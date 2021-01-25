@@ -37,9 +37,11 @@
                                 <b>ادخل الكود هنا</b>
                             </p>
                             <form action="#" class="coupon-form">
-                                <input type="text" name="code" placeholder="الكود" @guest disabled
-                                       title={{__('Login First')}} @endguest>
-                                <button type="submit" class="btn-hvr">
+                                <input type="hidden" class="couponId" value="{{$cart->coupon_id ? $cart->coupon_id : ''}}">
+                                <input type="text" name="code" placeholder="الكود"
+                                       @guest disabled title={{__('Login First')}} @endguest
+                                    {{$cart->coupon_id ? 'disabled' : ''}}>
+                                <button type="submit"  {{$cart->coupon_id ? 'disabled' : ''}} class="btn-hvr">
                                     تحقق
                                 </button>
                             </form>
@@ -120,8 +122,10 @@
                 let qty = $(this).closest('.number-input').find('.quantity');
                 let quantity = qty.val();
                 let product_quantity_id = qty.data('product');
+                let cart = qty.data('cart');
+                let item = qty.data('item');
                 $('.discount-value').empty();
-                let data = {quantity, product_quantity_id};
+                let data = {quantity, product_quantity_id,item,cart};
                 updateCart(data);
 
                 $(this).siblings('.quantity').trigger('change');

@@ -35,7 +35,8 @@
             </button>
 
             <input class="quantity" name="quantity[]" min="1" value="{{$item->quantity}}" type="number"
-                   data-productq="{{$item->productQuantity->id }}" data-product="{{$item->productQuantity->product->id}}">
+                   data-product="{{$item->productQuantity->id }}" data-item="{{$item->id}}"
+                   data-cart="{{$item->cart_id}}" id="qyt_change">
 
             <button type="button" onclick="this.parentNode.querySelector('.quantity').stepDown()" class="minus">
                 <i class="fas fa-minus"></i>

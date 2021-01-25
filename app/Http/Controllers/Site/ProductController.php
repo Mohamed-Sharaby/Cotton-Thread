@@ -15,7 +15,7 @@ class ProductController extends Controller
     {
         $products = Product::active();
         if (!is_null($id)) {
-            $products = Product::whereSubcategoryId($id)->active()->get();
+            $products = Product::whereSubcategoryId($id)->active();
         }
         $categories = Category::active()->get();
 

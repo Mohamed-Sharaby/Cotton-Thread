@@ -89,20 +89,12 @@ class CartController extends Controller
     public function update(Request $request, Cart $cart)
     {
         $validator = $request->validate([
-            'status' => 'required|in:open,confirmed,on_delivery,finished',
+            'status' => 'required|in:open,confirmed,finished,refused,canceled',
         ]);
 
         if ($request->status == 'confirmed') {
             foreach ($cart->cartItems as $item) {
-//                if ($item->offer_id) {
-//                    $offer = Offer::find($item->offer_id);
-//                    foreach ($offer->sizes as $offer_size) {
-//                        $offer_size->productSize->quantities()->create(['type' => 'decrease', 'quantity' => $item->quantity]);
-//                    }
-//                } else {
-//                    $item->product_size->quantities()->create(['type' => 'decrease', 'quantity' => $item->quantity]);
-//                }
-                $item->productQuantity->decrement('quantity',$item->quantity);
+                //$item->productQuantity->decrement('quantity',$item->quantity);
             }
         }
 //        if ($request->status == 'cancelled') {
