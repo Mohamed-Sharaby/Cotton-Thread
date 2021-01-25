@@ -29,10 +29,15 @@ class ProductController extends Controller
      */
     public function index(Request $request){
         $products = Product::where('is_ban',0)->whereHas('product_quantity')
+            ->when(($request->has('search') && $request['search']),function ($q)use($request){
+                $q->where('ar_name','like','%'.$request['search'].'%')
+                    ->orWhere('en_name','like','%'.$request['search'].'%')
+                    ->where('ar_details','like','%'.$request['search'].'%')
+                    ->orWhere('en_details','like','%'.$request['search'].'%');
+            })
             ->when(($request->has('is_new') && $request['is_new']),function ($q)use($request){
                 if($request['is_new'] == true)
                     $q->where('is_new',1);
-
             })
             ->when(($request->has('has_discount') && $request['has_discount']),function ($q)use($request){
                 if($request['has_discount'] == true)
