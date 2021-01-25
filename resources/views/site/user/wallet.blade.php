@@ -22,7 +22,7 @@
                     @else
                         <p>لا يوجد</p>
                     @endif
-                    <a href="{{url('/')}}" class="btn-hvr"> شحن الرصيد </a>
+                    <a href="#" class="btn-hvr"> شحن الرصيد </a>
                 </div>
             </div>
         </div>

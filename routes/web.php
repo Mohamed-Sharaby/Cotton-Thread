@@ -69,6 +69,7 @@ Route::group(['as' => 'website.'], function () {
     Route::group(['prefix' => 'cart', 'as' => 'carts.', 'middleware' => 'auth'], function () {
         Route::get('/', [CartController::class, 'index'])->name('index');
         Route::Post('add', [CartController::class, 'AddItemToCart'])->name('add');
+        Route::Post('update', [CartController::class, 'update'])->name('update');
         Route::post('remove/{id}',  [CartController::class, 'removeFromCart'])->name('removeFromCart');
         Route::Post('coupon',  [CartController::class, 'applyCoupon'])->name('applyCoupon');
 
@@ -112,10 +113,6 @@ Route::get('/booking-done', function () {
 Route::get('/profile-notifications', function () {
     return view('site.profile-notifications');
 });
-
-//Route::get('/change-pass', function () {
-//    return view('site.change-password');
-//});
 
 Route::get('/search-result', function () {
     return view('site.search-result');

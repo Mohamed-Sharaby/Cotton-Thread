@@ -31,10 +31,10 @@ cartForm.submit(function (e) {
 // update cart
 function updateCart(data) {
     $.ajax({
-        url: '/cart/add',
+        url: '/cart/update',
         type: 'POST',
         data: data,
-        success: function(data) {
+        success: function (data) {
             if ($.isEmptyObject(data.error)) {
                 console.log('success')
                 $('.discount-value').text(data.discount);
@@ -43,12 +43,11 @@ function updateCart(data) {
                 toastr.error(data.error);
             }
         },
-        error: function(data) {
+        error: function (data) {
             console.log('Error:', data);
         }
     });
 }
-
 
 
 // apply coupon to cart
@@ -75,6 +74,10 @@ couponForm.submit(function (e) {
                 $('.coupon-result').addClass('hidden')
 
                 let total = parseFloat($('#totalss').text());
+               let couponExist =  $('.couponId').val(data.coupon_id);
+               if (couponExist){
+                   $('input[name="code"]').attr('disabled','disabled');
+               }
                 $('.coupon-perc').text((data.perc + '%'));
                 $('.discount-value').text((data.value));
                 let total_after_discount = total - data.value;
@@ -134,3 +137,38 @@ $(".remove_item").each(function () {
     })
 })
 
+
+// submit payOff
+
+var payOffForm = $("#payOffForm");
+payOffForm.submit(function (e) {
+    e.preventDefault();
+    let formData = new FormData(this);
+
+    $.ajax({
+        url: "/cart/pay-off",
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            console.log('res', data)
+
+            if ($.isEmptyObject(data.error)) {
+                toastr.success(" تم تأكيد الطلب بنجاح");
+                window.location.href = '/orders/' + data.id + '?success=1';
+            } else {
+                toastr.error(data.error);
+            }
+        }, error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+})
+
+// upload image when payment type is bank_transaction
+$(document).on('click', 'input[name=payment]', function () {
+    let type = $(this).val();
+    if (type === 'bank_transaction') $('.bank-transaction').removeClass('hidden')
+    else $('.bank-transaction').addClass('hidden')
+})

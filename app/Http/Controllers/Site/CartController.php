@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Color;
@@ -11,15 +12,14 @@ use App\Models\Product;
 use App\Models\ProductQuantity;
 use App\Models\Size;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        $cart = $user->carts()->where('status', 'open')->first();
-
+        $cart = Cart::firstOrCreate(['user_id' => auth()->id(), 'status' => 'open']);
         return view('site.cart.index', compact('cart'));
     }
 
@@ -77,16 +77,17 @@ class CartController extends Controller
 
             if ($cart->coupon_id == $coupon->id) {
                 return response()->json(['status' => 'exists', 'msg' => 'هذا الكوبون مستخدم بالفعل']);
+            } else {
+                $discount_val = $this->couponDiscount($cart, $coupon);
+                $cart->update(['coupon_id' => $coupon->id, 'coupon_perc' => $coupon->discount, 'coupon_val' => $discount_val]);
+                return response()->json([
+                    'status' => true,
+                    'coupon_id' => $coupon->id,
+                    'value' => $discount_val,
+                    'perc' => $coupon->discount,
+                    'msg' => __('تم اضافة الخصم بنجاح')
+                ]);
             }
-
-            $discount_val = $this->couponDiscount($cart, $coupon);
-            $cart->update(['coupon_id' => $coupon->id, 'coupon_perc' => $coupon->discount, 'coupon_val' => $discount_val]);
-            return response()->json([
-                'status' => true,
-                'value' => $discount_val,
-                'perc' => $coupon->discount,
-                'msg' => __('تم اضافة الخصم بنجاح')
-            ]);
         }
         return response()->json(['status' => false, 'msg' => __('trans.code_incorrect')]);
     }
@@ -100,7 +101,8 @@ class CartController extends Controller
         if (count($cartItems) > 0) {
             foreach ($cartItems as $item) {
                 $product = Product::findOrFail($item->productQuantity->product->id);
-                $price = price_after_coupon_discount($coupon, $product->priceAfterDiscount);
+                $productPrice = $product->priceAfterDiscount * $item->quantity;
+                $price = price_after_coupon_discount($coupon, $productPrice);
                 $result[] = $price;
             }
         }
@@ -108,11 +110,23 @@ class CartController extends Controller
         return round($total_after_discount, 2);
     }
 
+
     public function removeFromCart($id)
     {
         $item = CartItem::findOrFail($id);
         $item->delete();
         return response()->json('success');
+    }
+
+    public function update(Request $request)
+    {
+        $item = CartItem::findOrFail($request->item);
+        $cart = Cart::findOrFail($request->cart);
+        $item->update([
+            'quantity' => $request->quantity,
+            'price' => $item->productQuantity->product->priceAfterDiscount * $request->quantity
+        ]);
+        return 'updated';
     }
 
 
@@ -122,15 +136,56 @@ class CartController extends Controller
 
         if (!$cart) return back();
         $coupon = $cart->coupon;
-        $discount = $this->couponDiscount($cart, $coupon);
-        //$total = $cart->items()->sum('price');
+        //$discount = $this->couponDiscount($cart, $coupon);
         $total = $cart->cartItems()->sum('price');
-        dd($total);
-        $cart_discount = Discount::whereType('cart_discount')->first();
-        if ($cart_discount && $cart_discount->cart_min <= $total) {
-            $discount += $total * $cart_discount->value / 100;
+        if ($coupon) $discount = $total * $coupon->discount / 100;
+        $discount = 0;
+        return view('site.cart.payOff', compact('cart', 'total', 'discount', 'coupon'));
+    }
+
+    public function submitPayOff(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'address_id' => 'required|integer|exists:addresses,id',
+            'payment' => 'required|in:COD,bank_transaction,wallet,credit',
+            'transaction_image' => 'required_if:payment,bank_transaction|image',
+        ]);
+
+        if (!$validator->passes()) {
+            return response()->json(['error' => $validator->errors()->first()]);
         }
 
-        return view('site.cart.payOff', compact('discount', 'cart', 'banks'));
+        $cart = auth()->user()->carts()->whereStatus('open')->first();
+        if (!$cart) return back();
+
+        $address = Address::findOrFail($request->address_id);
+
+        if ($request->payment == 'bank_transaction') {
+            $image = $request->transaction_image;
+            $cart->update(['transaction_image' => Storage::disk('public')->put('photos/carts', $image)]);
+        }
+
+        if ($request->payment == 'wallet') {
+            $wallet = auth()->user()->wallet;
+            if (!$wallet) {
+                return response()->json(['error' => 'لا يوجد لديك محفظة']);
+            }
+            $amount = $wallet->amount;
+
+            if ((float)$amount >= (float)$request->final_total) {
+                $wallet->update(['amount' => $amount - $request->final_total]);
+            } else {
+                return response()->json(['error' => 'المبلغ الموجود فى المحفظة غير كافى للدفع']);
+            }
+        }
+
+        $cart->update([
+            'address_id' => $address->id,
+            'payment' => $request->payment,
+            'status' => 'confirmed',
+        ]);
+
+
+        return response()->json(['status' => true, 'id' => $cart->id]);
     }
 }

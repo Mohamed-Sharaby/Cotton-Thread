@@ -98,6 +98,9 @@
             background-color: #fff !important;
             box-shadow: 0px 6px 12px 0px rgba(234, 234, 234, 1);
         }
+        .toast-error, .toast-success{
+            opacity: unset!important;
+        }
     </style>
 </head>
 <body>
