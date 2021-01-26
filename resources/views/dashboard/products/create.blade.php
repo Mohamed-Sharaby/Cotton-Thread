@@ -93,7 +93,7 @@
                                 <option disabled selected>اختر القسم الفرعى</option>
                                 @foreach($subCategories as $category)
                                     <option
-                                        value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->ar_name}}</option>
+                                        value="{{$category->id}}" {{old('subcategory_id') == $category->id ? 'selected' : ''}}>{{$category->ar_name}}</option>
                                 @endforeach
                             </select>
                             @error('subcategory_id')

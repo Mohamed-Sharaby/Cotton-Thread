@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'الحساب الشخصي | خيط وقطن')
+@section('title' , 'الحساب الشخصي || خيط وقطن')
 @section('styles')
 <link rel="stylesheet" href="{{asset('website/css/jquery.fancybox.min.css')}}">
 <link rel="stylesheet" href="{{asset('website/css/k-style.css')}}">

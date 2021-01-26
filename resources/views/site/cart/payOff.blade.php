@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'الدفع | خيط وقطن')
+@section('title' , 'الدفع || خيط وقطن')
 @section('styles')
     <link rel="stylesheet" href="{{asset('website/css/select2.min.css')}}">
 @endsection
@@ -25,18 +25,7 @@
                     <div class="col-md-3 col-xs-12">
                         <div class="left-calc">
                             <h3>ملخص السلة</h3>
-                            <!---- start copoun --->
-                        {{--                    <div class="copounbar">--}}
-                        {{--                        <p class="paycolor"><i class="fas fa-percentage"></i> هل لديك كوبون خصم؟ <b>ادخل الكود هنا</b></p>--}}
-                        {{--                        <form action="#" class="coupon-form">--}}
-                        {{--                            <input type="text" name="code" placeholder="الكود">--}}
-                        {{--                            <button type="submit" class="btn-hvr" type="submit">--}}
-                        {{--                                <span class="z-span">تحقق</span>--}}
-                        {{--                            </button>--}}
-                        {{--                        </form>--}}
-                        {{--                        <span class="coupon-result">هذا الكود غير صحيح</span>--}}
-                        {{--                    </div>--}}
-                        <!---- End copoun --->
+
                             <p class="left-card">
                                 <span class="rigt-span ">المجموع:</span>
                                 <span class="left-span"><span id="totalss">{{ $total }}</span>ر.س</span>
@@ -44,24 +33,24 @@
                             <p class="left-card discount">
                                 <span class="rigt-span"> الخصم :<span class="coupon-perc">{{$coupon ? $coupon->discount : 0 }}</span>%</span>
                                 <span class="left-span red"><span
-                                        class="discount-value">{{ $total * $coupon->discount /100 }} </span> ر.س</span>
+                                        class="discount-value">{{ number_format( $total * ($coupon ? $coupon->discount : 0) /100,2) }} </span> ر.س</span>
                             </p>
                             <p class="left-card discount">
                                 <span class="rigt-span"> الضريبة :</span>
                                 <input type="hidden" name="taxes_fees" class="hidden_taxes"
                                        value="{{$total * getSetting('tax_percentage') / 100}}">
                                 <span class="rigt-span"><span id="taxes"
-                                                              class="taxes">{{$total * getSetting('tax_percentage') / 100}} </span>ر.س</span>
+                                                              class="taxes">{{number_format($total * getSetting('tax_percentage') / 100,2)}} </span>ر.س</span>
                             </p>
                             <p class="left-card">
                                 <span class="rigt-span">المجموع الإجمالى: </span>
                                 <span class="left-span">
                                     <span id="all-totalss">
-                                        {{ ($total + ($total * getSetting('tax_percentage') / 100)) - ($total * $coupon->discount /100)}}
+                                        {{ number_format(($total + ($total * getSetting('tax_percentage') / 100)) - ($total * ($coupon ? $coupon->discount : 0) /100),2)}}
                                     </span> ر.س
                                 </span>
                                 <input type="hidden" name="final_total" id="all-totalss-val"
-                                       value=" {{ ($total + ($total * getSetting('tax_percentage') / 100)) - ($total * $coupon->discount /100)}}">
+                                       value=" {{ ($total + ($total * getSetting('tax_percentage') / 100)) - ($total * ($coupon ? $coupon->discount : 0) /100)}}">
                             </p>
                             <!--- start choose address --->
                             <div class="sha7n_adrs">

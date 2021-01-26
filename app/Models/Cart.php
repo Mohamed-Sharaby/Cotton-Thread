@@ -121,14 +121,16 @@ class Cart extends Model
         if($item->exists()){
             $item->update([
                 'quantity'=>$item->first()->quantity + $request['quantity'],
-                'price'=>fix_null_double(optional($product)->price),
+                //'price'=>fix_null_double(optional($product)->price),
+                'price'=>fix_null_double(optional($product)->priceAfterDiscount),
                 'discount'=>fix_null_double(optional($product)->discount),
             ]);
         }else{
             $this->cartItems()->create([
                 'product_quantity_id'=>$productQuantity->id,
                 'quantity'=>$request['quantity'],
-                'price'=>fix_null_double(optional($product)->price),
+               // 'price'=>fix_null_double(optional($product)->price),
+                'price'=>fix_null_double(optional($product)->priceAfterDiscount),
                 'discount'=>fix_null_double(optional($product)->discount),
             ]);
         }
@@ -184,5 +186,18 @@ class Cart extends Model
             $total = $tax + $sum_orders + $delivery_cost;
             return number_format($total,2,'.',',');
 //        }
+    }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($model) {
+            if ($model->transaction_image) {
+                $image = str_replace(url('/') . '/storage/', '', $model->transaction_image);
+                deleteImage('photos/carts', $image);
+            }
+
+        });
     }
 }

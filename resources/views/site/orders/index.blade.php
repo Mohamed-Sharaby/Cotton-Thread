@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'طلباتي | خيط وقطن')
+@section('title' , 'طلباتي || خيط وقطن')
 @section('styles')
     <!-- start datatable -->
     <link rel="stylesheet" href="{{asset('website/css/Datatable/jquery.dataTables.min.css')}}">

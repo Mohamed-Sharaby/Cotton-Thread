@@ -23,7 +23,6 @@ class CartController extends Controller
         return view('site.cart.index', compact('cart'));
     }
 
-
     public function AddItemToCart(Request $request)
     {
         $user = auth()->user();
@@ -58,7 +57,7 @@ class CartController extends Controller
         $openCart = $user->carts()->where('status', 'open');
         if ($openCart->exists()) {
             $openCart = $openCart->first();
-            $openCart->itemsUpdate($productQuantity, $request);
+            $openCart->itemsUpdate($productQuantity, $request->all());
             return response()->json(['status' => true, 'msg' => 'Added Successfully']);
         } else {
             $result = Cart::addToCart($productQuantity, $request->all());
@@ -71,13 +70,9 @@ class CartController extends Controller
     public function applyCoupon(Request $request)
     {
         $coupon = Coupon::where('code', $request->code)->first();
-
-        if ($coupon) {
-            $cart = Cart::firstOrCreate(['user_id' => auth()->id(), 'status' => 'open']);
-
-            if ($cart->coupon_id == $coupon->id) {
-                return response()->json(['status' => 'exists', 'msg' => 'هذا الكوبون مستخدم بالفعل']);
-            } else {
+        $cart = Cart::firstOrCreate(['user_id' => auth()->id(), 'status' => 'open']);
+        if (count($cart->cartItems) > 0) {
+            if ($coupon) {
                 $discount_val = $this->couponDiscount($cart, $coupon);
                 $cart->update(['coupon_id' => $coupon->id, 'coupon_perc' => $coupon->discount, 'coupon_val' => $discount_val]);
                 return response()->json([
@@ -88,8 +83,10 @@ class CartController extends Controller
                     'msg' => __('تم اضافة الخصم بنجاح')
                 ]);
             }
+            return response()->json(['status' => false, 'msg' => __('trans.code_incorrect')]);
+        } else {
+            return response()->json(['status' => 'no_products', 'msg' => __('لا يوجد منتجات لتطبيق الخصم عليها ')]);
         }
-        return response()->json(['status' => false, 'msg' => __('trans.code_incorrect')]);
     }
 
 
@@ -124,7 +121,7 @@ class CartController extends Controller
         $cart = Cart::findOrFail($request->cart);
         $item->update([
             'quantity' => $request->quantity,
-            'price' => $item->productQuantity->product->priceAfterDiscount * $request->quantity
+            'price' => $item->productQuantity->product->priceAfterDiscount * $request->quantity,
         ]);
         return 'updated';
     }
@@ -133,13 +130,10 @@ class CartController extends Controller
     public function payOff()
     {
         $cart = Cart::firstOrCreate(['user_id' => auth()->id(), 'status' => 'open']);
-
         if (!$cart) return back();
-        $coupon = $cart->coupon;
-        //$discount = $this->couponDiscount($cart, $coupon);
-        $total = $cart->cartItems()->sum('price');
-        if ($coupon) $discount = $total * $coupon->discount / 100;
-        $discount = 0;
+        $coupon = $cart->coupon ? $cart->coupon : 0;
+        $total = $cart->totalProductsPrice;
+        $discount = $total * $coupon->discount / 100;
         return view('site.cart.payOff', compact('cart', 'total', 'discount', 'coupon'));
     }
 
@@ -184,7 +178,6 @@ class CartController extends Controller
             'payment' => $request->payment,
             'status' => 'confirmed',
         ]);
-
 
         return response()->json(['status' => true, 'id' => $cart->id]);
     }

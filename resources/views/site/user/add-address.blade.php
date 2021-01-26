@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'إضافة عنوان | خيط وقطن')
+@section('title' , 'إضافة عنوان || خيط وقطن')
 @section('styles')
     <style>
         .invalid-feedback{

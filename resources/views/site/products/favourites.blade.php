@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'المفضلة | خيط وقطن')
+@section('title' , 'المفضلة || خيط وقطن')
 @section('styles')
     <style>
         .remove_item1{
@@ -62,9 +62,11 @@
                                             </p>
                                         </div>
                                         <div class="flexx"><span
-                                                class="spanSec">{{$favourite->product->subcategory->name}}</span></div>
-                                        <button type="button" class="to_card" data-toggle="modal"
-                                                data-target="#addCardModal">
+                                                class="spanSec">{{$favourite->product->subcategory->name}}</span>
+                                        </div>
+
+                                        <button type="button" class="to_card addCart"
+                                                data-id="{{$favourite->product->id}}" data-toggle="modal" >
                                             <i class="fas fa-cart-plus"></i>
                                         </button>
                                     </div>
@@ -76,7 +78,8 @@
             </div>
         </div>
     </section>
-    @include('site.modals.addcard')
+{{--    @include('site.modals.addcard')--}}
+    @include('site.modals.add_to_cart')
     <!-- /////////////////////||||||||||||||||||||||||||||| End Section |||||||||||||||||||||||||||| -->
 @endsection
 @section('scripts')

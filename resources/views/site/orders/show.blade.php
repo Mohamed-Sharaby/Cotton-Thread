@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'تفاصيل الطلب | خيط وقطن')
+@section('title' , 'تفاصيل الطلب || خيط وقطن')
 @section('styles')
     <style>
         .items_r .cart_item .remove_item1 {
@@ -96,10 +96,12 @@
             <div class="items_r">
                 @foreach($cart->cartItems as $item)
                     <div class="flexx cart_item">
+                        @if($cart->status == 'open')
                         <button class="nav-icon remove_item1"
                                 data-url="{{route('website.orders.removeItem',$item->id)}}">
                             <i class="far fa-trash-alt"></i>
                         </button>
+                        @endif
                         <div class="item_dtls">
                             <a href="{{route('website.products.single',$item->productQuantity->product->id)}}"
                                class="i_img">

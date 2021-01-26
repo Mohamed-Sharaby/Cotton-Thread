@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'المنتجات | خيط وقطن')
+@section('title' , 'المنتجات || خيط وقطن')
 @section('styles')
 @endsection
 @section('content')
@@ -48,6 +48,7 @@
                                 <div class="row">
                                     @foreach($products as $product)
                                         @include('site.products.product-component',['product'=>$product])
+                                        @include('site.modals.add_to_cart')
                                     @endforeach
                                 </div>
                                <div class="row">

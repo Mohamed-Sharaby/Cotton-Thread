@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'تفاصيل المنتج | خيط وقطن')
+@section('title' , ' خيط وقطن'.' || '.$product->name)
 @section('styles')
 
     <link rel="stylesheet" href="{{asset('website/css/swiper-bundle.min.css')}}">
