@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'الرئيسية | خيط وقطن')
+@section('title' , 'الرئيسية || خيط وقطن')
 @section('styles')
     <link rel="stylesheet" href="{{asset('website/css/swiper-bundle.min.css')}}">
 
@@ -55,10 +55,15 @@
     <!-- /////////////////////||||||||||||||||||||||||||||| Start Offers Section |||||||||||||||||||||||||||| -->
     @include('site.offers-section')
     <!-- /////////////////////||||||||||||||||||||||||||||| End Offers Section |||||||||||||||||||||||||||| -->
-    @include('site.modals.addcard')
+{{--    @include('site.modals.add_to_cart')--}}
 @endsection
 @section('scripts')
     <script src="{{asset('website/js/swiper-bundle.min.js')}}"></script>
+    <script>
+        @if(session()->has('success'))
+        toastr.success(" {{ session('success') }} ")
+        @endif
+    </script>
     <script>
         var swiper = new Swiper('.my-header .swiper-container', {
             slidesPerView: 1,

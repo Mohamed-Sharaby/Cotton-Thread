@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'الإشعارات | خيط وقطن')
+@section('title' , 'الإشعارات || خيط وقطن')
 @section('styles')
 @endsection
 @section('content')

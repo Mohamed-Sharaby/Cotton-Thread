@@ -30,7 +30,9 @@
                     </ul>
                     <p class="rate_ratio">{{$product->avg_rate}}</p>
                 </div>
-                <button type="button" class="to_card" data-toggle="modal" data-target="#addCardModal">
+                <button type="button" class="to_card addCart"
+                        data-auth="{{ auth()->check() }}"
+                        data-id="{{$product->id}}" data-toggle="modal" >
                     <i class="fas fa-cart-plus"></i>
                 </button>
             </div>

@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'المحفظة | خيط وقطن')
+@section('title' , 'المحفظة || خيط وقطن')
 @section('styles')
     <link rel="stylesheet" href="{{asset('website/css/k-style.css')}}">
 @endsection

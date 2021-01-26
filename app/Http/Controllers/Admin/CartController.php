@@ -33,7 +33,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carts = Cart::latest()->get();
+        $carts = Cart::latest()->where('status', '<>', 'open')->get();
         return view('dashboard.carts.index', compact('carts'));
     }
 

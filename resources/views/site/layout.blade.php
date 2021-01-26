@@ -101,6 +101,7 @@
         .toast-error, .toast-success{
             opacity: unset!important;
         }
+
     </style>
 </head>
 <body>
@@ -523,6 +524,7 @@
     });
 </script>
 <script src="{{asset('website/js/user/order.js')}}"></script>
+<script src="{{asset('website/js/user/cart.js')}}"></script>
 @yield('scripts')
 <!-- /////////////////////||||||||||||||||||||||||||||| End Script |||||||||||||||||||||||||||| -->
 </body>

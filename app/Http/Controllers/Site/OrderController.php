@@ -11,7 +11,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = auth()->user()->carts()->latest()->paginate(2);
+        $orders = auth()->user()->carts()->where('status', '<>', 'open')->latest()->paginate(2);
         return view('site.orders.index', compact('orders'));
     }
 
