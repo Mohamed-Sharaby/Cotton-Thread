@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'المنتجات الجديدة | خيط وقطن')
+@section('title' , 'المنتجات الجديدة || خيط وقطن')
 @section('styles')
 @endsection
 @section('content')
@@ -28,6 +28,7 @@
                             <div class="row">
                                 @foreach($products as $product)
                                     @include('site.products.product-component',['product'=>$product])
+                                    @include('site.modals.add_to_cart')
                                 @endforeach
                             </div>
 {{--                            <a class="btn-hvr see_more" href="#">عرض المزيد</a>--}}

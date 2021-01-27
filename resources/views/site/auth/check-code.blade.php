@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , ' إستعادة كلمة المرور | خيط وقطن')
+@section('title' , ' إستعادة كلمة المرور || خيط وقطن')
 @section('styles')
     <link rel="stylesheet" href="{{asset('website/css/k-style.css')}}">
 @endsection
@@ -34,7 +34,7 @@
                     <div class="input-wrap">
                         <input type="text" placeholder="1234" name="code" value="{{old('code')}}">
                         <div class="hov-input">
-                            <label>******</label>
+                            <label>الكود</label>
                         </div>
                     </div>
 

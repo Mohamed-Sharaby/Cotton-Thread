@@ -18,13 +18,22 @@ class Cart extends Model
      * @var array
      */
     protected $fillable = ['user_id','address_id','status','payment',
-        'coupon_id','comment','delivered_at','transaction_image'];
+        'coupon_id','comment','delivered_at','transaction_image','coupon_perc','coupon_val'];
 
     /**
      * @var array
      */
     protected $dates = ['delivered_at'];
 
+    public function getTransactionImageAttribute(){
+        if(isset($this->attributes['transaction_image'])){
+            if(strpos($this->attributes['transaction_image'],'https') !== false)
+                return $this->attributes['transaction_image'];
+            return getImg($this->attributes['transaction_image']);
+        }else{
+            return '';
+        }
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -112,6 +121,7 @@ class Cart extends Model
         if($item->exists()){
             $item->update([
                 'quantity'=>$item->first()->quantity + $request['quantity'],
+                //'price'=>fix_null_double(optional($product)->price),
                 'price'=>fix_null_double(optional($product)->price),
                 'discount'=>fix_null_double(optional($product)->discount),
             ]);
@@ -119,11 +129,12 @@ class Cart extends Model
             $this->cartItems()->create([
                 'product_quantity_id'=>$productQuantity->id,
                 'quantity'=>$request['quantity'],
+               // 'price'=>fix_null_double(optional($product)->price),
                 'price'=>fix_null_double(optional($product)->price),
                 'discount'=>fix_null_double(optional($product)->discount),
             ]);
         }
-        // minus product quantity
+        // minus product quantity،
         $new_quantity = $productQuantity->quantity - $request['quantity'];
         $productQuantity->update(['quantity' => $new_quantity]);
     }
@@ -175,5 +186,18 @@ class Cart extends Model
             $total = $tax + $sum_orders + $delivery_cost;
             return number_format($total,2,'.',',');
 //        }
+    }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($model) {
+            if ($model->transaction_image) {
+                $image = str_replace(url('/') . '/storage/', '', $model->transaction_image);
+                deleteImage('photos/carts', $image);
+            }
+
+        });
     }
 }

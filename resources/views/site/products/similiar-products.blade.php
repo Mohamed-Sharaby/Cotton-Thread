@@ -6,10 +6,10 @@
                     <div class="flex_prod">
                         <!--- add (.i_liked) class if it is favourite -->
                         @if(auth()->check())
-                            @if (checkFav($product->id))
-                                <button  onclick="addToFavourite({{$product->id}})" class="likerr i_liked"><i class="fas fa-heart"></i></button>
+                            @if (checkFav($pro->id))
+                                <button  onclick="addToFavourite({{$pro->id}})" class="likerr i_liked"><i class="fas fa-heart"></i></button>
                             @else
-                                <button onclick="addToFavourite({{$product->id}})" class="likerr "><i
+                                <button onclick="addToFavourite({{$pro->id}})" class="likerr "><i
                                         class="fas fa-heart"></i>
                                 </button>
                             @endif
@@ -34,8 +34,8 @@
                                     </ul>
                                     <p class="rate_ratio">{{$pro->avg_rate}}</p>
                                 </div>
-                                <button type="button" class="to_card" data-toggle="modal"
-                                        data-target="#addCardModal">
+                                <button type="button" class="to_card addCart" data-toggle="modal"
+                                        data-id="{{$pro->id}}"    data-target="#addCardModal">
                                     <i class="fas fa-cart-plus"></i>
                                 </button>
                             </div>
@@ -53,6 +53,7 @@
                         </div>
                     </div>
                 </div>
+
             @endforeach
         </div>
         <!-- Add Pagination -->

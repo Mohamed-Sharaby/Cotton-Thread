@@ -44,107 +44,114 @@
             <div class="user-comment">
                 <h2>التقييمات ( 20 )</h2>
                 @foreach($product->rates as $rate)
-                <div class="user-comment-content">
-                    <div class="user-data">
-                        <img src="{{$rate->user->image}}">
-                        <h3>{{$rate->user->name}}  </h3>
-                        <span>{{\Carbon\Carbon::parse($rate->created_at)->format('Y M d')}}</span>
+                    <div class="user-comment-content">
+                        <div class="user-data">
+                            <img src="{{$rate->user->image}}">
+                            <h3>{{$rate->user->name}}  </h3>
+                            <span>{{\Carbon\Carbon::parse($rate->created_at)->format('Y M d')}}</span>
+                        </div>
+                        <p>{{$rate->comment}}</p>
+                        <div class="rate_in">
+                            <p class="rate_ratio">4.7 <span>جيد جدأ</span></p>
+                            <ul class="stars">
+                                <!-- add class (.yellowed) to the number of rates --->
+                                <li class="yellowed"><i class="fas fa-star"></i></li>
+                                <li class="yellowed"><i class="fas fa-star"></i></li>
+                                <li class="yellowed"><i class="fas fa-star"></i></li>
+                                <li class="yellowed"><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
                     </div>
-                    <p>{{$rate->comment}}</p>
-                    <div class="rate_in">
-                        <p class="rate_ratio">4.7 <span>جيد جدأ</span></p>
-                        <ul class="stars">
-                            <!-- add class (.yellowed) to the number of rates --->
-                            <li class="yellowed"><i class="fas fa-star"></i></li>
-                            <li class="yellowed"><i class="fas fa-star"></i></li>
-                            <li class="yellowed"><i class="fas fa-star"></i></li>
-                            <li class="yellowed"><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                        </ul>
-                    </div>
-                </div>
                 @endforeach
             </div>
         </div>
     </div>
 
-{{--    @if($can_rate)--}}
+
     <div class="col-md-6 col-xs-12">
-        <div class="your-rating">
-            <form class="add_comment_form" action="{{route('website.products.rate')}}" method="post">
-                @csrf
-                <h3>إضافة تقييمك</h3>
-                <div class="form__group field">
-                    <input type="text" class="form__field" placeholder="الاسم" id='name' name="name"
-                             value="{{auth()->user()->name ?? ''}}"  />
-                    <label for="name" class="form__label">الاسم</label>
-                </div>
-                <input type="hidden" name="product_id" value="{{$product->id}}">
-                <div class="form__group field">
-                    <input type="email" class="form__field" placeholder="البريد الالكترونى"
-                           value="{{auth()->user()->email ?? ''}}"
-                           name="email" id='mail' required/>
-                    <label for="mail" class="form__label">البريد الإلكترونى</label>
-                </div>
-                <div class="rating-pro">
-                    <span>السعر</span>
-                    <div class="rate_in">
-                        <ul class="stars">
-                            <!-- add class (.yellowed) to the number of rates --->
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                        </ul>
+        @auth()
+            @if($can_rate)
+            <div class="your-rating">
+                <form class="add_comment_form" action="{{route('website.products.rate')}}" method="post">
+                    @csrf
+                    <h3>إضافة تقييمك</h3>
+                    <div class="form__group field">
+                        <input type="text" class="form__field" placeholder="الاسم" id='name' name="name"
+                               value="{{auth()->user()->name ?? ''}}"/>
+                        <label for="name" class="form__label">الاسم</label>
                     </div>
-                </div>
-                <div class="rating-pro">
-                    <span>التوصيل</span>
-                    <div class="rate_in">
-                        <ul class="stars">
-                            <!-- add class (.yellowed) to the number of rates --->
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                        </ul>
+                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                    <div class="form__group field">
+                        <input type="email" class="form__field" placeholder="البريد الالكترونى"
+                               value="{{auth()->user()->email ?? ''}}"
+                               name="email" id='mail' required/>
+                        <label for="mail" class="form__label">البريد الإلكترونى</label>
                     </div>
-                </div>
-                <div class="rating-pro">
-                    <span>الخامة</span>
-                    <div class="rate_in">
-                        <ul class="stars">
-                            <!-- add class (.yellowed) to the number of rates --->
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                        </ul>
+                    <div class="rating-pro">
+                        <span>السعر</span>
+                        <div class="rate_in">
+                            <ul class="stars">
+                                <!-- add class (.yellowed) to the number of rates --->
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="rating-pro">
-                    <span>الجودة</span>
-                    <div class="rate_in">
-                        <ul class="stars">
-                            <!-- add class (.yellowed) to the number of rates --->
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                            <li><i class="fas fa-star"></i></li>
-                        </ul>
+                    <div class="rating-pro">
+                        <span>التوصيل</span>
+                        <div class="rate_in">
+                            <ul class="stars">
+                                <!-- add class (.yellowed) to the number of rates --->
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <textarea placeholder="إضافة تعليق" required
-                          oninvalid="this.setCustomValidity('{{__('Comment Required')}}')"
-                          onchange="this.setCustomValidity('')"
-                          name="comment">{{old('comment')}}</textarea>
-                <button type="submit" class="btn-hvr" id="add_comment_btn">إضافة</button>
-            </form>
-        </div>
+                    <div class="rating-pro">
+                        <span>الخامة</span>
+                        <div class="rate_in">
+                            <ul class="stars">
+                                <!-- add class (.yellowed) to the number of rates --->
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="rating-pro">
+                        <span>الجودة</span>
+                        <div class="rate_in">
+                            <ul class="stars">
+                                <!-- add class (.yellowed) to the number of rates --->
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <textarea placeholder="إضافة تعليق" required
+                              oninvalid="this.setCustomValidity('{{__('Comment Required')}}')"
+                              onchange="this.setCustomValidity('')"
+                              name="comment">{{old('comment')}}</textarea>
+                    <button type="submit" class="btn-hvr" id="add_comment_btn">إضافة</button>
+                </form>
+            </div>
+            @endif
+        @else
+            <h3>إضافة تقييمك</h3>
+            <p class="alert alert-danger">سجل <a href="{{route('login')}}" class="text-light"> دخولك </a> لكى تتمكن من اضافة تقييم</p>
+        @endauth
     </div>
-{{--        @endif--}}
+
 </div>

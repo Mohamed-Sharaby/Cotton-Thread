@@ -15,12 +15,12 @@ class ProductController extends Controller
     {
         $products = Product::active();
         if (!is_null($id)) {
-            $products = Product::whereSubcategoryId($id)->active()->get();
+            $products = Product::whereSubcategoryId($id)->active();
         }
         $categories = Category::active()->get();
 
         if (!is_null(\request('q'))) {
-            $products = $products->where('ar_name', 'like', '%'.\request('q').'%')->orWhere('en_name', 'like', '%'.\request('q').'%');
+            $products = $products->where('ar_name', 'like', '%' . \request('q') . '%')->orWhere('en_name', 'like', '%' . \request('q') . '%');
         }
         $products = $products->paginate(12);
         return view('site.products.all-products', compact('products', 'categories'));
@@ -29,7 +29,7 @@ class ProductController extends Controller
     public function newProducts()
     {
         $products = Product::whereIsNew(1)->active()->paginate(12);
-        return view('site.products.new-products',compact('products'));
+        return view('site.products.new-products', compact('products'));
     }
 
 
@@ -57,5 +57,16 @@ class ProductController extends Controller
 
         return redirect()->to(url()->previous() . '#pro-rating')->with('success', __('Comment Saved Successfully'));
     }
+
+
+
+    public function getColors($id)
+    {
+        $product = Product::findOrFail($id);
+        $colors = $product->product_colors;
+        $sizes = $product->product_sizes;
+       return response()->json(['id'=>$product->id,'colors'=>$colors,'sizes'=>$sizes]);
+    }
+
 
 }

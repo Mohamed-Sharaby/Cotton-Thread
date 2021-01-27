@@ -39,12 +39,13 @@ Route::group(['as' => 'website.'], function () {
         Route::get('/new', [ProductController::class, 'newProducts'])->name('new');
         Route::GET('/{id?}', [ProductController::class, 'index'])->name('index');
         Route::GET('single/{product}', [ProductController::class, 'show'])->name('single');
+        Route::GET('single/{product}/colors', [ProductController::class, 'getColors'])->name('getColors');
         Route::Post('rate', [ProductController::class, 'rate'])->name('rate');
     });
 
     Route::group(['prefix' => 'favourite', 'as' => 'favourites.', 'middleware' => 'auth'], function () {
-        Route::get('add/{product_id}', 'FavouriteController@addToFavourite')->name('addToFavourite');
-        Route::get('/',  [FavouriteController::class, 'index'])->name('index');
+        Route::get('add/{product_id}', [FavouriteController::class, 'addToFavourite'])->name('addToFavourite');
+        Route::get('/', [FavouriteController::class, 'index'])->name('index');
         Route::get('delete/{id}/', [FavouriteController::class, 'destroy'])->name('destroy');
     });
 
@@ -69,8 +70,9 @@ Route::group(['as' => 'website.'], function () {
     Route::group(['prefix' => 'cart', 'as' => 'carts.', 'middleware' => 'auth'], function () {
         Route::get('/', [CartController::class, 'index'])->name('index');
         Route::Post('add', [CartController::class, 'AddItemToCart'])->name('add');
-        Route::post('remove/{id}',  [CartController::class, 'removeFromCart'])->name('removeFromCart');
-        Route::Post('coupon',  [CartController::class, 'applyCoupon'])->name('applyCoupon');
+        Route::Post('update', [CartController::class, 'update'])->name('update');
+        Route::post('remove/{id}', [CartController::class, 'removeFromCart'])->name('removeFromCart');
+        Route::Post('coupon', [CartController::class, 'applyCoupon'])->name('applyCoupon');
 
         Route::get('pay-off', [CartController::class, 'payOff'])->name('payOff');
         Route::post('pay-off', [CartController::class, 'submitPayOff'])->name('submitPayOff');
@@ -87,7 +89,6 @@ Route::get('moniem/notify', function (\Illuminate\Http\Request $request) {
 });
 
 
-
 Route::get('/multimedia', function () {
     return view('site.multimedia');
 });
@@ -99,12 +100,6 @@ Route::get('/offers', function () {
     return view('site.offers');
 });
 
-Route::get('/order-summary', function () {
-    return view('site.order-summary');
-});
-Route::get('/payment', function () {
-    return view('site.payment');
-});
 Route::get('/booking-done', function () {
     return view('site.booking-done');
 });
@@ -113,15 +108,8 @@ Route::get('/profile-notifications', function () {
     return view('site.profile-notifications');
 });
 
-//Route::get('/change-pass', function () {
-//    return view('site.change-password');
-//});
-
 Route::get('/search-result', function () {
     return view('site.search-result');
 });
 
-Route::get('/single-order', function () {
-    return view('site.single-order');
-});
 

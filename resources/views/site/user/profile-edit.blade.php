@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'تعديل الحساب الشخصي | خيط وقطن')
+@section('title' , 'تعديل الحساب الشخصي || خيط وقطن')
 @section('styles')
     <link rel="stylesheet" href="{{asset('website/css/filepond-plugin/filepond-plugin-image-preview.min.css')}}">
     <link rel="stylesheet" href="{{asset('website/css/filepond-plugin/filepond.min.css')}}">

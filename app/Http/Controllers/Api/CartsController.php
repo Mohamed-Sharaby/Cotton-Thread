@@ -124,6 +124,7 @@ class CartsController extends Controller
     public function localCart(Request $request){
         $user = auth()->user();
         $validator = Validator::make($request->all(),[
+            'order'=>'required|array',
             'order.*.product_id'=>'required|numeric|exists:products,id',
             'order.*.size_id'=>'required|numeric|exists:sizes,id',
             'order.*.color_id'=>'required|numeric|exists:colors,id',

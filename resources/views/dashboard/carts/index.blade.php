@@ -45,7 +45,6 @@
                         <td>{{$cart->id}}</td>
                         <td>{{$cart->user->name}}</td>
                         <td>{{$cart->created_at->format('Y.m.d') ?? __('Not Found')}}</td>
-{{--                        <td>{{$cart->total ?? __('Not Found')}}</td>--}}
                         <td>
                             @if($cart->coupon_id)
                                 {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100) ) - ($cart->totalProductsPrice * $cart->coupon->discount / 100),2)}}

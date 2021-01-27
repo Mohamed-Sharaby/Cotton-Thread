@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'المحفظة | خيط وقطن')
+@section('title' , 'المحفظة || خيط وقطن')
 @section('styles')
     <link rel="stylesheet" href="{{asset('website/css/k-style.css')}}">
 @endsection
@@ -22,7 +22,7 @@
                     @else
                         <p>لا يوجد</p>
                     @endif
-                    <a href="{{url('/')}}" class="btn-hvr"> شحن الرصيد </a>
+                    <a href="#" class="btn-hvr"> شحن الرصيد </a>
                 </div>
             </div>
         </div>

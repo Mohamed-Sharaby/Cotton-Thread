@@ -37,9 +37,10 @@
                                 <b>ادخل الكود هنا</b>
                             </p>
                             <form action="#" class="coupon-form">
-                                <input type="text" name="code" placeholder="الكود" @guest disabled
-                                       title={{__('Login First')}} @endguest>
-                                <button type="submit" class="btn-hvr">
+                                <input type="hidden" class="couponId" value="{{$cart->coupon_id ? $cart->coupon_id : ''}}">
+                                <input type="text" name="code" placeholder="الكود"
+                                       @guest disabled title={{__('Login First')}} @endguest >
+                                <button type="submit"  {{$cart->coupon_id ? 'disabled' : ''}} class="btn-hvr">
                                     تحقق
                                 </button>
                             </form>
@@ -67,19 +68,7 @@
                             <span class="left-span"> <span id="all-totalss">0</span>
                             ر.س</span>
                         </p>
-                        <!--- start choose address --->
-                    {{--                    <div class="sha7n_adrs">--}}
-                    {{--                        <select class="js-select2 form-control" title="عنوان الشحن">--}}
-                    {{--                            <option selected disabled>عنوان الشحن </option>--}}
-                    {{--                            @foreach(\App\Models\Address::where('user_id',auth()->id())->get() as $address)--}}
-                    {{--                                <option value="{{$address->id}}">{{$address->name}} </option>--}}
-                    {{--                            @endforeach--}}
-                    {{--                        </select>--}}
-                    {{--                        <a href="{{route('website.users.addresses.create')}}" class="to_new_adrs">--}}
-                    {{--                            <i class="fas fa-plus"></i>إضافة عنوان اخر--}}
-                    {{--                        </a>--}}
-                    {{--                    </div>--}}
-                    <!--- end choose address --->
+
                         <a href="{{route('website.carts.payOff')}}" class="btn-hvr submit_cart" type="submit">
                             تكملة الدفع
                         </a>
@@ -120,8 +109,10 @@
                 let qty = $(this).closest('.number-input').find('.quantity');
                 let quantity = qty.val();
                 let product_quantity_id = qty.data('product');
+                let cart = qty.data('cart');
+                let item = qty.data('item');
                 $('.discount-value').empty();
-                let data = {quantity, product_quantity_id};
+                let data = {quantity, product_quantity_id,item,cart};
                 updateCart(data);
 
                 $(this).siblings('.quantity').trigger('change');
@@ -142,7 +133,7 @@
                     let discount = parseFloat($('.coupon-perc').text());
                     let discount_val = beforeDiscountPrice * discount / 100;
                     if (discount_val) {
-                        $('.discount-value').text(discount_val);
+                        $('.discount-value').text(discount_val.toFixed(2));
                     }
                     var taxesTotal = calcTotalFromTaxes(beforeDiscountPrice).toFixed(2);
                     var shipping_fees = Number($('#shipping_fees').text());

@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'تفاصيل الطلب | خيط وقطن')
+@section('title' , 'تفاصيل الطلب || خيط وقطن')
 @section('styles')
     <style>
         .items_r .cart_item .remove_item1 {
@@ -52,13 +52,13 @@
                         @endif
                     </h4>
                 </div>
-                <div class="flex-r">
-                    <h4>تكلفة التوصيل:</h4>
-                    <h4>50 ريال</h4>
-                </div>
+{{--                <div class="flex-r">--}}
+{{--                    <h4>تكلفة التوصيل:</h4>--}}
+{{--                    <h4>50 ريال</h4>--}}
+{{--                </div>--}}
                 <div class="flex-r">
                     <h4>الضريبة:</h4>
-                    <h4>5 ريال</h4>
+                    <h4>{{$cart->totalProductsPrice * getSetting('tax_percentage') / 100}} ريال</h4>
                 </div>
                 <div class="flex-r">
                     <h4>إجمالى الفاتورة:</h4>
@@ -76,30 +76,32 @@
             <div class="order_status">
                 <div class="flex-r">
                     <!----------------- NOTE :: add (this_status) class to order status ----------------->
-                    <div class="{{ $cart->status == 'open'  ? 'this_status' : '' }}">
+                    <div class="{{ $cart->status == 'open' || $cart->status == 'confirmed' ? 'this_status' : '' }}">
                         <h4><i class="fas fa-check-circle"></i></h4>
                         <p>قيد التجهيز</p>
                     </div>
-                    <div class="{{ $cart->status == 'confirmed' ? 'this_status' : '' }}">
+                    <div class="{{ $cart->status == 'finished' ? 'this_status' : '' }}">
                         <h4><i class="fas fa-check-circle"></i></h4>
                         <p>تم الشحن</p>
                     </div>
-                    <div class="{{ $cart->status == 'finished' ? 'this_status' : '' }}">
+                    <div class="{{ $cart->status == 'finished ' ? 'this_status' : '' }}">
                         <h4><i class="fas fa-check-circle"></i></h4>
                         <p>تم التسليم</p>
                     </div>
                 </div>
             </div>
             <p class="order_timing">
-                الوقت المتوقع لوصول الشحنة , الثلاثاء , {{ $cart->delivered_at->format('d/m/Y') }}
+                الوقت المتوقع لوصول الشحنة ,   {{ optional($cart->delivered_at)->format('d/m/Y') }}
             </p>
             <div class="items_r">
                 @foreach($cart->cartItems as $item)
                     <div class="flexx cart_item">
+                        @if($cart->status == 'open')
                         <button class="nav-icon remove_item1"
                                 data-url="{{route('website.orders.removeItem',$item->id)}}">
                             <i class="far fa-trash-alt"></i>
                         </button>
+                        @endif
                         <div class="item_dtls">
                             <a href="{{route('website.products.single',$item->productQuantity->product->id)}}"
                                class="i_img">
@@ -117,7 +119,7 @@
                                     <p class="new_price"><span
                                             class="current_price">{{$item->productQuantity->product->priceAfterDiscount}}</span><span> ر.س</span>
                                     </p>
-                                    <p class="hint">الشحن مجانا لفترة محدودة!</p>
+{{--                                    <p class="hint">الشحن مجانا لفترة محدودة!</p>--}}
                                 </div>
                             </div>
                         </div>
