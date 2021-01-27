@@ -143,12 +143,10 @@ class Cart extends Model
      */
     public function getTotalProductsPriceAttribute()
     {
-//        $total = 0;
-//        foreach ($this->cartItems as $item) {
-//            $total += $item->productQuantity->product->priceAfterDiscount * $item->quantity;
-//        }
-       $total =  $this->cartItems()->selectRaw('SUM(cart_items.price*
-        (1-((cart_items.discount)/100))* cart_items.quantity) as sum')->first()->sum;
+        $total = 0;
+        foreach ($this->cartItems as $item) {
+            $total += $item->productQuantity->product->priceAfterDiscount * $item->quantity;
+        }
         return $total;
     }
 
