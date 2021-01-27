@@ -20,7 +20,6 @@ class ProductColorsResource extends JsonResource
            return[
                'id'=>$q->id,
                'color'=>$q->color,
-               'product_id'=>$this->id,
                'sizes'=>$q->productQuantities()->where('product_id',$this->id)->get()->transform(function ($i){
                    return[
                        'id' => $i->size_id,
