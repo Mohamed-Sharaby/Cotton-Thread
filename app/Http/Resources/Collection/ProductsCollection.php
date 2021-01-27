@@ -15,7 +15,7 @@ class ProductsCollection extends ResourceCollection
      * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return \Illuminate\Support\Collection
      * @mixin Product
      */
     public function toArray($request)
@@ -23,7 +23,7 @@ class ProductsCollection extends ResourceCollection
         $user = auth()->user();
         $product=$this;
         if($request->path() == 'api/home'){
-            return $this->collection->transform(function ($q)use($user,$product){
+            return $this->collection->transform(function ($q)use($user){
                 return[
                     'id' => $q->id,
                     'name' => $q->name,
@@ -34,14 +34,14 @@ class ProductsCollection extends ResourceCollection
                     'has_discount' => ((int)$q->discount>0),
                     'price_after_discount' => $q->price_after_discount,
                     'is_favourite'=>(auth()->check())?$user->isFavourite($q->id):false,
-                    'colors' => new ProductColorsCollection($q->product_colors,$product),
+                    'colors' => new ProductColorsCollection($q->product_colors),
 //                    'sizes' => new ProductSizesCollection($q->product_sizes),
                     'is_new' => ($q->is_new===0)?false:true,
 
                 ];
             });
         }else {
-            $data['products'] = $this->collection->transform(function ($q)use($user,$product) {
+            $data['products'] = $this->collection->transform(function ($q)use($user) {
                 return [
                     'id' => $q->id,
                     'name' => $q->name,
@@ -52,7 +52,7 @@ class ProductsCollection extends ResourceCollection
                     'has_discount' => ((int)$q->discount>0),
                     'price_after_discount' => $q->price_after_discount,
                     'is_favourite'=>(auth()->check())?$user->isFavourite($q->id):false,
-                    'colors' => new ProductColorsCollection($q->product_colors,$product),
+                    'colors' => new ProductColorsCollection($q->product_colors),
 //                    'sizes' => new ProductSizesCollection($q->product_sizes),
                     'is_new' => ($q->is_new===0)?false:true,
                 ];
