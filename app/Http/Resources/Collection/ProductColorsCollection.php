@@ -16,12 +16,11 @@ class ProductColorsCollection extends ResourceCollection
      * @return array
      * @mixin Color
      */
-    public function __construct($resource,$product)
+    public function __construct($resource)
     {
 
         parent::__construct($resource);
         $this->resource = $resource;
-        $this->product = $product;
     }
 
     public function toArray($request)
@@ -30,7 +29,7 @@ class ProductColorsCollection extends ResourceCollection
             return[
                 'id'=>$q->id,
                 'color'=>$q->color,
-                'sizes'=>$q->productQuantities->where('product_id',$this->product->id)->transform(function ($i){
+                'sizes'=>$q->productQuantities->transform(function ($i){
                     return[
                         'id' => $i->size_id,
                         'size' => fix_null_string(optional($i->size)->size),
