@@ -4,7 +4,7 @@ namespace App\Http\Resources\Collection;
 
 use App\Models\Product;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\ProductQuantityCollection;
+
 /**
  * Class ProductsCollection
  * @package App\Http\Resources\Collection
@@ -15,13 +15,12 @@ class ProductsCollection extends ResourceCollection
      * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Support\Collection
+     * @return array
      * @mixin Product
      */
     public function toArray($request)
     {
         $user = auth()->user();
-        $product=$this;
         if($request->path() == 'api/home'){
             return $this->collection->transform(function ($q)use($user){
                 return[
