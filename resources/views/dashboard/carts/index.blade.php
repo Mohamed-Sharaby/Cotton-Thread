@@ -22,8 +22,9 @@
         <div class="panel panel-flat">
             @include('dashboard.layouts.status')
 
-            <table class="table datatable-button-init-basic table-hover responsive  table-responsive display nowrap text-center"
-                   style="width:100%">
+            <table
+                class="table datatable-button-init-basic table-hover responsive  table-responsive display nowrap text-center"
+                style="width:100%">
                 <thead>
 
                 <tr>
@@ -46,14 +47,7 @@
                         <td>{{$cart->user->name}}</td>
                         <td>{{$cart->created_at->format('Y.m.d') ?? __('Not Found')}}</td>
                         <td>
-{{--                            @if($cart->coupon_id)--}}
-{{--                                {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100) ) - ($cart->totalProductsPrice * $cart->coupon->discount / 100),2)}}--}}
-{{--                                ريال--}}
-{{--                            @else--}}
-{{--                                {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100)),2) }}--}}
-{{--                                ريال--}}
-{{--                            @endif--}}
-                            {{$cart->total}}
+                            {{ number_format(($cart->totalProductsPrice + getSetting('delivery_cost_percentage') + ($cart->totalProductsPrice * getSetting('tax_percentage') / 100)) - ($cart->totalProductsPrice * ($cart->coupon ? $cart->coupon->discount : 0) /100),2)}}
                         </td>
                         <td>{{__($cart->status)}}</td>
                         <td>
@@ -64,17 +58,17 @@
 
                         <td class="text-center">
                             <div class="btn-group text-center">
-{{--                                <a href="{{url(route('admin.carts.edit',$cart->id))}}"--}}
-{{--                                   class="btn btn-primary btn-sm ml-2 rounded-circle"><i--}}
-{{--                                        class="fa fa-edit"></i></a>--}}
+                                {{--                                <a href="{{url(route('admin.carts.edit',$cart->id))}}"--}}
+                                {{--                                   class="btn btn-primary btn-sm ml-2 rounded-circle"><i--}}
+                                {{--                                        class="fa fa-edit"></i></a>--}}
 
-{{--                                <form action="{{route('admin.carts.destroy',$cart->id)}}" method="post">--}}
-{{--                                    @csrf--}}
-{{--                                    {{method_field('delete')}}--}}
+                                {{--                                <form action="{{route('admin.carts.destroy',$cart->id)}}" method="post">--}}
+                                {{--                                    @csrf--}}
+                                {{--                                    {{method_field('delete')}}--}}
 
-{{--                                <button class="btn btn-danger btn-sm ml-2 rounded-circle">--}}
-{{--                                    <i class="fa fa-trash"></i></button>--}}
-{{--                                </form>--}}
+                                {{--                                <button class="btn btn-danger btn-sm ml-2 rounded-circle">--}}
+                                {{--                                    <i class="fa fa-trash"></i></button>--}}
+                                {{--                                </form>--}}
                                 <button data-url="{{route('admin.carts.destroy',$cart->id)}}"
                                         class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
                                     <i class="fa fa-trash"></i>
@@ -95,12 +89,12 @@
 @endsection
 @section('my-js')
 
-<script async src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script async src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
-<!-- <script>
+    <script async src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script async src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <!-- <script>
 
-  $(document).ready(function() {
-    ;
-} );
-</script> -->
+      $(document).ready(function() {
+        ;
+    } );
+    </script> -->
 @endsection

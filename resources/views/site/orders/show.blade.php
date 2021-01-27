@@ -52,10 +52,10 @@
                         @endif
                     </h4>
                 </div>
-{{--                <div class="flex-r">--}}
-{{--                    <h4>تكلفة التوصيل:</h4>--}}
-{{--                    <h4>50 ريال</h4>--}}
-{{--                </div>--}}
+                <div class="flex-r">
+                    <h4>تكلفة التوصيل:</h4>
+                    <h4>{{getSetting('delivery_cost_percentage')}} ريال</h4>
+                </div>
                 <div class="flex-r">
                     <h4>الضريبة:</h4>
                     <h4>{{number_format($cart->totalProductsPrice * getSetting('tax_percentage') / 100,2)}} ريال</h4>
@@ -63,13 +63,7 @@
                 <div class="flex-r">
                     <h4>إجمالى الفاتورة:</h4>
                     <h4>
-                        @if($cart->coupon_id)
-                            {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100) ) - ($cart->totalProductsPrice * $cart->coupon->discount / 100),2)}}
-                            ريال
-                        @else
-                            {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100)),2) }}
-                            ريال
-                        @endif
+                        {{ number_format(($cart->totalProductsPrice + getSetting('delivery_cost_percentage') + ($cart->totalProductsPrice * getSetting('tax_percentage') / 100)) - ($cart->totalProductsPrice * ($cart->coupon ? $cart->coupon->discount : 0) /100),2)}}
                     </h4>
                 </div>
             </div>

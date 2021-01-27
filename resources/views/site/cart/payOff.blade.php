@@ -39,18 +39,25 @@
                                 <span class="rigt-span"> الضريبة :</span>
                                 <input type="hidden" name="taxes_fees" class="hidden_taxes"
                                        value="{{$total * getSetting('tax_percentage') / 100}}">
-                                <span class="rigt-span"><span id="taxes"
-                                                              class="taxes">{{number_format($total * getSetting('tax_percentage') / 100,2)}} </span>ر.س</span>
+                                <span class="rigt-span">
+                                    <span id="taxes" class="taxes">{{number_format($total * getSetting('tax_percentage') / 100,2)}} </span>ر.س</span>
+                            </p>
+                            <p class="left-card">
+                                <span class="right-span">تكلفة التوصيل :</span>
+                                <input type="hidden" name="delivery_cost" value="{{getSetting('delivery_cost_percentage')}}">
+                                <span class="rigt-span">
+                                    <span id="taxes" class="delivery-cost">{{getSetting('delivery_cost_percentage')}} </span>ر.س</span>
+
                             </p>
                             <p class="left-card">
                                 <span class="rigt-span">المجموع الإجمالى: </span>
                                 <span class="left-span">
                                     <span id="all-totalss">
-                                        {{ number_format(($total + ($total * getSetting('tax_percentage') / 100)) - ($total * ($coupon ? $coupon->discount : 0) /100),2)}}
+                                        {{ number_format(($total + getSetting('delivery_cost_percentage') + ($total * getSetting('tax_percentage') / 100)) - ($total * ($coupon ? $coupon->discount : 0) /100),2)}}
                                     </span> ر.س
                                 </span>
                                 <input type="hidden" name="final_total" id="all-totalss-val"
-                                       value=" {{ ($total + ($total * getSetting('tax_percentage') / 100)) - ($total * ($coupon ? $coupon->discount : 0) /100)}}">
+                                       value=" {{ ($total + getSetting('delivery_cost_percentage') + ($total * getSetting('tax_percentage') / 100)) - ($total * ($coupon ? $coupon->discount : 0) /100)}}">
                             </p>
                             <!--- start choose address --->
                             <div class="sha7n_adrs">
