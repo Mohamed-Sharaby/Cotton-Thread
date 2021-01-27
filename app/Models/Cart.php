@@ -122,7 +122,7 @@ class Cart extends Model
             $item->update([
                 'quantity'=>$item->first()->quantity + $request['quantity'],
                 //'price'=>fix_null_double(optional($product)->price),
-                'price'=>fix_null_double(optional($product)->priceAfterDiscount),
+                'price'=>fix_null_double(optional($product)->price),
                 'discount'=>fix_null_double(optional($product)->discount),
             ]);
         }else{
@@ -130,11 +130,11 @@ class Cart extends Model
                 'product_quantity_id'=>$productQuantity->id,
                 'quantity'=>$request['quantity'],
                // 'price'=>fix_null_double(optional($product)->price),
-                'price'=>fix_null_double(optional($product)->priceAfterDiscount),
+                'price'=>fix_null_double(optional($product)->price),
                 'discount'=>fix_null_double(optional($product)->discount),
             ]);
         }
-        // minus product quantity
+        // minus product quantity،
         $new_quantity = $productQuantity->quantity - $request['quantity'];
         $productQuantity->update(['quantity' => $new_quantity]);
     }
