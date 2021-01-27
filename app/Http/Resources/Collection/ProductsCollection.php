@@ -21,8 +21,9 @@ class ProductsCollection extends ResourceCollection
     public function toArray($request)
     {
         $user = auth()->user();
+        $product=$this;
         if($request->path() == 'api/home'){
-            return $this->collection->transform(function ($q)use($user){
+            return $this->collection->transform(function ($q)use($user,$product){
                 return[
                     'id' => $q->id,
                     'name' => $q->name,
@@ -33,14 +34,14 @@ class ProductsCollection extends ResourceCollection
                     'has_discount' => ((int)$q->discount>0),
                     'price_after_discount' => $q->price_after_discount,
                     'is_favourite'=>(auth()->check())?$user->isFavourite($q->id):false,
-                    'colors' => new ProductColorsCollection($q->product_colors,$this),
+                    'colors' => new ProductColorsCollection($q->product_colors,$product),
 //                    'sizes' => new ProductSizesCollection($q->product_sizes),
                     'is_new' => ($q->is_new===0)?false:true,
 
                 ];
             });
         }else {
-            $data['products'] = $this->collection->transform(function ($q)use($user) {
+            $data['products'] = $this->collection->transform(function ($q)use($user,$product) {
                 return [
                     'id' => $q->id,
                     'name' => $q->name,
@@ -51,7 +52,7 @@ class ProductsCollection extends ResourceCollection
                     'has_discount' => ((int)$q->discount>0),
                     'price_after_discount' => $q->price_after_discount,
                     'is_favourite'=>(auth()->check())?$user->isFavourite($q->id):false,
-                    'colors' => new ProductColorsCollection($q->product_colors,$this),
+                    'colors' => new ProductColorsCollection($q->product_colors,$product),
 //                    'sizes' => new ProductSizesCollection($q->product_sizes),
                     'is_new' => ($q->is_new===0)?false:true,
                 ];
