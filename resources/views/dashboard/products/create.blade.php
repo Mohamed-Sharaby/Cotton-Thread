@@ -76,7 +76,7 @@
                         <div class="col-lg-4">
                             {!! Form::number('discount',null,[
                             'class' =>'form-control '.($errors->has('discount') ? ' is-invalid' : null),
-                            'placeholder'=> 'الخصم' ,
+                            'placeholder'=> 'الخصم' ,'min'=>"1", 'max'=>"99"
                             ]) !!}
                             @error('discount')
                             <div class="invalid-feedback">
