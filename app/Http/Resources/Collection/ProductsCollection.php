@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collection;
 
+use App\Http\Resources\Resource\ProductColorsResource;
 use App\Models\Product;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -33,7 +34,7 @@ class ProductsCollection extends ResourceCollection
                     'has_discount' => ((int)$q->discount>0),
                     'price_after_discount' => $q->price_after_discount,
                     'is_favourite'=>(auth()->check())?$user->isFavourite($q->id):false,
-                    'colors' => new ProductColorsCollection($q->product_colors),
+                    'colors' => new ProductColorsResource($q),
 //                    'sizes' => new ProductSizesCollection($q->product_sizes),
                     'is_new' => ($q->is_new===0)?false:true,
 
@@ -51,7 +52,7 @@ class ProductsCollection extends ResourceCollection
                     'has_discount' => ((int)$q->discount>0),
                     'price_after_discount' => $q->price_after_discount,
                     'is_favourite'=>(auth()->check())?$user->isFavourite($q->id):false,
-                    'colors' => new ProductColorsCollection($q->product_colors),
+                    'colors' => new ProductColorsResource($q),
 //                    'sizes' => new ProductSizesCollection($q->product_sizes),
                     'is_new' => ($q->is_new===0)?false:true,
                 ];
