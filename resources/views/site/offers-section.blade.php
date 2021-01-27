@@ -6,156 +6,60 @@
         </div>
         <div class="flex_row">
             <div class="row">
+                @foreach($productOffers as $product)
                 <div class="col-md-3 col-sm-4 col-xs-6">
                     <div class="flex_prod">
                         <!--- add (.i_liked) class if it is favourite -->
-                        <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
-                        <!-- -->
-                        <div class="abs_badg off_b">خصم 15%</div>
-                        <a href="{{url('single-product')}}" class="im_prod">
-                            <img src="{{asset('website/img/asset9.jpg')}}" alt="product name">
+                        @if(auth()->check())
+                            @if (checkFav($product->id))
+                                <button  onclick="addToFavourite({{$product->id}})" class="likerr i_liked"><i class="fas fa-heart"></i></button>
+                            @else
+                                <button onclick="addToFavourite({{$product->id}})" class="likerr "><i
+                                        class="fas fa-heart"></i>
+                                </button>
+                            @endif
+                        @else
+                            <a href="/login" class="likerr"><i class="fas fa-heart"></i></a>
+                    @endif
+
+                    <!-- -->
+                        <div class="abs_badg off_b">خصم {{$product->discount}}%</div>
+                        <a href="{{route('website.products.single',$product->id)}}" class="im_prod">
+                            <img src="{{$product->image}}" alt="product_img">
                         </a>
                         <div class="descrp_body">
                             <div class="flexx">
                                 <div class="rate_in">
                                     <ul class="stars">
                                         <!-- add class (.yellowed) to the number of rates --->
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
+                                        @for($i=0; $i< $product->avg_rate; $i++)
+                                            <li class="yellowed"><i class="fas fa-star"></i></li>
+                                        @endfor
+                                        @for($i=0;$i<(5-$product->avg_rate);$i++)
+                                            <li><i class="fas fa-star"></i></li>
+                                        @endfor
                                     </ul>
-                                    <p class="rate_ratio">3.4</p>
+                                    <p class="rate_ratio">{{$product->avg_rate}}</p>
                                 </div>
-                                <button type="button" class="to_card" data-toggle="modal"
-                                        data-target="#addCardModal">
+                                <button type="button" class="to_card addCart"
+                                        data-auth="{{ auth()->check() }}"
+                                        data-id="{{$product->id}}" data-toggle="modal" >
                                     <i class="fas fa-cart-plus"></i>
                                 </button>
                             </div>
-                            <a href="{{url('categories')}}" class="name_sec">أطفال</a>
-                            <a href="{{url('single-product')}}" class="name_prod">معطف من الصوف الإيطالى</a>
+                            <a href="{{route('website.products.index',$product->subcategory->id)}}" class="name_sec">{{$product->subcategory->name}}</a>
+                            <a href="{{route('website.products.single',$product->id)}}" class="name_prod">{{$product->name}}</a>
                             <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
                             <div class="price_inner">
-                                <p class="price_p old_price"><span>400</span> ريال سعودي </p>
-                                <p class="price_p new_price"><span>100</span> ريال </p>
+                                <p class="price_p old_price"><span>{{$product->price}}</span> ريال سعودي </p>
+                                <p class="price_p new_price"><span>{{$product->priceAfterDiscount}}</span> ريال </p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="flex_prod">
-                        <!--- add (.i_liked) class if it is favourite -->
-                        <button type="button" class="likerr"><i class="fas fa-heart"></i></button>
-                        <!-- -->
-                        <div class="abs_badg off_b">خصم 15%</div>
-                        <a href="{{url('single-product')}}" class="im_prod">
-                            <img src="{{asset('website/img/asset9.jpg')}}" alt="product name">
-                        </a>
-                        <div class="descrp_body">
-                            <div class="flexx">
-                                <div class="rate_in">
-                                    <ul class="stars">
-                                        <!-- add class (.yellowed) to the number of rates --->
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                    </ul>
-                                    <p class="rate_ratio">3.4</p>
-                                </div>
-                                <button type="button" class="to_card" data-toggle="modal"
-                                        data-target="#addCardModal">
-                                    <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <a href="{{url('categories')}}" class="name_sec">أطفال</a>
-                            <a href="{{url('single-product')}}" class="name_prod">معطف من الصوف الإيطالى</a>
-                            <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
-                            <div class="price_inner">
-                                <p class="price_p old_price"><span>400</span> ريال سعودي </p>
-                                <p class="price_p new_price"><span>100</span> ريال </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="flex_prod">
-                        <!--- add (.i_liked) class if it is favourite -->
-                        <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
-                        <!-- -->
-                        <div class="abs_badg off_b">خصم 15%</div>
-                        <a href="{{url('single-product')}}" class="im_prod">
-                            <img src="{{asset('website/img/asset9.jpg')}}" alt="product name">
-                        </a>
-                        <div class="descrp_body">
-                            <div class="flexx">
-                                <div class="rate_in">
-                                    <ul class="stars">
-                                        <!-- add class (.yellowed) to the number of rates --->
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                    </ul>
-                                    <p class="rate_ratio">3.4</p>
-                                </div>
-                                <button type="button" class="to_card" data-toggle="modal"
-                                        data-target="#addCardModal">
-                                    <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <a href="{{url('categories')}}" class="name_sec">أطفال</a>
-                            <a href="{{url('single-product')}}" class="name_prod">معطف من الصوف الإيطالى</a>
-                            <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
-                            <div class="price_inner">
-                                <p class="price_p old_price"><span>400</span> ريال سعودي </p>
-                                <p class="price_p new_price"><span>100</span> ريال </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-4 col-xs-6">
-                    <div class="flex_prod">
-                        <!--- add (.i_liked) class if it is favourite -->
-                        <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
-                        <!-- -->
-                        <div class="abs_badg off_b">خصم 15%</div>
-                        <a href="{{url('single-product')}}" class="im_prod">
-                            <img src="{{asset('website/img/asset9.jpg')}}" alt="product name">
-                        </a>
-                        <div class="descrp_body">
-                            <div class="flexx">
-                                <div class="rate_in">
-                                    <ul class="stars">
-                                        <!-- add class (.yellowed) to the number of rates --->
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                        <li><i class="fas fa-star"></i></li>
-                                    </ul>
-                                    <p class="rate_ratio">3.4</p>
-                                </div>
-                                <button type="button" class="to_card" data-toggle="modal"
-                                        data-target="#addCardModal">
-                                    <i class="fas fa-cart-plus"></i>
-                                </button>
-                            </div>
-                            <a href="{{url('categories')}}" class="name_sec">أطفال</a>
-                            <a href="{{url('single-product')}}" class="name_prod">معطف من الصوف الإيطالى</a>
-                            <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
-                            <div class="price_inner">
-                                <p class="price_p old_price"><span>400</span> ريال سعودي </p>
-                                <p class="price_p new_price"><span>100</span> ريال </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
-        <a class="btn-hvr see_more" href="{{url('offers')}}">عرض المزيد</a>
+        <a class="btn-hvr see_more" href="{{route('website.offers')}}">عرض المزيد</a>
     </div>
 </section>

@@ -28,10 +28,10 @@
 
                             <p class="left-card">
                                 <span class="rigt-span ">المجموع:</span>
-                                <span class="left-span"><span id="totalss">{{ $total }}</span>ر.س</span>
+                                <span class="left-span"><span id="totalss">{{ $total }}</span>{{' '}}ر.س</span>
                             </p>
                             <p class="left-card discount">
-                                <span class="rigt-span"> الخصم :<span class="coupon-perc">{{$coupon ? $coupon->discount : 0 }}</span>%</span>
+                                <span class="rigt-span"> الخصم :<span class="coupon-perc">{{$coupon ? $coupon->discount : 0 }}</span>{{' '}}%</span>
                                 <span class="left-span red"><span
                                         class="discount-value">{{ number_format( $total * ($coupon ? $coupon->discount : 0) /100,2) }} </span> ر.س</span>
                             </p>

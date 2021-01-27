@@ -17,7 +17,7 @@ use App\Models\User;
 
 //require __DIR__ . '/auth.php';
 
-Route::group(['as' => 'website.'], function () {
+Route::group(['middleware'=>'checkBanned','as' => 'website.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -29,6 +29,7 @@ Route::group(['as' => 'website.'], function () {
     Route::get('send-code', [AuthController::class, 'sendCode'])->name('sendCode');
     Route::post('/change-password', [AuthController::class, 'changePassword'])->name('changePassword');
 
+    Route::get('/offers', [HomeController::class, 'offers'])->name('offers');
 
     Route::group(['prefix' => 'categories', 'as' => 'categories.'], function () {
         Route::get('/', [HomeController::class, 'categories'])->name('index');
@@ -57,6 +58,10 @@ Route::group(['as' => 'website.'], function () {
         Route::resource('addresses', 'AddressController');
         Route::get('regions/{id}', [AddressController::class, 'regions']);
         Route::get('districts/{id}', [AddressController::class, 'districts']);
+
+        Route::GET('notifications', [UserController::class, 'notifications'])->name('notifications');
+        Route::delete('notifications-destroy/{id?}', [UserController::class, 'destroyAllNotifications'])->name('destroyAllNotifications');
+
     });
 
     Route::group(['prefix' => 'orders', 'as' => 'orders.', 'middleware' => 'auth'], function () {
@@ -96,16 +101,9 @@ Route::get('/multimedia', function () {
 Route::get('/news', function () {
     return view('site.news');
 });
-Route::get('/offers', function () {
-    return view('site.offers');
-});
 
 Route::get('/booking-done', function () {
     return view('site.booking-done');
-});
-
-Route::get('/profile-notifications', function () {
-    return view('site.profile-notifications');
 });
 
 Route::get('/search-result', function () {

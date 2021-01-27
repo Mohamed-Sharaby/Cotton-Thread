@@ -158,6 +158,18 @@
                                     </div>
                                 @endif
 
+                                @if($setting->type == 'number' && $setting->name == 'delivery_cost_percentage')
+                                    <div class="col-12 col-lg-10">
+                                        <input type="text" name="{{$setting->name}}" value="{{$setting->value}}"
+                                               placeholder="نسبة الضريبة" class="form-control">
+                                        @error($setting->name)
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                @endif
+
                             </div>
                         @endforeach
                         <div class="form-group row col-12">

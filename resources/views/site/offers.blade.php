@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'العروض | خيط وقطن')
+@section('title' , 'العروض || خيط وقطن')
 @section('styles')
 @endsection
 @section('content')
@@ -21,381 +21,69 @@
     <div class="container">
         <div class="products_row">
             <div class="row">
-                <div class="col-md-3 col-xs-0 customizer">
-                    <a class="customizer-toggle" href="javascript:void(0)">
-                        <span class="display-close"><i class="fas fa-cog "></i></span>
-                        <div class="display_open"><i class="fas fa-times "></i><span>إخفاء الفلتر</span></div>
-                    </a>
-                    <div class="customescroll">
-                        <div class="cart_blocks">
-                            <div class="cont_block">
-                                <h4 class="filt_title">الأقسام</h4>
-                                <div class="the_checks">
-                                    <label class="custom_check">اكسسوارات
-                                        <input type="checkbox" checked="checked">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">اكسسوارات
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">شنط
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">أحذية
-                                        <input type="checkbox" checked="checked">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">اكسسوارات
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">شنط
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">أحذية
-                                        <input type="checkbox" checked="checked">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">اكسسوارات
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">شنط
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">أحذية
-                                        <input type="checkbox" checked="checked">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="cont_block">
-                                <h4 class="filt_title">الألوان</h4>
-                                <div class="the_checks">
-                                    <label class="custom_check custom_color">ازرق
-                                        <input type="checkbox" checked="checked">
-                                        <span class="checkmark" style="background-color: #3A73BE;"></span>
-                                        <span class="overlays"></span>
-                                    </label>
-                                    <label class="custom_check custom_color">اسود
-                                        <input type="checkbox">
-                                        <span class="checkmark" style="background-color: #000;"></span>
-                                        <span class="overlays"></span>
-                                    </label>
-                                    <label class="custom_check custom_color">فوشيا
-                                        <input type="checkbox">
-                                        <span class="checkmark" style="background-color: #E8598C;"></span>
-                                        <span class="overlays"></span>
-                                    </label>
-                                    <label class="custom_check custom_color">لبنى
-                                        <input type="checkbox">
-                                        <span class="checkmark" style="background-color: #53A6E2;"></span>
-                                        <span class="overlays"></span>
-                                    </label>
-                                    <label class="custom_check custom_color">اخضر
-                                        <input type="checkbox">
-                                        <span class="checkmark" style="background-color: #81D742;"></span>
-                                        <span class="overlays"></span>
-                                    </label>
-                                    <label class="custom_check custom_color">رصاصى غامق
-                                        <input type="checkbox">
-                                        <span class="checkmark" style="background-color: #474747;"></span>
-                                        <span class="overlays"></span>
-                                    </label>
-                                    <label class="custom_check custom_color">هافان
-                                        <input type="checkbox">
-                                        <span class="checkmark" style="background-color: #995C12;"></span>
-                                        <span class="overlays"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="cont_block">
-                                <h4 class="filt_title">المقاس</h4>
-                                <div class="the_checks">
-                                    <label class="custom_check">X-Small
-                                        <input type="checkbox" checked="checked">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">Small
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">Medium
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">Large
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">XLarge
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">2XLarge
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">3XLarge
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="cont_block">
-                                <h4 class="filt_title">السعر</h4>
-                                <div class="the_checks not_flx">
-                                    <label class="custom_check">0-100 ريال سعودى
-                                        <input type="checkbox" checked="checked">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">0-100 ريال سعودى
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">0-100 ريال سعودى
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">0-100 ريال سعودى
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="custom_check">0-100 ريال سعودى
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               @include('site.products.filter-sidebar')
                 <div class="col-md-9 col-xs-12">
                     <div class="products_inn">
                         <div class="all_prods">
                             <div class="row">
+                                @foreach($productOffers as $product)
                                 <div class="col-md-3 col-sm-4 col-xs-6">
                                     <div class="flex_prod">
                                         <!--- add (.i_liked) class if it is favourite -->
-                                        <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
-                                        <!-- -->
-                                        <div class="abs_badg off_b">خصم 15%</div>
-                                        <a href="{{url('single-product')}}" class="im_prod">
-                                            <img src="{{asset('website/img/asset9.jpg')}}" alt="product name">
+                                        @if(auth()->check())
+                                            @if (checkFav($product->id))
+                                                <button  onclick="addToFavourite({{$product->id}})" class="likerr i_liked"><i class="fas fa-heart"></i></button>
+                                            @else
+                                                <button onclick="addToFavourite({{$product->id}})" class="likerr "><i
+                                                        class="fas fa-heart"></i>
+                                                </button>
+                                            @endif
+                                        @else
+                                            <a href="/login" class="likerr"><i class="fas fa-heart"></i></a>
+                                    @endif
+                                    <!-- -->
+                                        <div class="abs_badg off_b">خصم {{$product->discount}}%</div>
+                                        <a href="{{route('website.products.single',$product->id)}}" class="im_prod">
+                                            <img src="{{$product->image}}" alt="product_img">
                                         </a>
                                         <div class="descrp_body">
                                             <div class="flexx">
                                                 <div class="rate_in">
                                                     <ul class="stars">
                                                         <!-- add class (.yellowed) to the number of rates --->
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
+                                                        @for($i=0; $i< $product->avg_rate; $i++)
+                                                            <li class="yellowed"><i class="fas fa-star"></i></li>
+                                                        @endfor
+                                                        @for($i=0;$i<(5-$product->avg_rate);$i++)
+                                                            <li><i class="fas fa-star"></i></li>
+                                                        @endfor
                                                     </ul>
-                                                    <p class="rate_ratio">3.4</p>
+                                                    <p class="rate_ratio">{{$product->avg_rate}}</p>
                                                 </div>
-                                                <button type="button" class="to_card" data-toggle="modal" data-target="#addCardModal">
+                                                <button type="button" class="to_card addCart"
+                                                        data-auth="{{ auth()->check() }}"
+                                                        data-id="{{$product->id}}" data-toggle="modal" >
                                                     <i class="fas fa-cart-plus"></i>
                                                 </button>
                                             </div>
-                                            <a href="{{url('categories')}}" class="name_sec">أطفال</a>
-                                            <a href="{{url('single-product')}}" class="name_prod">معطف من الصوف الإيطالى</a>
+                                            <a href="{{route('website.products.index',$product->subcategory->id)}}" class="name_sec">{{$product->subcategory->name}}</a>
+                                            <a href="{{route('website.products.single',$product->id)}}" class="name_prod">{{$product->name}}</a>
                                             <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
                                             <div class="price_inner">
-                                                <p class="price_p old_price"><span>400</span> ريال سعودي </p>
-                                                <p class="price_p new_price"><span>100</span> ريال </p>
+                                                <p class="price_p old_price"><span>{{$product->price}}</span> ريال سعودي </p>
+                                                <p class="price_p new_price"><span>{{$product->priceAfterDiscount}}</span> ريال </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <div class="flex_prod">
-                                        <!--- add (.i_liked) class if it is favourite -->
-                                        <button type="button" class="likerr"><i class="fas fa-heart"></i></button>
-                                        <!-- -->
-                                        <div class="abs_badg off_b">خصم 15%</div>
-                                        <a href="{{url('single-product')}}" class="im_prod">
-                                            <img src="{{asset('website/img/asset9.jpg')}}" alt="product name">
-                                        </a>
-                                        <div class="descrp_body">
-                                            <div class="flexx">
-                                                <div class="rate_in">
-                                                    <ul class="stars">
-                                                        <!-- add class (.yellowed) to the number of rates --->
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                    </ul>
-                                                    <p class="rate_ratio">3.4</p>
-                                                </div>
-                                                <button type="button" class="to_card" data-toggle="modal" data-target="#addCardModal">
-                                                    <i class="fas fa-cart-plus"></i>
-                                                </button>
-                                            </div>
-                                            <a href="{{url('categories')}}" class="name_sec">أطفال</a>
-                                            <a href="{{url('single-product')}}" class="name_prod">معطف من الصوف الإيطالى</a>
-                                            <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
-                                            <div class="price_inner">
-                                                <p class="price_p old_price"><span>400</span> ريال سعودي </p>
-                                                <p class="price_p new_price"><span>100</span> ريال </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <div class="flex_prod">
-                                        <!--- add (.i_liked) class if it is favourite -->
-                                        <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
-                                        <!-- -->
-                                        <div class="abs_badg off_b">خصم 15%</div>
-                                        <a href="{{url('single-product')}}" class="im_prod">
-                                            <img src="{{asset('website/img/asset9.jpg')}}" alt="product name">
-                                        </a>
-                                        <div class="descrp_body">
-                                            <div class="flexx">
-                                                <div class="rate_in">
-                                                    <ul class="stars">
-                                                        <!-- add class (.yellowed) to the number of rates --->
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                    </ul>
-                                                    <p class="rate_ratio">3.4</p>
-                                                </div>
-                                                <button type="button" class="to_card" data-toggle="modal" data-target="#addCardModal">
-                                                    <i class="fas fa-cart-plus"></i>
-                                                </button>
-                                            </div>
-                                            <a href="{{url('categories')}}" class="name_sec">أطفال</a>
-                                            <a href="{{url('single-product')}}" class="name_prod">معطف من الصوف الإيطالى</a>
-                                            <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
-                                            <div class="price_inner">
-                                                <p class="price_p old_price"><span>400</span> ريال سعودي </p>
-                                                <p class="price_p new_price"><span>100</span> ريال </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <div class="flex_prod">
-                                        <!--- add (.i_liked) class if it is favourite -->
-                                        <button type="button" class="likerr"><i class="fas fa-heart"></i></button>
-                                        <!-- -->
-                                        <div class="abs_badg off_b">خصم 15%</div>
-                                        <a href="{{url('single-product')}}" class="im_prod">
-                                            <img src="{{asset('website/img/asset9.jpg')}}" alt="product name">
-                                        </a>
-                                        <div class="descrp_body">
-                                            <div class="flexx">
-                                                <div class="rate_in">
-                                                    <ul class="stars">
-                                                        <!-- add class (.yellowed) to the number of rates --->
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                    </ul>
-                                                    <p class="rate_ratio">3.4</p>
-                                                </div>
-                                                <button type="button" class="to_card" data-toggle="modal" data-target="#addCardModal">
-                                                    <i class="fas fa-cart-plus"></i>
-                                                </button>
-                                            </div>
-                                            <a href="{{url('categories')}}" class="name_sec">أطفال</a>
-                                            <a href="{{url('single-product')}}" class="name_prod">معطف من الصوف الإيطالى</a>
-                                            <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
-                                            <div class="price_inner">
-                                                <p class="price_p old_price"><span>400</span> ريال سعودي </p>
-                                                <p class="price_p new_price"><span>100</span> ريال </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <div class="flex_prod">
-                                        <!--- add (.i_liked) class if it is favourite -->
-                                        <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
-                                        <!-- -->
-                                        <div class="abs_badg off_b">خصم 15%</div>
-                                        <a href="{{url('single-product')}}" class="im_prod">
-                                            <img src="{{asset('website/img/asset9.jpg')}}" alt="product name">
-                                        </a>
-                                        <div class="descrp_body">
-                                            <div class="flexx">
-                                                <div class="rate_in">
-                                                    <ul class="stars">
-                                                        <!-- add class (.yellowed) to the number of rates --->
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                    </ul>
-                                                    <p class="rate_ratio">3.4</p>
-                                                </div>
-                                                <button type="button" class="to_card" data-toggle="modal" data-target="#addCardModal">
-                                                    <i class="fas fa-cart-plus"></i>
-                                                </button>
-                                            </div>
-                                            <a href="{{url('categories')}}" class="name_sec">أطفال</a>
-                                            <a href="{{url('single-product')}}" class="name_prod">معطف من الصوف الإيطالى</a>
-                                            <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
-                                            <div class="price_inner">
-                                                <p class="price_p old_price"><span>400</span> ريال سعودي </p>
-                                                <p class="price_p new_price"><span>100</span> ريال </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <div class="flex_prod">
-                                        <!--- add (.i_liked) class if it is favourite -->
-                                        <button type="button" class="likerr i_liked"><i class="fas fa-heart"></i></button>
-                                        <!-- -->
-                                        <div class="abs_badg off_b">خصم 15%</div>
-                                        <a href="{{url('single-product')}}" class="im_prod">
-                                            <img src="{{asset('website/img/asset9.jpg')}}" alt="product name">
-                                        </a>
-                                        <div class="descrp_body">
-                                            <div class="flexx">
-                                                <div class="rate_in">
-                                                    <ul class="stars">
-                                                        <!-- add class (.yellowed) to the number of rates --->
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                        <li><i class="fas fa-star"></i></li>
-                                                    </ul>
-                                                    <p class="rate_ratio">3.4</p>
-                                                </div>
-                                                <button type="button" class="to_card" data-toggle="modal" data-target="#addCardModal">
-                                                    <i class="fas fa-cart-plus"></i>
-                                                </button>
-                                            </div>
-                                            <a href="{{url('categories')}}" class="name_sec">أطفال</a>
-                                            <a href="{{url('single-product')}}" class="name_prod">معطف من الصوف الإيطالى</a>
-                                            <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
-                                            <div class="price_inner">
-                                                <p class="price_p old_price"><span>400</span> ريال سعودي </p>
-                                                <p class="price_p new_price"><span>100</span> ريال </p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    {!! $productOffers->links() !!}
                                 </div>
                             </div>
-                            <a class="btn-hvr see_more" href="#">عرض المزيد</a>
+{{--                            <a class="btn-hvr see_more" href="#">عرض المزيد</a>--}}
                         </div>
                     </div>
                 </div>

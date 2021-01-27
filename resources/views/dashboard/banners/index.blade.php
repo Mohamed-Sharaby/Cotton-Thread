@@ -66,7 +66,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <h4 class="bg-danger text-center">المحتوى بالانجليزية</h4>
-                                                    <p style="white-space: pre-line;overflow-wrap: break-word;text-overflow: ellipsis;">{{$banner->ar_details}}</p>
+                                                    <p style="white-space: pre-line;overflow-wrap: break-word;text-overflow: ellipsis;">{{$banner->en_details}}</p>
                                                 </div>
                                             </div>
                                         </div>

@@ -19,9 +19,15 @@ class HomeController extends Controller
         $categories = Category::active()->get();
         $banners = Banner::active()->get();
         $newProducts = Product::whereIsNew(1)->active()->latest()->get()->take(4);
-        //$cart = auth()->user()->carts()->where('status','open')->first();
+        $productOffers = Product::where('discount','>',0)->latest()->get()->take(4);
 
-        return view('site.home.index', compact('categories', 'banners', 'newProducts'));
+        return view('site.home.index', compact('categories', 'banners', 'newProducts','productOffers'));
+    }
+
+    public function offers()
+    {
+        $productOffers = Product::where('discount','>',0)->latest()->paginate(12);
+        return view('site.offers', compact('productOffers'));
     }
 
     public function categories()

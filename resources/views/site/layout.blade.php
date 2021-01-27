@@ -206,7 +206,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{url('profile-notifications')}}">
+                                            <a href="{{route('website.users.notifications')}}">
                                                 الإشعارات
                                             </a>
                                         </li>

@@ -37,10 +37,11 @@
                                 <b>ادخل الكود هنا</b>
                             </p>
                             <form action="#" class="coupon-form">
-                                <input type="hidden" class="couponId" value="{{$cart->coupon_id ? $cart->coupon_id : ''}}">
+                                <input type="hidden" class="couponId"
+                                       value="{{$cart->coupon_id ? $cart->coupon_id : ''}}">
                                 <input type="text" name="code" placeholder="الكود"
                                        @guest disabled title={{__('Login First')}} @endguest >
-                                <button type="submit"  {{$cart->coupon_id ? 'disabled' : ''}} class="btn-hvr">
+                                <button type="submit" {{$cart->coupon_id ? 'disabled' : ''}} class="btn-hvr">
                                     تحقق
                                 </button>
                             </form>
@@ -68,10 +69,11 @@
                             <span class="left-span"> <span id="all-totalss">0</span>
                             ر.س</span>
                         </p>
-
-                        <a href="{{route('website.carts.payOff')}}" class="btn-hvr submit_cart" type="submit">
-                            تكملة الدفع
-                        </a>
+                        @if(count($cart->cartItems) > 0)
+                            <a href="{{route('website.carts.payOff')}}" class="btn-hvr submit_cart" type="submit">
+                                تكملة الدفع
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -112,7 +114,7 @@
                 let cart = qty.data('cart');
                 let item = qty.data('item');
                 $('.discount-value').empty();
-                let data = {quantity, product_quantity_id,item,cart};
+                let data = {quantity, product_quantity_id, item, cart};
                 updateCart(data);
 
                 $(this).siblings('.quantity').trigger('change');

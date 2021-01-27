@@ -18,7 +18,7 @@ class AddTaxToSettingTableSeeder extends Seeder
             'name' => 'tax_percentage',
             'ar_value' => '14',
             'en_value' => '14',
-            'page' => 'حسابات الموقع',
+            'page' => 'الضريبة',
             'type' => 'number',
             'ar_title' => 'الضريبة',
             'en_title' => 'tax',
