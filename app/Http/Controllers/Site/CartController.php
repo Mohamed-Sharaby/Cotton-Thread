@@ -133,7 +133,7 @@ class CartController extends Controller
         if (!$cart) return back();
         $coupon = $cart->coupon ? $cart->coupon : 0;
         $total = $cart->totalProductsPrice;
-        $discount = $total * $coupon->discount / 100;
+        $discount = $total * ($coupon ? $coupon->discount : 0) / 100;
         return view('site.cart.payOff', compact('cart', 'total', 'discount', 'coupon'));
     }
 

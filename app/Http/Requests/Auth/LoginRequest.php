@@ -52,7 +52,7 @@ class LoginRequest extends FormRequest
                 'phone' => __('auth.failed'),
             ]);
         }
-
+//        $this->checkBannedUser();
         RateLimiter::clear($this->throttleKey());
     }
 
@@ -89,5 +89,14 @@ class LoginRequest extends FormRequest
     public function throttleKey()
     {
         return Str::lower($this->input('phone')).'|'.$this->ip();
+    }
+
+    public function checkBannedUser()
+    {
+        if (\auth()->user()->is_ban == 1){
+            throw ValidationException::withMessages([
+                'banned' => __('عفوا .. لقد تم حظر الحساب الخاص بك من قبل الادارة'),
+            ]);
+        }
     }
 }

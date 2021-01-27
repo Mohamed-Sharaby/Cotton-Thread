@@ -120,7 +120,7 @@
                         </li>
                     @endcanany
 
-                    @can('Users')
+                    @can('Addresses')
                         <li class="nav-item {{ request()->routeIs('admin.addresses.*') ? 'nav-item-expanded nav-item-open' : '' }}">
                             <a href="{{route('admin.addresses.index')}}"
                                class="nav-link {{ request()->routeIs('admin.addresses.*') ? 'active' : '' }}"><i

@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             'email' => 'required|email|max:100|unique:users,email',
             'phone' => 'required|unique:users,phone',
             'password' => 'required|confirmed|min:6',
-            'image' => 'sometimes|image|mimes:jpg,jpeg,png,bmp,svg,gif',
+            'image' => 'sometimes|image|mimes:jpg,jpeg,png,bmp,svg,gif|max:1024',
             'is_ban' => 'boolean',
 
         ];
@@ -39,7 +39,7 @@ class UserRequest extends FormRequest
                 'email' => 'required|email|max:100|unique:users,email,' . $this->user->id,
                 'phone' => 'required|unique:users,phone,' . $this->user->id,
                 'password' => 'nullable|confirmed|min:6',
-                'image' => 'sometimes|image|mimes:jpg,jpeg,png,bmp,svg,gif',
+                'image' => 'sometimes|image|mimes:jpg,jpeg,png,bmp,svg,gif|max:1024',
                 'is_ban' => 'boolean',
             ];
         }

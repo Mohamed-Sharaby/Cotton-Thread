@@ -7,7 +7,7 @@ loginForm.submit(function(e) {
         type: 'POST',
         data: formData,
         success: function(data) {
-            console.log('res', data)
+            //console.log('res', data)
             if (data.value === false) {
                 toastr.error(data.msg)
             } else {

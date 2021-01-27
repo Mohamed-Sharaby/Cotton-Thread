@@ -131,6 +131,15 @@ class SettingTableSeeder extends Seeder
                 'ar_title' => 'الشروط والاحكام',
                 'en_title' => 'Terms and Conditions',
                 'slug' => 'terms'
+            ],[
+                'name' => 'delivery_cost_percentage',
+                'ar_value' => '10',
+                'en_value' => '10',
+                'page' => 'تكلفة التوصيل',
+                'type' => 'number',
+                'ar_title' => 'تكلفة التوصيل',
+                'en_title' => 'delivery_cost_percentage',
+                'slug' => 'delivery_cost_percentage'
             ],
 
 

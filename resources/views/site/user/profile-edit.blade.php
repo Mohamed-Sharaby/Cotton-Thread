@@ -63,15 +63,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xs-12">
-                        <div class="input-wrap">
-                            <input type="text" name="city" value="{{auth()->user()->city}}" placeholder="" readonly
-                                   onfocus="this.removeAttribute('readonly');" required>
-                            <div class="hov-input">
-                                <label>من فضلك ادخل المدينة</label>
-                            </div>
-                        </div>
-                    </div>
+{{--                    <div class="col-sm-6 col-xs-12">--}}
+{{--                        <div class="input-wrap">--}}
+{{--                            <input type="text" name="city" value="{{auth()->user()->city}}" placeholder="" readonly--}}
+{{--                                   onfocus="this.removeAttribute('readonly');" required>--}}
+{{--                            <div class="hov-input">--}}
+{{--                                <label>من فضلك ادخل المدينة</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     <div class="col-sm-6 col-xs-12">
                         <div class="input-wrap">
                             <input type="password" name="password" placeholder="**********" readonly

@@ -60,7 +60,7 @@
                         <td class="text-center">
                             <div class="btn-group text-center">
 
-                                @if(auth('web')->id() != $user->id)
+                                @if(auth('admin')->id() != $user->id)
                                     <form
                                         action="{{ route('admin.active', ['id' => $user->id, 'type' => 'User']) }}"
                                         method="post">@csrf

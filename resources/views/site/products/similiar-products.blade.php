@@ -34,10 +34,10 @@
                                     </ul>
                                     <p class="rate_ratio">{{$pro->avg_rate}}</p>
                                 </div>
-                                <button type="button" class="to_card addCart" data-toggle="modal"
-                                        data-id="{{$pro->id}}"    data-target="#addCardModal">
-                                    <i class="fas fa-cart-plus"></i>
-                                </button>
+{{--                                <button type="button" class="to_card addCart" data-toggle="modal"--}}
+{{--                                        data-id="{{$pro->id}}">--}}
+{{--                                    <i class="fas fa-cart-plus"></i>--}}
+{{--                                </button>--}}
                             </div>
                             <a href="{{url('categories')}}"
                                class="name_sec">{{$pro->subcategory->name}}</a>
@@ -52,8 +52,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             @endforeach
         </div>
         <!-- Add Pagination -->
@@ -61,5 +61,7 @@
         <!-- Add Arrows -->
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
+
     </div>
+    @include('site.modals.add_to_cart')
 </div>

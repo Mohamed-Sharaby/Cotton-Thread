@@ -14,10 +14,6 @@
                         <div class="cont_block">
                             <label class="lbl_block">الألوان المتاحة</label>
                             <div class="custom_radio clr_radio">
-
-
-
-
                                 {{--                                @foreach($product->product_colors as $color)--}}
                                 {{--                                <div class="rad_n">--}}
                                 {{--                                    <input type="radio" id="color-{{$color->id}}" name="color" value="{{$color->id}}"/>--}}

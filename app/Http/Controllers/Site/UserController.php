@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -60,5 +61,21 @@ class UserController extends Controller
         return view('site.user.wallet', compact('wallet'));
     }
 
+
+    public function notifications()
+    {
+        $notifications = auth()->user()->notifications()->paginate(10);
+        return view('site.user.profile-notifications',compact('notifications'));
+    }
+
+    public function destroyAllNotifications($id=null)
+    {
+        if (!is_null($id))
+            DatabaseNotification::findorFail($id)->delete();
+        else
+            auth()->user()->notifications()->delete();
+
+        return response()->json('success');
+    }
 
 }

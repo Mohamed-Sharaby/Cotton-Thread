@@ -68,7 +68,7 @@ cartForm.submit(function (e) {
             if (data.status === false) {
                 toastr.error(data.msg)
             } else {
-                toastr.success("تم الاضافة الى سلة المشتريات")
+                toastr.success("تم الاضافة الى السلة بنجاح")
                 $('.cart-count').removeClass('hidden')
                 $('.cart-count').text(++cart_count)
                 $('#AddToCartModal').modal('hide');

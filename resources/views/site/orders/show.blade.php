@@ -58,7 +58,7 @@
 {{--                </div>--}}
                 <div class="flex-r">
                     <h4>الضريبة:</h4>
-                    <h4>{{$cart->totalProductsPrice * getSetting('tax_percentage') / 100}} ريال</h4>
+                    <h4>{{number_format($cart->totalProductsPrice * getSetting('tax_percentage') / 100,2)}} ريال</h4>
                 </div>
                 <div class="flex-r">
                     <h4>إجمالى الفاتورة:</h4>
