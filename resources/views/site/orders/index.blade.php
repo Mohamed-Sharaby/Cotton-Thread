@@ -36,13 +36,7 @@
                         <td><b>{{$order->id}}</b></td>
                         <td>{{$order->created_at}}</td>
                         <td><b>
-                                @if($order->coupon_id)
-                                    {{number_format(($order->totalProductsPrice + $order->totalProductsPrice * (getSetting('tax_percentage') / 100) ) - ($order->totalProductsPrice * $order->coupon->discount / 100),2)}}
-                                    ريال
-                                @else
-                                    {{number_format(($order->totalProductsPrice + $order->totalProductsPrice * (getSetting('tax_percentage') / 100)),2) }}
-                                    ريال
-                                @endif
+                                {{ number_format(($order->totalProductsPrice + getSetting('delivery_cost_percentage') + ($order->totalProductsPrice * getSetting('tax_percentage') / 100)) - ($order->totalProductsPrice * ($order->coupon ? $order->coupon->discount : 0) /100),2)}}
                             </b></td>
                         <!------ add class (dlivered) if status is تم التسليم ----->
                         <td><b class="{{$order->status == 'finished' ? 'deliverd' : ''}}">{{__($order->status)}} </b>
@@ -55,7 +49,8 @@
                                 </a>
                                 <!-- لو حالة الحجز //تم التسليم// اظهر حذف -->
                                 @if($order->status == 'finished'  || $order->status == 'canceled')
-                                    <button type="button" class="btn-hvr remove_order" data-url="{{ route('website.orders.delete', $order->id) }}">
+                                    <button type="button" class="btn-hvr remove_order"
+                                            data-url="{{ route('website.orders.delete', $order->id) }}">
                                         <p class="opert"><i class="far fa-trash-alt"></i></p>حذف
                                     </button>
                                 @endif
@@ -84,9 +79,9 @@
     </script>
     <!---- remove an order item --->
     <script src="{{asset('website/js/user/order.js')}}"></script>
-{{--    <script>--}}
-{{--        $(".remove_order").click(function () {--}}
-{{--            $(this).parents("tr").fadeOut(300);--}}
-{{--        });--}}
-{{--    </script>--}}
+    {{--    <script>--}}
+    {{--        $(".remove_order").click(function () {--}}
+    {{--            $(this).parents("tr").fadeOut(300);--}}
+    {{--        });--}}
+    {{--    </script>--}}
 @endsection

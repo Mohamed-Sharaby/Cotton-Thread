@@ -72,25 +72,9 @@
                             <tr>
                                 <th class="font-weight-bold">المجموع النهائى</th>
                                 <td>
-{{--                                    @if($cart->coupon_id)--}}
-{{--                                        {{($cart->items()->sum('price') + $cart->shipping_fees + ($cart->total_products_price * $tax->value / 100)) - ($cart->items()->sum('price') * $cart->coupon->value / 100)}}--}}
-{{--                                        ريال--}}
-{{--                                    @else--}}
-{{--                                        {{($cart->items()->sum('price') + $cart->shipping_fees + ($cart->total_products_price * $tax->value / 100)) }}--}}
-{{--                                        ريال--}}
-{{--                                    @endif--}}
 
+                                    {{ number_format(($cart->totalProductsPrice + $cart->delivery_cost + ($cart->totalProductsPrice * getSetting('tax_percentage') / 100)) - ($cart->totalProductsPrice * ($cart->coupon ? $cart->coupon->discount : 0) /100),2)}}
 
-{{--                                    @if($cart->coupon_id)--}}
-{{--                                        {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100) ) - ($cart->totalProductsPrice * $cart->coupon->discount / 100),2)}}--}}
-{{--                                        ريال--}}
-{{--                                    @else--}}
-{{--                                        {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100)),2) }}--}}
-{{--                                        ريال--}}
-{{--                                    @endif--}}
-
-
-                                    {{$cart->total}}
                                 </td>
                             </tr>
                         </table>
