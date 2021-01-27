@@ -46,13 +46,14 @@
                         <td>{{$cart->user->name}}</td>
                         <td>{{$cart->created_at->format('Y.m.d') ?? __('Not Found')}}</td>
                         <td>
-                            @if($cart->coupon_id)
-                                {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100) ) - ($cart->totalProductsPrice * $cart->coupon->discount / 100),2)}}
-                                ريال
-                            @else
-                                {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100)),2) }}
-                                ريال
-                            @endif
+{{--                            @if($cart->coupon_id)--}}
+{{--                                {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100) ) - ($cart->totalProductsPrice * $cart->coupon->discount / 100),2)}}--}}
+{{--                                ريال--}}
+{{--                            @else--}}
+{{--                                {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100)),2) }}--}}
+{{--                                ريال--}}
+{{--                            @endif--}}
+                            {{$cart->total}}
                         </td>
                         <td>{{__($cart->status)}}</td>
                         <td>

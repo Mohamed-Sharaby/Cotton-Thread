@@ -47,7 +47,7 @@
                             <tr>
                                 <th class="font-weight-bold">تكلفة التوصيل</th>
                                 <td>
-{{--                                    {{$cart->shipping_fees}} ريال--}}
+                                    {{$cart->delivery_cost}} ريال
                                 </td>
                             </tr>
                             <tr>
@@ -79,13 +79,18 @@
 {{--                                        {{($cart->items()->sum('price') + $cart->shipping_fees + ($cart->total_products_price * $tax->value / 100)) }}--}}
 {{--                                        ريال--}}
 {{--                                    @endif--}}
-                                    @if($cart->coupon_id)
-                                        {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100) ) - ($cart->totalProductsPrice * $cart->coupon->discount / 100),2)}}
-                                        ريال
-                                    @else
-                                        {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100)),2) }}
-                                        ريال
-                                    @endif
+
+
+{{--                                    @if($cart->coupon_id)--}}
+{{--                                        {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100) ) - ($cart->totalProductsPrice * $cart->coupon->discount / 100),2)}}--}}
+{{--                                        ريال--}}
+{{--                                    @else--}}
+{{--                                        {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100)),2) }}--}}
+{{--                                        ريال--}}
+{{--                                    @endif--}}
+
+
+                                    {{$cart->total}}
                                 </td>
                             </tr>
                         </table>

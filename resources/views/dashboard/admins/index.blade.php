@@ -59,7 +59,7 @@
                             <div class="btn-group text-center">
 
                                 @if(!$admin->hasRole('Super Admin'))
-                                    @if(auth()->id() != $admin->id)
+                                    @if(auth('admin')->id() != $admin->id)
 
                                         @if($role->is_active == 0)
                                             <button disabled="disabled" class="btn btn-sm btn-warning disabled">المنصب
