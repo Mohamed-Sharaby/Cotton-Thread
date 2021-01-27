@@ -29,7 +29,7 @@ class ProductColorsCollection extends ResourceCollection
             return[
                 'id'=>$q->id,
                 'color'=>$q->color,
-                'sizes'=>$q->productQuantities->transform(function ($i){
+                'sizes'=>$q->product_colors->transform(function ($i){
                     return[
                         'id' => $i->size_id,
                         'size' => fix_null_string(optional($i->size)->size),
