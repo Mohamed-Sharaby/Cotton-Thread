@@ -70,7 +70,7 @@
 
                         <label for="discount" class="col-form-label col-lg-2 text-lg-right">نسبة الخصم </label>
                         <div class="col-lg-4">
-                            <input type="text" name="discount" value="{{$coupon->discount}}"
+                            <input type="number" name="discount" value="{{$coupon->discount}}" min="1" max="99"
                                    class="form-control {{$errors->has('discount') ? 'is-invalid' : ''}}">
                             @error('discount')
                             <div class="invalid-feedback">
