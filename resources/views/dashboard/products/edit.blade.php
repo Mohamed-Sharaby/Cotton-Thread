@@ -72,7 +72,7 @@
 
                         <label for="discount" class="col-form-label col-lg-2 text-lg-right">الخصم </label>
                         <div class="col-lg-4">
-                            <input type="number" name="discount" value="{{$product->discount}}" class="form-control {{$errors->has('discount') ? 'is-invalid' : null}}">
+                            <input type="number" name="discount" min="1" max="99" value="{{$product->discount}}" class="form-control {{$errors->has('discount') ? 'is-invalid' : null}}">
                             @error('discount')
                             <div class="invalid-feedback">
                                 {{ $message }}
