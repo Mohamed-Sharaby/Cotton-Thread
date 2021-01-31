@@ -161,7 +161,7 @@ class CartsController extends Controller
         }
         $openCart->refresh();
         $inputs = $request->only(['address_id','coupon','payment','transaction_image','comment']);
-        $inputs['status'] = 'confirmed';
+//        $inputs['status'] = 'confirmed';
         if($request['payment']=='wallet'){
             $wallet  = $user->wallet;
             if(!$wallet)
@@ -215,7 +215,7 @@ class CartsController extends Controller
         if(!$user->addresses()->where('id',$request['address_id'])->exists())
             return $this->apiResponse(__('address access denied'),403);
         $inputs = $request->all();
-        $inputs['status']='confirmed';
+//        $inputs['status']='confirmed';
         if($request['payment']=='wallet'){
             $wallet  = $user->wallet;
             if(!$wallet)
