@@ -39,7 +39,7 @@
                                 <ul class="nav nav-tabs">
                                     <li><a href="#">الأكثر مشاهدة </a></li>
                                     <li class="active"><a href="#">الأعلى تقييما</a></li>
-                                    <li><a href="{{url('new-products')}}">المنتجات الجديدة</a></li>
+                                    <li><a href="#">المنتجات الجديدة</a></li>
                                     <li><a href="#">من الأقل إلى الأكثر</a></li>
                                     <li><a href="#">من الأكثر إلى الأقل</a></li>
                                 </ul>

@@ -34,7 +34,7 @@
                     <th>تاريخ الطلب</th>
                     <th>اجمالى تكلفة الطلب</th>
                     <th>حالة الطلب</th>
-                    <th>التفاصيل</th>
+                    <th class="text-center">التفاصيل</th>
                     <th class="text-center">العمليات</th>
                 </tr>
                 </thead>
@@ -50,7 +50,7 @@
                             {{ number_format(($cart->totalProductsPrice + getSetting('delivery_cost_percentage') + ($cart->totalProductsPrice * getSetting('tax_percentage') / 100)) - ($cart->totalProductsPrice * ($cart->coupon ? $cart->coupon->discount : 0) /100),2)}}
                         </td>
                         <td>{{__($cart->status)}}</td>
-                        <td>
+                        <td class="text-center">
                             <a href="{{url(route('admin.carts.show',$cart->id))}}"
                                class="btn btn-primary btn-sm ml-2 rounded-circle"><i
                                     class="fa fa-eye"></i></a>
