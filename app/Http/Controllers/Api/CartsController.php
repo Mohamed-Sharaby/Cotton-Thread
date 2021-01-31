@@ -186,8 +186,8 @@ class CartsController extends Controller
     public function allCarts(Request $request){
         $user = auth()->user();
         $carts = $user->carts();
-        if(!$carts->exists())
-            return $this->apiResponse(__('cart not found'),404);
+//        if(!$carts->exists())
+//            return $this->apiResponse(__('cart not found'),404);
         $carts = $carts->when(($request['status']!=''),function ($q)use($request){
             $q->where('status',$request['status']);
         })->paginate(8);
