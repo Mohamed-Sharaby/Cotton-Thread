@@ -41,6 +41,7 @@ Route::group(['middleware'=>'checkBanned','as' => 'website.'], function () {
         Route::GET('/{id?}', [ProductController::class, 'index'])->name('index');
         Route::GET('single/{product}', [ProductController::class, 'show'])->name('single');
         Route::GET('single/{product}/colors', [ProductController::class, 'getColors'])->name('getColors');
+        Route::GET('filter', [ProductController::class, 'filter'])->name('filter');
         Route::Post('rate', [ProductController::class, 'rate'])->name('rate');
     });
 

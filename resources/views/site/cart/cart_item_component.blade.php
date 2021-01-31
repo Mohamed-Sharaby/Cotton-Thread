@@ -34,7 +34,7 @@
                 <i class="fas fa-plus"></i>
             </button>
 
-            <input class="quantity" name="quantity[]" min="1" value="{{$item->quantity}}" type="number"
+            <input class="quantity" name="quantity[]" min="1" max="{{$item->productQuantity->quantity}}" value="{{$item->quantity}}" type="number"
                    data-product="{{$item->productQuantity->id }}" data-item="{{$item->id}}"
                    data-cart="{{$item->cart_id}}" id="qyt_change">
 

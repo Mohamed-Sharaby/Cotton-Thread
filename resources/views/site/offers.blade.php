@@ -78,6 +78,7 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @include('site.modals.add_to_cart')
                             <div class="row">
                                 <div class="col-12 text-center">
                                     {!! $productOffers->links() !!}
