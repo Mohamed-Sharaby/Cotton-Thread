@@ -109,11 +109,11 @@
                     <label for="roles"
                            class="col-form-label col-12 col-lg-2 text-lg-right"> المنصب </label>
                     <div class="col-12 col-lg-4">
-                        <select name="roles" class="form-control {{$errors->has('roles') ? ' is-invalid' : null}}">
+                        <select name="roles" class="form-control {{$errors->has('roles') ? ' is-invalid' : null}}" {{$admin->hasRole('Super Admin') ? 'disabled' : ''}}>
                             <option disabled selected>اختر المنصب</option>
                             @foreach($roles as $role)
                                 <option
-                                    value="{{$role->id}}" {{$role->id == $admin->hasRole($role->id) ? "selected" : ""}}>
+                                    value="{{$role->id}}" {{$role->id == $admin->hasRole($role->id) ? "selected" : ""}} {{$role->name == 'Super Admin' ? 'disabled' : ''}}>
                                     {{$role->name}}
                                 </option>
                             @endforeach

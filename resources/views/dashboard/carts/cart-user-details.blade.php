@@ -6,16 +6,6 @@
         <td>{{optional($cart->created_at)->format('Y.m.d') ?? __('Not Found')}}</td>
     </tr>
     <tr>
-        <th class="font-weight-bold">اجمالى تكلفة الطلب</th>
-        <td>
-            @if($cart->coupon_id)
-                {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100) ) - ($cart->totalProductsPrice * $cart->coupon->discount / 100),2)}}
-                ريال
-            @else
-                {{number_format(($cart->totalProductsPrice + $cart->totalProductsPrice * (getSetting('tax_percentage') / 100)),2) }}
-                ريال
-            @endif
-        </td>
         <th class="font-weight-bold">طريقة الدفع</th>
         <td>
             @if($cart->payment == 'bank_transaction')
@@ -30,6 +20,8 @@
                 {{__($cart->payment)}}
             @endif
         </td>
+        <th class="font-weight-bold">حالة الطلب</th>
+        <td>{{__($cart->status)}}</td>
     </tr>
     <tr>
         <th class="font-weight-bold">العنوان</th>
@@ -40,10 +32,7 @@
                 لا يوجد
             @endif
         </td>
-        <th class="font-weight-bold">حالة الطلب</th>
-        <td>{{__($cart->status)}}</td>
-    </tr>
-    <tr>
+
         <th class="font-weight-bold">وقت وصول الطلب</th>
         <td>{{optional($cart->delivered_at)->format('Y.m.d') ?? __('Not Found')}}</td>
     </tr>

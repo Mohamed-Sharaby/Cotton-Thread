@@ -82,32 +82,35 @@
                                     </button>
                                 @endif
 
-                                {{--                                    @if(!$admin->hasRole('Super Admin') || auth()->user()->id == 1)--}}
-                                <div class=" text-center">
-                                    <a href="{{url(route('admin.admins.edit',$admin->id))}}"
-                                       class="btn btn-primary btn-sm ml-2 rounded-circle"><i
-                                            class="fa fa-edit"></i></a>
-                                </div>
-                                {{--                                    @else--}}
-                                {{--                                        <button disabled class="btn btn-primary btn-sm ml-2 rounded-circle"><i class="fa fa-edit"></i>--}}
-                                {{--                                        </button>--}}
-                                {{--                                    @endif--}}
 
+                                    @if($admin->hasRole('Super Admin') && auth()->user()->id == 1)
+                                    <div class=" text-center">
+                                        <a href="{{url(route('admin.admins.edit',$admin->id))}}"
+                                           class="btn btn-primary btn-sm ml-2 rounded-circle"><i
+                                                class="fa fa-edit"></i></a>
+                                    </div>
+                                    @endif
 
+                                @if(!$admin->hasRole('Super Admin'))
+                                    <div class=" text-center">
+                                        <a href="{{url(route('admin.admins.edit',$admin->id))}}"
+                                           class="btn btn-primary btn-sm ml-2 rounded-circle"><i
+                                                class="fa fa-edit"></i></a>
+                                    </div>
+{{--                                @else--}}
+{{--                                    <button disabled class="btn btn-primary btn-sm ml-2 rounded-circle"><i--}}
+{{--                                            class="fa fa-edit"></i>--}}
+{{--                                    </button>--}}
+                                @endif
 
 
                                 @if(!$admin->hasRole('Super Admin'))
-
-{{--                                    <form action="{{route('admin.admins.destroy',$admin->id)}}" method="post">--}}
-{{--                                        @csrf--}}
-{{--                                        {{method_field('delete')}}--}}
-{{--                                        <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
-{{--                                                class="fa fa-trash"></i></button>--}}
-{{--                                    </form>--}}
-                                        <button data-url="{{route('admin.admins.destroy',$admin->id)}}"
-                                                class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        @if(auth('admin')->id() != $admin->id)
+                                    <button data-url="{{route('admin.admins.destroy',$admin->id)}}"
+                                            class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                            @endif
                                 @else
                                     <button disabled class="btn btn-danger btn-sm ml-2 rounded-circle"><i
                                             class="fa fa-trash"></i>
