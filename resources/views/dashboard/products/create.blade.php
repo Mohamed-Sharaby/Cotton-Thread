@@ -74,10 +74,9 @@
 
                         <label for="discount" class="col-form-label col-lg-2 text-lg-right">الخصم </label>
                         <div class="col-lg-4">
-                            {!! Form::number('discount',null,[
-                            'class' =>'form-control '.($errors->has('discount') ? ' is-invalid' : null),
-                            'placeholder'=> 'الخصم' ,'min'=>"1", 'max'=>"99"
-                            ]) !!}
+                            <input type="number" name="discount" value="0"
+                                   min="0" max="99" placeholder="الخصم"
+                                   class="form-control {{$errors->has('discount') ? 'is-invalid' : ''}}">
                             @error('discount')
                             <div class="invalid-feedback">
                                 {{ $message }}

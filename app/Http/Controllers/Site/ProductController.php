@@ -69,4 +69,8 @@ class ProductController extends Controller
     }
 
 
+    public function filter(Request $request)
+    {
+        dd($request->all());
+    }
 }

@@ -53,7 +53,7 @@ class ProductController extends Controller
         $data = $request->validate([
             'ar_name' => 'required|string|max:100',
             'en_name' => 'required|string|max:100',
-            'discount' => 'required',
+            'discount' => 'nullable',
             'price' => 'required|numeric',
             'is_new' => 'required|boolean',
             'ar_details' => 'required|max:2000',
@@ -103,7 +103,7 @@ class ProductController extends Controller
         $validator = $request->validate([
             'ar_name' => 'required|string|max:100',
             'en_name' => 'required|string|max:100',
-            'discount' => 'required',
+            'discount' => 'nullable',
             'price' => 'required|numeric',
             'is_new' => 'required|boolean',
             'ar_details' => 'required|max:2000',

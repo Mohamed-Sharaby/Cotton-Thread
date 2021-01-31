@@ -33,7 +33,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        $carts = Cart::latest()->where('status', '<>', 'open')->get();
+       // $carts = Cart::latest()->where('status', '<>', 'open')->get();
+        $carts = Cart::latest()->get();
         return view('dashboard.carts.index', compact('carts'));
     }
 
@@ -92,28 +93,11 @@ class CartController extends Controller
             'status' => 'required|in:open,confirmed,finished,refused,canceled',
         ]);
 
-        if ($request->status == 'confirmed') {
+        if ($request->status == 'refused'|| $request->status == 'canceled') {
             foreach ($cart->cartItems as $item) {
-                //$item->productQuantity->decrement('quantity',$item->quantity);
+                $item->productQuantity->increment('quantity',$item->quantity);
             }
         }
-//        if ($request->status == 'cancelled') {
-//            if ($cart->status != 'deliverd') {
-//                foreach ($cart->items as $item) {
-//                    if ($item->offer_id) {
-//                        $offer = Offer::find($item->offer_id);
-//                        foreach ($offer->sizes as $offer_size) {
-//                            $offer_size->productSize->quantities()->create(['type' => 'increase', 'quantity' => $item->quantity]);
-//                        }
-//                    } else {
-//                        $item->product_size->quantities()->create(['type' => 'increase', 'quantity' => $item->quantity]);
-//                    }
-//                }
-//            } else {
-//                return back()->with('error', 'تم توصيل الطلب .. لا يمكن الغاؤه');
-//            }
-//        }
-
 
         $cart->update($validator);
         return back()->with('success', 'تم التعديل بنجاح');
