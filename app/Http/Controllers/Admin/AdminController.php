@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
 use App\Models\Admin;
 use App\Models\User;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
@@ -32,7 +33,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $roles = Role::where('is_active', '1')->get();
+        $superAdminRole = Role::whereName('Super Admin')->first();
+        $roles = Role::where('id','!=',$superAdminRole->id)->where('is_active', '1')->get();
         return view('dashboard.admins.create', compact('roles'));
     }
 
