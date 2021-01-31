@@ -31,7 +31,7 @@ class ProductResource extends JsonResource
             'details'=>$this->details,
             'image'=>$this->image,
             'price' => $this->price,
-            'has_discount' => ($this->discount)?true:false,
+            'has_discount' => ((int)$this->discount>0),
             'discount' => $this->discount,
             'rate' => $this->avg_rate,
             'is_rated'=> (auth()->check())?$user->isRated($this->id):false,
