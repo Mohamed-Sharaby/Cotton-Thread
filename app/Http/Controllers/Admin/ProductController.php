@@ -138,6 +138,8 @@ class ProductController extends Controller
     {
         return view('dashboard.products.product_details', compact('product'));
     }
+
+
     public function addQuantity($id)
     {
         $product = Product::findOrFail($id);
@@ -177,6 +179,27 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $quantities = ProductQuantity::whereProductId($id)->get();
         return view('dashboard.products.quantities',compact('product','quantities'));
+    }
+
+    public function editQuantity($id)
+    {
+        $quantity = ProductQuantity::whereId($id)->first();
+        $sizes = Size::all();
+        $colors = Color::all();
+        return view('dashboard.products.edit_quantity',compact('quantity','sizes','colors'));
+    }
+
+    public function updateQuantity(Request $request,$id)
+    {
+        $quantity = ProductQuantity::whereId($id)->first();
+        $request->validate([
+            'size_id' => 'required|exists:sizes,id',
+            'color_id' => 'required|exists:colors,id',
+            'quantity'=>'required|numeric'
+        ]);
+        $quantity->update($request->all());
+        return redirect()->back()->with('success','تم التعديل بنجاح');
+
     }
 
     public function destroyQuantity($id)
