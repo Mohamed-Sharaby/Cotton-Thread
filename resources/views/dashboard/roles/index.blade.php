@@ -92,43 +92,44 @@
                         <td class="text-center">
                             <div class="btn-group text-center">
 
-                                @if(!$role->hasAllPermissions(\Spatie\Permission\Models\Permission::all()))
-                                    @if( !auth()->user()->hasRole($role))
-                                        <form action="{{ route('admin.active.role', ['id' => $role->id]) }}"
-                                              method="post">@csrf
-                                            <button type="submit"
-                                                    class="{{ $role->is_active ? 'btn btn-success' : 'btn btn-warning' }}">{{ $role->is_active ? 'مفعل' : 'غير مفعل' }}</button>
-                                        </form>
-                                    @else
-                                        <button disabled class="btn btn-success">مفعل</button>
-                                    @endif
-                                @else
+                                @if($role->hasAllPermissions(\Spatie\Permission\Models\Permission::all()) && $role->name =='Super Admin')
                                     <button disabled class="btn btn-success">مفعل</button>
+                                @else
+                                    @if( !auth()->user()->hasRole($role))
+                                    <form action="{{ route('admin.active.role', ['id' => $role->id]) }}"
+                                          method="post">@csrf
+                                        <button type="submit"
+                                                class="{{ $role->is_active ? 'btn btn-success' : 'btn btn-warning' }}">{{ $role->is_active ? 'مفعل' : 'غير مفعل' }}</button>
+                                    </form>
+                                    @else
+                                        <button disabled class="{{ $role->is_active ? 'btn btn-success' : 'btn btn-warning' }}">{{ $role->is_active ? 'مفعل' : 'غير مفعل' }}</button>
+
+                                    @endif
                                 @endif
 
-                                {{--                                @if(!$role->hasAllPermissions(\Spatie\Permission\Models\Permission::all()))--}}
+                                                                @if(!$role->hasAllPermissions(\Spatie\Permission\Models\Permission::all()))
                                 @if(!auth()->user()->hasRole($role))
                                     <a href="{{route('admin.roles.edit',$role->id)}}"
                                        class="btn btn-primary btn-sm ml-2 rounded-circle"><i
                                             class="fa fa-edit"></i></a>
                                 @endif
-                                {{--                                @endif--}}
+                                                                @endif
 
 
                                 @if(!$role->hasAllPermissions(\Spatie\Permission\Models\Permission::all()))
                                     @if( !auth()->user()->hasRole($role))
 
-{{--                                        <form action="{{route('admin.roles.destroy',$role->id)}}" method="post">--}}
-{{--                                            {{method_field('delete')}}--}}
-{{--                                            @csrf--}}
+                                        {{--                                        <form action="{{route('admin.roles.destroy',$role->id)}}" method="post">--}}
+                                        {{--                                            {{method_field('delete')}}--}}
+                                        {{--                                            @csrf--}}
 
-{{--                                            <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
-{{--                                                    class="fa fa-trash"></i></button>--}}
-{{--                                        </form>--}}
-                                            <button data-url="{{route('admin.roles.destroy',$role->id)}}"
-                                                    class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
+                                        {{--                                            <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
+                                        {{--                                                    class="fa fa-trash"></i></button>--}}
+                                        {{--                                        </form>--}}
+                                        <button data-url="{{route('admin.roles.destroy',$role->id)}}"
+                                                class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     @else
                                         <button class="btn btn-danger btn-sm ml-2 rounded-circle" disabled><i
                                                 class="fa fa-trash"></i>
