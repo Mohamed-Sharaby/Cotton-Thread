@@ -15,9 +15,11 @@
                 </ol>
                 <div class="styled_tabs">
                     <ul class="nav nav-tabs">
+                        @isset($categories)
                         @foreach($categories as $category)
                             <li><a href="{{route('website.categories.subCategories',$category->id)}}">{{$category->name}}</a></li>
                         @endforeach
+                            @endisset
                     </ul>
                 </div>
             </div>
@@ -45,6 +47,7 @@
                                 </ul>
                             </div>
                             <div class="all_prods">
+                               @isset($products)
                                 <div class="row">
                                     @foreach($products as $product)
                                         @include('site.products.product-component',['product'=>$product])
@@ -56,6 +59,7 @@
                                        {!! $products->links() !!}
                                    </div>
                                </div>
+                                @endisset
 {{--                                <a class="btn-hvr see_more" href="#">عرض المزيد</a>--}}
                             </div>
                         </div>

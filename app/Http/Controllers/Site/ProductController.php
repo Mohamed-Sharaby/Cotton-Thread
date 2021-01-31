@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
 use App\Models\RateComment;
+use App\Models\Size;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
@@ -59,18 +61,42 @@ class ProductController extends Controller
     }
 
 
-
     public function getColors($id)
     {
         $product = Product::findOrFail($id);
         $colors = $product->product_colors;
         $sizes = $product->product_sizes;
-       return response()->json(['id'=>$product->id,'colors'=>$colors,'sizes'=>$sizes]);
+        return response()->json(['id' => $product->id, 'colors' => $colors, 'sizes' => $sizes]);
     }
 
 
     public function filter(Request $request)
     {
-        dd($request->all());
+        $products = Product::active();
+        $categories = $request->category;
+        $colors = $request->color;
+        $sizes = $request->size;
+        foreach ((array)$categories as $category) {
+            $cat = Category::whereId($category)->first();
+            foreach ($cat->subcategories as $subcategory) {
+                $products = $products->whereSubcategoryId($subcategory->id);
+            }
+        }
+        foreach ((array)$colors as $color) {
+            $clr = Color::whereId($color)->first();
+            $products = Product::whereHas('product_colors', function ($q) use ($clr) {
+                $q->where('color_id', $clr->id);
+            });
+        }
+        foreach ((array)$sizes as $size) {
+            $sz = Size::whereId($size)->first();
+            $products = Product::whereHas('product_sizes', function ($q) use ($sz) {
+                $q->where('size_id', $sz->id);
+            });
+        }
+
+        $products = $products->paginate(12);
+        return view('site.products.all-products', compact('products'));
+
     }
 }

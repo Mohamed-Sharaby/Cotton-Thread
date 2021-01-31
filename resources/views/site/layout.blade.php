@@ -525,7 +525,6 @@
 </script>
 <script src="{{asset('website/js/user/order.js')}}"></script>
 <script src="{{asset('website/js/user/cart.js')}}"></script>
-<script src="{{asset('website/js/user/products-filter.js')}}"></script>
 @yield('scripts')
 <!-- /////////////////////||||||||||||||||||||||||||||| End Script |||||||||||||||||||||||||||| -->
 </body>

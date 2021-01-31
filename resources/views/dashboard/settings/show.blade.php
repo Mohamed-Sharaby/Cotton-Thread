@@ -32,7 +32,10 @@
                             <div class="row  col-12 form-group">
 
                                 <label for="{{$setting->title}}"
-                                       class="col-form-label font-weight-bold col-lg-2">{{__($setting->title)}} {{$setting->name === 'delivery_cost_percentage' ? '( بالريال )': ''}}</label>
+                                       class="col-form-label font-weight-bold col-lg-2">{{__($setting->title)}}
+                                    {{$setting->name === 'delivery_cost_percentage' ? '( بالريال )': ''}}
+                                    {{$setting->name === 'tax_percentage' ? '( % )': ''}}
+                                </label>
 
                                 @if($setting->type == 'text' && $setting->name == 'address')
                                     <div class="col-12 col-lg-10">
@@ -160,7 +163,7 @@
 
                                 @if($setting->type == 'number' && $setting->name == 'delivery_cost_percentage')
                                     <div class="col-12 col-lg-10">
-                                        <input type="text" name="{{$setting->name}}" value="{{$setting->value}} "
+                                        <input type="text" name="{{$setting->name}}" value="{{$setting->value}}"
                                                placeholder="نسبة الضريبة" class="form-control">
                                         @error($setting->name)
                                         <div class="invalid-feedback">
