@@ -6,6 +6,7 @@ $(document).on('click', '.addCart', function () {
     $.ajax({
         url: "/products/single/" + product_id + '/colors',
         success(response) {
+            $('.number-input .quantity').val(1);
             $('#proId').val(response.id);
             modal.find('div.clr_radio').empty();
             response.colors.forEach(color => {

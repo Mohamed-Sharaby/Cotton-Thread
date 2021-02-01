@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.layout')
 @section('page-title')
-    كميات المنتجات
+    كميات المنتج - {{$product->name}}
 @endsection
 @section('content')
     <div class="page-header page-header-light">
