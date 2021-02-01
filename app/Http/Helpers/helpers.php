@@ -239,8 +239,8 @@ function getLangMessage($key, $lang)
         'ar' => [
             'order_refused' => 'تم رفض الطلب',
             'order_refused_body' => 'تم رفض الطلب الخاص بك من قبل الادارة',
-            'order_confirmed' => 'تم قبول الطلب',
-            'order_confirmed_body' => 'تم قبول الطلب الخاص بك من قبل الادارة وجاري تجهيزه',
+            'order_confirmed' => 'تم تأكيد الطلب',
+            'order_confirmed_body' => 'تم تأكيد الطلب الخاص بك من قبل الادارة وجاري تجهيزه',
             'order_cancelled' => 'تم إلغاء الطلب',
             'order_cancelled_body' => 'تم إلغاء الطلب الخاص بك',
             'order_finished' => 'تم تسليم الطلب',
@@ -251,8 +251,8 @@ function getLangMessage($key, $lang)
         'en' => [
             'order_refused' => 'Order Refused',
             'order_refused_body' => 'Admin refuse your order',
-            'order_confirmed' => 'Order Accepted',
-            'order_confirmed_body' => 'Your order accepted and on processing',
+            'order_confirmed' => 'Order Confirmed',
+            'order_confirmed_body' => 'Your order confirmed and on processing',
             'order_cancelled' => 'Order Cancelled',
             'order_cancelled_body' => 'Your order was cancelled by admin',
             'order_finished' => 'Order delivered',
