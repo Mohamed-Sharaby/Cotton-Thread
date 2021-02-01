@@ -24,24 +24,25 @@ class CartStatusNotification extends Notification
     {
         $lang = $cart->user->lang;
         switch ($status) {
+            case 'confirmed':
+                $title = getLangMessage('order_confirmed', $lang); $body = getLangMessage('order_confirmed_body', $lang); break;
+            case 'finished':
+                $title = getLangMessage('order_finished', $lang); $body = getLangMessage('order_finished_body', $lang); break;
             case 'refused':
                 $title = getLangMessage('order_refused', $lang); $body = getLangMessage('order_refused_body', $lang); break;
-            case 'accepted':
-                $title = getLangMessage('order_accepted', $lang); $body = getLangMessage('order_accepted_body', $lang); break;
-            case 'cancelled':
+            case 'canceled':
                 $title = getLangMessage('order_cancelled', $lang); $body = getLangMessage('order_cancelled_body', $lang); break;
-            case 'deliverd':
-                $title = getLangMessage('order_deliverd', $lang); $body = getLangMessage('order_deliverd_body', $lang); break;
             default :
                 $title = getLangMessage('order_new', $lang); $body = getLangMessage('order_new_body', $lang); break;
         }
+
         $this->data = [
             'title' => $title,
             'body' => $body,
             'status' => $status,
             'cart_id' => $cart->id,
             'category' => 'cart',
-            'type' => 'cart'
+            'type' => 'cart_status'
         ];
     }
 
@@ -51,35 +52,21 @@ class CartStatusNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toDatabase($notifiable)
+    public function via($notifiable)
     {
-        return $this->data;
+        return ['database'];
     }
 
     /**
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return
      */
-    public function toMail($notifiable)
+    public function toDatabase($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return $this->data;
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
-    }
+
 }
