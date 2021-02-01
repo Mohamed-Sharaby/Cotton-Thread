@@ -27,7 +27,7 @@ class CartResource extends JsonResource
             $data=[
                 'cart_id' => $this->id,
                 'address' => fix_null_string(optional($this->address)->address),
-                'status' => $this->status,
+                'status' => __($this->status),
                 'payment' => fix_null_string($this->payment),
                 'transaction_image' => fix_null_string(getImg($this->transaction_image)),
                 'comment' => fix_null_string($this->comment),
