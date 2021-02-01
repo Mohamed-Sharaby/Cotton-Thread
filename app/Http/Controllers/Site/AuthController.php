@@ -24,6 +24,9 @@ class AuthController extends Controller
     {
         $request->validate(['phone' => 'required|exists:users,phone']);
         $user = User::wherePhone($request->phone)->first();
+        if (!$user){
+            return back()->with('error','رقم الجوال الذى أدخلته ليس مسجل لدينا ');
+        }
         if ($user->reset_code) {
             $code = $user->reset_code;
         } else $code = '1234';

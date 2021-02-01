@@ -67,6 +67,12 @@
                                         <button type="submit"
                                                 class="{{ $user->is_ban ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-success' }}">{{ $user->is_ban ? 'غير مفعل' : ' مفعل' }}</button>
                                     </form>
+                                @else
+                                    <button disabled type="submit"
+                                            class="{{ $user->is_ban ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-success' }}">
+                                        {{ $user->is_ban ? 'غير مفعل' : ' مفعل' }}
+                                    </button>
+
                                 @endif
 
                                 <a href="{{url(route('admin.users.edit',$user->id))}}"
