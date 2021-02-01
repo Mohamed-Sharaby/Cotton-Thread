@@ -20,7 +20,7 @@ class CartsCollection extends ResourceCollection
             return[
                 'id' => $q->id,
                 'address' => fix_null_string(optional($q->address)->address),
-                'status' => $q->status,
+                'status' => __($q->status),
                 'payment' => fix_null_string($q->payment),
                 'transaction_image' => fix_null_string(getImg($q->transaction_image)),
                 'comment' => fix_null_string($q->comment),
