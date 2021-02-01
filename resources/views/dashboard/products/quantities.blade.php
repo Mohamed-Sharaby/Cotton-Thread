@@ -23,10 +23,15 @@
             @include('dashboard.layouts.status')
 
             <div class="panel-body mb-2">
+                <a href="{{url(route('admin.products.details',$product->id))}}"
+                   class="btn btn-primary btn-sm ml-2 rounded"><i
+                        class="fa fa-eye mr-2"></i> الرجوع لتفاصيل المنتج</a>
+
                 <a href="{{url(route('admin.products.add_quantity',$product->id))}}"
                    class="btn btn-primary btn-sm ml-2 rounded"><i
                         class="fa fa-plus mr-2"></i>اضافة كمية</a>
             </div>
+
             <table class="table datatable-button-init-basic table-hover responsive table-responsive display nowrap"
                    style="width:100%">
                 <thead>
@@ -45,7 +50,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$quantity->size->size}}</td>
                         <td>{{$quantity->color->name}}
-                            <div style="height: 40px;width:40px;background-color: {{$quantity->color->color}}"></div>
+                            <div class="rounded" style="height: 40px;width:40px;background-color: {{$quantity->color->color}}"></div>
                         </td>
                         <td>{{$quantity->quantity}}</td>
 

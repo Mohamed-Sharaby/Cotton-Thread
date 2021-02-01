@@ -42,8 +42,8 @@
                 </div>
             </div>
             <div class="user-comment">
-                <h2>التقييمات ( 20 )</h2>
-                @foreach($product->rates as $rate)
+                <h2>التقييمات ({{$ratesCount}})</h2>
+                @foreach($rates as $rate)
                     <div class="user-comment-content">
                         <div class="user-data">
                             <img src="{{$rate->user->image}}">

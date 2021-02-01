@@ -86,6 +86,9 @@
                             <tr>
                                 <th class="font-weight-bold">متوسط تقييمات المنتج</th>
                                 <td>{{$product->avgRate}}</td>
+
+                                <th class="font-weight-bold">كمية  المنتج</th>
+                                <td>{{$product->quantity}}</td>
                             </tr>
 
 

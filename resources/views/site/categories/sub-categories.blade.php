@@ -1,5 +1,5 @@
 @extends('site.layout')
-@section('title' , 'الأقسام الفرعية || خيط وقطن')
+@section('title' , ' خيط وقطن'.' || '.$categoryName->name )
 @section('styles')
 @endsection
 @section('content')
@@ -20,6 +20,7 @@
 <section class="all-sections">
     <div class="container">
         <div class="row">
+
             @foreach($subCategories as $subCategory)
             <div class="col-md-3 col-sm-4 col-xs-6">
                 <a href="{{route('website.products.index',['id' => $subCategory->id])}}" class="flex_prod main_categ">
