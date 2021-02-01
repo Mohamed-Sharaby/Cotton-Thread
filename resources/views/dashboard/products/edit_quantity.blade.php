@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.layout')
 @section('page-title')
-     اضافة كمية  - {{$product->name}}
+    تعديل كمية منتج
 @endsection
 @section('content')
     <div class="page-header page-header-light">
@@ -22,15 +22,16 @@
         <div class="panel panel-flat">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    اضافة كمية للمنتج
-                    <span class="badge badge-info">{{$product->name}}</span>
+                    تعديل كمية للمنتج
+                    <span class="badge badge-info">{{$quantity->product->name}}</span>
                 </h3>
 
             </div>
+            @include('dashboard.layouts.status')
             <hr>
             <div class="panel-body">
 
-                <form action="{{route('admin.products.store_quantity',$product->id)}}" method="post"
+                <form action="{{route('admin.products.update_quantity',$quantity->id)}}" method="post"
                       enctype="multipart/form-data">
                     @csrf
 
@@ -42,7 +43,7 @@
                                 <option disabled selected>اختر حجم المنتج</option>
                                 @foreach($sizes as $size)
                                     <option
-                                        value="{{$size->id}}" {{old('size_id') == $size->id ? 'selected' : ''}}>{{$size->size}}</option>
+                                        value="{{$size->id}}" {{$quantity->size_id == $size->id ? 'selected' : ''}}>{{$size->size}}</option>
                                 @endforeach
                             </select>
                             @error('size_id')
@@ -59,7 +60,7 @@
                                 <option disabled selected>اختر لون المنتج</option>
                                 @foreach($colors as $color)
                                     <option
-                                        value="{{$color->id}}" {{old('color_id') == $color->id ? 'selected' : ''}}>{{$color->name}}</option>
+                                        value="{{$color->id}}" {{$quantity->color_id == $color->id ? 'selected' : ''}}>{{$color->name}}</option>
                                 @endforeach
                             </select>
                             @error('color_id')
@@ -72,7 +73,7 @@
                     <div class="form-group row">
                         <label for="quantity" class="col-form-label col-lg-2"> الكمية</label>
                         <div class="col-lg-4">
-                            <input type="number" name="quantity" required value="{{old('quantity')}}"
+                            <input type="number" name="quantity" required value="{{$quantity->quantity}}"
                                    oninvalid="this.setCustomValidity('الكمية مطلوبة')"
                                    onchange="this.setCustomValidity('')"
                                    class="form-control {{$errors->has('quantity') ? 'is-invalid' : ''}}">
@@ -86,7 +87,7 @@
 
 
                     <div class="form-group row">
-                        <button type="submit" class="btn btn-primary btn-block">{{__('Add')}}</button>
+                        <button type="submit" class="btn btn-primary btn-block">تعديل</button>
                     </div>
 
                 </form>

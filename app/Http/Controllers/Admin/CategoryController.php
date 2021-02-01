@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $data = $request->validate([
             'ar_name' => 'required|string|max:100',
             'en_name' => 'required|string|max:100',
-            'image' => 'required|image',
+            'image' => 'required|image|max:2048',
         ]);
 //        if ($request->image){
 //            $data['image'] = uploadImage('uploads',$request->image);
@@ -93,7 +93,7 @@ class CategoryController extends Controller
         $validator = $request->validate([
             'ar_name' => 'required|string|max:100',
             'en_name' => 'required|string|max:100',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|max:2048',
         ]);
         if ($request->has('image')) {
             if ($category->image) {

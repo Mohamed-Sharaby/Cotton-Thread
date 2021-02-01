@@ -44,6 +44,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' =>['auth:admin','admin'], 'a
     Route::get('quantities/{product}', 'ProductController@quantities')->name('products.quantities');
     Route::get('add_quantity/{id}', 'ProductController@addQuantity')->name('products.add_quantity');
     Route::Post('store_quantity/{id}', 'ProductController@storeQuantity')->name('products.store_quantity');
+    Route::get('edit_quantity/{id}', 'ProductController@editQuantity')->name('products.edit_quantity');
+    Route::post('update_quantity/{id}', 'ProductController@updateQuantity')->name('products.update_quantity');
     Route::delete('destroy_quantity/{id}', 'ProductController@destroyQuantity')->name('products.destroy_quantity');
     Route::get('add_size/{id}', 'ProductController@addSize')->name('products.add_size');
     Route::Post('store_size/{id}', 'ProductController@storeSize')->name('products.store_size');

@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.layout')
 @section('page-title')
-    كميات المنتجات
+    كميات المنتج - {{$product->name}}
 @endsection
 @section('content')
     <div class="page-header page-header-light">
@@ -23,10 +23,15 @@
             @include('dashboard.layouts.status')
 
             <div class="panel-body mb-2">
+                <a href="{{url(route('admin.products.details',$product->id))}}"
+                   class="btn btn-primary btn-sm ml-2 rounded"><i
+                        class="fa fa-eye mr-2"></i> الرجوع لتفاصيل المنتج</a>
+
                 <a href="{{url(route('admin.products.add_quantity',$product->id))}}"
                    class="btn btn-primary btn-sm ml-2 rounded"><i
                         class="fa fa-plus mr-2"></i>اضافة كمية</a>
             </div>
+
             <table class="table datatable-button-init-basic table-hover responsive table-responsive display nowrap"
                    style="width:100%">
                 <thead>
@@ -45,7 +50,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$quantity->size->size}}</td>
                         <td>{{$quantity->color->name}}
-                            <div style="height: 40px;width:40px;background-color: {{$quantity->color->color}}"></div>
+                            <div class="rounded" style="height: 40px;width:40px;background-color: {{$quantity->color->color}}"></div>
                         </td>
                         <td>{{$quantity->quantity}}</td>
 
@@ -59,14 +64,9 @@
                                             class="{{ $quantity->is_ban ? 'btn btn-warning' : 'btn btn-success' }}">{{ $quantity->is_ban ? __('Deactivate') : __('Active') }}</button>
                                 </form>
 
-{{--                                <form action="{{route('admin.products.destroy_quantity',$quantity->id)}}" method="post">--}}
-{{--                                    @csrf--}}
-{{--                                    {{method_field('delete')}}--}}
-
-{{--                                    <button class="btn btn-danger btn-sm ml-2 rounded-circle"><i--}}
-{{--                                            class="fa fa-trash"></i>--}}
-{{--                                    </button>--}}
-{{--                                </form>--}}
+                                <a href="{{url(route('admin.products.edit_quantity',$quantity->id))}}"
+                                   class="btn btn-primary btn-sm ml-2 rounded-circle"><i
+                                        class="fa fa-edit"></i></a>
 
                                 <button data-url="{{route('admin.products.destroy_quantity',$quantity->id)}}"
                                         class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">

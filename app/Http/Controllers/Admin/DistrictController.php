@@ -93,13 +93,6 @@ class DistrictController extends Controller
     {
         $district->delete();
         return 'Done';
-//        return redirect(route('admin.districts.index'))->with('success', 'تم الحذف بنجاح');
     }
 
-
-//    public function getCities($id)
-//    {
-//        $cities = City::where('is_active','1')->where('region_id','=',$id)->pluck('ar_name','id');
-//        return response()->json($cities);
-//    }
 }

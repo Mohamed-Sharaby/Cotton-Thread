@@ -14,7 +14,7 @@
                     <a href="{{url('/')}}">
                         <img src="{{asset('website/img/logo-wide.png')}}">
                     </a>
-                    <h2>إستعادة كلمة المرور</h2>
+                    <h2>تغيير كلمة المرور</h2>
                     @include('dashboard.layouts.status')
                     @if ($errors->any())
                         <div class="alert alert-danger alert-dismissable  show" role="alert">

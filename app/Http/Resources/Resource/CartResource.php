@@ -27,8 +27,8 @@ class CartResource extends JsonResource
             $data=[
                 'cart_id' => $this->id,
                 'address' => fix_null_string(optional($this->address)->address),
-                'status' => $this->status,
-                'payment' => fix_null_string($this->payment),
+                'status' => __($this->status),
+                'payment' => fix_null_string(__($this->payment)),
                 'transaction_image' => fix_null_string(getImg($this->transaction_image)),
                 'comment' => fix_null_string($this->comment),
                 'delivered_at' => ($this->delivered_at)?Carbon::parse($this->delivered_at)->format('d-m-Y'):'',

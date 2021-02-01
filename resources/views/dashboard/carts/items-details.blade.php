@@ -14,8 +14,8 @@
                     <th class="font-weight-bold">اسم المنتج</th>
                     <th class="font-weight-bold">الحجم</th>
                     <th class="font-weight-bold">اللون</th>
-                    <th class="font-weight-bold">الكمية</th>
                     <th class="font-weight-bold">الصورة</th>
+                    <th class="font-weight-bold">الكمية</th>
                     <th class="font-weight-bold">سعر المنتج</th>
                     <th class="font-weight-bold">خصومات</th>
                     <th class="font-weight-bold">السعر بعد الخصم</th>
@@ -33,7 +33,6 @@
                             <div style="width: 40px;height: 40px;background-color:{{$item->productQuantity->color->color}} "></div>
                             {{$item->productQuantity->color->name ?? ''}}
                         </td>
-                        <td>{{$item->quantity ?? ''}}</td>
                         <td>
                             @if($item->productQuantity->product->image)
                                 <a data-fancybox="gallery"
@@ -44,6 +43,8 @@
                                 </a>
                             @else {{__('No Image')}} @endif
                         </td>
+                        <td>{{$item->quantity ?? ''}}</td>
+
                         <td>{{$item->productQuantity->product->price ?? ''}}</td>
                         <td>{{$item->productQuantity->product->discount ?? 'لا يوجد'}} %</td>
                         <td>{{$item->productQuantity->product->priceAfterDiscount ?? 'لا يوجد'}}</td>

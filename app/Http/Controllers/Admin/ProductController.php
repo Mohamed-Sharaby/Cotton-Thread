@@ -25,11 +25,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-
-        return view(
-            'dashboard.products.index',
-            ['products' => Product::latest()->get()]
-        );
+        return view('dashboard.products.index', ['products' => Product::latest()->get()]);
     }
 
     /**
@@ -59,7 +55,7 @@ class ProductController extends Controller
             'ar_details' => 'required|max:2000',
             'en_details' => 'required|max:2000',
             'subcategory_id' => 'required|exists:sub_categories,id',
-            'image' => 'required|image',
+            'image' => 'required|image|max:2048',
         ]);
 
         Product::create($data);
@@ -109,7 +105,7 @@ class ProductController extends Controller
             'ar_details' => 'required|max:2000',
             'en_details' => 'required|max:2000',
             'subcategory_id' => 'required|exists:sub_categories,id',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|max:2048',
         ]);
         if ($request->has('image')) {
             if ($product->image) {
@@ -130,7 +126,6 @@ class ProductController extends Controller
     {
         $product->delete();
         return 'Done';
-//        return redirect()->route('admin.products.index')->with('success', __('Deleted Successfully'));
     }
 
 
@@ -138,29 +133,32 @@ class ProductController extends Controller
     {
         return view('dashboard.products.product_details', compact('product'));
     }
+
+
     public function addQuantity($id)
     {
         $product = Product::findOrFail($id);
         $sizes = Size::all();
         $colors = Color::all();
-        return view('dashboard.products.add_quantity', compact('product','sizes','colors'));
+        return view('dashboard.products.add_quantity', compact('product', 'sizes', 'colors'));
     }
 
-    public function storeQuantity(Request $request,$id)
+    public function storeQuantity(Request $request, $id)
     {
         $request->validate([
             'size_id' => 'required|exists:sizes,id',
             'color_id' => 'required|exists:colors,id',
-            'quantity'=>'required|numeric'
+            'quantity' => 'required|numeric'
         ]);
         $product = Product::findOrFail($id);
         $product->product_quantity()->create([
-            'type'=>'increase',
-            'color_id'=> $request->color_id,
-            'size_id'=> $request->size_id,
-            'quantity'=> $request->quantity,
+            'type' => 'increase',
+            'color_id' => $request->color_id,
+            'size_id' => $request->size_id,
+            'quantity' => $request->quantity,
         ]);
-        return redirect()->route('admin.products.index')->with('success','تم الاضافة بنجاح');
+
+        return redirect()->route('admin.products.quantities',$product->id)->with('success', 'تم الاضافة بنجاح');
     }
 
 
@@ -171,12 +169,31 @@ class ProductController extends Controller
     }
 
 
-
     public function quantities($id)
     {
         $product = Product::findOrFail($id);
         $quantities = ProductQuantity::whereProductId($id)->get();
-        return view('dashboard.products.quantities',compact('product','quantities'));
+        return view('dashboard.products.quantities', compact('product', 'quantities'));
+    }
+
+    public function editQuantity($id)
+    {
+        $quantity = ProductQuantity::whereId($id)->first();
+        $sizes = Size::all();
+        $colors = Color::all();
+        return view('dashboard.products.edit_quantity', compact('quantity', 'sizes', 'colors'));
+    }
+
+    public function updateQuantity(Request $request, $id)
+    {
+        $quantity = ProductQuantity::whereId($id)->first();
+        $request->validate([
+            'size_id' => 'required|exists:sizes,id',
+            'color_id' => 'required|exists:colors,id',
+            'quantity' => 'required|numeric'
+        ]);
+        $quantity->update($request->all());
+        return redirect()->route('admin.products.quantities',$quantity->product->id)->with('success', 'تم التعديل بنجاح');
     }
 
     public function destroyQuantity($id)
@@ -184,7 +201,6 @@ class ProductController extends Controller
         $quantity = ProductQuantity::findOrFail($id);
         $quantity->delete();
         return 'Done';
-//        return back()->with('success', __('Deleted Successfully'));
     }
 
 
@@ -199,7 +215,6 @@ class ProductController extends Controller
         $rate = RateComment::findOrFail($id);
         $rate->delete();
         return 'Done';
-//        return back()->with('success', __('Deleted Successfully'));
     }
 
 

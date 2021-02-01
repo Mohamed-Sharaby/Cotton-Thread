@@ -38,8 +38,9 @@ class HomeController extends Controller
 
     public function subCategories($id)
     {
+        $categoryName = Category::whereId($id)->first();
         $subCategories = SubCategory::whereCategoryId($id)->active()->get();
-        return view('site.categories.sub-categories', compact('subCategories'));
+        return view('site.categories.sub-categories', compact('subCategories','categoryName'));
     }
 
 
