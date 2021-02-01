@@ -100,6 +100,7 @@ class CartController extends Controller
         }
 
         $cart->update($validator);
+        $cart->user->notify(new CartStatusNotification($cart, $request->status));
         return back()->with('success', 'تم التعديل بنجاح');
     }
 

@@ -31,7 +31,7 @@
                     <th class="font-weight-bold">اسم العنوان</th>
                     <th class="font-weight-bold">رقم الجوال</th>
                     <th class="font-weight-bold">التفاصيل</th>
-                    <th class="font-weight-bold">الموقع على الخريطة</th>
+{{--                    <th class="font-weight-bold">الموقع على الخريطة</th>--}}
                     <th class="font-weight-bold">حذف</th>
                 </tr>
                 </thead>
@@ -43,17 +43,15 @@
                         <td>{{$address->phone ?? __('Not Found')}}</td>
                         <td>@include('dashboard.addresses.details')</td>
 
-                        <td class="text-center">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-info show-map" data-lat="{{$address->lat}}"
-                                    data-lng="{{$address->lng}}">
-                                الموقع على الخريطة
-                            </button>
-                        </td>
+{{--                        <td class="text-center">--}}
+{{--                            <!-- Button trigger modal -->--}}
+{{--                            <button type="button" class="btn btn-info show-map" data-lat="{{$address->lat}}"--}}
+{{--                                    data-lng="{{$address->lng}}">--}}
+{{--                                الموقع على الخريطة--}}
+{{--                            </button>--}}
+{{--                        </td>--}}
 
                         <td class="text-center">
-{{--                            <a class="btn btn-danger btn-sm del_address" data-id="{{$address->id}}">--}}
-{{--                                <i class="fa fa-trash text-white"></i></a>--}}
 
                             <button data-url="{{route('admin.del_address',$address->id)}}"
                                     class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">

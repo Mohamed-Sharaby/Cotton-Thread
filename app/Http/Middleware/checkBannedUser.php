@@ -16,9 +16,13 @@ class checkBannedUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->is_ban == 1){
-            auth()->logout();
-            return redirect(route('login'))->with('error','لقد تم حظر الحساب الخاص بك من قبل الادارة');
+        if (auth('web')->check() && auth('web')->user()->is_ban == 1){
+            auth('web')->logout();
+          //  return redirect(route('login'))->with('error','لقد تم حظر الحساب الخاص بك من قبل الادارة');
+            return response()->json([
+                'value'=>false,
+                'msg'=>'لقد تم حظر الحساب الخاص بك من قبل الادارة'
+            ]);
         }
         return $next($request);
     }
