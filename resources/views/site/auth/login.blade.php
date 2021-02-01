@@ -14,7 +14,7 @@
                     <img src="{{asset('website/img/logo-wide.png')}}">
                 </a>
                 <h2>تسجيل دخول </h2>
-
+@include('dashboard.layouts.status')
                 <div class="input-wrap">
                     <input type="text" placeholder="رقم الجوال" name="phone">
                     <div class="hov-input">
