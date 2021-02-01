@@ -55,7 +55,7 @@ class ProductController extends Controller
             'ar_details' => 'required|max:2000',
             'en_details' => 'required|max:2000',
             'subcategory_id' => 'required|exists:sub_categories,id',
-            'image' => 'required|image',
+            'image' => 'required|image|max:2048',
         ]);
 
         Product::create($data);
@@ -105,7 +105,7 @@ class ProductController extends Controller
             'ar_details' => 'required|max:2000',
             'en_details' => 'required|max:2000',
             'subcategory_id' => 'required|exists:sub_categories,id',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|max:2048',
         ]);
         if ($request->has('image')) {
             if ($product->image) {

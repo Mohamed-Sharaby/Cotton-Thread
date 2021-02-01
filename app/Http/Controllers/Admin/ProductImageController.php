@@ -49,7 +49,7 @@ class ProductImageController extends Controller
     {
         $data = $request->validate([
             'product_id' => 'required|exists:products,id',
-            'image' => 'required|image',
+            'image' => 'required|image|max:2048',
         ]);
         ProductImage::create($data);
         return redirect()->route('admin.product-images.index')->with('success', __('Added Successfully'));
@@ -89,7 +89,7 @@ class ProductImageController extends Controller
     {
         $validator = $request->validate([
             'product_id' => 'required|exists:products,id',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|max:2048',
         ]);
         if ($request->has('image')) {
             if ($productImage->image) {
@@ -126,7 +126,7 @@ class ProductImageController extends Controller
         $product = Product::findOrFail($request->product_id);
         $request->validate([
             'product_id'=>'required|exists:products,id',
-            'image'=>'required|image'
+            'image'=>'required|image|max:2048'
         ]);
         ProductImage::create([
             'product_id'=>$product->id,

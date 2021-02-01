@@ -47,7 +47,7 @@ class BannerController extends Controller
         $data = $request->validate([
             'ar_details' => 'required|string|max:2000',
             'en_details' => 'required|string|max:2000',
-            'image' => 'required|image',
+            'image' => 'required|image|max:2048',
         ]);
 
         Banner::create($data);
@@ -88,7 +88,7 @@ class BannerController extends Controller
         $validator = $request->validate([
             'ar_details' => 'required|string|max:2000',
             'en_details' => 'required|string|max:2000',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|max:2048',
         ]);
         if ($request->has('image')) {
             if ($banner->image) {
