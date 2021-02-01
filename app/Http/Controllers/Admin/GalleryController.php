@@ -52,7 +52,7 @@ class GalleryController extends Controller
             'en_details' => 'required|max:2000',
             'type' => 'required|in:video,image',
             'url' => 'nullable|url',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         Gallery::create($data);
@@ -97,7 +97,7 @@ class GalleryController extends Controller
             'en_details' => 'required|max:2000',
             'type' => 'required|in:video,image',
             'url' => 'required_if:type,video|url',
-            'image' => 'required_if:type,image|image',
+            'image' => 'required_if:type,image|image|max:2048',
         ]);
         if ($request->has('image')) {
             if ($gallery->image) {

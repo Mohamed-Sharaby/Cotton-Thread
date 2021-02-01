@@ -32,7 +32,7 @@ class ProductRequest extends FormRequest
             'ar_meta' => 'required|string',
             'en_meta' => 'required|string',
             'category_id' => 'required|string',
-            'image' => 'required|image',
+            'image' => 'required|image|max:2048',
             'price' => 'required|numeric',
             'sku' => 'required',
             'quantity' => 'required|numeric',
@@ -42,7 +42,7 @@ class ProductRequest extends FormRequest
             'max_units_order' => 'nullable|string',
         ];
         if ($this->method() == 'PUT') {
-            $rules['image'] = 'nullable|image';
+            $rules['image'] = 'nullable|image|max:2048';
             $rules['quantity'] = 'nullable';
             $rules['slug'] = 'required|unique:products,slug,'.optional($this->product)->id;
         }

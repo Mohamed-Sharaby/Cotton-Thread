@@ -1,5 +1,7 @@
 @extends('site.layout')
-@section('title' , 'المنتجات || خيط وقطن')
+@section('title')
+    خيط وقطن || {{$subCategoryName->name ?? 'المنتجات'}}
+@endsection
 @section('styles')
 @endsection
 @section('content')
@@ -36,16 +38,16 @@
                     @include('site.products.filter-sidebar')
                     <div class="col-md-9 col-xs-12 filter-content">
                         <div class="products_inn">
-                            <div class="basic_f hidden-xs">الترتيب حسب :</div>
-                            <div class="styled_tabs">
-                                <ul class="nav nav-tabs">
-                                    <li><a href="#">الأكثر مشاهدة </a></li>
-                                    <li class="active"><a href="#">الأعلى تقييما</a></li>
-                                    <li><a href="#">المنتجات الجديدة</a></li>
-                                    <li><a href="#">من الأقل إلى الأكثر</a></li>
-                                    <li><a href="#">من الأكثر إلى الأقل</a></li>
-                                </ul>
-                            </div>
+{{--                            <div class="basic_f hidden-xs">الترتيب حسب :</div>--}}
+{{--                            <div class="styled_tabs">--}}
+{{--                                <ul class="nav nav-tabs">--}}
+{{--                                    <li><a href="#">الأكثر مشاهدة </a></li>--}}
+{{--                                    <li class="active"><a href="#">الأعلى تقييما</a></li>--}}
+{{--                                    <li><a href="#">المنتجات الجديدة</a></li>--}}
+{{--                                    <li><a href="#">من الأقل إلى الأكثر</a></li>--}}
+{{--                                    <li><a href="#">من الأكثر إلى الأقل</a></li>--}}
+{{--                                </ul>--}}
+{{--                            </div>--}}
                             <div class="all_prods">
                                @isset($products)
                                 <div class="row">

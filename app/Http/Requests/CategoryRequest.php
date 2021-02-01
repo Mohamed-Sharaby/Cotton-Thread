@@ -26,20 +26,13 @@ class CategoryRequest extends FormRequest
         $rules = [
             'ar_name' => 'required|string|unique:categories,ar_name',
             'en_name' => 'required|string|unique:categories,en_name' ,
-            'image' => 'required|image',
-            'parent_id' => 'nullable|integer|exists:categories,id',
-            'slug' => 'required|unique:categories,slug',
-            'ar_meta' => 'required|string',
-            'en_meta' => 'required|string',
+            'image' => 'required|image|max:2048',
         ];
         if ($this->method() == 'PUT') {
             $rules = [
                 'ar_name' => 'required|string|unique:categories,ar_name,' . optional($this->category)->id . ',id',
                 'en_name' => 'required|string|unique:categories,en_name,' . optional($this->category)->id . ',id',
-                'image' => 'nullable|image',
-                'slug' => 'required|unique:categories,slug,'.optional($this->category)->id,
-                'ar_meta' => 'required|string',
-                'en_meta' => 'required|string',
+                'image' => 'nullable|image|max:2048',
             ];
         }
         return $rules;

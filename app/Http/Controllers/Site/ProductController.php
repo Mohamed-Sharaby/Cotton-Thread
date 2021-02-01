@@ -15,6 +15,7 @@ class ProductController extends Controller
 {
     public function index($id = null)
     {
+        $subCategoryName = SubCategory::whereId($id)->first();
         $products = Product::active();
         if (!is_null($id)) {
             $products = Product::whereSubcategoryId($id)->active();
@@ -24,9 +25,21 @@ class ProductController extends Controller
         if (!is_null(\request('q'))) {
             $products = $products->where('ar_name', 'like', '%' . \request('q') . '%')->orWhere('en_name', 'like', '%' . \request('q') . '%');
         }
+
         $products = $products->paginate(12);
-        return view('site.products.all-products', compact('products', 'categories'));
+        return view('site.products.all-products', compact('products', 'categories','subCategoryName'));
     }
+
+//    public function arrangeByNew($id = null)
+//    {
+//        $products = Product::active()->whereIsNew(1);
+//        if (!is_null($id)) {
+//            $products = Product::whereSubcategoryId($id)->active();
+//        }
+//        $products = $products->paginate(12);
+//        return view('site.products.all-products', compact('products'));
+//    }
+
 
     public function newProducts()
     {
@@ -44,7 +57,9 @@ class ProductController extends Controller
             if (!RateComment::where(['user_id' => auth()->user()->id, 'product_id' => $product->id])->exists())
                 $can_rate = true;
         }
-        return view('site.products.single-product', compact('product', 'similar_products', 'can_rate'));
+        $rates = $product->rates()->whereIsBan(0)->get();
+        $ratesCount = $product->rates()->whereIsBan(0)->count();
+        return view('site.products.single-product', compact('product', 'similar_products', 'can_rate', 'rates', 'ratesCount'));
     }
 
     public function rate(Request $request)
@@ -72,28 +87,46 @@ class ProductController extends Controller
 
     public function filter(Request $request)
     {
-        $products = Product::active();
+        $products = Product::query();
         $categories = $request->category;
         $colors = $request->color;
         $sizes = $request->size;
-        foreach ((array)$categories as $category) {
-            $cat = Category::whereId($category)->first();
-            foreach ($cat->subcategories as $subcategory) {
-                $products = $products->whereSubcategoryId($subcategory->id);
+        $price_from = $request->price_from;
+        $price_to = $request->price_to;
+
+        if ($request->has('category')) {
+            foreach ((array)$categories as $category) {
+                $cat = Category::whereId($category)->first();
+                foreach ($cat->subcategories as $subcategory) {
+                    $products = $products->whereSubcategoryId($subcategory->id);
+                }
             }
         }
-        foreach ((array)$colors as $color) {
-            $clr = Color::whereId($color)->first();
-            $products = Product::whereHas('product_colors', function ($q) use ($clr) {
-                $q->where('color_id', $clr->id);
-            });
+
+        if ($request->has('color')) {
+            foreach ((array)$colors as $color) {
+                $clr = Color::whereId($color)->first();
+                $products = Product::whereHas('product_colors', function ($q) use ($clr) {
+                    $q->where('color_id', $clr->id);
+                });
+            }
         }
-        foreach ((array)$sizes as $size) {
-            $sz = Size::whereId($size)->first();
-            $products = Product::whereHas('product_sizes', function ($q) use ($sz) {
-                $q->where('size_id', $sz->id);
-            });
+
+
+        if ($request->has('size')) {
+            foreach ((array)$sizes as $size) {
+                $sz = Size::whereId($size)->first();
+                $products = Product::whereHas('product_sizes', function ($q) use ($sz) {
+                    $q->where('size_id', $sz->id);
+                });
+            }
         }
+
+
+        if ($request->has('price_from') && $request->has('price_to')) {
+            $products = $products->whereBetween('price', [$price_from, $price_to]);
+        }
+
 
         $products = $products->paginate(12);
         return view('site.products.all-products', compact('products'));

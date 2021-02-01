@@ -91,12 +91,12 @@ class LoginRequest extends FormRequest
         return Str::lower($this->input('phone')).'|'.$this->ip();
     }
 
-    public function checkBannedUser()
-    {
-        if (\auth()->user()->is_ban == 1){
-            throw ValidationException::withMessages([
-                'banned' => __('عفوا .. لقد تم حظر الحساب الخاص بك من قبل الادارة'),
-            ]);
-        }
-    }
+//    public function checkBannedUser()
+//    {
+//        if (\auth()->user()->is_ban == 1){
+//            throw ValidationException::withMessages([
+//                'banned' => __('عفوا .. لقد تم حظر الحساب الخاص بك من قبل الادارة'),
+//            ]);
+//        }
+//    }
 }

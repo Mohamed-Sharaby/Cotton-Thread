@@ -50,7 +50,7 @@ class SubCategoryController extends Controller
         $data = $request->validate([
             'ar_name' => 'required|string|max:100',
             'en_name' => 'required|string|max:100',
-            'image' => 'required|image',
+            'image' => 'required|image|max:2048',
             'category_id' => 'required|exists:categories,id',
         ]);
 //        if ($request->image){
@@ -96,7 +96,7 @@ class SubCategoryController extends Controller
         $validator = $request->validate([
             'ar_name' => 'required|string|max:100',
             'en_name' => 'required|string|max:100',
-            'image' => 'nullable|image',
+            'image' => 'nullable|image|max:2048',
             'category_id' => 'required|exists:categories,id',
         ]);
         if ($request->has('image')) {
