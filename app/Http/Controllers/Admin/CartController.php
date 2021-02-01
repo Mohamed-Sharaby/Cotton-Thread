@@ -15,6 +15,7 @@ use App\Models\Setting;
 use App\Notifications\CartBankTransfareStatus;
 use App\Notifications\CartStatusNotification;
 use App\Notifications\OrderStatusNotification;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -97,6 +98,9 @@ class CartController extends Controller
             foreach ($cart->cartItems as $item) {
                 $item->productQuantity->increment('quantity',$item->quantity);
             }
+        }
+        if ($request->status == 'finished'){
+            $cart->update(['delivered_at'=>Carbon::now()]);
         }
 
         $cart->update($validator);

@@ -28,8 +28,8 @@
                                             <div class="the_bell"><i class="fas fa-bell"></i></div>
                                             <div class="notif_body">
                                                 <p>
-                                                    <b>{{$notify->data['title']}}</b>
-                                                    {{$notify->data['body']}}
+                                                    <b>{{isset($notify->data['title']) ? $notify->data['title'] : ''}} {{$notify->data['type'] == 'cart_status' ? 'رقم -'.$notify->data['cart_id'] : ''}}</b>
+                                                    {{isset($notify->data['body']) ? $notify->data['body'] : ''}}
                                                 </p>
                                                 <span class="time">{{$notify->created_at->format('Y-m-d')}}</span>
                                             </div>
