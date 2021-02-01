@@ -11,6 +11,7 @@ use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\ProductQuantity;
 use App\Models\Size;
+use App\Notifications\CartStatusNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -195,7 +196,7 @@ class CartController extends Controller
             'payment' => $request->payment,
             'status' => 'confirmed',
         ]);
-
+        $cart->user->notify(new CartStatusNotification($cart, 'confirmed'));
         return response()->json(['status' => true, 'id' => $cart->id]);
     }
 }
