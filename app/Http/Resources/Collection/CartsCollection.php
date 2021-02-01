@@ -21,7 +21,7 @@ class CartsCollection extends ResourceCollection
                 'id' => $q->id,
                 'address' => fix_null_string(optional($q->address)->address),
                 'status' => __($q->status),
-                'payment' => fix_null_string($q->payment),
+                'payment' => fix_null_string(__($q->payment)),
                 'transaction_image' => fix_null_string(getImg($q->transaction_image)),
                 'comment' => fix_null_string($q->comment),
                 'delivered_at' => ($q->delivered_at)?Carbon::parse($q->delivered_at)->format('d-m-Y'):'',
