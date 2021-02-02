@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Collection;
 
+use App\Models\RateComment;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class NotificationsCollection extends ResourceCollection
@@ -32,7 +33,7 @@ class NotificationsCollection extends ResourceCollection
                         'target_id'=> $q->data['id'],    // reservation_id
                         'read_at'=>($q->read_at)?true:false,
                         'can_rate'=>($q->data['status'] == 'finished')?true:false,
-                        'is_rated'=>(Rate::where('reservation_id',$q->data['id'])->where('user_id',auth()->id())->exists())?true:false,
+                        'is_rated'=>(RateComment::where('reservation_id',$q->data['id'])->where('user_id',auth()->id())->exists())?true:false,
                         'created_at'=>strtotime($q->created_at)
 
                     ];
