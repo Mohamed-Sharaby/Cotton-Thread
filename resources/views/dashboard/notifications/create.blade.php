@@ -30,20 +30,11 @@
                 <form action="{{route('admin.notifications.store')}}" method="post">
                     @csrf
 
-                    <div class="form-group row">
+                    <div class="form-group row" id="client-input">
                         <label for="users" class="col-form-label col-12 col-lg-2">العملاء </label>
-                        <div class="col-12 col-lg-10">
-                            <select name="users[]" multiple id="users"
-                                    oninvalid="this.setCustomValidity('{{__('users_required')}}')"
-                                    onchange="this.setCustomValidity('')" title="اختر عميل واحد او اكثر"
-                                    class="form-control js-example-basic-multiple select2 {{$errors->has('users') ? ' is-invalid' : null}}">
-                                @foreach(\App\Models\User::whereIsBan(0)->get() as $user)
-                                    <option
-                                        value="{{$user->id}}" {{$user->id == old('users') ? "selected" : ""}}>
-                                        {{$user->name}}
-                                    </option>
-                                @endforeach
-                            </select>
+                        <div class="col-12 col-lg-10" >
+                            {!! Form::select("user_id[]",users(),null,['class'=>'form-control col select2','multiple'=>'multiple','style'=>'width: 90%'])!!}
+                            <button class="btn btn-info" type="button" onclick="selectAll('#client-input')">{{__("Select All")}}</button>
                             <label id="service-error" class="error invalid-feedback" for="service"></label>
                             @error('users')
                             <div class="invalid-feedback">
@@ -52,25 +43,58 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <label for="title" class="control-label col-lg-2">عنوان الاشعار</label>
+                        <label for="ar_name" class="control-label col-lg-2">عنوان الاشعار بالعربى</label>
                         <div class="col-lg-10">
-                            {!! Form::text('title',null,['class' =>'form-control '.($errors->has('title') ? ' is-invalid' : null),
+                            {!! Form::text('ar_name',null,['class' =>'form-control '.($errors->has('ar_name') ? ' is-invalid' : null),
                             'placeholder'=> 'عنوان الاشعار  ',
                             ]) !!}
-                            @error('title')
+                            @error('ar_name')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                             @enderror
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <label for="body" class="control-label col-lg-2">نص الاشعار</label>
+                        <label for="en_name" class="control-label col-lg-2">عنوان الاشعار بالانجليزى</label>
                         <div class="col-lg-10">
-                            <textarea name="body" id="body" cols="30" rows="5" placeholder="نص الاشعار"
-                                      class="form-control {{$errors->has('body') ? 'is-invalid' : ''}}">{{old('body')}}</textarea>
-                            @error('body')
+                            {!! Form::text('en_name',null,['class' =>'form-control '.($errors->has('en_name') ? ' is-invalid' : null),
+                            'placeholder'=> 'عنوان الاشعار  ',
+                            ]) !!}
+                            @error('en_name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="ar_desc" class="control-label col-lg-2">نص الاشعار بالعربى</label>
+                        <div class="col-lg-10">
+                            <textarea name="ar_desc" id="ar_desc" cols="30" rows="5" placeholder="نص الاشعار بالعربى"
+                                      class="form-control {{$errors->has('ar_desc') ? 'is-invalid' : ''}}">
+                                {{old('ar_desc')}}
+                            </textarea>
+                            @error('ar_desc')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="en_desc" class="control-label col-lg-2">نص الاشعار بالانجليزى</label>
+                        <div class="col-lg-10">
+                            <textarea name="en_desc" id="en_desc" cols="30" rows="5" placeholder="نص الاشعار بالانجليزى"
+                                      class="form-control {{$errors->has('en_desc') ? 'is-invalid' : ''}}">
+                                {{old('en_desc')}}
+                            </textarea>
+                            @error('en_desc')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -97,5 +121,14 @@
         $(document).ready(function () {
             $('.select2').select2()
         })
+        function selectAll(el) {
+            var select = $(el).find('select');
+            var options = select.children().not('*[value=""]').map(function (k, v) {
+                return v.value
+            })
+            select.val(options);
+            select.trigger('change');
+        }
+
     </script>
 @endsection
