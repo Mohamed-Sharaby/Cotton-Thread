@@ -16,7 +16,7 @@ class NotificationsCollection extends ResourceCollection
     {
         $data['notifications'] = $this->collection->transform(function ($q){
             switch ($q->type) {
-                case 'status_changed':
+                case 'cart_status_changed':
                     return [
                         'id'=> $q->id,
                         'type'=> $q->type,
