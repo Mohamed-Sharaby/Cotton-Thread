@@ -21,12 +21,12 @@ class NotificationsCollection extends ResourceCollection
                         'id'=> $q->id,
                         'type'=> $q->type,
                         'title'=>(app()->getLocale() == 'ar')?
-                            sprintf('تم تغير حاله الطلب %s',$q->data['cart_id']):
-                            sprintf('cart status changed %s',$q->data['cart_id'])
+                            sprintf('تم تغير حاله الطلب %s',$q->data['id']):
+                            sprintf('cart status changed %s',$q->data['id'])
                         ,
                         'body'=>(app()->getLocale() == 'ar')?
-                            sprintf('تم تغير حالة الطلب %s',$q->data['cart_id']):
-                            sprintf('cart status changed %s ',$q->data['cart_id'])
+                            sprintf('تم تغير حالة الطلب %s',$q->data['id']):
+                            sprintf('cart status changed %s ',$q->data['id'])
                         ,
                         'target'=> 'cart',
                         'target_id'=> $q->data['id'],    // reservation_id
