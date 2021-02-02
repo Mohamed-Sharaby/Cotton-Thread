@@ -56,8 +56,8 @@ class ProductController extends Controller
                     $q;
             })
             ->when(($request->has('category_id') && $request['category_id']),function ($q)use($request){
-                $subcategories_id = Category::where('is_ban',0)->where('id',$request['category_id'])
-                    ->get()->pluck('subcategory_id')->toArray();
+                $subcategories_id = SubCategory::where('is_ban',0)->where('category_id',$request['category_id'])
+                    ->get()->pluck('id')->toArray();
                 $q->whereIn('subcategory_id',$subcategories_id);
             })
             ->when(($request->has('color') && $request['color']),function ($q)use($request){
