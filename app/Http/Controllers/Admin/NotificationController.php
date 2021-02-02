@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\GeneralNotification;
 use App\Notifications\UserNotification;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
@@ -44,19 +45,16 @@ class NotificationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'users' => 'required|array',
-            'title' => 'required',
-            'body' => 'required',
+            'user_id' => 'required|array',
+            'user_id.*' => 'required|numeric|exists:users,id',
+            'ar_name' => 'required|string',
+            'en_name' => 'required|string',
+            'ar_desc' => 'required|string',
+            'en_desc' => 'required|string',
         ]);
         $data = $request->except('_token');
-        $users = User::whereIn('id', $data['users'])->get();
-        foreach ($users as $user) {
-            Notification::send($user, new UserNotification([
-                'title' => $data['title'],
-                'body' => $data['body'],
-            ]));
-        }
-
+        $users = User::whereIn('id', $data['user_id'])->get();
+        Notification::send($users, new GeneralNotification($request->except(['user_id'])));
         return redirect()->back()->with('success', 'تم ارسال الاشعار بنجاح');
     }
 

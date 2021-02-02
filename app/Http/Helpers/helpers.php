@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Setting;
-
+use App\Models\User;
 
 /**
  * @param $item
@@ -118,6 +118,13 @@ function handelQueryInPagination($targetUrl, $query = null)
         return '';
 }
 
+
+function users(){
+    $users = User::whereIsBan(0)->get()->mapWithKeys(function ($q){
+        return[$q['id']=>$q->name];
+    });
+    return$users;
+}
 ////////////////////////////////////////////
 //function uploadImage($file, $img)
 //{

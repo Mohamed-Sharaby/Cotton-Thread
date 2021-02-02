@@ -29,6 +29,9 @@ class CustomDbChannel
             case 'App\Notifications\GeneralNotification':
                 return 'general_notification';
                 break;
+            case 'App\Notifications\ChangeCartNotification':
+                return 'cart_status_changed';
+                break;
             default:
                 return $className;
         }

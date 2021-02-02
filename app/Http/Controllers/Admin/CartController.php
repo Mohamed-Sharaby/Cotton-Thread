@@ -14,10 +14,12 @@ use App\Models\ReturnRequest;
 use App\Models\Setting;
 use App\Notifications\CartBankTransfareStatus;
 use App\Notifications\CartStatusNotification;
+use App\Notifications\ChangeCartNotification;
 use App\Notifications\OrderStatusNotification;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
@@ -91,7 +93,7 @@ class CartController extends Controller
     public function update(Request $request, Cart $cart)
     {
         $validator = $request->validate([
-            'status' => 'required|in:open,confirmed,finished,refused,canceled',
+            'status' => 'required|in:confirmed,finished,refused,canceled',
         ]);
 
         if ($request->status == 'refused'|| $request->status == 'canceled') {
@@ -104,7 +106,9 @@ class CartController extends Controller
         }
 
         $cart->update($validator);
-        $cart->user->notify(new CartStatusNotification($cart, $request->status));
+        $cart->refresh();
+        Notification::send($cart->user,new ChangeCartNotification($cart));
+//        $cart->user->notify(new CartStatusNotification($cart, $request->status));
         return back()->with('success', 'تم التعديل بنجاح');
     }
 

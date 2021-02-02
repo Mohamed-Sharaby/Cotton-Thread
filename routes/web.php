@@ -89,11 +89,11 @@ Route::group(['middleware'=>'checkBanned','as' => 'website.'], function () {
 
 });
 
-Route::get('moniem/notify', function (\Illuminate\Http\Request $request) {
-    $user = User::find($request['user_id']);
-    Notification::send($user, new GeneralNotification($request->except(['user_id'])));
-    return response()->json('notification send');
-});
+//Route::get('moniem/notify', function (\Illuminate\Http\Request $request) {
+//    $user = User::find($request['user_id']);
+//    Notification::send($user, new GeneralNotification($request->except(['user_id'])));
+//    return response()->json('notification send');
+//});
 
 
 Route::get('/multimedia', function () {
