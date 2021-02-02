@@ -232,3 +232,35 @@ if (!function_exists('price_after_coupon_discount')) {
         return $price;
     }
 }
+
+function getLangMessage($key, $lang)
+{
+    $data = [
+        'ar' => [
+            'order_refused' => 'تم رفض الطلب',
+            'order_refused_body' => 'تم رفض الطلب الخاص بك من قبل الادارة',
+            'order_confirmed' => 'تم تأكيد الطلب',
+            'order_confirmed_body' => 'تم تأكيد الطلب الخاص بك من قبل الادارة وجاري تجهيزه',
+            'order_cancelled' => 'تم إلغاء الطلب',
+            'order_cancelled_body' => 'تم إلغاء الطلب الخاص بك',
+            'order_finished' => 'تم تسليم الطلب',
+            'order_finished_body' => 'تم تسليم الطلب الخاص بك شكرا لاستخدامك متجرنا',
+            'order_new' => 'طلب جديد',
+            'order_new_body' => 'يوجد طلب جديد',
+        ],
+        'en' => [
+            'order_refused' => 'Order Refused',
+            'order_refused_body' => 'Admin refuse your order',
+            'order_confirmed' => 'Order Confirmed',
+            'order_confirmed_body' => 'Your order confirmed and on processing',
+            'order_cancelled' => 'Order Cancelled',
+            'order_cancelled_body' => 'Your order was cancelled by admin',
+            'order_finished' => 'Order delivered',
+            'order_finished_body' => 'Your order delivered thanks for shopping from our store',
+            'order_new' => 'New Order',
+            'order_new_body' => 'You have New Order',
+        ],
+    ];
+    return $data[$lang][$key];
+}
+

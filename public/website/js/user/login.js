@@ -4,6 +4,7 @@ loginForm.submit(function(e) {
     var formData = loginForm.serialize();
     $.ajax({
         url: 'login',
+        headers: {'XSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         type: 'POST',
         data: formData,
         success: function(data) {
