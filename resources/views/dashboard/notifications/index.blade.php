@@ -41,11 +41,11 @@
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>
-                        {{ $notification->data['title'] }}
+                        {{ $notification->data['title'] ?? ''}}
                     </td>
 
                     <td>
-                        {{ $notification->data['body'] }}
+                        {{ $notification->data['body'] ?? ''}}
                     </td>
                     <td>
                         {{ $notification->notifiable->name ?? '' }}
