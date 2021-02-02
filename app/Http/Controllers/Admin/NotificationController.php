@@ -23,7 +23,7 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        return view('dashboard.notifications.index', ['notifications' => DatabaseNotification::latest()->paginate(12)]);
+        return view('dashboard.notifications.index', ['notifications' => DatabaseNotification::latest()->get()]);
     }
 
     /**
