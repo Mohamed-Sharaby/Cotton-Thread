@@ -11,7 +11,7 @@ class NotificationsController extends Controller
 {
     use ApiResponse;
     public function index(){
-        $notifications = auth()->user()->notifications()->paginate(10);
+        $notifications = auth()->user()->unreadNotifications()->paginate(10);
         return $this->apiResponse(new NotificationsCollection($notifications));
     }
 }
