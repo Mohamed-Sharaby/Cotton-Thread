@@ -60,6 +60,7 @@
                     @canany(['Admins','Roles'])
                         <li class="nav-item nav-item-submenu {{ request()->routeIs('admin.roles.*')
                                                                 || request()->routeIs('admin.admins.*')
+                                                                || request()->routeIs('admin.notifications.*')
                                                                 ? 'nav-item-expanded nav-item-open' : '' }}">
                             <a href="#"
                                class="nav-link {{ request()->routeIs('admin.admins.index') ? 'active' : '' }}"><i
@@ -74,6 +75,11 @@
                                     <li class="nav-item"><a href="{{route('admin.admins.index')}}"
                                                             class="nav-link {{ request()->routeIs('admin.admins.*') ? 'active' : '' }}">
                                             المديرين</a></li>
+
+                                        <li class="nav-item"><a href="{{route('admin.notifications.index')}}"
+                                                                class="nav-link {{ request()->routeIs('admin.notifications.*') ? 'active' : '' }}">
+                                                الاشعارات</a></li>
+
                                 @endcan
                             </ul>
                         </li>
@@ -169,11 +175,11 @@
                                                         class="nav-link {{ request()->routeIs('admin.product-sizes.*') ? 'active' : '' }}">
                                         أحجام المنتجات</a></li>
 
-{{--                                <li class="nav-item">--}}
-{{--                                    <a href="{{route('admin.product-quantities.index')}}"--}}
-{{--                                       class="nav-link {{ request()->routeIs('admin.product-quantities.*') ? 'active' : '' }}">--}}
-{{--                                        كمية المنتجات</a>--}}
-{{--                                </li>--}}
+                                {{--                                <li class="nav-item">--}}
+                                {{--                                    <a href="{{route('admin.product-quantities.index')}}"--}}
+                                {{--                                       class="nav-link {{ request()->routeIs('admin.product-quantities.*') ? 'active' : '' }}">--}}
+                                {{--                                        كمية المنتجات</a>--}}
+                                {{--                                </li>--}}
 
                                 <li class="nav-item">
                                     <a href="{{route('admin.product-images.index')}}"
@@ -187,7 +193,8 @@
 
                     @can('Coupons')
                         <li class="nav-item">
-                            <a href="{{route('admin.coupons.index')}}" class="nav-link {{ request()->routeIs('admin.coupons.*') ? 'active' : '' }}">
+                            <a href="{{route('admin.coupons.index')}}"
+                               class="nav-link {{ request()->routeIs('admin.coupons.*') ? 'active' : '' }}">
                                 <i class="icon-code"></i>
                                 <span>
                                  الكوبونات
@@ -223,13 +230,13 @@
                         </li>
                     @endcan
 
-{{--                    @can('Galleries')--}}
-{{--                        <li class="nav-item {{ request()->routeIs('admin.galleries.*') ? 'nav-item-expanded nav-item-open' : '' }}">--}}
-{{--                            <a href="{{route('admin.galleries.index')}}"--}}
-{{--                               class="nav-link {{ request()->routeIs('admin.galleries.index') ? 'active' : '' }}">--}}
-{{--                                <i class="icon-gallery"></i> <span>مكتبة الصور والفيديو </span></a>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
+                    {{--                    @can('Galleries')--}}
+                    {{--                        <li class="nav-item {{ request()->routeIs('admin.galleries.*') ? 'nav-item-expanded nav-item-open' : '' }}">--}}
+                    {{--                            <a href="{{route('admin.galleries.index')}}"--}}
+                    {{--                               class="nav-link {{ request()->routeIs('admin.galleries.index') ? 'active' : '' }}">--}}
+                    {{--                                <i class="icon-gallery"></i> <span>مكتبة الصور والفيديو </span></a>--}}
+                    {{--                        </li>--}}
+                    {{--                    @endcan--}}
 
                     @can('GuestMessages')
                         <li class="nav-item {{ request()->routeIs('admin.guest-messages.*') ? 'nav-item-expanded nav-item-open' : '' }}">

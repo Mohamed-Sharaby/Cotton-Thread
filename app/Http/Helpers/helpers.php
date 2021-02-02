@@ -246,7 +246,7 @@ function getLangMessage($key, $lang)
             'order_finished' => 'تم تسليم الطلب',
             'order_finished_body' => 'تم تسليم الطلب الخاص بك شكرا لاستخدامك متجرنا',
             'order_new' => 'طلب جديد',
-            'order_new_body' => 'يوجد طلب جديد ',
+            'order_new_body' => 'يوجد طلب جديد',
         ],
         'en' => [
             'order_refused' => 'Order Refused',

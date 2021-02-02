@@ -31,7 +31,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' =>['auth:admin','admin'], 'a
     Route::resource('carts', 'CartController');
     Route::resource('product-quantities', 'ProductQuantityController');
     Route::resource('product-images', 'ProductImageController');
-//    Route::resource('galleries', 'GalleryController');
+    Route::resource('notifications', 'NotificationController');
     Route::resource('settings', 'SettingController');
     Route::resource('guest-messages', 'GuestMessageController');
     Route::get('/getSizes/{id}','ProductQuantityController@getSizes');
