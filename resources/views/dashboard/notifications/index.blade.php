@@ -63,13 +63,19 @@
             </tbody>
         </table>
     </div>
-    <p class="pagination">{!! $notifications->links() !!}</p>
+
     <!-- /basic initialization -->
 </div>
 <!-- /content area -->
 @endsection
-
 @section('my-js')
 
-@endsection
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+    <script>
 
+        $(document).ready(function () {
+            ;
+        });
+    </script>
+@endsection
