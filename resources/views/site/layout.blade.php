@@ -98,8 +98,9 @@
             background-color: #fff !important;
             box-shadow: 0px 6px 12px 0px rgba(234, 234, 234, 1);
         }
-        .toast-error, .toast-success{
-            opacity: unset!important;
+
+        .toast-error, .toast-success {
+            opacity: unset !important;
         }
 
     </style>
@@ -309,7 +310,7 @@
                                                             ريال </p>
                                                         <p class="i_price">{{$item->productQuantity->product->priceAfterDiscount ?? 'لا يوجد'}}
                                                             ريال </p>
-{{--                                                        <p class="hint">الشحن مجانا لفترة محدودة</p>--}}
+                                                        {{--                                                        <p class="hint">الشحن مجانا لفترة محدودة</p>--}}
                                                     </div>
                                                 </div>
                                             </li>
@@ -349,17 +350,15 @@
             <div class="col-sm-4 col-xs-12">
                 <a href="{{url('/')}}" class="foot-logo">
                     <!--------- if arabic use this img ---------->
-                    <img src="{{asset('website/img/logo-ar-wh.png')}}">
-                    <!--------- if english use this img ---------->
-                <!-- <img src="{{asset('website/img/logo-en-wh.png')}}"> -->
+                    @if(app()->getLocale() == 'ar')
+                        <img src="{{asset('website/img/logo-ar-wh.png')}}">
+                        <!--------- if english use this img ---------->
+                    @else
+                        <img src="{{asset('website/img/logo-en-wh.png')}}">
+                    @endif
                 </a>
                 <p>
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
+                    {{\App\Models\Setting::whereType('long_text')->where('name','footer_text')->first()->value}}
                 </p>
             </div>
             <div class="col-sm-4 col-xs-6">

@@ -140,6 +140,15 @@ class SettingTableSeeder extends Seeder
                 'ar_title' => 'تكلفة التوصيل',
                 'en_title' => 'delivery_cost_percentage',
                 'slug' => 'delivery_cost_percentage'
+            ],[
+                'name' => 'footer_text',
+                'ar_value' => 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام "هنا يوجد محتوى نصي، هنا يوجد محتوى نصي" فتجعلها تبدو وكأنها نص مقروء. ',
+                'en_value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                'page' => 'الصفحات الثابتة',
+                'type' => 'long_text',
+                'ar_title' => 'نص اسفل الصفحة الرئيسية ',
+                'en_title' => 'footer_text',
+                'slug' => 'footer_text'
             ],
 
 

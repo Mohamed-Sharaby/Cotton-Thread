@@ -108,8 +108,10 @@
                                    class="item_nm">{{$item->productQuantity->product->name}}</a>
                                 <span class="spanSec">{{$item->productQuantity->product->subcategory->name}}</span>
                                 <div class="i_prices">
+                                    @if($item->productQuantity->product->discount > 0)
                                     <p class="old_price"><span>{{$item->productQuantity->product->price}}</span><span> ر.س</span>
                                     </p>
+                                    @endif
                                     <p class="new_price"><span
                                             class="current_price">{{$item->productQuantity->product->priceAfterDiscount}}</span><span> ر.س</span>
                                     </p>
