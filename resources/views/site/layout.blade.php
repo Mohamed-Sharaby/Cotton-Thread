@@ -357,7 +357,7 @@
                         <img src="{{asset('website/img/logo-en-wh.png')}}">
                     @endif
                 </a>
-                <p>
+                <p style="word-wrap: break-word;overflow: hidden;">
                     {{\App\Models\Setting::whereType('long_text')->where('name','footer_text')->first()->value}}
                 </p>
             </div>
