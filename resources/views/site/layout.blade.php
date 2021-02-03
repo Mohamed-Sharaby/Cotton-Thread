@@ -516,12 +516,12 @@
     });
 </script>
 <!---- remove cart item --->
-<script>
-    $(".remove_item").click(function () {
-        $(this).parent(".cart_item").fadeOut(300);
-        $(this).parent(".cart_item").parents(".col-md-6.col-xs-12").fadeOut(300);
-    });
-</script>
+{{--<script>--}}
+{{--    $(".remove_item").click(function () {--}}
+{{--        $(this).parent(".cart_item").fadeOut(300);--}}
+{{--        $(this).parent(".cart_item").parents(".col-md-6.col-xs-12").fadeOut(300);--}}
+{{--    });--}}
+{{--</script>--}}
 <script src="{{asset('website/js/user/order.js')}}"></script>
 <script src="{{asset('website/js/user/cart.js')}}"></script>
 @yield('scripts')

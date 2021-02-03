@@ -157,6 +157,9 @@ couponForm.submit(function (e) {
 // remove item from cart
 $(".remove_item").each(function () {
     $(this).click(function () {
+
+
+
         let cart_count = parseInt($('.cart-count').text())
         let id = $(this).data('id');
         $.ajax({
@@ -169,6 +172,7 @@ $(".remove_item").each(function () {
                 console.log('error remove', error)
             }
         })
+
 
 
         $(this).parents(".flexx.cart_item").remove();
@@ -185,17 +189,24 @@ $(".remove_item").each(function () {
 
         /// discount
         let discount = parseFloat($('.coupon-perc').text());
-        let discount_val = beforeDiscountPrice * discount / 100;
-        if (discount_val) {
-            $('.discount-value').text(discount_val);
-        }
+        if (discount){
+            let discount_val = beforeDiscountPrice * discount / 100;
+            if (discount_val) {
+                $('.discount-value').text(discount_val);
+            }
+        }else discount_val = 0;
 
         var taxesTotal = calcTotalFromTaxes(beforeDiscountPrice).toFixed(2);
-        var shipping_fees = Number($('#shipping_fees').text());
-        var finalTotal = (Number(beforeDiscountPrice) + Number(taxesTotal) + Number(shipping_fees)) - discount_val;
+        //var shipping_fees = Number($('#shipping_fees').text());
+        var finalTotal = (Number(beforeDiscountPrice) + Number(taxesTotal) ) - discount_val;
         $("#all-totalss").html(finalTotal.toFixed(2));
         $("#taxes").html(taxesTotal);
         $(".hidden_taxes").val(taxesTotal);
+
+        let items_count = $(".items_r").children().length;
+        if (items_count == 0 ){
+            $('a#pay_off').removeAttr('href');
+        }
     })
 })
 
