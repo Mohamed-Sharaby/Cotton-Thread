@@ -14,33 +14,33 @@
                 </ul>
                 <span>التقييم الكلى</span>
             </div>
-            <div class="user-rating-details-wrap">
-                <h3>التقييم الكلى</h3>
-                <div class="user-rating-details">
-                    <span>الخامة</span>
-                    <div class="v-rating">
-                        <span style="width:50%"></span>
-                    </div>
-                </div>
-                <div class="user-rating-details">
-                    <span>الجودة</span>
-                    <div class="v-rating">
-                        <span style="width:75%"></span>
-                    </div>
-                </div>
-                <div class="user-rating-details">
-                    <span>التوصيل</span>
-                    <div class="v-rating">
-                        <span style="width:25%"></span>
-                    </div>
-                </div>
-                <div class="user-rating-details">
-                    <span>السعر</span>
-                    <div class="v-rating">
-                        <span style="width:100%"></span>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="user-rating-details-wrap">--}}
+{{--                <h3>التقييم الكلى</h3>--}}
+{{--                <div class="user-rating-details">--}}
+{{--                    <span>الخامة</span>--}}
+{{--                    <div class="v-rating">--}}
+{{--                        <span style="width:50%"></span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="user-rating-details">--}}
+{{--                    <span>الجودة</span>--}}
+{{--                    <div class="v-rating">--}}
+{{--                        <span style="width:75%"></span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="user-rating-details">--}}
+{{--                    <span>التوصيل</span>--}}
+{{--                    <div class="v-rating">--}}
+{{--                        <span style="width:25%"></span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="user-rating-details">--}}
+{{--                    <span>السعر</span>--}}
+{{--                    <div class="v-rating">--}}
+{{--                        <span style="width:100%"></span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="user-comment">
                 <h2>التقييمات ({{$ratesCount}})</h2>
                 @foreach($rates as $rate)
