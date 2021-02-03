@@ -31,12 +31,12 @@
                     @csrf
 
                     <div class="form-group row" id="client-input">
-                        <label for="users" class="col-form-label col-12 col-lg-2">العملاء </label>
+                        <label for="user_id" class="col-form-label col-12 col-lg-2">العملاء </label>
                         <div class="col-12 col-lg-10" >
-                            {!! Form::select("user_id[]",users(),null,['class'=>'form-control col select2','multiple'=>'multiple','style'=>'width: 90%'])!!}
+                            {!! Form::select("user_id[]",users(),null,['class'=>'form-control col select2'.($errors->has('user_id') ? ' is-invalid' : null),'multiple'=>'multiple','style'=>'width: 90%'])!!}
                             <button class="btn btn-info" type="button" onclick="selectAll('#client-input')">{{__("Select All")}}</button>
                             <label id="service-error" class="error invalid-feedback" for="service"></label>
-                            @error('users')
+                            @error('user_id')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
@@ -45,10 +45,10 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="ar_name" class="control-label col-lg-2">عنوان الاشعار بالعربى</label>
+                        <label for="ar_name" class="control-label col-lg-2">عنوان الاشعار بالعربية</label>
                         <div class="col-lg-10">
                             {!! Form::text('ar_name',null,['class' =>'form-control '.($errors->has('ar_name') ? ' is-invalid' : null),
-                            'placeholder'=> 'عنوان الاشعار  ',
+                            'placeholder'=> 'عنوان الاشعار بالعربية ',
                             ]) !!}
                             @error('ar_name')
                             <div class="invalid-feedback">
@@ -59,10 +59,10 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="en_name" class="control-label col-lg-2">عنوان الاشعار بالانجليزى</label>
+                        <label for="en_name" class="control-label col-lg-2">عنوان الاشعار بالانجليزية</label>
                         <div class="col-lg-10">
                             {!! Form::text('en_name',null,['class' =>'form-control '.($errors->has('en_name') ? ' is-invalid' : null),
-                            'placeholder'=> 'عنوان الاشعار  ',
+                            'placeholder'=> 'عنوان الاشعار بالانجليزية  ',
                             ]) !!}
                             @error('en_name')
                             <div class="invalid-feedback">
@@ -73,12 +73,10 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="ar_desc" class="control-label col-lg-2">نص الاشعار بالعربى</label>
+                        <label for="ar_desc" class="control-label col-lg-2">نص الاشعار بالعربية</label>
                         <div class="col-lg-10">
-                            <textarea name="ar_desc" id="ar_desc" cols="30" rows="5" placeholder="نص الاشعار بالعربى"
-                                      class="form-control {{$errors->has('ar_desc') ? 'is-invalid' : ''}}">
-                                {{old('ar_desc')}}
-                            </textarea>
+                            <textarea name="ar_desc" id="ar_desc" cols="30" rows="5" placeholder="نص الاشعار بالعربية"
+                                      class="form-control {{$errors->has('ar_desc') ? 'is-invalid' : ''}}">{{old('ar_desc')}}</textarea>
                             @error('ar_desc')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -88,12 +86,10 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="en_desc" class="control-label col-lg-2">نص الاشعار بالانجليزى</label>
+                        <label for="en_desc" class="control-label col-lg-2">نص الاشعار بالانجليزية</label>
                         <div class="col-lg-10">
-                            <textarea name="en_desc" id="en_desc" cols="30" rows="5" placeholder="نص الاشعار بالانجليزى"
-                                      class="form-control {{$errors->has('en_desc') ? 'is-invalid' : ''}}">
-                                {{old('en_desc')}}
-                            </textarea>
+                            <textarea name="en_desc" id="en_desc" cols="30" rows="5" placeholder="نص الاشعار بالانجليزية"
+                                      class="form-control {{$errors->has('en_desc') ? 'is-invalid' : ''}}">{{old('en_desc')}}</textarea>
                             @error('en_desc')
                             <div class="invalid-feedback">
                                 {{ $message }}

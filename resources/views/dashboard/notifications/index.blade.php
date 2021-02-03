@@ -41,11 +41,13 @@
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>
-                        {{ $notification->data['title'] ?? ''}}
+                        {{ $notification->type == 'general_notification' ? $notification->data['ar_name']   :''}}
+                        {{ $notification->type == 'cart_status_changed' ? $notification->data['title']   :''}}
                     </td>
 
                     <td>
-                        {{ $notification->data['body'] ?? ''}}
+                        {{ $notification->type == 'general_notification' ? $notification->data['ar_desc'] : ''}}
+                        {{ $notification->type == 'cart_status_changed' ? $notification->data['body']   :''}}
                     </td>
                     <td>
                         {{ $notification->notifiable->name ?? '' }}
