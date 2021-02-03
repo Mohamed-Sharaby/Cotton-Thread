@@ -115,7 +115,6 @@ class CartController extends Controller
     {
         $item = CartItem::findOrFail($id);
         $item->productQuantity->update(['quantity' => $item->productQuantity->quantity + $item->quantity]);
-
         $item->delete();
         return response()->json('success');
     }

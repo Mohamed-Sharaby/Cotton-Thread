@@ -76,9 +76,11 @@
                             {{--                    <a href="{{url('booking-done')}}" class="btn-hvr submit_cart" type="submit">--}}
                             {{--                        تأكيد الدفع--}}
                             {{--                    </a>--}}
+                            @if(count($cart->cartItems) > 0)
                             <button class="btn-hvr submit_cart" type="submit">
                                 تأكيد الدفع
                             </button>
+                                @endif
                         </div>
                     </div>
                 </div>

@@ -70,7 +70,7 @@
                             ر.س</span>
                         </p>
                         @if(count($cart->cartItems) > 0)
-                            <a href="{{route('website.carts.payOff')}}" class="btn-hvr submit_cart" type="submit">
+                            <a href="{{route('website.carts.payOff')}}" id="pay_off" class="btn-hvr submit_cart" type="submit">
                                 تكملة الدفع
                             </a>
                         @endif

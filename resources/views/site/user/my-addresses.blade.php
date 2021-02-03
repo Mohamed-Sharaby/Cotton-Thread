@@ -34,7 +34,7 @@
 
 {{--                                <button class="delete" ><i class="fas fa-trash-alt"></i></button>--}}
 
-                                <button data-url="{{route('website.users.addresses.destroy',$address->id)}}"
+                                <button  data-url="{{route('website.users.addresses.destroy',$address->id)}}"
                                         class="delete" id="delete_address" title="Delete">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
