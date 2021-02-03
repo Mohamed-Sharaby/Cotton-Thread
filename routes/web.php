@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 
 
-//require __DIR__ . '/auth.php';
-
 Route::group(['middleware'=>'checkBanned','as' => 'website.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
