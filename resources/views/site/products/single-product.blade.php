@@ -73,7 +73,9 @@
                                 <p class="rate_ratio">{{$product->avg_rate}}</p>
                             </div>
                             <div class="price_inner">
-                                <p class="price_p old_price"><span>{{$product->price}}</span> ريال سعودي </p>
+                                @if($product->discount > 0)
+                                <p class="price_p old_price"><span>{{$product->price}}</span> ريال  </p>
+                                @endif
                                 <p class="price_p new_price"><span>{{$product->priceAfterDiscount}}</span> ريال </p>
                             </div>
                             <div class="remaining-quantity">
