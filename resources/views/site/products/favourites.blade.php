@@ -55,8 +55,10 @@
                                             <p class="rate_ratio">{{$favourite->product->avg_rate}}</p>
                                         </div>
                                         <div class="i_prices">
+                                            @if($favourite->product->discount > 0)
                                             <p class="old_price">
                                                 <span>{{$favourite->product->price}}</span><span> ر.س</span></p>
+                                            @endif
                                             <p class="new_price"><span
                                                     class="current_price">{{$favourite->product->priceAfterDiscount}}</span><span> ر.س</span>
                                             </p>

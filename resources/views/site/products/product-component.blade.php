@@ -38,7 +38,7 @@
             </div>
             <a href="{{route('website.products.single',$product->id)}}" class="name_prod">{{$product->name}}   </a>
             <div class="price_inner">
-                <p class="price_p"><span>{{$product->priceAfterDiscount}}</span> ريال سعودي </p>
+                <p class="price_p"><span>{{$product->priceAfterDiscount}}</span> ريال  </p>
             </div>
         </div>
     </div>
