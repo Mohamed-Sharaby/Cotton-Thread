@@ -2,7 +2,7 @@
     <div class="container">
         <div class="head-title">
             <h2>الأقسام</h2>
-            <p>يوجد أكثر من 20 قسم للملابس الجاهزة</p>
+            <p>يوجد أكثر من {{$categoriesCount}} قسم للملابس الجاهزة</p>
         </div>
         <div class="styled_tabs">
             <ul class="nav nav-tabs">

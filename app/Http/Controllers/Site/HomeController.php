@@ -17,11 +17,12 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::active()->get();
+        $categoriesCount =  Category::active()->count();
         $banners = Banner::active()->get();
         $newProducts = Product::whereIsNew(1)->active()->latest()->get()->take(4);
         $productOffers = Product::where('discount','>',0)->latest()->get()->take(4);
 
-        return view('site.home.index', compact('categories', 'banners', 'newProducts','productOffers'));
+        return view('site.home.index', compact('categories', 'banners', 'newProducts','productOffers','categoriesCount'));
     }
 
     public function offers()
