@@ -19,7 +19,10 @@ class OrderController extends Controller
     public function show($id)
     {
         $cart = Cart::findOrFail($id);
-        return view('site.orders.show', compact('cart'));
+        if ($cart->user_id == auth()->user()->id){
+            return view('site.orders.show', compact('cart'));
+        }
+        return abort(404);
     }
 
     public function cancel($id)
