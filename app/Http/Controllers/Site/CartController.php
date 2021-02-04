@@ -12,7 +12,9 @@ use App\Models\Product;
 use App\Models\ProductQuantity;
 use App\Models\Size;
 use App\Notifications\CartStatusNotification;
+use App\Notifications\ChangeCartNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -193,9 +195,10 @@ class CartController extends Controller
         $cart->update([
             'address_id' => $address->id,
             'payment' => $request->payment,
-            'status' => 'confirmed',
+            //'status' => 'confirmed',
         ]);
-        $cart->user->notify(new CartStatusNotification($cart, 'confirmed'));
+       // $cart->user->notify(new CartStatusNotification($cart, 'open'));
+        Notification::send($cart->user, new ChangeCartNotification($cart));
         return response()->json(['status' => true, 'id' => $cart->id]);
     }
 }

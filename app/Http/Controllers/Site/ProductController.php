@@ -57,8 +57,8 @@ class ProductController extends Controller
             if (!RateComment::where(['user_id' => auth()->user()->id, 'product_id' => $product->id])->exists())
                 $can_rate = true;
         }
-        $rates = $product->rates()->whereIsBan(0)->get();
-        $ratesCount = $product->rates()->whereIsBan(0)->count();
+        $rates = $product->rates()->get();
+        $ratesCount = $product->rates()->count();
         return view('site.products.single-product', compact('product', 'similar_products', 'can_rate', 'rates', 'ratesCount'));
     }
 

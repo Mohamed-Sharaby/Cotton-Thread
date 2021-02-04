@@ -71,15 +71,15 @@
             <div class="order_status">
                 <div class="flex-r">
                     <!----------------- NOTE :: add (this_status) class to order status ----------------->
-                    <div class="{{ $cart->status == 'open' || $cart->status == 'confirmed' ? 'this_status' : '' }}">
+                    <div class="{{  $cart->status == 'confirmed' ? 'this_status' : '' }}">
                         <h4><i class="fas fa-check-circle"></i></h4>
                         <p>قيد التجهيز</p>
                     </div>
-                    <div class="{{ $cart->status == 'finished' ? 'this_status' : '' }}">
+                    <div class="{{ $cart->status == 'confirmed ' ? 'this_status' : '' }}">
                         <h4><i class="fas fa-check-circle"></i></h4>
                         <p>تم الشحن</p>
                     </div>
-                    <div class="{{ $cart->status == 'finished ' ? 'this_status' : '' }}">
+                    <div class="{{ $cart->status == 'finished' ? 'this_status' : '' }}">
                         <h4><i class="fas fa-check-circle"></i></h4>
                         <p>تم التسليم</p>
                     </div>
