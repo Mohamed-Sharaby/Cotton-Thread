@@ -60,7 +60,7 @@ $(document).ready(function () {
     $('.customizer-toggle').on('click', function(e) {
         $(this).parents(".products_row").toggleClass('open');
      });
-     
+
 });
 //////// like button
 $(function () {

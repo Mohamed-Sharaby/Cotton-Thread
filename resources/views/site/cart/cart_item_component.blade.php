@@ -8,9 +8,11 @@
             <img src="{{$item->productQuantity->product->image}}"
                  onerror="this.src='{{asset('website/img/logo.png')}}'" loading="lazy"
                  decoding="async">
+            @if($item->productQuantity->product->discount > 0)
             <div class="abs_badg off_b">
                 خصم {{$item->productQuantity->product->discount}}%
             </div>
+                @endif
         </a>
         <div class="right_dtls">
             <a href="{{url('single-product')}}"
