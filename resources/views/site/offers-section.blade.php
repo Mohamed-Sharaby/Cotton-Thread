@@ -2,7 +2,7 @@
     <div class="container">
         <div class="head-title">
             <h2>العروض والخصومات</h2>
-            <p>يوجد أكثر من 20 قسم للملابس الجاهزة</p>
+            <p>يوجد أكثر من {{$categoriesCount}} قسم للملابس الجاهزة</p>
         </div>
         <div class="flex_row">
             <div class="row">
