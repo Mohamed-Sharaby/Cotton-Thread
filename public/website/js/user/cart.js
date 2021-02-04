@@ -158,8 +158,6 @@ couponForm.submit(function (e) {
 $(".remove_item").each(function () {
     $(this).click(function () {
 
-
-
         let cart_count = parseInt($('.cart-count').text())
         let id = $(this).data('id');
         $.ajax({
@@ -172,8 +170,6 @@ $(".remove_item").each(function () {
                 console.log('error remove', error)
             }
         })
-
-
 
         $(this).parents(".flexx.cart_item").remove();
         $(this).parents(".cart_item").find(".updatePrice").text(0);
