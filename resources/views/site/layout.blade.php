@@ -306,8 +306,10 @@
                                                                     </i></button>
                                                             </div>
                                                         </div>
+                                                        @if($item->productQuantity->product->discount > 0)
                                                         <p class="old_price">{{$item->productQuantity->product->price ?? 'لا يوجد'}}
                                                             ريال </p>
+                                                        @endif
                                                         <p class="i_price">{{$item->productQuantity->product->priceAfterDiscount ?? 'لا يوجد'}}
                                                             ريال </p>
                                                         {{--                                                        <p class="hint">الشحن مجانا لفترة محدودة</p>--}}
