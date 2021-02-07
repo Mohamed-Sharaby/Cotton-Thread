@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
+use App\Models\ProductQuantity;
 use App\Models\RateComment;
 use App\Models\Size;
 use App\Models\SubCategory;
@@ -30,16 +31,6 @@ class ProductController extends Controller
         return view('site.products.all-products', compact('products', 'categories','subCategoryName'));
     }
 
-//    public function arrangeByNew($id = null)
-//    {
-//        $products = Product::active()->whereIsNew(1);
-//        if (!is_null($id)) {
-//            $products = Product::whereSubcategoryId($id)->active();
-//        }
-//        $products = $products->paginate(12);
-//        return view('site.products.all-products', compact('products'));
-//    }
-
 
     public function newProducts()
     {
@@ -60,6 +51,12 @@ class ProductController extends Controller
         $rates = $product->rates()->get();
         $ratesCount = $product->rates()->count();
         return view('site.products.single-product', compact('product', 'similar_products', 'can_rate', 'rates', 'ratesCount'));
+    }
+
+    public function getSizesByColor(Request $request)
+    {
+        $sizes = ProductQuantity::with('size')->whereProductId($request->product_id)->whereColorId($request->color)->get();
+        return response()->json(['pro_sizes'=>$sizes]);
     }
 
     public function rate(Request $request)
@@ -85,9 +82,13 @@ class ProductController extends Controller
     }
 
 
+
+
+
     public function filter(Request $request)
     {
         $products = Product::query();
+
         $categories = $request->category;
         $colors = $request->color;
         $sizes = $request->size;

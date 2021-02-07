@@ -90,7 +90,7 @@
                                         <div class="custom_radio clr_radio">
                                             @foreach($product->product_colors as $color)
                                                 <div class="rad_n">
-                                                    <input type="radio" id="color-{{$color->id}}" name="color" value="{{$color->id}}"/>
+                                                    <input type="radio" class="pro_color" id="color-{{$color->id}}" name="color" value="{{$color->id}}" data-product="{{$product->id}}"/>
                                                     <label for="color-{{$color->id}}"
                                                            style="background-color: {{$color->color}};"></label>
                                                 </div>
@@ -100,12 +100,12 @@
                                     <div class="cont_block">
                                         <label class="lbl_block">المقاسات المتاحة</label>
                                         <div class="custom_radio txt_radio">
-                                            @foreach($product->product_sizes as $size)
-                                                <div class="rad_n">
-                                                    <input type="radio" id="size-{{$size->id}}" name="size" value="{{$size->id}}"/>
-                                                    <label for="size-{{$size->id}}">{{$size->size}}</label>
-                                                </div>
-                                            @endforeach
+{{--                                            @foreach($product->product_sizes as $size)--}}
+{{--                                                <div class="rad_n">--}}
+{{--                                                    <input type="radio" id="size-{{$size->id}}" name="size" value="{{$size->id}}"/>--}}
+{{--                                                    <label for="size-{{$size->id}}">{{$size->size}}</label>--}}
+{{--                                                </div>--}}
+{{--                                            @endforeach--}}
                                         </div>
                                     </div>
                                     <div class="cont_block">
@@ -161,6 +161,7 @@
 @endsection
 @section('scripts')
     <script src="{{asset('website/js/user/cart.js')}}"></script>
+    <script src="{{asset('website/js/user/single-product.js')}}"></script>
     <script src="{{asset('website/js/swiper-bundle.min.js')}}"></script>
     <script>
         var swiper = new Swiper('.row .wrapper-k .swiper-container', {
@@ -212,5 +213,4 @@
         });
 
     </script>
-
 @endsection

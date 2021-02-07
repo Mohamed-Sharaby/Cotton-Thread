@@ -35,13 +35,14 @@ Route::group(['middleware'=>'checkBanned','as' => 'website.'], function () {
     });
 
     Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
-        Route::GET('filter', [ProductController::class, 'filter'])->name('filter');
         Route::get('/new', [ProductController::class, 'newProducts'])->name('new');
 //        Route::get('/arrangeByNew', [ProductController::class, 'arrangeByNew'])->name('arrange.new');
         Route::GET('/{id?}', [ProductController::class, 'index'])->name('index');
         Route::GET('single/{product}', [ProductController::class, 'show'])->name('single');
         Route::GET('single/{product}/colors', [ProductController::class, 'getColors'])->name('getColors');
         Route::Post('rate', [ProductController::class, 'rate'])->name('rate');
+        Route::get('sizes/{color}', [ProductController::class, 'getSizesByColor'])->name('getSizesByColor');
+        Route::GET('filter', [ProductController::class, 'filter'])->name('filter');
     });
 
     Route::group(['prefix' => 'favourite', 'as' => 'favourites.', 'middleware' => 'auth'], function () {
