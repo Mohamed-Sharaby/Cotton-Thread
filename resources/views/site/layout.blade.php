@@ -452,15 +452,9 @@
             type: 'GET',
             success: function (data) {
                 toastr.success("{{__('Added To Your favourites')}}");
-                // $("#f" + product_id).addClass("wished-item");
-                //$("#f" + product_id).tooltip('hide').attr("data-original-title", "Remove from favourites").tooltip('show');
-                // $(".toggle-fav").addClass("added-to-wishlist").html("<i class='ti-heart'></i> Added to Wishlist");
             },
             error: function (data) {
                 toastr.success("{{__('Removed From the favourites')}}");
-                // $("#f" + product_id).removeClass("wished-item");
-                // $("#f" + product_id).tooltip('hide').attr("data-original-title", "Add to favourites").tooltip('show');
-                // $(".toggle-fav").removeClass("added-to-wishlist").html("<i class='ti-heart'></i> Add to Wishlist");
             }
         });
     }
