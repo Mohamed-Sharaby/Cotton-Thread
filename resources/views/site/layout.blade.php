@@ -299,7 +299,10 @@
                                                                         onclick="this.parentNode.querySelector('.quantity').stepUp()"
                                                                         class="plus"><i class="fas fa-plus"></i>
                                                                 </button>
-                                                                <input class="quantity" min="1" max="30"
+                                                                <input class="quantity" min="1" name="quantity"
+                                                                       data-product="{{$item->productQuantity->id }}"
+                                                                       data-item="{{$item->id}}"
+                                                                       data-cart="{{$item->cart_id}}"
                                                                        value="{{$item->quantity}}" type="number">
                                                                 <button type="button"
                                                                         onclick="this.parentNode.querySelector('.quantity').stepDown()"
@@ -501,6 +504,23 @@
                 }
             })
         })
+
+///////////////////
+        // change cart quantity in left cart side bar
+        $(".number-input button").on('click', function () {
+
+            let qty = $(this).closest('.number-input').find('.quantity');
+            let quantity = qty.val();
+            let product_quantity_id = qty.data('product');
+            let cart = qty.data('cart');
+            let item = qty.data('item');
+            $('.discount-value').empty();
+            let data = {quantity, product_quantity_id, item, cart};
+            updateCart(data);
+
+            $(this).siblings('.quantity').trigger('change');
+        })
+        ////////////////////
     })
 </script>
 <!---- side menu --->
