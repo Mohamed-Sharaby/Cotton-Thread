@@ -380,7 +380,7 @@
                 <div class="foot1">
                     <h3 class="f-title">خدمة العملاء</h3>
                     <ul>
-                        @foreach(\App\Models\Setting::whereType('long_text')->where('name','!=','key_words')->get() as $page)
+                        @foreach(\App\Models\Setting::whereType('long_text')->where('name','!=','footer_text')->get() as $page)
                             <li><a href="{{url('pages/'.$page->id)}}">{{__($page->title)}} </a></li>
                         @endforeach
                     </ul>
