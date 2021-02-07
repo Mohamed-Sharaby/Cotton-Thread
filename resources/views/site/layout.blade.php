@@ -508,7 +508,6 @@
 ///////////////////
         // change cart quantity in left cart side bar
         $(".number-input button").on('click', function () {
-
             let qty = $(this).closest('.number-input').find('.quantity');
             let quantity = qty.val();
             let product_quantity_id = qty.data('product');
