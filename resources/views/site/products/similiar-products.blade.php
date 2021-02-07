@@ -65,5 +65,5 @@
         <div class="swiper-button-prev"></div>
 
     </div>
-    @include('site.modals.add_to_cart')
+{{--    @include('site.modals.add_to_cart')--}}
 </div>

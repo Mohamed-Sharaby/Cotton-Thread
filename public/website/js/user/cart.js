@@ -225,7 +225,7 @@ payOffForm.submit(function (e) {
             if ($.isEmptyObject(data.error)) {
                 toastr.success(" تم تأكيد الطلب بنجاح");
                 // window.location.href = '/orders/' + data.id + '?success=1';
-                window.location.href = '/orders/' + data.id + '?success=1';
+                window.location.href = '/orders/' + data.id ;
             } else {
                 toastr.error(data.error);
             }

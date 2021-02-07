@@ -49,9 +49,7 @@ class CartController extends Controller
                 ->where('quantity', '>=', $request['quantity']);
         });
 
-//        if (!$productQuantity->exists() || $product->is_ban)
         if (!$productQuantity->exists())
-           // return response()->json(['status' => false, 'msg' => 'هذا المنتج غير متاح حاليا']);
             return response()->json(['status' => false, 'msg' => 'الكمية المطلوبة من اللون والمقاس غير متوفرة حاليا']);
 
         if ($productQuantity->first()->quantity < $request['quantity']) {
@@ -62,10 +60,11 @@ class CartController extends Controller
         $openCart = $user->carts()->where('status', 'open');
         if ($openCart->exists()) {
             $openCart = $openCart->first();
-            $openCart->itemsUpdate($productQuantity, $request->all());
+            $openCart->itemsUpdate($productQuantity,$request );
             return response()->json(['status' => true, 'msg' => 'Added Successfully']);
-        } else {
-            $result = Cart::addToCart($productQuantity, $request->all());
+        }
+        else {
+            Cart::addToCart($productQuantity, $request);
             return response()->json(['status' => true, 'msg' => 'Added Successfully']);
         }
 
@@ -125,10 +124,6 @@ class CartController extends Controller
     {
         $item = CartItem::findOrFail($request->item);
 
-//        if ($request->quantity > $item->productQuantity->quantity){
-//            return response()->json(['status' => false, 'msg' => 'الكمية المطلوبة غير متوفرة حاليا']);
-//        }
-       // dd($item->quantity , $request->quantity);
         if ($request->quantity > $item->quantity){
             $q = $request->quantity - $item->quantity;
             $item->productQuantity->update(['quantity' => $item->productQuantity->quantity - $q]);

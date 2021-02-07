@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function show($id)
     {
         $cart = Cart::findOrFail($id);
-        if ($cart->user_id == auth()->user()->id){
+        if ($cart->user_id == auth()->user()->id) {
             return view('site.orders.show', compact('cart'));
         }
         return abort(404);
@@ -43,10 +43,14 @@ class OrderController extends Controller
     public function removeItem($id)
     {
         $item = CartItem::findOrFail($id);
-        $item->productQuantity->increment('quantity',$item->quantity);
+        $item->productQuantity->increment('quantity', $item->quantity);
         $item->delete();
-        return 'Done';
+        $cart = $item->cart;
+        if (count($cart->cartItems) == 0) {
+            $cart->delete();
+            return response()->json(['status' => false, 'msg' => 'Cart Deleted']);
+        }
+        return response()->json(['status' => true, 'msg' => 'Item Deleted Successfully']);
     }
-
 
 }

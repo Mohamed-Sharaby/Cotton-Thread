@@ -19,32 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="pro-details">
-                    <div class="col-md-6 col-xs-12">
-
-                        <div class="img-pro-slider">
-                            <div class="swiper-container gallery-top">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide"
-                                         style="background-image:url({{$product->image}})"></div>
-                                    @foreach($product->product_images as $image)
-                                        <div class="swiper-slide"
-                                             style="background-image:url({{$image->image}})"></div>
-                                    @endforeach
-                                </div>
-                                <!-- Add Arrows -->
-                                <div class="swiper-button-next swiper-button-white"></div>
-                                <div class="swiper-button-prev swiper-button-white"></div>
-                            </div>
-                            <div class="swiper-container gallery-thumbs">
-                                <div class="swiper-wrapper">
-                                    @foreach($product->product_images as $image)
-                                        <div class="swiper-slide"
-                                             style="background-image:url({{$image->image}})"></div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   @include('site.products.product_images_slider')
                     <div class="col-md-6 col-xs-12">
                         <div class="product-deitails">
                             <h1> {{$product->name}}</h1>
@@ -59,7 +34,6 @@
                             @else
                                 <a href="/login" class="likerr"><i class="fas fa-heart"></i></a>
                             @endif
-
                             <div class="rate_in">
                                 <ul class="stars">
                                     <!-- add class (.yellowed) to the number of rates --->
@@ -82,53 +56,7 @@
                                 الكمية المتوفرة: <span> متبقى {{$product->quantity}}</span>
                             </div>
                             <p>{{$product->details}}</p>
-                            <form method="POST" id="cartForm">
-                                <input type="hidden" name="product_id" value="{{$product->id}}">
-                                <div class="cart_blocks">
-                                    <div class="cont_block">
-                                        <label class="lbl_block">الألوان المتاحة</label>
-                                        <div class="custom_radio clr_radio">
-                                            @foreach($product->product_colors as $color)
-                                                <div class="rad_n">
-                                                    <input type="radio" class="pro_color" id="color-{{$color->id}}" name="color" value="{{$color->id}}" data-product="{{$product->id}}"/>
-                                                    <label for="color-{{$color->id}}"
-                                                           style="background-color: {{$color->color}};"></label>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <div class="cont_block">
-                                        <label class="lbl_block">المقاسات المتاحة</label>
-                                        <div class="custom_radio txt_radio">
-{{--                                            @foreach($product->product_sizes as $size)--}}
-{{--                                                <div class="rad_n">--}}
-{{--                                                    <input type="radio" id="size-{{$size->id}}" name="size" value="{{$size->id}}"/>--}}
-{{--                                                    <label for="size-{{$size->id}}">{{$size->size}}</label>--}}
-{{--                                                </div>--}}
-{{--                                            @endforeach--}}
-                                        </div>
-                                    </div>
-                                    <div class="cont_block">
-                                        <label class="lbl_block">الكمية</label>
-                                        <div class="number-input">
-                                            <div onclick="this.parentNode.querySelector('.quantity').stepUp()"
-                                                 class="plus"><i class="fas fa-plus"></i></div>
-                                            <input class="quantity" min="1"   name="quantity" value="1" type="number">
-                                            <div onclick="this.parentNode.querySelector('.quantity').stepDown()"
-                                                 class="minus"><i class="fas fa-minus"></i></div>
-                                        </div>
-                                        @if(auth()->check())
-                                        <button type="submit" class="btn-hvr"  >
-                                            اضافة للسلة <span><i class="fas fa-cart-plus"></i></span>
-                                        </button>
-                                        @else
-                                            <a class="btn-hvr" href="{{url('/login')}}">
-                                                اضافة للسلة <span><i class="fas fa-cart-plus"></i></span>
-                                            </a>
-                                        @endif
-                                    </div>
-                                </div>
-                            </form>
+                           @include('site.products.single-product_cart_form')
                         </div>
                     </div>
                 </div>

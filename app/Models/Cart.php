@@ -120,7 +120,7 @@ class Cart extends Model
         $item = $this->cartItems()->where('product_quantity_id',$productQuantity->id);
         if($item->exists()){
             $item->update([
-                'quantity'=>$item->first()->quantity + $request['quantity'],
+               'quantity'=>$item->first()->quantity + $request['quantity'],
                 'price'=>fix_null_double(optional($product)->price),
                 'discount'=>fix_null_double(optional($product)->discount),
             ]);
