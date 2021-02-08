@@ -16,7 +16,7 @@ class ProductColorsResource extends JsonResource
      */
     public function toArray($request)
     {
-       return $this->product_colors->unique('color_id')->transform(function ($q){
+       return $this->product_colors->unique('id')->transform(function ($q){
            return[
                'id'=>$q->id,
                'color'=>$q->color,
