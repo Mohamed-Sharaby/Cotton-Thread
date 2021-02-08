@@ -22,18 +22,12 @@ class NotificationsCollection extends ResourceCollection
                         'id'=> $q->id,
                         'type'=> $q->type,
                         'data'=>$q->data,
-//                        'title'=>(app()->getLocale() == 'ar')?
-//                            sprintf('تم تغير حاله الطلب %s',$q->data['id']):
-//                            sprintf('cart status changed %s',$q->data['id'])
-//                        ,
-//                        'body'=>(app()->getLocale() == 'ar')?
-//                            sprintf('تم تغير حالة الطلب %s',$q->data['id']):
-//                            sprintf('cart status changed %s ',$q->data['id'])
-//                        ,
+                        'title'=>(app()->getLocale() == 'ar')? $q->data['ar_title']: $q->data['en_title'],
+                        'body'=>(app()->getLocale() == 'ar')? $q->data['ar_body']: $q->data['en_body'],
                         'target'=> 'cart',
-//                        'target_id'=> $q->data['id'],    // reservation_id
+                        'target_id'=> $q->data['id'],    // reservation_id
                         'read_at'=>($q->read_at)?true:false,
-//                        'can_rate'=>($q->data['status'] == 'finished')?true:false,
+                        'can_rate'=>($q->data['status'] == 'finished')?true:false,
                         'is_rated'=>false,//(RateComment::where('product_id',$q->data['id'])->where('user_id',auth()->id())->exists())?true:false,
                         'created_at'=>strtotime($q->created_at)
 
