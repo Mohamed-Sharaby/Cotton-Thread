@@ -5,26 +5,25 @@
     </a>
     <div class="customescroll">
         {{--        <form id="filter_form" method="get">--}}
-        <form action="{{route('website.products.filter')}}" method="get">
+        <form action="" method="get">
             <div class="cart_blocks">
-
-                <div class="cont_block">
-                    <h4 class="filt_title">الأقسام</h4>
-                    <div class="the_checks">
-                        @foreach(\App\Models\Category::active()->get() as $category)
-                            <label class="custom_check">{{$category->name}}
-                                <input type="checkbox" name="category[]" value="{{$category->id}}">
-                                <span class="checkmark"></span>
-                            </label>
-                        @endforeach
-                    </div>
-                </div>
+{{--                <div class="cont_block">--}}
+{{--                    <h4 class="filt_title">الأقسام</h4>--}}
+{{--                    <div class="the_checks">--}}
+{{--                        @foreach(\App\Models\Category::active()->get() as $category)--}}
+{{--                            <label class="custom_check">{{$category->name}}--}}
+{{--                                <input type="checkbox" name="category[]" value="{{$category->id}}">--}}
+{{--                                <span class="checkmark"></span>--}}
+{{--                            </label>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="cont_block">
                     <h4 class="filt_title">الألوان</h4>
                     <div class="the_checks">
                         @foreach(\App\Models\Color::all() as $color)
                             <label class="custom_check custom_color">{{$color->name}}
-                                <input type="checkbox" name="color[]" value="{{$color->id}}">
+                                <input type="checkbox" name="color[]" value="{{$color->id}}" >
                                 <span class="checkmark" style="background-color: {{$color->color}};"></span>
                                 <span class="overlays"></span>
                             </label>
@@ -69,11 +68,11 @@
 
                         <div class="form-group row">
                             <div class="col-12 col-md-6">
-                                <input type="number" name="price_from" value=""
+                                <input type="number" name="price_from" value="{{request('price_from')}}"
                                        class="form-control col-md-6 " placeholder=" من .. ">
                             </div>
                             <div class="col-12 col-md-6">
-                                <input type="number" name="price_to" value=""
+                                <input type="number" name="price_to" value="{{request('price_to')}}"
                                        class="form-control col-md-6" placeholder=" الى ..">
                             </div>
                         </div>
@@ -85,8 +84,6 @@
                         تطبيق
                     </button>
                 </div>
-
-
             </div>
         </form>
     </div>
