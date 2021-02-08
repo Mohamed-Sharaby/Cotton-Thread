@@ -81,7 +81,7 @@ class ProductController extends Controller
      */
     public function proBySubcategory(Request $request, SubCategory $subCategory){
         $products = $subCategory->products()
-            ->where('is_ban',0)
+            ->where('products.is_ban',0)
             ->whereHas('product_quantity')
             ->when(($request->has('search') && $request['search']),function ($q)use($request){
                 $q->where('ar_name','like','%'.$request['search'].'%')
