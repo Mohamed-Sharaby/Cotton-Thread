@@ -83,6 +83,16 @@ class ProductController extends Controller
         $products = $subCategory->products()
             ->where('is_ban',0)
             ->whereHas('product_quantity')
+            ->when(($request->has('color') && $request['color']),function ($q)use($request){
+                $q->whereHas('product_colors',function (Builder $b)use($request){
+                    $b->where('colors.id',$request['color']);
+                });
+            })
+            ->when(($request->has('size') && $request['size']),function ($q)use($request){
+                $q->whereHas('product_sizes',function (Builder $b)use($request){
+                    $b->where('sizes.id',$request['size']);
+                });
+            })
             ->when(($request->has('order_by') && $request['order_by']),function ($q)use($request){
                 if($request['order_by'] == 'max')
                     $q->orderBy('price','desc');
