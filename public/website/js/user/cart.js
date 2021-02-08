@@ -58,7 +58,7 @@ $(document).on('click', '.addCart', function () {
 var cartForm = $("#cartForm");
 cartForm.submit(function (e) {
     e.preventDefault();
-
+    // console.log(e.target)
     var formData = cartForm.serialize();
     let cart_count = parseInt($('.cart-count').text())
     $.ajax({

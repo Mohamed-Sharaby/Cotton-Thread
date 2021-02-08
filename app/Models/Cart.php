@@ -17,46 +17,52 @@ class Cart extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id','address_id','status','payment',
-        'coupon_id','comment','delivered_at','transaction_image','coupon_perc','coupon_val'];
+    protected $fillable = ['user_id', 'address_id', 'status', 'payment',
+        'coupon_id', 'comment', 'delivered_at', 'transaction_image', 'coupon_perc', 'coupon_val'];
 
     /**
      * @var array
      */
     protected $dates = ['delivered_at'];
 
-    public function getTransactionImageAttribute(){
-        if(isset($this->attributes['transaction_image'])){
-            if(strpos($this->attributes['transaction_image'],'https') !== false)
+    public function getTransactionImageAttribute()
+    {
+        if (isset($this->attributes['transaction_image'])) {
+            if (strpos($this->attributes['transaction_image'], 'https') !== false)
                 return $this->attributes['transaction_image'];
             return getImg($this->attributes['transaction_image']);
-        }else{
+        } else {
             return '';
         }
     }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function cartItems(){
-        return $this->hasMany(CartItem::class,'cart_id');
-    }
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user(){
-        return $this->belongsTo(User::class,'user_id');
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class, 'cart_id');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function address(){
-        return $this->belongsTo(Address::class,'address_id');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'address_id');
     }
 
     public function coupon()
     {
-        return $this->belongsTo(Coupon::class,'coupon_id');
+        return $this->belongsTo(Coupon::class, 'coupon_id');
     }
 
     /**
@@ -65,24 +71,25 @@ class Cart extends Model
      * @return array
      * when internet found
      */
-    public static function addToCart($productQuantity, $request){
+    public static function addToCart($productQuantity, $request)
+    {
         $user = auth()->user();
         $product = $productQuantity->product;
-        if(!$product)
-            return [__('product not available'),422];
+        if (!$product)
+            return [__('product not available'), 422];
         // open new cart
-        $cart = Cart::create(['user_id'=>$user->id, 'status'=>'open']);
+        $cart = Cart::create(['user_id' => $user->id, 'status' => 'open']);
         // add items to cart
         $cart->cartItems()->create([
-            'product_quantity_id'=>$productQuantity->id,
-            'quantity'=>$request['quantity'],
-            'price'=>fix_null_double(optional($product)->price),
-            'discount'=>fix_null_double(optional($product)->discount),
+            'product_quantity_id' => $productQuantity->id,
+            'quantity' => $request['quantity'],
+            'price' => fix_null_double(optional($product)->price),
+            'discount' => fix_null_double(optional($product)->discount),
         ]);
         // minus product quantity
         $new_quantity = $productQuantity->quantity - $request['quantity'];
-        $productQuantity->update(['quantity'=>$new_quantity]);
-        return [__('cart created successfully'),200];
+        $productQuantity->update(['quantity' => $new_quantity]);
+        return [__('cart created successfully'), 200];
     }
 
 
@@ -91,22 +98,24 @@ class Cart extends Model
      * @param $request
      * @return array
      */
-    public function itemsUpdate($productQuantity, $request){
+    public function itemsUpdate($productQuantity, $request)
+    {
         $product = $productQuantity->product;
-        if(!$product)
-            return [__('product not available'),422];
+        if (!$product)
+            return [__('product not available'), 422];
         $this->itemUpdateOrCreate($productQuantity, $request, $product);
-        return [__('item added to cart'),200];
+        return [__('item added to cart'), 200];
     }
 
     /**
      * @return string
      */
-    public function getSumCartOrdersAttribute(){
+    public function getSumCartOrdersAttribute()
+    {
         $sum_orders = $this->cartItems()->selectRaw('SUM(cart_items.price*
         (1-((cart_items.discount)/100))*
         cart_items.quantity) as sum')->first()->sum;
-        return number_format($sum_orders,2,'.',',');
+        return number_format($sum_orders, 2, '.', ',');
     }
 
     /**
@@ -117,19 +126,19 @@ class Cart extends Model
     public function itemUpdateOrCreate($productQuantity, $request, $product)
     {
         // add items to cart
-        $item = $this->cartItems()->where('product_quantity_id',$productQuantity->id);
-        if($item->exists()){
+        $item = $this->cartItems()->where('product_quantity_id', $productQuantity->id);
+        if ($item->exists()) {
             $item->update([
-               'quantity'=>$item->first()->quantity + $request['quantity'],
-                'price'=>fix_null_double(optional($product)->price),
-                'discount'=>fix_null_double(optional($product)->discount),
+                'quantity' => $item->first()->quantity + $request['quantity'],
+                'price' => fix_null_double(optional($product)->price),
+                'discount' => fix_null_double(optional($product)->discount),
             ]);
-        }else{
+        } else {
             $this->cartItems()->create([
-                'product_quantity_id'=>$productQuantity->id,
-                'quantity'=>$request['quantity'],
-                'price'=>fix_null_double(optional($product)->price),
-                'discount'=>fix_null_double(optional($product)->discount),
+                'product_quantity_id' => $productQuantity->id,
+                'quantity' => $request['quantity'],
+                'price' => fix_null_double(optional($product)->price),
+                'discount' => fix_null_double(optional($product)->discount),
             ]);
         }
         // minus product quantity،
@@ -151,17 +160,17 @@ class Cart extends Model
     }
 
 
-
-
-    public function getTaxAttribute(){
+    public function getTaxAttribute()
+    {
         $sum_orders = $this->cartItems()->selectRaw('SUM(cart_items.price*
         (1-((cart_items.discount)/100))* cart_items.quantity) as sum')->first()->sum;
-        $tax = (1-(floatval(getSetting('tax_percentage'))/100))*$sum_orders;
+        $tax = (1 - (floatval(getSetting('tax_percentage')) / 100)) * $sum_orders;
         return $tax;
 //        return number_format($tax,2,'.',',');
     }
 
-    public function getDeliveryCostAttribute(){
+    public function getDeliveryCostAttribute()
+    {
         return getSetting('delivery_cost_percentage');
 //        $sum_orders =  $this->cartItems()->selectRaw('SUM(cart_items.price*
 //        (1-((cart_items.discount)/100))* cart_items.quantity) as sum')->first()->sum;
@@ -173,16 +182,17 @@ class Cart extends Model
     /**
      * @return float|string
      */
-    public function getTotalAttribute(){
+    public function getTotalAttribute()
+    {
         $sum_orders = $this->cartItems()->selectRaw('SUM(cart_items.price*
         (1-((cart_items.discount)/100))* cart_items.quantity) as sum')->first()->sum;
 //        if(!getSetting('tax_percentage'))
 //            return $sum_orders;
 //        else{
-            $tax = floatval($this->tax);
-            $delivery_cost = floatval($this->delivery_cost);
-            $total = $tax + $sum_orders + $delivery_cost;
-            return number_format($total,2,'.',',');
+        $tax = floatval($this->tax);
+        $delivery_cost = floatval($this->delivery_cost);
+        $total = $tax + $sum_orders + $delivery_cost;
+        return number_format($total, 2, '.', ',');
 //        }
     }
 

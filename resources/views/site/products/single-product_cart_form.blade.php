@@ -29,7 +29,7 @@
             <div class="number-input">
                 <div onclick="this.parentNode.querySelector('.quantity').stepUp()"
                      class="plus"><i class="fas fa-plus"></i></div>
-                <input class="quantity" min="1"  name="quantity" value="2" type="number" >
+                <input class="quantity" min="1"  name="quantity" value="1" type="number" >
                 <div onclick="this.parentNode.querySelector('.quantity').stepDown()"
                      class="minus"><i class="fas fa-minus"></i></div>
             </div>

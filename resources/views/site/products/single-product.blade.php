@@ -88,7 +88,7 @@
     <!-- /////////////////////||||||||||||||||||||||||||||| End Section |||||||||||||||||||||||||||| -->
 @endsection
 @section('scripts')
-    <script src="{{asset('website/js/user/cart.js')}}"></script>
+{{--    <script src="{{asset('website/js/user/cart.js')}}"></script>--}}
     <script src="{{asset('website/js/user/single-product.js')}}"></script>
     <script src="{{asset('website/js/swiper-bundle.min.js')}}"></script>
     <script>
