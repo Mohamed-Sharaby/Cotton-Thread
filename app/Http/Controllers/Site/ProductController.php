@@ -28,7 +28,7 @@ class ProductController extends Controller
         }
 
         $products = $products->paginate(12);
-        return view('site.products.all-products', compact('products', 'categories','subCategoryName'));
+        return view('site.products.all-products', compact('products', 'categories', 'subCategoryName'));
     }
 
 
@@ -56,7 +56,7 @@ class ProductController extends Controller
     public function getSizesByColor(Request $request)
     {
         $sizes = ProductQuantity::with('size')->whereProductId($request->product_id)->whereColorId($request->color)->get();
-        return response()->json(['pro_sizes'=>$sizes]);
+        return response()->json(['pro_sizes' => $sizes]);
     }
 
     public function rate(Request $request)
@@ -82,11 +82,9 @@ class ProductController extends Controller
     }
 
 
-
-
-
     public function filter(Request $request)
     {
+
         $products = Product::query();
 
         $categories = $request->category;
@@ -96,41 +94,31 @@ class ProductController extends Controller
         $price_to = $request->price_to;
 
         if ($request->has('category')) {
-            foreach ((array)$categories as $category) {
-                $cat = Category::whereId($category)->first();
-                foreach ($cat->subcategories as $subcategory) {
-                    $products = $products->whereSubcategoryId($subcategory->id);
-                }
-            }
+            $subCategories = SubCategory::whereIn('category_id', (array)$categories)->pluck('id')->toArray();
+            $products->whereIn('subcategory_id', $subCategories);
+
         }
 
         if ($request->has('color')) {
-            foreach ((array)$colors as $color) {
-                $clr = Color::whereId($color)->first();
-                $products = Product::whereHas('product_colors', function ($q) use ($clr) {
-                    $q->where('color_id', $clr->id);
-                });
-            }
+            $products = Product::whereHas('product_colors', function ($q) use ($colors) {
+                $q->whereIn('color_id', $colors);
+            });
         }
 
 
         if ($request->has('size')) {
-            foreach ((array)$sizes as $size) {
-                $sz = Size::whereId($size)->first();
-                $products = Product::whereHas('product_sizes', function ($q) use ($sz) {
-                    $q->where('size_id', $sz->id);
-                });
-            }
+            $products = Product::whereHas('product_sizes', function ($q) use ($sizes) {
+                $q->whereIn('size_id', $sizes);
+            });
         }
 
 
-        if ($request->has('price_from') && $request->has('price_to')) {
+        if ($price_from >= 0 && $price_to >= 0) {
             $products = $products->whereBetween('price', [$price_from, $price_to]);
         }
 
 
         $products = $products->paginate(12);
         return view('site.products.all-products', compact('products'));
-
     }
 }
