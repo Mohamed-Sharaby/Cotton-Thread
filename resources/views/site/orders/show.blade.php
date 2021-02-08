@@ -108,6 +108,9 @@
                                 <a href="{{route('website.products.single',$item->productQuantity->product->id)}}"
                                    class="item_nm">{{$item->productQuantity->product->name}}</a>
                                 <span class="spanSec">{{$item->productQuantity->product->subcategory->name}}</span>
+                                <p style="font-size: 14px;font-weight: bold;">
+                                    <span >المقاس : {{$item->productQuantity->size->size}} -- اللون :{{$item->productQuantity->color->name}}</span>
+                                </p>
                                 <div class="i_prices">
                                     @if($item->productQuantity->product->discount > 0)
                                         <p class="old_price">

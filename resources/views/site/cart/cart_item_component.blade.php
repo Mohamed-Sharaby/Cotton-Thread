@@ -16,7 +16,12 @@
         </a>
         <div class="right_dtls">
             <a href="{{url('single-product')}}"
-               class="item_nm">{{$item->productQuantity->product->name}}</a>
+               class="item_nm">{{$item->productQuantity->product->name}}
+            </a>
+            <p style="font-size: 14px;font-weight: bold;">
+                <span >المقاس : {{$item->productQuantity->size->size}} -- اللون :{{$item->productQuantity->color->name}}</span>
+            </p>
+
             <span
                 class="spanSec">{{$item->productQuantity->product->subcategory->name}}</span>
             <div class="i_prices">
