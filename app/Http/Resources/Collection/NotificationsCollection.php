@@ -21,7 +21,6 @@ class NotificationsCollection extends ResourceCollection
                     return [
                         'id'=> $q->id,
                         'type'=> $q->type,
-                        'data'=>$q->data,
                         'title'=>(app()->getLocale() == 'ar')? $q->data['ar_title']: $q->data['en_title'],
                         'body'=>(app()->getLocale() == 'ar')? $q->data['ar_body']: $q->data['en_body'],
                         'target'=> 'cart',
