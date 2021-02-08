@@ -2,19 +2,19 @@
     <div class="container">
         <div class="head-title">
             <h2>الأقسام</h2>
-            <p>يوجد أكثر من 20 قسم للملابس الجاهزة</p>
+            <p>يوجد أكثر من {{$categoriesCount}} قسم للملابس الجاهزة</p>
         </div>
         <div class="styled_tabs">
             <ul class="nav nav-tabs">
                 @foreach($categories as $category)
-                    <li class="">
+                    <li class="{{$loop->first ? 'active' : ''}}">
                         <a data-toggle="tab" href="#{{$category->id}}">{{$category->name}}</a>
                     </li>
                 @endforeach
             </ul>
             <div class="tab-content">
                 @foreach($categories as $category)
-                    <div id="{{$category->id}}" class="tab-pane fade ">
+                    <div id="{{$category->id}}" class="tab-pane fade in {{$loop->first ==$category->id ? 'active' : ''}}">
                         <div class="theProds">
                             <div class="flex_row">
                                 <div class="row">

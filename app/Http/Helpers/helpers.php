@@ -152,14 +152,13 @@ if (!function_exists('getImgPath')) {
 if (!function_exists('cart_status')) {
     function cart_status()
     {
-        $status =  [
-            'open' => 'في انتظار تأكيد العميل',
+        return  [
+           // 'open' => 'جديد',
             'confirmed' => 'تم تأكيد الطلب',
             'finished' => 'تم التوصيل',
             'refused' => 'تم رفض الطلب',
             'canceled' => 'تم الالغاء',
         ];
-        return $status;
     }
 }
 

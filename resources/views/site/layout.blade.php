@@ -98,9 +98,11 @@
             background-color: #fff !important;
             box-shadow: 0px 6px 12px 0px rgba(234, 234, 234, 1);
         }
-        .toast-error, .toast-success{
-            opacity: unset!important;
+
+        .toast-error, .toast-success {
+            opacity: unset !important;
         }
+
 
     </style>
 </head>
@@ -297,7 +299,10 @@
                                                                         onclick="this.parentNode.querySelector('.quantity').stepUp()"
                                                                         class="plus"><i class="fas fa-plus"></i>
                                                                 </button>
-                                                                <input class="quantity" min="1" max="30"
+                                                                <input class="quantity" min="1" name="quantity"
+                                                                       data-product="{{$item->productQuantity->id }}"
+                                                                       data-item="{{$item->id}}"
+                                                                       data-cart="{{$item->cart_id}}"
                                                                        value="{{$item->quantity}}" type="number">
                                                                 <button type="button"
                                                                         onclick="this.parentNode.querySelector('.quantity').stepDown()"
@@ -305,11 +310,13 @@
                                                                     </i></button>
                                                             </div>
                                                         </div>
+                                                        @if($item->productQuantity->product->discount > 0)
                                                         <p class="old_price">{{$item->productQuantity->product->price ?? 'لا يوجد'}}
                                                             ريال </p>
+                                                        @endif
                                                         <p class="i_price">{{$item->productQuantity->product->priceAfterDiscount ?? 'لا يوجد'}}
                                                             ريال </p>
-{{--                                                        <p class="hint">الشحن مجانا لفترة محدودة</p>--}}
+                                                        {{--                                                        <p class="hint">الشحن مجانا لفترة محدودة</p>--}}
                                                     </div>
                                                 </div>
                                             </li>
@@ -349,17 +356,15 @@
             <div class="col-sm-4 col-xs-12">
                 <a href="{{url('/')}}" class="foot-logo">
                     <!--------- if arabic use this img ---------->
-                    <img src="{{asset('website/img/logo-ar-wh.png')}}">
-                    <!--------- if english use this img ---------->
-                <!-- <img src="{{asset('website/img/logo-en-wh.png')}}"> -->
+                    @if(app()->getLocale() == 'ar')
+                        <img src="{{asset('website/img/logo-ar-wh.png')}}">
+                        <!--------- if english use this img ---------->
+                    @else
+                        <img src="{{asset('website/img/logo-en-wh.png')}}">
+                    @endif
                 </a>
-                <p>
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
-                    هذا النص هو مثال لنص يمكن ان يستبدل من مولد النص العربى
+                <p style="word-wrap: break-word;overflow: hidden;">
+                    {{\App\Models\Setting::whereType('long_text')->where('name','footer_text')->first()->value}}
                 </p>
             </div>
             <div class="col-sm-4 col-xs-6">
@@ -378,7 +383,7 @@
                 <div class="foot1">
                     <h3 class="f-title">خدمة العملاء</h3>
                     <ul>
-                        @foreach(\App\Models\Setting::whereType('long_text')->where('name','!=','key_words')->get() as $page)
+                        @foreach(\App\Models\Setting::whereType('long_text')->where('name','!=','footer_text')->get() as $page)
                             <li><a href="{{url('pages/'.$page->id)}}">{{__($page->title)}} </a></li>
                         @endforeach
                     </ul>
@@ -450,15 +455,9 @@
             type: 'GET',
             success: function (data) {
                 toastr.success("{{__('Added To Your favourites')}}");
-                // $("#f" + product_id).addClass("wished-item");
-                //$("#f" + product_id).tooltip('hide').attr("data-original-title", "Remove from favourites").tooltip('show');
-                // $(".toggle-fav").addClass("added-to-wishlist").html("<i class='ti-heart'></i> Added to Wishlist");
             },
             error: function (data) {
                 toastr.success("{{__('Removed From the favourites')}}");
-                // $("#f" + product_id).removeClass("wished-item");
-                // $("#f" + product_id).tooltip('hide').attr("data-original-title", "Add to favourites").tooltip('show');
-                // $(".toggle-fav").removeClass("added-to-wishlist").html("<i class='ti-heart'></i> Add to Wishlist");
             }
         });
     }
@@ -505,6 +504,22 @@
                 }
             })
         })
+
+///////////////////
+        // change cart quantity in left cart side bar
+        $(".number-input button").on('click', function () {
+            let qty = $(this).closest('.number-input').find('.quantity');
+            let quantity = qty.val();
+            let product_quantity_id = qty.data('product');
+            let cart = qty.data('cart');
+            let item = qty.data('item');
+            $('.discount-value').empty();
+            let data = {quantity, product_quantity_id, item, cart};
+            updateCart(data);
+
+            $(this).siblings('.quantity').trigger('change');
+        })
+        ////////////////////
     })
 </script>
 <!---- side menu --->
@@ -517,12 +532,12 @@
     });
 </script>
 <!---- remove cart item --->
-<script>
-    $(".remove_item").click(function () {
-        $(this).parent(".cart_item").fadeOut(300);
-        $(this).parent(".cart_item").parents(".col-md-6.col-xs-12").fadeOut(300);
-    });
-</script>
+{{--<script>--}}
+{{--    $(".remove_item").click(function () {--}}
+{{--        $(this).parent(".cart_item").fadeOut(300);--}}
+{{--        $(this).parent(".cart_item").parents(".col-md-6.col-xs-12").fadeOut(300);--}}
+{{--    });--}}
+{{--</script>--}}
 <script src="{{asset('website/js/user/order.js')}}"></script>
 <script src="{{asset('website/js/user/cart.js')}}"></script>
 @yield('scripts')

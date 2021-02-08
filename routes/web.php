@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 
 
-//require __DIR__ . '/auth.php';
-
 Route::group(['middleware'=>'checkBanned','as' => 'website.'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -37,13 +35,13 @@ Route::group(['middleware'=>'checkBanned','as' => 'website.'], function () {
     });
 
     Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
-        Route::GET('filter', [ProductController::class, 'filter'])->name('filter');
         Route::get('/new', [ProductController::class, 'newProducts'])->name('new');
-//        Route::get('/arrangeByNew', [ProductController::class, 'arrangeByNew'])->name('arrange.new');
-        Route::GET('/{id?}', [ProductController::class, 'index'])->name('index');
         Route::GET('single/{product}', [ProductController::class, 'show'])->name('single');
         Route::GET('single/{product}/colors', [ProductController::class, 'getColors'])->name('getColors');
         Route::Post('rate', [ProductController::class, 'rate'])->name('rate');
+        Route::get('sizes/{color}', [ProductController::class, 'getSizesByColor'])->name('getSizesByColor');
+        Route::get('filter', [ProductController::class, 'filter'])->name('filter');
+        Route::GET('/{id?}', [ProductController::class, 'index'])->name('index');
     });
 
     Route::group(['prefix' => 'favourite', 'as' => 'favourites.', 'middleware' => 'auth'], function () {
@@ -108,8 +106,8 @@ Route::get('/booking-done', function () {
     return view('site.booking-done');
 });
 
-Route::get('/search-result', function () {
-    return view('site.search-result');
-});
+//Route::get('/search', function () {
+//    return view('site.search');
+//});
 
 

@@ -1,5 +1,5 @@
 // remove order from user cart
-$(".remove_order").on('click',  function (event) {
+$(".remove_order").on('click', function (event) {
     let cur = $(this);
     let url = $(this).attr('data-url');
 
@@ -31,9 +31,10 @@ $(".remove_order").on('click',  function (event) {
 });
 
 // remove item from order
-$(".remove_item1").on('click',  function (event) {
+$(".remove_item1").on('click', function (event) {
     let cur = $(this);
     let url = $(this).attr('data-url');
+    let cart_count = parseInt($('.cart-count').text())
 
     swal({
         title: "تأكيد الحذف",
@@ -44,10 +45,18 @@ $(".remove_item1").on('click',  function (event) {
 
     }).then(function (isConfirm) {
         if (isConfirm) {
+
             $.ajax({
                 url: url,
                 type: "post",
                 success: function (data) {
+                    $('.cart-count').text(--cart_count)
+                    if (data.status === false) {
+                        window.location.href = '/';
+                    }
+                    if (data.status === true) {
+                        location.reload(true)
+                    }
                     swal("تم الحذف بنجاح", "تم الحذف بنجاح", 'success', {buttons: "موافق"});
                     cur.parents('div.cart_item').fadeOut(700);
                     cur.parents('div.cart_item').remove(700);
@@ -56,6 +65,7 @@ $(".remove_item1").on('click',  function (event) {
                     console.log('there is an error ', error)
                 }
             });
+
         } else {
             swal("تم الالغاء", "تم إلغاء الحذف", 'error', {buttons: "موافق"});
         }

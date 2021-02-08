@@ -8,23 +8,33 @@
             <img src="{{$item->productQuantity->product->image}}"
                  onerror="this.src='{{asset('website/img/logo.png')}}'" loading="lazy"
                  decoding="async">
+            @if($item->productQuantity->product->discount > 0)
             <div class="abs_badg off_b">
                 خصم {{$item->productQuantity->product->discount}}%
             </div>
+                @endif
         </a>
         <div class="right_dtls">
             <a href="{{url('single-product')}}"
-               class="item_nm">{{$item->productQuantity->product->name}}</a>
+               class="item_nm">{{$item->productQuantity->product->name}}
+            </a>
+            <p style="font-size: 14px;font-weight: bold;">
+                <span >المقاس : {{$item->productQuantity->size->size}} -- اللون :{{$item->productQuantity->color->name}}</span>
+            </p>
+
             <span
                 class="spanSec">{{$item->productQuantity->product->subcategory->name}}</span>
             <div class="i_prices">
-                <p class="old_price">
-                    <span>{{$item->productQuantity->product->price}}</span><span> ر.س</span>
-                </p>
+                @if($item->productQuantity->product->discount > 0)
+                    <p class="old_price">
+                        <span>{{$item->productQuantity->product->price}}</span><span> ر.س</span>
+                    </p>
+                @endif
+
                 <p class="new_price"><span
                         class="current_price">{{$item->productQuantity->product->priceAfterDiscount}}</span><span> ر.س</span>
                 </p>
-{{--                <p class="hint">الشحن مجانا لفترة محدودة!</p>--}}
+                {{--                <p class="hint">الشحن مجانا لفترة محدودة!</p>--}}
             </div>
         </div>
     </div>
@@ -34,7 +44,8 @@
                 <i class="fas fa-plus"></i>
             </button>
 
-            <input class="quantity" name="quantity[]" min="1" max="{{$item->productQuantity->quantity}}" value="{{$item->quantity}}" type="number"
+            <input class="quantity" name="quantity[]" min="1" max="{{$item->productQuantity->quantity}}"
+                   value="{{$item->quantity}}" type="number"
                    data-product="{{$item->productQuantity->id }}" data-item="{{$item->id}}"
                    data-cart="{{$item->cart_id}}" id="qyt_change">
 

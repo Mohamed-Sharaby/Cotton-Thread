@@ -2,7 +2,7 @@
     <div class="container">
         <div class="head-title">
             <h2>العروض والخصومات</h2>
-            <p>يوجد أكثر من 20 قسم للملابس الجاهزة</p>
+            <p>يوجد أكثر من {{$categoriesCount}} قسم للملابس الجاهزة</p>
         </div>
         <div class="flex_row">
             <div class="row">
@@ -51,7 +51,9 @@
                             <a href="{{route('website.products.single',$product->id)}}" class="name_prod">{{$product->name}}</a>
                             <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
                             <div class="price_inner">
-                                <p class="price_p old_price"><span>{{$product->price}}</span> ريال سعودي </p>
+                                @if($product->discount > 0)
+                                <p class="price_p old_price"><span>{{$product->price}}</span> ريال  </p>
+                                @endif
                                 <p class="price_p new_price"><span>{{$product->priceAfterDiscount}}</span> ريال </p>
                             </div>
                         </div>

@@ -12,7 +12,9 @@ use App\Models\Product;
 use App\Models\ProductQuantity;
 use App\Models\Size;
 use App\Notifications\CartStatusNotification;
+use App\Notifications\ChangeCartNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -47,9 +49,7 @@ class CartController extends Controller
                 ->where('quantity', '>=', $request['quantity']);
         });
 
-//        if (!$productQuantity->exists() || $product->is_ban)
         if (!$productQuantity->exists())
-           // return response()->json(['status' => false, 'msg' => 'هذا المنتج غير متاح حاليا']);
             return response()->json(['status' => false, 'msg' => 'الكمية المطلوبة من اللون والمقاس غير متوفرة حاليا']);
 
         if ($productQuantity->first()->quantity < $request['quantity']) {
@@ -60,10 +60,11 @@ class CartController extends Controller
         $openCart = $user->carts()->where('status', 'open');
         if ($openCart->exists()) {
             $openCart = $openCart->first();
-            $openCart->itemsUpdate($productQuantity, $request->all());
+            $openCart->itemsUpdate($productQuantity,$request );
             return response()->json(['status' => true, 'msg' => 'Added Successfully']);
-        } else {
-            $result = Cart::addToCart($productQuantity, $request->all());
+        }
+        else {
+            Cart::addToCart($productQuantity, $request);
             return response()->json(['status' => true, 'msg' => 'Added Successfully']);
         }
 
@@ -115,7 +116,6 @@ class CartController extends Controller
     {
         $item = CartItem::findOrFail($id);
         $item->productQuantity->update(['quantity' => $item->productQuantity->quantity + $item->quantity]);
-
         $item->delete();
         return response()->json('success');
     }
@@ -124,10 +124,6 @@ class CartController extends Controller
     {
         $item = CartItem::findOrFail($request->item);
 
-//        if ($request->quantity > $item->productQuantity->quantity){
-//            return response()->json(['status' => false, 'msg' => 'الكمية المطلوبة غير متوفرة حاليا']);
-//        }
-       // dd($item->quantity , $request->quantity);
         if ($request->quantity > $item->quantity){
             $q = $request->quantity - $item->quantity;
             $item->productQuantity->update(['quantity' => $item->productQuantity->quantity - $q]);
@@ -194,9 +190,10 @@ class CartController extends Controller
         $cart->update([
             'address_id' => $address->id,
             'payment' => $request->payment,
-            'status' => 'confirmed',
+            //'status' => 'confirmed',
         ]);
-        $cart->user->notify(new CartStatusNotification($cart, 'confirmed'));
+       // $cart->user->notify(new CartStatusNotification($cart, 'open'));
+        Notification::send($cart->user, new ChangeCartNotification($cart));
         return response()->json(['status' => true, 'id' => $cart->id]);
     }
 }

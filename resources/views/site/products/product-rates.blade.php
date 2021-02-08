@@ -14,33 +14,33 @@
                 </ul>
                 <span>التقييم الكلى</span>
             </div>
-            <div class="user-rating-details-wrap">
-                <h3>التقييم الكلى</h3>
-                <div class="user-rating-details">
-                    <span>الخامة</span>
-                    <div class="v-rating">
-                        <span style="width:50%"></span>
-                    </div>
-                </div>
-                <div class="user-rating-details">
-                    <span>الجودة</span>
-                    <div class="v-rating">
-                        <span style="width:75%"></span>
-                    </div>
-                </div>
-                <div class="user-rating-details">
-                    <span>التوصيل</span>
-                    <div class="v-rating">
-                        <span style="width:25%"></span>
-                    </div>
-                </div>
-                <div class="user-rating-details">
-                    <span>السعر</span>
-                    <div class="v-rating">
-                        <span style="width:100%"></span>
-                    </div>
-                </div>
-            </div>
+{{--            <div class="user-rating-details-wrap">--}}
+{{--                <h3>التقييم الكلى</h3>--}}
+{{--                <div class="user-rating-details">--}}
+{{--                    <span>الخامة</span>--}}
+{{--                    <div class="v-rating">--}}
+{{--                        <span style="width:50%"></span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="user-rating-details">--}}
+{{--                    <span>الجودة</span>--}}
+{{--                    <div class="v-rating">--}}
+{{--                        <span style="width:75%"></span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="user-rating-details">--}}
+{{--                    <span>التوصيل</span>--}}
+{{--                    <div class="v-rating">--}}
+{{--                        <span style="width:25%"></span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="user-rating-details">--}}
+{{--                    <span>السعر</span>--}}
+{{--                    <div class="v-rating">--}}
+{{--                        <span style="width:100%"></span>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
             <div class="user-comment">
                 <h2>التقييمات ({{$ratesCount}})</h2>
                 @foreach($rates as $rate)
@@ -76,18 +76,18 @@
                 <form class="add_comment_form" action="{{route('website.products.rate')}}" method="post">
                     @csrf
                     <h3>إضافة تقييمك</h3>
-                    <div class="form__group field">
-                        <input type="text" class="form__field" placeholder="الاسم" id='name' name="name"
-                               value="{{auth()->user()->name ?? ''}}"/>
-                        <label for="name" class="form__label">الاسم</label>
-                    </div>
+{{--                    <div class="form__group field">--}}
+{{--                        <input type="text" class="form__field" placeholder="الاسم" id='name' name="name"--}}
+{{--                               value="{{auth()->user()->name ?? ''}}"/>--}}
+{{--                        <label for="name" class="form__label">الاسم</label>--}}
+{{--                    </div>--}}
+{{--                    <div class="form__group field">--}}
+{{--                        <input type="email" class="form__field" placeholder="البريد الالكترونى"--}}
+{{--                               value="{{auth()->user()->email ?? ''}}"--}}
+{{--                               name="email" id='mail' required/>--}}
+{{--                        <label for="mail" class="form__label">البريد الإلكترونى</label>--}}
+{{--                    </div>--}}
                     <input type="hidden" name="product_id" value="{{$product->id}}">
-                    <div class="form__group field">
-                        <input type="email" class="form__field" placeholder="البريد الالكترونى"
-                               value="{{auth()->user()->email ?? ''}}"
-                               name="email" id='mail' required/>
-                        <label for="mail" class="form__label">البريد الإلكترونى</label>
-                    </div>
                     <div class="rating-pro">
                         <span>السعر</span>
                         <div class="rate_in">

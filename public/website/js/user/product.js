@@ -3,6 +3,8 @@
 $(".remove_item1").on('click',  function (event) {
     let cur = $(this);
     let url = $(this).attr('data-url');
+   // let cart_count = parseInt($('.cart-count').text())
+   // alert(cart_count)
 
      swal({
         title: "تأكيد الحذف",
@@ -18,8 +20,10 @@ $(".remove_item1").on('click',  function (event) {
                 type: "get",
                 success: function (data) {
                     swal("تم الحذف بنجاح", "تم الحذف بنجاح", 'success', {buttons: "موافق"});
+                  //  $('.cart-count').text(--cart_count)
                     cur.parents('div.pro').fadeOut(700);
                     cur.parents('div.pro').remove(700);
+
                 },
                 error: function (error) {
                     console.log('there is an error ', error)

@@ -8,7 +8,6 @@
         <form action="{{route('website.products.filter')}}" method="get">
             <div class="cart_blocks">
 
-
                 <div class="cont_block">
                     <h4 class="filt_title">الأقسام</h4>
                     <div class="the_checks">
@@ -70,11 +69,11 @@
 
                         <div class="form-group row">
                             <div class="col-12 col-md-6">
-                                <input type="number" name="price_from" value="{{request('price_from')}}"
+                                <input type="number" name="price_from" value=""
                                        class="form-control col-md-6 " placeholder=" من .. ">
                             </div>
                             <div class="col-12 col-md-6">
-                                <input type="number" name="price_to" value="{{request('price_to')}}"
+                                <input type="number" name="price_to" value=""
                                        class="form-control col-md-6" placeholder=" الى ..">
                             </div>
                         </div>

@@ -28,8 +28,12 @@
                                             <div class="the_bell"><i class="fas fa-bell"></i></div>
                                             <div class="notif_body">
                                                 <p>
-                                                    <b>{{isset($notify->data['title']) ? $notify->data['title'] : ''}} {{$notify->data['type'] == 'cart_status' ? 'رقم -'.$notify->data['cart_id'] : ''}}</b>
-                                                    {{isset($notify->data['body']) ? $notify->data['body'] : ''}}
+                                                    <b>
+                                                        {{$notify->type == 'cart_status_changed' ? $notify->data['title'] : ''}}
+                                                        {{$notify->type == 'general_notification' ? (app()->getLocale() == 'ar' ? $notify->data['ar_name'] : $notify->data['en_name']) : ''}}
+                                                    </b>
+                                                    {{$notify->type == 'cart_status_changed' ? $notify->data['body'] : ''}}
+                                                    {{$notify->type == 'general_notification' ? (app()->getLocale() == 'ar' ? $notify->data['ar_desc'] :$notify->data['en_desc']) : ''}}
                                                 </p>
                                                 <span class="time">{{$notify->created_at->format('Y-m-d')}}</span>
                                             </div>

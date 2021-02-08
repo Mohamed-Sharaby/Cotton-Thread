@@ -45,8 +45,10 @@
                                class="name_prod">{{$pro->name}}</a>
                             <!--------- if there is old price and new price use class (.old_price) to first and (.new_price) to the second please -->
                             <div class="price_inner">
-                                <p class="price_p old_price"><span>{{$pro->price}}</span> ريال سعودي
+                                @if($pro->discount > 0)
+                                <p class="price_p old_price"><span>{{$pro->price}}</span> ريال
                                 </p>
+                                @endif
                                 <p class="price_p new_price">
                                     <span>{{$pro->priceAfterDiscount}}</span> ريال </p>
                             </div>
@@ -63,5 +65,5 @@
         <div class="swiper-button-prev"></div>
 
     </div>
-    @include('site.modals.add_to_cart')
+{{--    @include('site.modals.add_to_cart')--}}
 </div>

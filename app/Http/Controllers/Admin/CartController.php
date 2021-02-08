@@ -6,16 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Coupon;
-use App\Models\Discount;
-use App\Models\Offer;
 use App\Models\Product;
 use App\Models\ProductSize;
-use App\Models\ReturnRequest;
 use App\Models\Setting;
-use App\Notifications\CartBankTransfareStatus;
 use App\Notifications\CartStatusNotification;
 use App\Notifications\ChangeCartNotification;
-use App\Notifications\OrderStatusNotification;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -36,7 +31,7 @@ class CartController extends Controller
      */
     public function index()
     {
-       // $carts = Cart::latest()->where('status', '<>', 'open')->get();
+        // $carts = Cart::latest()->where('status', '<>', 'open')->get();
         $carts = Cart::latest()->get();
         return view('dashboard.carts.index', compact('carts'));
     }
@@ -96,18 +91,18 @@ class CartController extends Controller
             'status' => 'required|in:confirmed,finished,refused,canceled',
         ]);
 
-        if ($request->status == 'refused'|| $request->status == 'canceled') {
+        if ($request->status == 'refused' || $request->status == 'canceled') {
             foreach ($cart->cartItems as $item) {
-                $item->productQuantity->increment('quantity',$item->quantity);
+                $item->productQuantity->increment('quantity', $item->quantity);
             }
         }
-        if ($request->status == 'finished'){
-            $cart->update(['delivered_at'=>Carbon::now()]);
+        if ($request->status == 'finished') {
+            $cart->update(['delivered_at' => Carbon::now()]);
         }
 
         $cart->update($validator);
         $cart->refresh();
-        Notification::send($cart->user,new ChangeCartNotification($cart));
+        Notification::send($cart->user, new ChangeCartNotification($cart));
 //        $cart->user->notify(new CartStatusNotification($cart, $request->status));
         return back()->with('success', 'تم التعديل بنجاح');
     }

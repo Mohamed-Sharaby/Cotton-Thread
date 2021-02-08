@@ -6,12 +6,13 @@
             font-size: 20px;
             z-index: 9;
         }
-        .remove_item1{
+
+        .remove_item1 {
             color: #000000 !important;
             position: absolute;
             right: -20px;
             background-color: #fff !important;
-            box-shadow: 0px 6px 12px 0px rgba(234,234,234,1);
+            box-shadow: 0px 6px 12px 0px rgba(234, 234, 234, 1);
         }
     </style>
 @endsection
@@ -70,31 +71,31 @@
             <div class="order_status">
                 <div class="flex-r">
                     <!----------------- NOTE :: add (this_status) class to order status ----------------->
-                    <div class="{{ $cart->status == 'open' || $cart->status == 'confirmed' ? 'this_status' : '' }}">
+                    <div class="{{  $cart->status == 'confirmed' ? 'this_status' : '' }}">
                         <h4><i class="fas fa-check-circle"></i></h4>
                         <p>قيد التجهيز</p>
                     </div>
-                    <div class="{{ $cart->status == 'finished' ? 'this_status' : '' }}">
+                    <div class="{{ $cart->status == 'confirmed ' ? 'this_status' : '' }}">
                         <h4><i class="fas fa-check-circle"></i></h4>
                         <p>تم الشحن</p>
                     </div>
-                    <div class="{{ $cart->status == 'finished ' ? 'this_status' : '' }}">
+                    <div class="{{ $cart->status == 'finished' ? 'this_status' : '' }}">
                         <h4><i class="fas fa-check-circle"></i></h4>
                         <p>تم التسليم</p>
                     </div>
                 </div>
             </div>
             <p class="order_timing">
-                الوقت المتوقع لوصول الشحنة ,   {{ optional($cart->delivered_at)->format('d/m/Y') }}
+                الوقت المتوقع لوصول الشحنة , {{ optional($cart->delivered_at)->format('d/m/Y') }}
             </p>
             <div class="items_r">
                 @foreach($cart->cartItems as $item)
                     <div class="flexx cart_item">
                         @if($cart->status == 'open')
-                        <button class="nav-icon remove_item1"
-                                data-url="{{route('website.orders.removeItem',$item->id)}}">
-                            <i class="far fa-trash-alt"></i>
-                        </button>
+                            <button class="nav-icon remove_item1"
+                                    data-url="{{route('website.orders.removeItem',$item->id)}}">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
                         @endif
                         <div class="item_dtls">
                             <a href="{{route('website.products.single',$item->productQuantity->product->id)}}"
@@ -107,13 +108,19 @@
                                 <a href="{{route('website.products.single',$item->productQuantity->product->id)}}"
                                    class="item_nm">{{$item->productQuantity->product->name}}</a>
                                 <span class="spanSec">{{$item->productQuantity->product->subcategory->name}}</span>
+                                <p style="font-size: 14px;font-weight: bold;">
+                                    <span >المقاس : {{$item->productQuantity->size->size}} -- اللون :{{$item->productQuantity->color->name}}</span>
+                                </p>
                                 <div class="i_prices">
-                                    <p class="old_price"><span>{{$item->productQuantity->product->price}}</span><span> ر.س</span>
-                                    </p>
+                                    @if($item->productQuantity->product->discount > 0)
+                                        <p class="old_price">
+                                            <span>{{$item->productQuantity->product->price}}</span><span> ر.س</span>
+                                        </p>
+                                    @endif
                                     <p class="new_price"><span
                                             class="current_price">{{$item->productQuantity->product->priceAfterDiscount}}</span><span> ر.س</span>
                                     </p>
-{{--                                    <p class="hint">الشحن مجانا لفترة محدودة!</p>--}}
+                                    {{--                                    <p class="hint">الشحن مجانا لفترة محدودة!</p>--}}
                                 </div>
                             </div>
                         </div>
@@ -123,16 +130,18 @@
                     </div>
                 @endforeach
             </div>
-            @if($cart->status == 'open')
-                <form action="{{ route('website.orders.cancel', $cart->id) }}" method="post">@csrf
-                    <button type="submit"  class="btn-hvr submit_cart">
-                        إلغاء الطلب
-                    </button>
-                </form>
+            @if(! $cart->status == 'delivered')
+                @if($cart->user_id == auth()->user()->id)
+                    <form action="{{ route('website.orders.cancel', $cart->id) }}" method="post">@csrf
+                        <button type="submit" class="btn-hvr submit_cart">
+                            إلغاء الطلب
+                        </button>
+                    </form>
+                @endif
             @endif
-{{--            <button type="button" data-toggle="modal" data-target="#returnsModal" class="btn-hvr submit_cart">--}}
-{{--                إلغاء الطلب--}}
-{{--            </button>--}}
+            {{--            <button type="button" data-toggle="modal" data-target="#returnsModal" class="btn-hvr submit_cart">--}}
+            {{--                إلغاء الطلب--}}
+            {{--            </button>--}}
         </div>
     </section>
     <!-- /////////////////////||||||||||||||||||||||||||||| End Section |||||||||||||||||||||||||||| -->

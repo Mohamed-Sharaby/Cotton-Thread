@@ -41,7 +41,8 @@ $(document).ready(function () {
     ////////////////////////////////////////
 
     // Delete Address
-    $("#delete_address").on('click',  function (event) {
+    $("button#delete_address").on('click',  function (event) {
+
         let cur = $(this);
         let url = $(this).attr('data-url');
 
