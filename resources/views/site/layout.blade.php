@@ -271,7 +271,7 @@
                                         class="badge cart-count {{ cart() > 0 ? cart() : 'hidden' }}">{{cart()}}</span>
                                 </span>
                             </a>
-                            <div class="side-menu notifi-menu">
+                            <div class="side-menu notifi-menu" id="cartSideMenu">
                                 <button type="button" class="nav-icon close-menu"><i class="fas fa-times"></i></button>
                                 <div class="fixed-li">
                                     <a href="{{route('website.carts.index')}}" class="btn-hvr">
@@ -311,8 +311,8 @@
                                                             </div>
                                                         </div>
                                                         @if($item->productQuantity->product->discount > 0)
-                                                        <p class="old_price">{{$item->productQuantity->product->price ?? 'لا يوجد'}}
-                                                            ريال </p>
+                                                            <p class="old_price">{{$item->productQuantity->product->price ?? 'لا يوجد'}}
+                                                                ريال </p>
                                                         @endif
                                                         <p class="i_price">{{$item->productQuantity->product->priceAfterDiscount ?? 'لا يوجد'}}
                                                             ريال </p>

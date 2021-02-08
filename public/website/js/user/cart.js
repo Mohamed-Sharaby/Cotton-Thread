@@ -60,7 +60,9 @@ cartForm.submit(function (e) {
     e.preventDefault();
     // console.log(e.target)
     var formData = cartForm.serialize();
-    let cart_count = parseInt($('.cart-count').text())
+    let cart_count = parseInt($('.cart-count').text());
+    let cartSideMenu = $('#cartSideMenu').find('ul');
+
     $.ajax({
         url: '/cart/add',
         type: 'POST',
@@ -68,11 +70,29 @@ cartForm.submit(function (e) {
         success: function (data) {
             if (data.status === false) {
                 toastr.error(data.msg)
-            } else {
+            }
+            if (data.status === true) {
                 toastr.success("تم الاضافة الى السلة بنجاح")
                 $('.cart-count').removeClass('hidden')
                 $('.cart-count').text(++cart_count)
                 $('#AddToCartModal').modal('hide');
+
+                //console.log(data.cart_id);
+                let itemComponent = '<li><div class="flexx cart_item">' +
+                    '<button class="nav-icon remove_item1" data-url="">' +
+                    '<i class="far fa-trash-alt"></i></button><span class="bell">' +
+                    '<img src="'+data.data.product_image+'"></span>' +
+                    '<div class="notify"><h4>'+data.data.product_name+'</h4>' +
+                    '<h5 class="sec_name">'+data.data.sub_category+'</h5>' +
+                    '<div class="theQnt"> الكمية :<div class="number-input">' +
+                    '<button type="button" onclick="this.parentNode.querySelector(\'.quantity\').stepUp()" class="plus">' +
+                    '<i class="fas fa-plus"></i></button> ' +
+                    '<input class="quantity" min="1" name="quantity"  data-product="'+data.data.product_quantity+'"' +
+                    'data-item="'+data.data.product_id+'" data-cart="'+data.cart_id+'" value="'+data.data.quantity+'" type="number">' +
+                    '<button type="button" onclick="this.parentNode.querySelector(\'.quantity\').stepDown()" class="minus">' +
+                    '<i class="fas fa-minus"></i></button></div></div><p class="old_price">'+data.data.price+'</p>' +
+                    '<p class="i_price">'+data.data.price_after_discount+'</p></div></div></li>';
+                cartSideMenu.append(itemComponent);
             }
         },
         error: function (data) {
@@ -185,22 +205,22 @@ $(".remove_item").each(function () {
 
         /// discount
         let discount = parseFloat($('.coupon-perc').text());
-        if (discount){
+        if (discount) {
             let discount_val = beforeDiscountPrice * discount / 100;
             if (discount_val) {
                 $('.discount-value').text(discount_val);
             }
-        }else discount_val = 0;
+        } else discount_val = 0;
 
         var taxesTotal = calcTotalFromTaxes(beforeDiscountPrice).toFixed(2);
         //var shipping_fees = Number($('#shipping_fees').text());
-        var finalTotal = (Number(beforeDiscountPrice) + Number(taxesTotal) ) - discount_val;
+        var finalTotal = (Number(beforeDiscountPrice) + Number(taxesTotal)) - discount_val;
         $("#all-totalss").html(finalTotal.toFixed(2));
         $("#taxes").html(taxesTotal);
         $(".hidden_taxes").val(taxesTotal);
 
         let items_count = $(".items_r").children().length;
-        if (items_count == 0 ){
+        if (items_count == 0) {
             $('a#pay_off').removeAttr('href');
         }
     })
@@ -225,7 +245,7 @@ payOffForm.submit(function (e) {
             if ($.isEmptyObject(data.error)) {
                 toastr.success(" تم تأكيد الطلب بنجاح");
                 // window.location.href = '/orders/' + data.id + '?success=1';
-                window.location.href = '/orders/' + data.id ;
+                window.location.href = '/orders/' + data.id;
             } else {
                 toastr.error(data.error);
             }
@@ -242,3 +262,44 @@ $(document).on('click', 'input[name=payment]', function () {
     if (type === 'bank_transaction') $('.bank-transaction').removeClass('hidden')
     else $('.bank-transaction').addClass('hidden')
 })
+
+///////////////////////////////////////////////////////////
+// cartSideMenu.append(' <li>' +
+//     ' <div class="flexx cart_item">' +
+//     ' <button class="nav-icon remove_item1"' +
+//     ' data-url="{{route(\'website.orders.removeItem\',$item->id)}}">' +
+//     ' <i class="far fa-trash-alt"></i>' +
+//     ' </button>' +
+//     ' <span class="bell">' +
+//     ' <img src="{{$item->productQuantity->product->image}}">' +
+//     ' </span>' +
+//     '<div class="notify">' +
+//     ' <h4>{{$item->productQuantity->product->name ?? \'\'}}</h4>' +
+//     '  <h5 class="sec_name">{{$item->productQuantity->product->subcategory->name ?? \'\'}}</h5>' +
+//     ' <div class="theQnt"> الكمية :' +
+//     '  <div class="number-input">' +
+//     ' <button type="button"' +
+//     '  onclick="this.parentNode.querySelector(\'.quantity\').stepUp()"' +
+//     '  class="plus"><i class="fas fa-plus"></i>' +
+//     '  </button>' +
+//     ' <input class="quantity" min="1" name="quantity"' +
+//     '  data-product="{{$item->productQuantity->id }}"' +
+//     ' data-item="{{$item->id}}"' +
+//     ' data-cart="{{$item->cart_id}}"' +
+//     ' value="{{$item->quantity}}" type="number">' +
+//     '  <button type="button"' +
+//     ' onclick="this.parentNode.querySelector(\'.quantity\').stepDown()"' +
+//     '  class="minus"><i class="fas fa-minus">' +
+//     ' </i></button>' +
+//     '</div>' +
+//     ' </div>' +
+//     '  @if($item->productQuantity->product->discount > 0)' +
+//     '  <p class="old_price">{{$item->productQuantity->product->price ?? \'لا يوجد\'}}' +
+//     '                                                            ريال </p>' +
+//     ' @endif' +
+//     '<p class="i_price">{{$item->productQuantity->product->priceAfterDiscount ?? \'لا يوجد\'}}' +
+//     '                                                            ريال </p>' +
+//     '{{--   <p class="hint">الشحن مجانا لفترة محدودة</p>--}}' +
+//     '  </div>' +
+//     ' </div>' +
+//     '</li>');
