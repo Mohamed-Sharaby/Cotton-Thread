@@ -39,6 +39,18 @@ class FavouritesController extends Controller
                 $q->whereHas('product_sizes',function (Builder $b)use($request){
                     $b->where('sizes.id',$request['size_id']);
                 });
+            })
+            ->when(($request->has('order_by') && $request['order_by']),function ($q)use($request){
+                if($request['order_by'] == 'max')
+                    $q->orderBy('price','desc');
+                elseif ($request['order_by'] == 'min')
+                    $q->orderBy('price','asc');
+                elseif ($request['order_by'] == 'big_discount')
+                    $q->orderBy('discount','desc');
+                elseif ($request['order_by'] == 'most_sale')
+                    $q;     // edit in future
+                else
+                    $q;
             })->paginate(8);
         $favourites = new ProductsCollection($favourites);
 
