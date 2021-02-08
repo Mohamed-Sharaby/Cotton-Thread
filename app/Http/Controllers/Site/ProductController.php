@@ -84,41 +84,36 @@ class ProductController extends Controller
 
     public function filter(Request $request)
     {
-
         $products = Product::query();
-
         $categories = $request->category;
-        $colors = $request->color;
-        $sizes = $request->size;
+        $requestColors = $request->color;
+        $requestSizes = $request->size;
         $price_from = $request->price_from;
         $price_to = $request->price_to;
 
         if ($request->has('category')) {
             $subCategories = SubCategory::whereIn('category_id', (array)$categories)->pluck('id')->toArray();
-            $products->whereIn('subcategory_id', $subCategories);
+            $products = $products->whereIn('subcategory_id', $subCategories)->get();
 
         }
-
         if ($request->has('color')) {
+            $colors = Color::whereIn('id', (array)$requestColors)->pluck('id')->toArray();
             $products = Product::whereHas('product_colors', function ($q) use ($colors) {
                 $q->whereIn('color_id', $colors);
-            });
+            })->get();
         }
-
-
         if ($request->has('size')) {
+            $sizes = Size::whereIn('id', (array)$requestSizes)->pluck('id')->toArray();
             $products = Product::whereHas('product_sizes', function ($q) use ($sizes) {
                 $q->whereIn('size_id', $sizes);
-            });
+            })->get();
         }
-
-
-        if ($price_from >= 0 && $price_to >= 0) {
-            $products = $products->whereBetween('price', [$price_from, $price_to]);
+        if (!is_null($price_from) && !is_null($price_to)) {
+           $products = Product::whereBetween('price', [$price_from, $price_to])->get();
         }
-
-
-        $products = $products->paginate(12);
-        return view('site.products.all-products', compact('products'));
+        // $products = $products->paginate(12);
+        // return view('site.products.all-products', compact('products'));
+        return view('site.search', compact('products'));
     }
+
 }
