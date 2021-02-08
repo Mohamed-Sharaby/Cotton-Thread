@@ -37,8 +37,12 @@
                 </button>
             </div>
             <a href="{{route('website.products.single',$product->id)}}" class="name_prod">{{$product->name}}   </a>
+
             <div class="price_inner">
-                <p class="price_p"><span>{{$product->priceAfterDiscount}}</span> ريال  </p>
+                @if($product->discount > 0)
+                    <p class="price_p old_price"><span>{{$product->price}}</span> ريال  </p>
+                @endif
+                <p class="price_p new_price"><span>{{$product->priceAfterDiscount}}</span> ريال  </p>
             </div>
         </div>
     </div>

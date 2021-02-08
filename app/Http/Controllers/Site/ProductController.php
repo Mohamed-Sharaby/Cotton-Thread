@@ -14,20 +14,18 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index($id = null)
+    public function index(Request $request, $id = null)
     {
         $subCategoryName = SubCategory::whereId($id)->first();
-        $products = Product::active();
+        $products = Product::query()->active();
         if (!is_null($id)) {
-            $products = Product::whereSubcategoryId($id)->active();
+            $products = Product::whereSubcategoryId($id);
         }
-        $categories = Category::active()->get();
 
-        if (!is_null(\request('q'))) {
-            $products = $products->where('ar_name', 'like', '%' . \request('q') . '%')->orWhere('en_name', 'like', '%' . \request('q') . '%');
-        }
+       $products = $this->filterData($request,$products);
 
         $products = $products->paginate(12);
+        $categories = Category::active()->get();
         return view('site.products.all-products', compact('products', 'categories', 'subCategoryName'));
     }
 
@@ -82,37 +80,36 @@ class ProductController extends Controller
     }
 
 
-    public function filter(Request $request)
+    public function filterData( $request,$products)
     {
-        $products = Product::query();
-        $categories = $request->category;
         $requestColors = $request->color;
         $requestSizes = $request->size;
         $price_from = $request->price_from;
         $price_to = $request->price_to;
 
-        if ($request->has('category')) {
-            $subCategories = SubCategory::whereIn('category_id', (array)$categories)->pluck('id')->toArray();
-            $products = $products->whereIn('subcategory_id', $subCategories)->get();
+        if ($request->has('q') && !is_null($request->q)) {
+            $products = $products->where('ar_name', 'like', '%' . \request('q') . '%')->orWhere('en_name', 'like', '%' . \request('q') . '%');
         }
-        if ($request->has('color')) {
+
+        if ($request->has('color')  && !is_null($request->color)) {
             $colors = Color::whereIn('id', (array)$requestColors)->pluck('id')->toArray();
-            $products = Product::whereHas('product_colors', function ($q) use ($colors) {
+            $products = $products->whereHas('product_colors', function ($q) use ($colors) {
                 $q->whereIn('color_id', $colors);
-            })->get();
+            });
         }
-        if ($request->has('size')) {
+        if ($request->has('size') && !is_null($request->size)) {
             $sizes = Size::whereIn('id', (array)$requestSizes)->pluck('id')->toArray();
-            $products = Product::whereHas('product_sizes', function ($q) use ($sizes) {
+            $products =$products->whereHas('product_sizes', function ($q) use ($sizes) {
                 $q->whereIn('size_id', $sizes);
-            })->get();
+            });
         }
         if (!is_null($price_from) && !is_null($price_to)) {
-           $products = Product::whereBetween('price', [$price_from, $price_to])->get();
+            $products = $products->whereBetween('price', [$price_from, $price_to]);
         }
-        // $products = $products->paginate(12);
-        // return view('site.products.all-products', compact('products'));
-        return view('site.search', compact('products'));
+
+        return $products;
     }
+
+
 
 }
