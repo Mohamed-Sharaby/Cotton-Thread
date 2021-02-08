@@ -106,8 +106,8 @@ Route::get('/booking-done', function () {
     return view('site.booking-done');
 });
 
-Route::get('/search-result', function () {
-    return view('site.search-result');
-});
+//Route::get('/search', function () {
+//    return view('site.search');
+//});
 
 
