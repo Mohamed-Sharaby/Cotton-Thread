@@ -94,7 +94,6 @@ class ProductController extends Controller
         if ($request->has('category')) {
             $subCategories = SubCategory::whereIn('category_id', (array)$categories)->pluck('id')->toArray();
             $products = $products->whereIn('subcategory_id', $subCategories)->get();
-
         }
         if ($request->has('color')) {
             $colors = Color::whereIn('id', (array)$requestColors)->pluck('id')->toArray();

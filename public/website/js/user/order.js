@@ -54,10 +54,12 @@ $(".remove_item1").on('click', function (event) {
                     if (data.status === false) {
                         window.location.href = '/';
                     }
+                    if (data.status === true) {
+                        location.reload(true)
+                    }
                     swal("تم الحذف بنجاح", "تم الحذف بنجاح", 'success', {buttons: "موافق"});
                     cur.parents('div.cart_item').fadeOut(700);
                     cur.parents('div.cart_item').remove(700);
-
                 },
                 error: function (error) {
                     console.log('there is an error ', error)
