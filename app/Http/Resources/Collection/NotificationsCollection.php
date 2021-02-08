@@ -31,7 +31,7 @@ class NotificationsCollection extends ResourceCollection
 //                            sprintf('cart status changed %s ',$q->data['id'])
 //                        ,
                         'target'=> 'cart',
-                        'target_id'=> $q->data['id'],    // reservation_id
+//                        'target_id'=> $q->data['id'],    // reservation_id
                         'read_at'=>($q->read_at)?true:false,
                         'can_rate'=>($q->data['status'] == 'finished')?true:false,
                         'is_rated'=>false,//(RateComment::where('product_id',$q->data['id'])->where('user_id',auth()->id())->exists())?true:false,
