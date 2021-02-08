@@ -30,12 +30,12 @@ class FavouritesController extends Controller
                     ->get()->pluck('id')->toArray();
                 $q->whereIn('subcategory_id',$subcategories_id);
             })
-            ->when(($request->has('color_id') && $request['color']),function ($q)use($request){
+            ->when(($request->has('color_id') && $request['color_id']),function ($q)use($request){
                 $q->whereHas('product_colors',function (Builder $b)use($request){
                     $b->where('colors.id',$request['color_id']);
                 });
             })
-            ->when(($request->has('size_id') && $request['size']),function ($q)use($request){
+            ->when(($request->has('size_id') && $request['size_id']),function ($q)use($request){
                 $q->whereHas('product_sizes',function (Builder $b)use($request){
                     $b->where('sizes.id',$request['size_id']);
                 });
