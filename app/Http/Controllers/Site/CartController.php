@@ -58,14 +58,30 @@ class CartController extends Controller
 
         $productQuantity = $productQuantity->first();
         $openCart = $user->carts()->where('status', 'open');
+
+        $data = [
+            'product_quantity' => $productQuantity->id,
+            'product_id' => $product->id,
+            'product_name' => $product->name,
+            'product_image' => $product->image,
+            'price' => $product->price,
+            'price_after_discount' => $product->priceAfterDiscount,
+            'quantity' => $request->quantity,
+            'sub_category' => $product->subcategory->name
+        ];
         if ($openCart->exists()) {
             $openCart = $openCart->first();
-            $openCart->itemsUpdate($productQuantity,$request );
-            return response()->json(['status' => true, 'msg' => 'Added Successfully']);
-        }
-        else {
+            $openCart->itemsUpdate($productQuantity, $request);
+            return response()->json(['status' => true, 'msg' => 'Added Successfully',
+                'cart_id' => Cart::where('user_id', $user->id)->whereStatus('open')->first()->id,
+                'data' => $data
+            ]);
+        } else {
             Cart::addToCart($productQuantity, $request);
-            return response()->json(['status' => true, 'msg' => 'Added Successfully']);
+            return response()->json(['status' => true, 'msg' => 'Added Successfully',
+                'cart_id' => Cart::where('user_id', $user->id)->whereStatus('open')->first()->id,
+                'data' => $data
+            ]);
         }
 
     }
@@ -124,11 +140,11 @@ class CartController extends Controller
     {
         $item = CartItem::findOrFail($request->item);
 
-        if ($request->quantity > $item->quantity){
+        if ($request->quantity > $item->quantity) {
             $q = $request->quantity - $item->quantity;
             $item->productQuantity->update(['quantity' => $item->productQuantity->quantity - $q]);
-        }else{
-            $q =  $item->quantity - $request->quantity ;
+        } else {
+            $q = $item->quantity - $request->quantity;
             $item->productQuantity->update(['quantity' => $item->productQuantity->quantity + $q]);
         }
 
@@ -192,7 +208,7 @@ class CartController extends Controller
             'payment' => $request->payment,
             //'status' => 'confirmed',
         ]);
-       // $cart->user->notify(new CartStatusNotification($cart, 'open'));
+        // $cart->user->notify(new CartStatusNotification($cart, 'open'));
         Notification::send($cart->user, new ChangeCartNotification($cart));
         return response()->json(['status' => true, 'id' => $cart->id]);
     }
