@@ -54,13 +54,13 @@ class ChangeCartNotification extends Notification
      */
     public function toDatabase($notifiable)
     {
-        if(app()->getLocale() == 'ar'){
-            $this->cart['title'] = sprintf("تم تغير حالة الطلب %s",$this->cart->id);
-            $this->cart['body'] = sprintf("تم تغير حالة الطلب %s الى %s",$this->cart->id,__($this->cart->status));
-        }else{
-            $this->cart['title'] = sprintf("status form cart %s changed",$this->cart->id);
-            $this->cart['body'] = sprintf("status for cat %s changed to %s",$this->cart->id,$this->cart->status);
-        }
+//        if(app()->getLocale() == 'ar'){
+//            $this->cart['title'] = sprintf("تم تغير حالة الطلب %s",$this->cart->id);
+//            $this->cart['body'] = sprintf("تم تغير حالة الطلب %s الى %s",$this->cart->id,__($this->cart->status));
+//        }else{
+//            $this->cart['title'] = sprintf("status form cart %s changed",$this->cart->id);
+//            $this->cart['body'] = sprintf("status for cat %s changed to %s",$this->cart->id,$this->cart->status);
+//        }
         return $this->cart;
     }
 }
