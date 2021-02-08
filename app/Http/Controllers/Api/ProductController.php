@@ -83,6 +83,12 @@ class ProductController extends Controller
         $products = $subCategory->products()
             ->where('is_ban',0)
             ->whereHas('product_quantity')
+            ->when(($request->has('search') && $request['search']),function ($q)use($request){
+                $q->where('ar_name','like','%'.$request['search'].'%')
+                    ->orWhere('en_name','like','%'.$request['search'].'%')
+                    ->where('ar_details','like','%'.$request['search'].'%')
+                    ->orWhere('en_details','like','%'.$request['search'].'%');
+            })
             ->when(($request->has('color') && $request['color']),function ($q)use($request){
                 $q->whereHas('product_colors',function (Builder $b)use($request){
                     $b->where('colors.id',$request['color']);
