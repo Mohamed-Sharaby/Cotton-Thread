@@ -7,6 +7,7 @@ use App\Http\Resources\Collection\ProductsCollection;
 use App\Http\Traits\ApiResponse;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 /**
@@ -20,10 +21,25 @@ class FavouritesController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(){
+    public function index(Request $request){
         $user = auth()->user();
 //        $user = User::find(1);
-        $favourites = $user->favProducts()->paginate(8);
+        $favourites = $user->favProducts()
+            ->when(($request->has('category_id') && $request['category_id']),function ($q)use($request){
+                $subcategories_id = SubCategory::where('is_ban',0)->where('category_id',$request['category_id'])
+                    ->get()->pluck('id')->toArray();
+                $q->whereIn('subcategory_id',$subcategories_id);
+            })
+            ->when(($request->has('color_id') && $request['color']),function ($q)use($request){
+                $q->whereHas('product_colors',function (Builder $b)use($request){
+                    $b->where('colors.id',$request['color_id']);
+                });
+            })
+            ->when(($request->has('size_id') && $request['size']),function ($q)use($request){
+                $q->whereHas('product_sizes',function (Builder $b)use($request){
+                    $b->where('sizes.id',$request['size_id']);
+                });
+            })->paginate(8);
         $favourites = new ProductsCollection($favourites);
 
         return $this->apiResponse($favourites);
