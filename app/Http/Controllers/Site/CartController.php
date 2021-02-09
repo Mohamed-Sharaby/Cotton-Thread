@@ -73,14 +73,16 @@ class CartController extends Controller
             $openCart->itemsUpdate($productQuantity, $request);
             return response()->json(['status' => true, 'msg' => 'Added Successfully',
                 'cart_id' => Cart::where('user_id', $user->id)->whereStatus('open')->first()->id,
-                'product_quantity' => CartItem::where('product_quantity_id',$productQuantity->id)->first()->id,
+                'product_quantity'=>$productQuantity->id,
+                'cart_item_id' => CartItem::where('product_quantity_id',$productQuantity->id)->first()->id,
                 'data' => $data
             ]);
         } else {
             Cart::addToCart($productQuantity, $request);
             return response()->json(['status' => true, 'msg' => 'Added Successfully',
                 'cart_id' => Cart::where('user_id', $user->id)->whereStatus('open')->first()->id,
-                'product_quantity' => CartItem::where('product_quantity_id',$productQuantity->id)->first()->id,
+                'product_quantity'=>$productQuantity->id,
+                'cart_item_id' => CartItem::where('product_quantity_id',$productQuantity->id)->first()->id,
                 'data' => $data
             ]);
         }
