@@ -79,7 +79,7 @@ cartForm.submit(function (e) {
 
                 //console.log(data.cart_id);
                 let itemComponent = '<li><div class="flexx cart_item">' +
-                    '<button class="nav-icon remove_item1" data-url="">' +
+                    '<button class="nav-icon remove_item1" data-url="http://127.0.0.1:8000/orders/remove-item/'+data.product_quantity+'">' +
                     '<i class="far fa-trash-alt"></i></button><span class="bell">' +
                     '<img src="'+data.data.product_image+'"></span>' +
                     '<div class="notify"><h4>'+data.data.product_name+'</h4>' +
@@ -87,7 +87,7 @@ cartForm.submit(function (e) {
                     '<div class="theQnt"> الكمية :<div class="number-input">' +
                     '<button type="button" onclick="this.parentNode.querySelector(\'.quantity\').stepUp()" class="plus">' +
                     '<i class="fas fa-plus"></i></button> ' +
-                    '<input class="quantity" min="1" name="quantity"  data-product="'+data.data.product_quantity+'"' +
+                    '<input class="quantity" min="1" name="quantity"  data-product="'+data.product_quantity+'"' +
                     'data-item="'+data.data.product_id+'" data-cart="'+data.cart_id+'" value="'+data.data.quantity+'" type="number">' +
                     '<button type="button" onclick="this.parentNode.querySelector(\'.quantity\').stepDown()" class="minus">' +
                     '<i class="fas fa-minus"></i></button></div></div><p class="old_price">'+data.data.price+'</p>' +
