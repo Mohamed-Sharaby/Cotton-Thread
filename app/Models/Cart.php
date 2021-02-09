@@ -164,7 +164,7 @@ class Cart extends Model
     {
         $sum_orders = $this->cartItems()->selectRaw('SUM(cart_items.price*
         (1-((cart_items.discount)/100))* cart_items.quantity) as sum')->first()->sum;
-        $tax = (1 - (floatval(getSetting('tax_percentage')) / 100)) * $sum_orders;
+        $tax = (floatval(getSetting('tax_percentage')) / 100) * $sum_orders;
         return $tax;
 //        return number_format($tax,2,'.',',');
     }
