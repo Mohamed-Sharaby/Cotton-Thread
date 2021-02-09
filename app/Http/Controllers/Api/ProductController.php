@@ -28,12 +28,14 @@ class ProductController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request){
-        $products = Product::where('products.is_ban',0)->whereHas('product_quantity')
+        $products = Product::where('is_ban',0)->whereHas('product_quantity')
             ->when(($request->has('search') && $request['search']),function ($q)use($request){
-                $q->where('ar_name','like','%'.$request['search'].'%')
-                    ->orWhere('en_name','like','%'.$request['search'].'%')
-                    ->where('ar_details','like','%'.$request['search'].'%')
-                    ->orWhere('en_details','like','%'.$request['search'].'%');
+                $q->where(function ($i)use($request){
+                    $i->where('ar_name','like','%'.$request['search'].'%')
+                        ->orWhere('en_name','like','%'.$request['search'].'%')
+                        ->where('ar_details','like','%'.$request['search'].'%')
+                        ->orWhere('en_details','like','%'.$request['search'].'%');
+                });
             })
             ->when(($request->has('is_new') && $request['is_new']),function ($q)use($request){
                 if($request['is_new'] == true)
@@ -56,8 +58,7 @@ class ProductController extends Controller
                     $q;
             })
             ->when(($request->has('category_id') && $request['category_id']),function ($q)use($request){
-                $subcategories_id = SubCategory::where('sub_categories.is_ban',0)
-                    ->where('category_id',$request['category_id'])
+                $subcategories_id = SubCategory::where('is_ban',0)->where('category_id',$request['category_id'])
                     ->get()->pluck('id')->toArray();
                 $q->whereIn('subcategory_id',$subcategories_id);
             })
@@ -82,13 +83,15 @@ class ProductController extends Controller
      */
     public function proBySubcategory(Request $request, SubCategory $subCategory){
         $products = $subCategory->products()
-
+            ->where('is_ban',0)
             ->whereHas('product_quantity')
             ->when(($request->has('search') && $request['search']),function ($q)use($request){
-                $q->where('ar_name','like','%'.$request['search'].'%')
-                    ->orWhere('en_name','like','%'.$request['search'].'%')
-                    ->where('ar_details','like','%'.$request['search'].'%')
-                    ->orWhere('en_details','like','%'.$request['search'].'%');
+                $q->where(function ($i)use($request){
+                    $i->where('ar_name','like','%'.$request['search'].'%')
+                        ->orWhere('en_name','like','%'.$request['search'].'%')
+                        ->where('ar_details','like','%'.$request['search'].'%')
+                        ->orWhere('en_details','like','%'.$request['search'].'%');
+                });
             })
             ->when(($request->has('color') && $request['color']),function ($q)use($request){
                 $q->whereHas('product_colors',function (Builder $b)use($request){
@@ -112,7 +115,6 @@ class ProductController extends Controller
                 else
                     $q;
             })
-            ->where('is_ban',0)
             ->paginate(8);
         return $this->apiResponse(new ProductsCollection($products));
     }

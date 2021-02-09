@@ -27,10 +27,12 @@ class FavouritesController extends Controller
         $favourites = $user->favProducts()
             ->where('is_ban',0)
             ->when(($request->has('search') && $request['search']),function ($q)use($request){
-                $q->where('ar_name','like','%'.$request['search'].'%')
-                    ->orWhere('en_name','like','%'.$request['search'].'%')
-                    ->where('ar_details','like','%'.$request['search'].'%')
-                    ->orWhere('en_details','like','%'.$request['search'].'%');
+                $q->where(function ($i)use($request){
+                    $i->where('ar_name','like','%'.$request['search'].'%')
+                        ->orWhere('en_name','like','%'.$request['search'].'%')
+                        ->where('ar_details','like','%'.$request['search'].'%')
+                        ->orWhere('en_details','like','%'.$request['search'].'%');
+                });
             })
             ->when(($request->has('category_id') && $request['category_id']),function ($q)use($request){
                 $subcategories_id = SubCategory::where('is_ban',0)->where('category_id',$request['category_id'])
