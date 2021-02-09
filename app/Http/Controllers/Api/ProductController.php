@@ -28,16 +28,16 @@ class ProductController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request){
-        $products = Product::whereHas('product_quantity')
+        $products = Product::where('products.is_ban',0)->whereHas('product_quantity')
             ->when(($request->has('search') && $request['search']),function ($q)use($request){
-                $q->where('is_ban',0)->where('ar_name','like','%'.$request['search'].'%')
+                $q->where('ar_name','like','%'.$request['search'].'%')
                     ->orWhere('en_name','like','%'.$request['search'].'%')
                     ->where('ar_details','like','%'.$request['search'].'%')
                     ->orWhere('en_details','like','%'.$request['search'].'%');
             })
             ->when(($request->has('is_new') && $request['is_new']),function ($q)use($request){
                 if($request['is_new'] == true)
-                    $q->where('is_ban',0)->where('is_new',1);
+                    $q->where('is_new',1);
             })
             ->when(($request->has('has_discount') && $request['has_discount']),function ($q)use($request){
                 if($request['has_discount'] == true)
@@ -56,7 +56,8 @@ class ProductController extends Controller
                     $q;
             })
             ->when(($request->has('category_id') && $request['category_id']),function ($q)use($request){
-                $subcategories_id = SubCategory::where('is_ban',0)->where('category_id',$request['category_id'])
+                $subcategories_id = SubCategory::where('sub_categories.is_ban',0)
+                    ->where('category_id',$request['category_id'])
                     ->get()->pluck('id')->toArray();
                 $q->whereIn('subcategory_id',$subcategories_id);
             })
