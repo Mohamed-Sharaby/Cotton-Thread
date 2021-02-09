@@ -86,7 +86,6 @@
                                     {!! $productOffers->links() !!}
                                 </div>
                             </div>
-{{--                            <a class="btn-hvr see_more" href="#">عرض المزيد</a>--}}
                         </div>
                     </div>
                 </div>

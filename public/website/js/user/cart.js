@@ -182,9 +182,10 @@ couponForm.submit(function (e) {
 // remove item from cart
 $(".remove_item").each(function () {
     $(this).click(function () {
-
+        let items_count = $(".items_r").find('.cart_item').length;
         let cart_count = parseInt($('.cart-count').text())
         let id = $(this).data('id');
+
         $.ajax({
             url: '/cart/remove/' + id,
             type: 'post',
@@ -224,10 +225,12 @@ $(".remove_item").each(function () {
         $("#taxes").html(taxesTotal);
         $(".hidden_taxes").val(taxesTotal);
 
-        let items_count = $(".items_r").children().length;
-        if (items_count == 0) {
-            $('a#pay_off').removeAttr('href');
+
+        if (items_count === 0) {
+            //$('a#pay_off').removeAttr('href');
+            window.location.href = '/';
         }
+
     })
 })
 
