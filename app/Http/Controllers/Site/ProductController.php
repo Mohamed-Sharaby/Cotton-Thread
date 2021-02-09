@@ -24,7 +24,7 @@ class ProductController extends Controller
 
        $products = $this->filterData($request,$products);
 
-        $products = $products->paginate(12);
+        $products = $products->paginate(12)->withQueryString();
         $categories = Category::active()->get();
         return view('site.products.all-products', compact('products', 'categories', 'subCategoryName'));
     }
