@@ -9,6 +9,10 @@
             background-color: #fff !important;
             box-shadow: 0px 6px 12px 0px rgba(234,234,234,1);
         }
+        .items_r .row{
+            display: flex;
+            flex-wrap: wrap;
+        }
     </style>
 @endsection
 @section('content')
