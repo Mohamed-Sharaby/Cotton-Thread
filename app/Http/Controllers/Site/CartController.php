@@ -134,8 +134,16 @@ class CartController extends Controller
     public function removeFromCart($id)
     {
         $item = CartItem::findOrFail($id);
+        $cart = Cart::findOrFail($item->first()->cart_id)->first();
         $item->productQuantity->update(['quantity' => $item->productQuantity->quantity + $item->quantity]);
         $item->delete();
+
+        if (count($cart->cartItems) ==0){
+            if ($cart->coupon_id){
+                $cart->update(['coupon_id'=>null]);
+            }
+        }
+
         return response()->json('success');
     }
 
