@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="de1d87b9-e7bc-433d-bd1d-972c1476a1c6" name="Default" comment="" />
+    <list default="true" id="de1d87b9-e7bc-433d-bd1d-972c1476a1c6" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,17 +33,30 @@
       <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
+            <state relative-caret-position="297">
               <caret line="50" column="100" lean-forward="true" selection-start-line="50" selection-start-column="100" selection-end-line="50" selection-end-column="100" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FavouritesController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/FavouritesController.php">
+      <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="72" column="32" lean-forward="true" selection-start-line="72" selection-start-column="32" selection-end-line="72" selection-end-column="32" />
+            <state relative-caret-position="86">
+              <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+              <folding>
+                <element signature="e#921#1263#1#PHP" />
+                <element signature="e#1332#1463#1#PHP" />
+                <element signature="e#1544#1687#1#PHP" />
+                <element signature="e#1760#2271#1#PHP" />
+                <element signature="e#2350#2622#1#PHP" />
+                <element signature="e#2689#2894#1#PHP" />
+                <element signature="e#2959#3161#1#PHP" />
+                <element signature="e#3667#4009#1#PHP" />
+                <element signature="e#4076#4281#1#PHP" />
+                <element signature="e#4346#4548#1#PHP" />
+                <element signature="e#4621#5132#1#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -61,7 +76,6 @@
       <find>sum</find>
       <find>discount</find>
       <find>unauthorized</find>
-      <find>tax</find>
       <find>localCart</find>
       <find>'</find>
       <find>token</find>
@@ -88,6 +102,7 @@
       <find>favourites</find>
       <find>CartStatusNotification</find>
       <find>products</find>
+      <find>tax</find>
     </findStrings>
     <replaceStrings>
       <replace>href=&quot;#&quot;</replace>
@@ -125,7 +140,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2021_01_19_132959_alter_status_to_carts_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/AddressesController.php" />
         <option value="$PROJECT_DIR$/resources/lang/ar.json" />
-        <option value="$PROJECT_DIR$/app/Models/Cart.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" />
         <option value="$PROJECT_DIR$/app/Notifications/GeneralNotification.php" />
         <option value="$PROJECT_DIR$/app/Http/Traits/FireBase.php" />
@@ -151,8 +165,9 @@
         <option value="$PROJECT_DIR$/app/Http/Resources/Collection/NotificationsCollection.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Resource/ProductColorsResource.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/FavouritesController.php" />
+        <option value="$PROJECT_DIR$/app/Models/Cart.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php" />
       </list>
     </option>
   </component>
@@ -345,14 +360,7 @@
               <item name="cotton" type="b2602c69:ProjectViewProjectNode" />
               <item name="cotton" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Traits" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cotton" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cotton" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Notifications" type="462c0819:PsiDirectoryNode" />
+              <item name="Models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="cotton" type="b2602c69:ProjectViewProjectNode" />
@@ -439,12 +447,12 @@
       <workItem from="1612423006246" duration="3558000" />
       <workItem from="1612703178888" duration="1651000" />
       <workItem from="1612781154948" duration="2324000" />
-      <workItem from="1612850524565" duration="484000" />
+      <workItem from="1612850524565" duration="1676000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="242459000" />
+    <option name="totallyTimeSpent" value="243651000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -453,11 +461,11 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5013423" side_tool="true" weight="0.28490028" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="7" sideWeight="0.49932885" visible="true" weight="0.4059829" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49932885" weight="0.4059829" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4986577" weight="0.28490028" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22080536" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4986577" visible="true" weight="0.28490028" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22080536" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3295302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -637,13 +645,6 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/Auth/LoginRequest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1695" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Cart.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="19" column="57" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="57" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php">
@@ -826,27 +827,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/FavouritesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="95" column="14" lean-forward="true" selection-start-line="95" selection-start-column="14" selection-end-line="95" selection-end-column="14" />
-          <folding>
-            <element signature="e#3667#4009#1#PHP" />
-          </folding>
+        <state relative-caret-position="276">
+          <caret line="72" column="32" lean-forward="true" selection-start-line="72" selection-start-column="32" selection-end-line="72" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Cart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="169" column="5" lean-forward="true" selection-start-line="169" selection-start-column="5" selection-end-line="169" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
+        <state relative-caret-position="297">
           <caret line="50" column="100" lean-forward="true" selection-start-line="50" selection-start-column="100" selection-end-line="50" selection-end-column="100" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/FavouritesController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/ProductController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="72" column="32" lean-forward="true" selection-start-line="72" selection-start-column="32" selection-end-line="72" selection-end-column="32" />
+        <state relative-caret-position="86">
+          <caret line="30" column="29" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+          <folding>
+            <element signature="e#921#1263#1#PHP" />
+            <element signature="e#1332#1463#1#PHP" />
+            <element signature="e#1544#1687#1#PHP" />
+            <element signature="e#1760#2271#1#PHP" />
+            <element signature="e#2350#2622#1#PHP" />
+            <element signature="e#2689#2894#1#PHP" />
+            <element signature="e#2959#3161#1#PHP" />
+            <element signature="e#3667#4009#1#PHP" />
+            <element signature="e#4076#4281#1#PHP" />
+            <element signature="e#4346#4548#1#PHP" />
+            <element signature="e#4621#5132#1#PHP" />
+          </folding>
         </state>
       </provider>
     </entry>

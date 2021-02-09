@@ -28,7 +28,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request){
-        $products = Product::where('is_ban',0)->whereHas('product_quantity')
+        $products = Product::whereHas('product_quantity')
             ->when(($request->has('search') && $request['search']),function ($q)use($request){
                 $q->where('ar_name','like','%'.$request['search'].'%')
                     ->orWhere('en_name','like','%'.$request['search'].'%')
@@ -70,6 +70,7 @@ class ProductController extends Controller
                     $b->where('sizes.id',$request['size']);
                 });
             })
+            ->where('is_ban',0)
             ->paginate(8);
         return $this->apiResponse(new ProductsCollection($products));
     }
@@ -81,7 +82,7 @@ class ProductController extends Controller
      */
     public function proBySubcategory(Request $request, SubCategory $subCategory){
         $products = $subCategory->products()
-            ->where('is_ban',0)
+
             ->whereHas('product_quantity')
             ->when(($request->has('search') && $request['search']),function ($q)use($request){
                 $q->where('ar_name','like','%'.$request['search'].'%')
@@ -111,6 +112,7 @@ class ProductController extends Controller
                 else
                     $q;
             })
+            ->where('is_ban',0)
             ->paginate(8);
         return $this->apiResponse(new ProductsCollection($products));
     }
