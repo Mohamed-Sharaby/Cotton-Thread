@@ -26,7 +26,7 @@ class UserResource extends JsonResource
             'email'=>$this->email,
             'phone'=>$this->phone,
             'is_verified'=>$this->is_verified,
-            'is_ban'=>($this->is_ban)?true:false,
+            'is_ban'=>($this->is_ban==1)?true:false,
             'token'=>fix_null_string($this->token),
             'image'=>fix_null_string($this->image),
         ];
