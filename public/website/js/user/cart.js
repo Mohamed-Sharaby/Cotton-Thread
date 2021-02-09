@@ -61,7 +61,7 @@ cartForm.submit(function (e) {
     // console.log(e.target)
     var formData = cartForm.serialize();
     let cart_count = parseInt($('.cart-count').text());
-    let cartSideMenu = $('#cartSideMenu').find('ul');
+    let cartSideMenu = $('#cartSideMenu');
 
     $.ajax({
         url: '/cart/add',
@@ -78,21 +78,26 @@ cartForm.submit(function (e) {
                 $('#AddToCartModal').modal('hide');
 
                 //console.log(data.cart_id);
+                let url = window.location.href;
+                let data_url = url+'orders/remove-item/'+data.cart_item_id;
+                let product_url = url+'products/single/'+data.data.product_id;
+
                 let itemComponent = '<li><div class="flexx cart_item">' +
-                    '<button class="nav-icon remove_item1" data-url="">' +
+                    '<button class="nav-icon remove_item1" data-url="'+data_url+'">' +
                     '<i class="far fa-trash-alt"></i></button><span class="bell">' +
-                    '<img src="'+data.data.product_image+'"></span>' +
-                    '<div class="notify"><h4>'+data.data.product_name+'</h4>' +
+                    '<a href="'+product_url+'"><img src="'+data.data.product_image+'"></a></span>' +
+                    '<div class="notify"><h4><a href="'+product_url+'">'+data.data.product_name+'</a></h4>' +
                     '<h5 class="sec_name">'+data.data.sub_category+'</h5>' +
                     '<div class="theQnt"> الكمية :<div class="number-input">' +
                     '<button type="button" onclick="this.parentNode.querySelector(\'.quantity\').stepUp()" class="plus">' +
                     '<i class="fas fa-plus"></i></button> ' +
-                    '<input class="quantity" min="1" name="quantity"  data-product="'+data.data.product_quantity+'"' +
-                    'data-item="'+data.data.product_id+'" data-cart="'+data.cart_id+'" value="'+data.data.quantity+'" type="number">' +
+                    '<input class="quantity" min="1" name="quantity"  data-product="'+data.product_quantity+'"' +
+                    'data-item="'+data.cart_item_id+'" data-cart="'+data.cart_id+'" value="'+data.data.quantity+'" type="number">' +
                     '<button type="button" onclick="this.parentNode.querySelector(\'.quantity\').stepDown()" class="minus">' +
                     '<i class="fas fa-minus"></i></button></div></div><p class="old_price">'+data.data.price+'</p>' +
                     '<p class="i_price">'+data.data.price_after_discount+'</p></div></div></li>';
-                cartSideMenu.append(itemComponent);
+                cartSideMenu.find('ul').append(itemComponent);
+
             }
         },
         error: function (data) {
@@ -264,42 +269,3 @@ $(document).on('click', 'input[name=payment]', function () {
 })
 
 ///////////////////////////////////////////////////////////
-// cartSideMenu.append(' <li>' +
-//     ' <div class="flexx cart_item">' +
-//     ' <button class="nav-icon remove_item1"' +
-//     ' data-url="{{route(\'website.orders.removeItem\',$item->id)}}">' +
-//     ' <i class="far fa-trash-alt"></i>' +
-//     ' </button>' +
-//     ' <span class="bell">' +
-//     ' <img src="{{$item->productQuantity->product->image}}">' +
-//     ' </span>' +
-//     '<div class="notify">' +
-//     ' <h4>{{$item->productQuantity->product->name ?? \'\'}}</h4>' +
-//     '  <h5 class="sec_name">{{$item->productQuantity->product->subcategory->name ?? \'\'}}</h5>' +
-//     ' <div class="theQnt"> الكمية :' +
-//     '  <div class="number-input">' +
-//     ' <button type="button"' +
-//     '  onclick="this.parentNode.querySelector(\'.quantity\').stepUp()"' +
-//     '  class="plus"><i class="fas fa-plus"></i>' +
-//     '  </button>' +
-//     ' <input class="quantity" min="1" name="quantity"' +
-//     '  data-product="{{$item->productQuantity->id }}"' +
-//     ' data-item="{{$item->id}}"' +
-//     ' data-cart="{{$item->cart_id}}"' +
-//     ' value="{{$item->quantity}}" type="number">' +
-//     '  <button type="button"' +
-//     ' onclick="this.parentNode.querySelector(\'.quantity\').stepDown()"' +
-//     '  class="minus"><i class="fas fa-minus">' +
-//     ' </i></button>' +
-//     '</div>' +
-//     ' </div>' +
-//     '  @if($item->productQuantity->product->discount > 0)' +
-//     '  <p class="old_price">{{$item->productQuantity->product->price ?? \'لا يوجد\'}}' +
-//     '                                                            ريال </p>' +
-//     ' @endif' +
-//     '<p class="i_price">{{$item->productQuantity->product->priceAfterDiscount ?? \'لا يوجد\'}}' +
-//     '                                                            ريال </p>' +
-//     '{{--   <p class="hint">الشحن مجانا لفترة محدودة</p>--}}' +
-//     '  </div>' +
-//     ' </div>' +
-//     '</li>');
