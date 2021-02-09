@@ -87,8 +87,9 @@ class ProductController extends Controller
         $price_from = $request->price_from;
         $price_to = $request->price_to;
 
-        if ($request->has('q') && !is_null($request->q)) {
-            $products = $products->where('ar_name', 'like', '%' . \request('q') . '%')->orWhere('en_name', 'like', '%' . \request('q') . '%');
+        if ($request->has('search') && !is_null($request->search)) {
+            $products = $products->where('ar_name', 'like', '%' . $request->search . '%')
+                                ->orWhere('en_name', 'like', '%' . $request->search . '%');
         }
 
         if ($request->has('color')  && !is_null($request->color)) {

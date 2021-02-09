@@ -160,8 +160,8 @@
                         <form action="{{route('website.products.index')}}" method="GET" class="search-form"
                               role="search">
                             <div class="form-group" id="search">
-                                <input type="text" class="form-control" placeholder="بحث" name="q"
-                                       value="{{ request('q') }}">
+                                <input type="text" class="form-control" placeholder="بحث" name="search"
+                                       value="{{ request('search') }}">
                                 <button type="submit" class="form-control form-control-submit">بحث</button>
                                 <span class="nav-icon"> <i class="fas fa-search"></i></span>
                             </div>
