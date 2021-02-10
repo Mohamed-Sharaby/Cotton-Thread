@@ -75,5 +75,6 @@ Route::group(['middleware'=>['jwt.check','x-lang']],function (){
    Route::post('/contact',[HomeController::class,'contact']);
    Route::get('/gallery/{key}',[HomeController::class,'gallery']);
    Route::get('/setting/{key}',[HomeController::class,'setting']);
+   Route::get('/setting-intro/{key}',[HomeController::class,'settingSlug']);
    Route::get('/setting',[HomeController::class,'allSetting']);
 });

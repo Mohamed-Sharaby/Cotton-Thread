@@ -54,6 +54,21 @@ class HomeController extends Controller
         return $this->apiResponse(getSetting($key));
     }
 
+    /**
+     * @param $key
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function settingSlug($key){
+        $settings = Setting::where('slug',$key)->get()->transform(function ($q){
+            return[
+                'title'=>$q->title,
+                'value'=>$q->value,
+            ];
+        });
+
+        return $this->apiResponse($settings);
+    }
+
 
     /**
      * @param $key
