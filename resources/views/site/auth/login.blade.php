@@ -39,13 +39,13 @@
                 <a class="forget-pass" href="{{route('website.resetForm')}}">نسيت كلمة المرور ؟</a>
                 <button type="submit" class="btn-hvr">تسجيل دخول</button>
                 <a href="{{route('register')}}" class="btn-hvr bg-w">انشاء حساب</a>
-                <span class="media-tit">او سجل بحساب التواصل الاجتماعى</span>
-                <ul class="social">
-                    <li><a href="{{ route('social.login', 'facebook') }}" class="icon-f"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="{{ route('social.login', 'google') }}" class="icon-g"><i class="fab fa-google-plus-g"></i></a></li>
-                    <li><a href="{{ route('social.login', 'twitter') }}" class="icon-tw"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="{{ route('social.login', 'instagram') }}" class="icon-ig"><i class="fab fa-instagram"></i></a></li>
-                </ul>
+{{--                <span class="media-tit">او سجل بحساب التواصل الاجتماعى</span>--}}
+{{--                <ul class="social">--}}
+{{--                    <li><a href="{{ route('social.login', 'facebook') }}" class="icon-f"><i class="fab fa-facebook"></i></a></li>--}}
+{{--                    <li><a href="{{ route('social.login', 'google') }}" class="icon-g"><i class="fab fa-google-plus-g"></i></a></li>--}}
+{{--                    <li><a href="{{ route('social.login', 'twitter') }}" class="icon-tw"><i class="fab fa-twitter"></i></a></li>--}}
+{{--                    <li><a href="{{ route('social.login', 'instagram') }}" class="icon-ig"><i class="fab fa-instagram"></i></a></li>--}}
+{{--                </ul>--}}
             </form>
         </div>
     </div>
