@@ -51,23 +51,23 @@ class AuthenticatedSessionController extends Controller
         return redirect('/');
     }
 
-    public function redirectToProvider($provider)
-    {
-        return Socialite::driver($provider)->redirect();
-    }
-
-    public function handleProviderCallback($provider)
-    {
-        $user = Socialite::driver($provider)->user();
-
-        $social_id = $user->getId();
-        $_user = User::firstOrCreate(['social_id' => $social_id, 'social_type', $provider], [
-            'name' => $user->getName(),
-            'email' => $user->getEmail(),
-            'image' => $user->getAvatar()
-        ]);
-
-        \auth()->login($_user);
-        return redirect()->intended(URL::route('/'));
-    }
+//    public function redirectToProvider($provider)
+//    {
+//        return Socialite::driver($provider)->redirect();
+//    }
+//
+//    public function handleProviderCallback($provider)
+//    {
+//        $user = Socialite::driver($provider)->user();
+//
+//        $social_id = $user->getId();
+//        $_user = User::firstOrCreate(['social_id' => $social_id, 'social_type', $provider], [
+//            'name' => $user->getName(),
+//            'email' => $user->getEmail(),
+//            'image' => $user->getAvatar()
+//        ]);
+//
+//        \auth()->login($_user);
+//        return redirect()->intended(URL::route('/'));
+//    }
 }
