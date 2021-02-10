@@ -46,20 +46,20 @@
                 </div>
                 <button type="submit" class="btn-hvr">انشاء حساب</button>
                 <a href="{{route('login')}}" class="btn-hvr bg-w">تسجيل دخول</a>
-                <span class="media-tit">او سجل بحساب التواصل الاجتماعى</span>
-                <ul class="social">
-                    <li>
-                        <a href="{{ route('social.login', 'facebook') }}" class="icon-f">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                    </li>
-                    <li><a href="{{ route('social.login', 'google') }}" class="icon-g">
-                            <i class="fab fa-google-plus-g"></i>
-                        </a>
-                    </li>
-                    <li><a href="{{ route('social.login', 'twitter') }}" target="_blank" class="icon-tw"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="{{ route('social.login', 'instagram') }}" target="_blank" class="icon-ig"><i class="fab fa-instagram"></i></a></li>
-                </ul>
+{{--                <span class="media-tit">او سجل بحساب التواصل الاجتماعى</span>--}}
+{{--                <ul class="social">--}}
+{{--                    <li>--}}
+{{--                        <a href="{{ route('social.login', 'facebook') }}" class="icon-f">--}}
+{{--                            <i class="fab fa-facebook"></i>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li><a href="{{ route('social.login', 'google') }}" class="icon-g">--}}
+{{--                            <i class="fab fa-google-plus-g"></i>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li><a href="{{ route('social.login', 'twitter') }}" target="_blank" class="icon-tw"><i class="fab fa-twitter"></i></a></li>--}}
+{{--                    <li><a href="{{ route('social.login', 'instagram') }}" target="_blank" class="icon-ig"><i class="fab fa-instagram"></i></a></li>--}}
+{{--                </ul>--}}
             </form>
         </div>
     </div>
