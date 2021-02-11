@@ -1,19 +1,19 @@
 <div class="pro-rating">
     <div class="col-md-6 col-xs-12">
         <div class="user-rating">
-            <div class="rate_in">
-                <p class="rate_ratio">{{$product->avg_rate}}</p>
-                <ul class="stars">
-                    <!-- add class (.yellowed) to the number of rates --->
-                    @for($i=0; $i< $product->avg_rate; $i++)
-                        <li class="yellowed"><i class="fas fa-star"></i></li>
-                        @endfor
-                        @for($i=0;$i<(5-$product->avg_rate);$i++)
-                            <li><i class="fas fa-star"></i></li>
-                            @endfor
-                </ul>
-                <span>التقييم الكلى</span>
-            </div>
+            {{--<div class="rate_in">--}}
+                {{--<p class="rate_ratio">{{$product->avg_rate}}</p>--}}
+                {{--<ul class="stars">--}}
+                    {{--<!-- add class (.yellowed) to the number of rates --->--}}
+                    {{--@for($i=0; $i< $product->avg_rate; $i++)--}}
+                        {{--<li class="yellowed"><i class="fas fa-star"></i></li>--}}
+                        {{--@endfor--}}
+                        {{--@for($i=0;$i<(5-$product->avg_rate);$i++)--}}
+                            {{--<li><i class="fas fa-star"></i></li>--}}
+                            {{--@endfor--}}
+                {{--</ul>--}}
+                {{--<span>التقييم الكلى</span>--}}
+            {{--</div>--}}
             {{-- <div class="user-rating-details-wrap">--}}
             {{-- <h3>التقييم الكلى</h3>--}}
             {{-- <div class="user-rating-details">--}}
@@ -71,7 +71,7 @@
 
     <div class="col-md-6 col-xs-12">
         @auth()
-        @if($can_rate)
+{{--        @if($can_rate)--}}
         <div class="your-rating">
             <form class="add_comment_form" action="{{route('website.products.rate')}}" method="post">
                 @csrf
@@ -108,7 +108,7 @@
                 <button type="submit" class="btn-hvr" id="add_comment_btn">إضافة</button>
             </form>
         </div>
-        @endif
+        {{--@endif--}}
         @else
         <h3>إضافة تقييمك</h3>
         <p class="alert alert-danger">سجل <a href="{{route('login')}}" class="text-light"> دخولك </a> لكى تتمكن من اضافة تقييم</p>

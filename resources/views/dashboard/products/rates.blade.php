@@ -50,12 +50,12 @@
 
                     <td class="text-center btn-group">
 
-                        <form
-                            action="{{ route('admin.active', ['id' => $rate->id, 'type' => 'RateComment']) }}"
-                            method="post">@csrf
-                            <button type="submit"
-                                    class="{{ $rate->is_ban ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-success' }}">{{ $rate->is_ban ? 'غير مفعل' : ' مفعل' }}</button>
-                        </form>
+                        {{--<form--}}
+                            {{--action="{{ route('admin.active', ['id' => $rate->id, 'type' => 'RateComment']) }}"--}}
+                            {{--method="post">@csrf--}}
+                            {{--<button type="submit"--}}
+                                    {{--class="{{ $rate->is_ban ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-success' }}">{{ $rate->is_ban ? 'غير مفعل' : ' مفعل' }}</button>--}}
+                        {{--</form>--}}
 
                         <button data-url="{{route('admin.products.destroy_rate',$rate->id)}}"
                                 class="btn btn-danger rounded-circle btn-sm ml-2 delete" title="Delete">
