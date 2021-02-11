@@ -1468,4 +1468,62 @@ table.dataTable > tbody > tr.child ul.dtr-details {
     margin: 0 auto;
   }
 }
+
+/****************************** Reem Last Day Code 11-2-2021 **************************/
+.rating, .rating label {
+  margin: 0;
+  padding: 0;
+}
+
+/****** Style Star Rating Widget *****/
+.rating {
+  border: none;
+  float: right;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: "Font Awesome 5 Free";
+  /* This is the correct font-family*/
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+  -webkit-transform: translateY(2px) rotate(152deg);
+          transform: translateY(2px) rotate(152deg);
+}
+
+.rating > label {
+  color: #ddd;
+  float: left;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #FFD700;
+}
+
+/* hover previous stars in list */
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: #FFED85;
+}
+
+.rating-pro {
+  text-align: right;
+}
 /*# sourceMappingURL=first.css.map */
