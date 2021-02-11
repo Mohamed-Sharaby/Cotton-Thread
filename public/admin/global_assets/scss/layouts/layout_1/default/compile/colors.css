@@ -116,7 +116,7 @@
 }
 
 .text-primary[href]:hover, .text-primary[href]:focus {
-  color: #1fc6c4;
+  color: #458d87;
 }
 
 .bg-primary {
@@ -244,7 +244,7 @@
 }
 
 .text-primary-700[href]:hover, .text-primary-700[href]:focus {
-  color: #1563b0;
+  color: #5b3b1f;
 }
 
 .bg-primary-700 {
@@ -3216,7 +3216,7 @@
 }
 
 .text-slate-800[href]:hover, .text-slate-800[href]:focus {
-  color: #ef6343;
+  color: #458d87;
 }
 
 .bg-slate-800 {
