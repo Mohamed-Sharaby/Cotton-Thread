@@ -59,13 +59,16 @@ class ProductController extends Controller
 
     public function rate(Request $request)
     {
+        $request['rate'] = $request['rating'];
         $product = Product::findOrFail($request->product_id);
         $request->validate([
-            'rate' => '',
-            'comment' => 'required'
+            'rate' => 'required|numeric|between:0.5,5.0',
+            'comment' => 'required|string',
+            'product_id' => 'required|numeric|exists:products,id'
         ]);
-        $request['user_id'] = auth()->user()->id;
-        $product->rates()->create($request->all());
+        $inputs = $request->except(['rating','_token']);
+        $inputs['user_id'] = auth()->user()->id;
+        $product->rates()->create($inputs);
 
         return redirect()->to(url()->previous() . '#pro-rating')->with('success', __('Comment Saved Successfully'));
     }
@@ -110,7 +113,5 @@ class ProductController extends Controller
 
         return $products;
     }
-
-
 
 }
