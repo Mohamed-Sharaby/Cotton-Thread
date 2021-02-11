@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="de1d87b9-e7bc-433d-bd1d-972c1476a1c6" name="Default" comment="" />
+    <list default="true" id="de1d87b9-e7bc-433d-bd1d-972c1476a1c6" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/products/rates.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/products/rates.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/site/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/site/products/product-rates.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site/products/product-rates.blade.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,20 +33,74 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/api.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="68" column="65" lean-forward="true" selection-start-line="68" selection-start-column="65" selection-end-line="68" selection-end-column="65" />
+            <state relative-caret-position="220">
+              <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php">
+      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/site/layout.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="60" column="31" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="31" />
+            <state relative-caret-position="151">
+              <caret line="373" column="23" selection-start-line="373" selection-start-column="23" selection-end-line="373" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="38" column="71" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="single-product.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/site/products/single-product.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="58" column="75" selection-start-line="58" selection-start-column="71" selection-end-line="58" selection-end-column="75" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product-rates.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/site/products/product-rates.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="111" column="13" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/admin.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="55" column="61" selection-start-line="55" selection-start-column="53" selection-end-line="55" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="212" column="45" lean-forward="true" selection-start-line="212" selection-start-column="21" selection-end-line="212" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rates.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/dashboard/products/rates.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="89">
+              <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="57" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -58,14 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>discount</find>
-      <find>unauthorized</find>
-      <find>localCart</find>
-      <find>'</find>
-      <find>token</find>
-      <find>token()</find>
-      <find>$this</find>
-      <find>cart</find>
       <find>cart/</find>
       <find>CartResource</find>
       <find>all</find>
@@ -88,6 +139,14 @@
       <find>products</find>
       <find>tax</find>
       <find>setting</find>
+      <find>rate</find>
+      <find>rate_ratio</find>
+      <find>include</find>
+      <find>form</find>
+      <find>show</find>
+      <find>single</find>
+      <find>rates</find>
+      <find>getRates</find>
     </findStrings>
     <replaceStrings>
       <replace>href=&quot;#&quot;</replace>
@@ -102,10 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/site/layouts/navbar.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/AuthController.php" />
-        <option value="$PROJECT_DIR$/resources/views/site/auth/sign-in.blade.php" />
-        <option value="$PROJECT_DIR$/resources/js/components/site/home/Main.vue" />
         <option value="$PROJECT_DIR$/app/Http/Middleware/AuthDriver.php" />
         <option value="$PROJECT_DIR$/routes/site.php" />
         <option value="$PROJECT_DIR$/resources/views/site/layouts/app.blade.php" />
@@ -141,7 +196,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/NotificationController.php" />
         <option value="$PROJECT_DIR$/app/Notifications/CustomDbChannel.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/CartController.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/NotificationsController.php" />
         <option value="$PROJECT_DIR$/app/Notifications/ChangeCartNotification.php" />
         <option value="$PROJECT_DIR$/app/Http/Resources/Collection/NotificationsCollection.php" />
@@ -153,6 +207,11 @@
         <option value="$PROJECT_DIR$/app/Http/Resources/Resource/UserResource.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/resources/views/site/layout.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/site/products/single-product.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/site/products/product-rates.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/dashboard/products/rates.blade.php" />
       </list>
     </option>
   </component>
@@ -375,7 +434,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="User&#9;null&#9;null&#10;NotificationsCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/NotificationsCollection.php&#10;api.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;web.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/web.php&#10;CartController&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Controllers/Admin/CartController.php&#10;composer.json&#9;FILE&#9;file://E:/Desktop/panorama/cotton/composer.json&#10;helper&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;notifications/create&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/views/dashboard/notifications/create.blade.php&#10;NotificationController&#9;null&#9;null&#10;Fir&#9;null&#9;null&#10;شحه&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;ar.json&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/lang/ar.json&#10;_carts&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_123559_create_carts_table.php&#10;2021_01_19_132959_alter_status_to_carts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_19_132959_alter_status_to_carts_table.php&#10;Resource/AddressResource&#9;null&#9;null&#10;app.js&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/js/app.js&#10;api&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;2021_01_07_144009_create_wallets_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_07_144009_create_wallets_table.php&#10;cart.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Models/Cart.php&#10;2021_01_06_123559_create_carts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_123559_create_carts_table.php&#10;ar.js&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/lang/ar.json&#10;Api/CartsController&#9;null&#9;null&#10;Api/PickersController&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Controllers/Api/PickersController.php&#10;Product&#9;null&#9;null&#10;2021_01_06_090812_create_rate_comments_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_090812_create_rate_comments_table.php&#10;auth.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/auth.php&#10;2021_01_05_163320_drop_product_color_size_to_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_163320_drop_product_color_size_to_product_quantities_table.php&#10;2021_01_05_162907_add_color_id_size_id_to_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162907_add_color_id_size_id_to_product_quantities_table.php&#10;2021_01_05_162117_create_sizes_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162117_create_sizes_table.php&#10;2021_01_05_162016_create_colors_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162016_create_colors_table.php&#10;jwt.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/jwt.php&#10;JWTCheck&#9;null&#9;null&#10;2021_01_05_122255_add_street_house_num_to_addresses_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_122255_add_street_house_num_to_addresses_table.php&#10;AddressFactory&#9;null&#9;null&#10;help&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;user&#9;null&#9;null&#10;Collection/ProductColorsCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/ProductColorsCollection.php&#10;helpe&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;Collection/CategoryCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/CategoryCollection.php&#10;2021_01_04_075023_create_contacts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_075023_create_contacts_table.php&#10;2021_01_04_073907_create_addresses_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_073907_create_addresses_table.php&#10;2021_01_04_072420_create_cities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_072420_create_cities_table.php&#10;2021_01_04_072738_create_regions_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_072738_create_regions_table.php&#10;2021_01_04_073010_create_districts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_073010_create_districts_table.php&#10;2021_01_03_154407_create_galleries_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_154407_create_galleries_table.php&#10;2021_01_03_153244_create_favourites_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_153244_create_favourites_table.php&#10;2021_01_03_151327_create_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_151327_create_product_quantities_table.php&#10;2021_01_03_150902_create_product_sizes_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_150902_create_product_sizes_table.php&#10;2021_01_03_150838_create_product_colors_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_150838_create_product_colors_table.php&#10;Collection/BannersCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/BannersCollection.php" />
+    <property name="SearchEverywhereHistoryKey" value="dashboard/products/rates&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/views/dashboard/products/rates.blade.php&#10;ProductController&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Controllers/Admin/ProductController.php&#10;single-product&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/views/site/products/single-product.blade.php&#10;web.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/web.php&#10;site/layout.blade.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/views/site/layout.blade.php&#10;User&#9;null&#9;null&#10;NotificationsCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/NotificationsCollection.php&#10;api.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;CartController&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Controllers/Admin/CartController.php&#10;composer.json&#9;FILE&#9;file://E:/Desktop/panorama/cotton/composer.json&#10;helper&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;notifications/create&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/views/dashboard/notifications/create.blade.php&#10;NotificationController&#9;null&#9;null&#10;Fir&#9;null&#9;null&#10;شحه&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;ar.json&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/lang/ar.json&#10;_carts&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_123559_create_carts_table.php&#10;2021_01_19_132959_alter_status_to_carts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_19_132959_alter_status_to_carts_table.php&#10;Resource/AddressResource&#9;null&#9;null&#10;app.js&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/js/app.js&#10;api&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;2021_01_07_144009_create_wallets_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_07_144009_create_wallets_table.php&#10;cart.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Models/Cart.php&#10;2021_01_06_123559_create_carts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_123559_create_carts_table.php&#10;ar.js&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/lang/ar.json&#10;Api/CartsController&#9;null&#9;null&#10;Api/PickersController&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Controllers/Api/PickersController.php&#10;Product&#9;null&#9;null&#10;2021_01_06_090812_create_rate_comments_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_090812_create_rate_comments_table.php&#10;auth.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/auth.php&#10;2021_01_05_163320_drop_product_color_size_to_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_163320_drop_product_color_size_to_product_quantities_table.php&#10;2021_01_05_162907_add_color_id_size_id_to_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162907_add_color_id_size_id_to_product_quantities_table.php&#10;2021_01_05_162117_create_sizes_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162117_create_sizes_table.php&#10;2021_01_05_162016_create_colors_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162016_create_colors_table.php&#10;jwt.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/jwt.php&#10;JWTCheck&#9;null&#9;null&#10;2021_01_05_122255_add_street_house_num_to_addresses_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_122255_add_street_house_num_to_addresses_table.php&#10;AddressFactory&#9;null&#9;null&#10;help&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;user&#9;null&#9;null&#10;Collection/ProductColorsCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/ProductColorsCollection.php&#10;helpe&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;Collection/CategoryCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/CategoryCollection.php&#10;2021_01_04_075023_create_contacts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_075023_create_contacts_table.php&#10;2021_01_04_073907_create_addresses_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_073907_create_addresses_table.php&#10;2021_01_04_072420_create_cities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_072420_create_cities_table.php&#10;2021_01_04_072738_create_regions_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_072738_create_regions_table.php&#10;2021_01_04_073010_create_districts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_073010_create_districts_table.php&#10;2021_01_03_154407_create_galleries_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_154407_create_galleries_table.php&#10;2021_01_03_153244_create_favourites_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_153244_create_favourites_table.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../try/quasar_vue/new_chat" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -450,11 +509,12 @@
       <workItem from="1612850524565" duration="4841000" />
       <workItem from="1612876950805" duration="1071000" />
       <workItem from="1612966760617" duration="1191000" />
+      <workItem from="1613049593820" duration="2101000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="249078000" />
+    <option name="totallyTimeSpent" value="251179000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -464,10 +524,10 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5013423" side_tool="true" weight="0.28490028" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49932885" weight="0.16381766" />
-      <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.4986577" visible="true" weight="0.28490028" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22147651" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4986577" visible="true" weight="0.28490028" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22483222" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3295302" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -486,22 +546,22 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22080536" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="11" sideWeight="0.49932885" visible="true" weight="0.4059829" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="3" weight="0.3295302" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4986577" weight="0.28490028" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5013423" side_tool="true" weight="0.28490028" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="11" sideWeight="0.49932885" visible="true" weight="0.4059829" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,41 +576,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Resources/Collection/RatesCollection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Color.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="23" column="37" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2021_01_06_123559_create_carts_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="21" column="78" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2021_01_19_132959_alter_status_to_carts_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Product.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
@@ -684,20 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="30" column="44" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/NotificationController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="385">
@@ -801,13 +812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3108">
-          <caret line="155" column="20" selection-start-line="155" selection-start-column="13" selection-end-line="155" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Cart.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="592">
@@ -845,15 +849,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Api/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
+        <state relative-caret-position="1029">
           <caret line="60" column="31" selection-start-line="60" selection-start-column="20" selection-end-line="60" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="68" column="65" lean-forward="true" selection-start-line="68" selection-start-column="65" selection-end-line="68" selection-end-column="65" />
+        <state relative-caret-position="220">
+          <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/site/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="373" column="23" selection-start-line="373" selection-start-column="23" selection-end-line="373" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/site/products/single-product.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="58" column="75" selection-start-line="58" selection-start-column="71" selection-end-line="58" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/site/products/product-rates.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="111" column="13" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Site/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="50" column="49" selection-start-line="50" selection-start-column="35" selection-end-line="50" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="38" column="71" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="55" column="61" selection-start-line="55" selection-start-column="53" selection-end-line="55" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="212" column="45" lean-forward="true" selection-start-line="212" selection-start-column="21" selection-end-line="212" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/dashboard/products/rates.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="57" selection-end-column="35" />
         </state>
       </provider>
     </entry>
