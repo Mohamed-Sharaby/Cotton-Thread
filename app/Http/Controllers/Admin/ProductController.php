@@ -155,7 +155,6 @@ class ProductController extends Controller
             'color_id' => $request->color_id,
             'size_id' => $request->size_id,
         ],[
-            'type' => 'increase',
             'color_id' => $request->color_id,
             'size_id' => $request->size_id,
             'quantity' => $request->quantity,
