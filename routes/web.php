@@ -60,7 +60,8 @@ Route::group(['middleware'=>'checkBanned','as' => 'website.'], function () {
         Route::get('districts/{id}', [AddressController::class, 'districts']);
 
         Route::GET('notifications', [UserController::class, 'notifications'])->name('notifications');
-        Route::delete('notifications-destroy/{id?}', [UserController::class, 'destroyAllNotifications'])->name('destroyAllNotifications');
+        Route::delete('notification-destroy/{id?}', [UserController::class, 'destroyNotification'])->name('destroyNotification');
+        Route::delete('all-notifications-destroy', [UserController::class, 'destroyAllNotifications'])->name('destroyAllNotifications');
 
     });
 

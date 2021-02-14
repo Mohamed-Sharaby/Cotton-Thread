@@ -6,11 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use function GuzzleHttp\Promise\all;
 
 class UserController extends Controller
 {
@@ -26,9 +23,7 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
-        // dd($request->all());
         $user = auth()->user();
-
         $validator = $request->validate([
             'name' => 'required|string|max:191',
             'email' => 'required|email|unique:users,email,' . $user->id,
@@ -65,16 +60,18 @@ class UserController extends Controller
     public function notifications()
     {
         $notifications = auth()->user()->notifications()->paginate(10);
-        return view('site.user.profile-notifications',compact('notifications'));
+        return view('site.user.profile-notifications', compact('notifications'));
     }
 
-    public function destroyAllNotifications($id=null)
+    public function destroyNotification($id)
     {
-        if (!is_null($id))
-            DatabaseNotification::findorFail($id)->delete();
-        else
-            auth()->user()->notifications()->delete();
+        DatabaseNotification::findorFail($id)->delete();
+        return response()->json('success');
+    }
 
+    public function destroyAllNotifications()
+    {
+        auth('web')->user()->notifications()->delete();
         return response()->json('success');
     }
 
