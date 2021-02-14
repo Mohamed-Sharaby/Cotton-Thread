@@ -70,7 +70,7 @@ class ProductController extends Controller
         $inputs['user_id'] = auth()->user()->id;
         $product->rates()->create($inputs);
 
-        return redirect()->to(url()->previous() . '#pro-rating')->with('success', __('Comment Saved Successfully'));
+        return redirect()->to(url()->previous() . '#pro-rating')->with('success', __('تم إرسال التعليق بنجاح'));
     }
 
 
