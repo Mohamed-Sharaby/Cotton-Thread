@@ -29,10 +29,10 @@
                                             <div class="notif_body">
                                                 <p>
                                                     <b>
-                                                        {{$notify->type == 'cart_status_changed' ? $notify->data['title'] : ''}}
+                                                        {{$notify->type == 'cart_status_changed' ? (app()->getLocale() == 'ar' ? $notify->data['ar_title'] : $notify->data['en_title']) : ''}}
                                                         {{$notify->type == 'general_notification' ? (app()->getLocale() == 'ar' ? $notify->data['ar_name'] : $notify->data['en_name']) : ''}}
                                                     </b>
-                                                    {{$notify->type == 'cart_status_changed' ? $notify->data['body'] : ''}}
+                                                    {{$notify->type == 'cart_status_changed' ? (app()->getLocale() == 'ar' ? $notify->data['ar_body'] : $notify->data['en_body']) : ''}}
                                                     {{$notify->type == 'general_notification' ? (app()->getLocale() == 'ar' ? $notify->data['ar_desc'] :$notify->data['en_desc']) : ''}}
                                                 </p>
                                                 <span class="time">{{$notify->created_at->format('Y-m-d')}}</span>
