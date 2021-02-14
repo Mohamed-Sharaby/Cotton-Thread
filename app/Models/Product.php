@@ -102,6 +102,14 @@ class Product extends Model
         return number_format($avg,2,'.',',');
     }
 
+    public function getProductRateAttribute(){
+        $count =  $this->rates()->count();
+        $sum =  $this->rates()->sum('rate');
+        if ($count > 0)
+            return ceil($sum / $count);
+        return 0;
+    }
+
     public function favourites()
     {
         return $this->hasMany(Favourite::class);
