@@ -390,7 +390,11 @@
                 <div class="foot1">
                     <h3 class="f-title">خدمة العملاء</h3>
                     <ul>
-                        @foreach(\App\Models\Setting::whereType('long_text')->where('name','!=','footer_text')->get() as $page)
+                        @foreach(\App\Models\Setting::whereType('long_text')
+                                         ->where('name','!=','intro1')
+                                         ->where('name','!=','intro2')
+                                         ->where('name','!=','intro3')
+                                         ->where('name','!=','footer_text')->get() as $page)
                             <li><a href="{{url('pages/'.$page->id)}}">{{__($page->title)}} </a></li>
                         @endforeach
                     </ul>

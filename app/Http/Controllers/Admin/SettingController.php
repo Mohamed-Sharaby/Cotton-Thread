@@ -39,17 +39,12 @@ class SettingController extends Controller
             if ($key == '_token' || !$value) continue;
             {
                 if (is_array($value)) {
-                    Setting::where(['name' => $key])->update(['ar_value' => $value[0], 'en_value' => $value[1]]);
+                    Setting::where(['name' => $key])->update(['ar_title' => $value[0], 'ar_value' => $value[1]]);
                 } else {
                     Setting::where(['name' => $key])->update(['ar_value' => $value, 'en_value' => $value]);
                 }
             }
-            if ($request->has('who_we_are_image')){
-                $setting = Setting::whereName('who_we_are_image')->first();
-                deleteImage('uploads',$setting->value);
-                $image = uploadImage('uploads',$data['who_we_are_image']);
-                $setting->update(['ar_value' => $image, 'en_value' => $image]);
-            }
+
         }
         return redirect()->route('admin.settings.index')->with('success', 'تم التعديل بنجاح');
     }
