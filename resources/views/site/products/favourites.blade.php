@@ -49,14 +49,14 @@
                                         <div class="rate_in">
                                             <ul class="stars">
                                                 <!-- add class (.yellowed) to the number of rates --->
-                                                @for($i=0; $i< $favourite->product->avg_rate; $i++)
+                                                @for($i=0; $i< $favourite->product->product_rate; $i++)
                                                     <li class="yellowed"><i class="fas fa-star"></i></li>
                                                 @endfor
-                                                @for($i=0;$i<(5-$favourite->product->avg_rate);$i++)
+                                                @for($i=0;$i<(5-$favourite->product->product_rate);$i++)
                                                     <li><i class="fas fa-star"></i></li>
                                                 @endfor
                                             </ul>
-                                            <p class="rate_ratio">{{$favourite->product->avg_rate}}</p>
+                                            <p class="rate_ratio">{{$favourite->product->product_rate}}</p>
                                         </div>
                                         <div class="i_prices">
                                             @if($favourite->product->discount > 0)

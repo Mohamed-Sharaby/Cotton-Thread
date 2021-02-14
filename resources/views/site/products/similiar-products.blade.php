@@ -25,14 +25,14 @@
                                 <div class="rate_in">
                                     <ul class="stars">
                                         <!-- add class (.yellowed) to the number of rates --->
-                                        @for($i=0; $i< $pro->avg_rate; $i++)
+                                        @for($i=0; $i< $pro->product_rate; $i++)
                                             <li class="yellowed"><i class="fas fa-star"></i></li>
                                         @endfor
-                                        @for($i=0;$i<(5-$pro->avg_rate);$i++)
+                                        @for($i=0;$i<(5-$pro->product_rate);$i++)
                                             <li><i class="fas fa-star"></i></li>
                                         @endfor
                                     </ul>
-                                    <p class="rate_ratio">{{$pro->avg_rate}}</p>
+                                    <p class="rate_ratio">{{$pro->product_rate}}</p>
                                 </div>
 {{--                                <button type="button" class="to_card addCart" data-toggle="modal"--}}
 {{--                                        data-id="{{$pro->id}}">--}}
