@@ -54,7 +54,7 @@ class NotificationController extends Controller
         ]);
         $data = $request->except('_token');
         $users = User::whereIn('id', $data['user_id'])->get();
-        Notification::send($users, new GeneralNotification($request->except(['user_id'])));
+        Notification::send($users, new GeneralNotification($request->except(['user_id','_token'])));
         return redirect()->back()->with('success', 'تم ارسال الاشعار بنجاح');
     }
 

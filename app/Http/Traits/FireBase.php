@@ -116,6 +116,7 @@ class FireBase
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fcmFields));
         $result = curl_exec($ch);
+//        dd($result);
         curl_close($ch);
         info($result);
         return $result;
