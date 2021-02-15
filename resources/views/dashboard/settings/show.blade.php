@@ -110,26 +110,22 @@
                                 @endif
 
                                 @if($setting->type == 'long_text')
-{{--                                    <div class="col-12 col-lg-10">--}}
-{{--                        <textarea name="{{$setting->name}}" id="{{$setting->name}}" cols="30" rows="5"--}}
-{{--                                  placeholder="محتوى من نحن" class="form-control">{{$setting->value}}</textarea>--}}
-{{--                                        @error($setting->name)--}}
-{{--                                        <div class="invalid-feedback">--}}
-{{--                                            {{ $message }}--}}
-{{--                                        </div>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
 
                                     <div class="col-12 col-lg-10">
+                                        <label for="{{$setting->ar_title}}"
+                                               class="col-form-label">العنوان  </label>
+                                        {!! Form::text($setting->name.'[]',$setting->ar_title,['class'=>'form-control']) !!}
+
                                         <label for="{{$setting->ar_value}}"
-                                               class="col-form-label">المحتوى باللغة العربية</label>
+                                               class="col-form-label">المحتوى  </label>
                                         {!! Form::textarea($setting->name.'[]',$setting->ar_value,['class'=>'form-control','rows'=>4]) !!}
 
-                                        <label for="{{$setting->en_value}}"
-                                               class="col-form-label">المحتوى باللغة الانجليزية</label>
-                                        {!! Form::textarea($setting->name.'[]',$setting->en_value,['class'=>'form-control','rows'=>4]) !!}
+{{--                                        <label for="{{$setting->en_value}}"--}}
+{{--                                               class="col-form-label">المحتوى باللغة الانجليزية</label>--}}
+{{--                                        {!! Form::textarea($setting->name.'[]',$setting->en_value,['class'=>'form-control','rows'=>4]) !!}--}}
                                     </div>
                                 @endif
+
 
 
                                 {{--                                @if($setting->type == 'file' && $setting->name == 'who_we_are_image')--}}

@@ -150,6 +150,34 @@ class SettingTableSeeder extends Seeder
                 'en_title' => 'footer_text',
                 'slug' => 'footer_text'
             ],
+            [
+                'name' => 'intro1',
+                'ar_value' => 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما. ',
+                'en_value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit magna aliqua.',
+                'page' => 'المقدمة',
+                'type' => 'long_text',
+                'ar_title' => 'المقدمة 1',
+                'en_title' => 'intro 1',
+                'slug' => 'intro'
+            ], [
+                'name' => 'intro2',
+                'ar_value' => 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما. ',
+                'en_value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit magna aliqua.',
+                'page' => 'المقدمة',
+                'type' => 'long_text',
+                'ar_title' => 'المقدمة 2',
+                'en_title' => 'intro 2',
+                'slug' => 'intro'
+            ], [
+                'name' => 'intro3',
+                'ar_value' => 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما. ',
+                'en_value' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit magna aliqua.',
+                'page' => 'المقدمة',
+                'type' => 'long_text',
+                'ar_title' => 'المقدمة 3',
+                'en_title' => 'intro 3',
+                'slug' => 'intro'
+            ],
 
 
         ];

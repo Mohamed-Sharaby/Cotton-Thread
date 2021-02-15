@@ -151,15 +151,18 @@ class ProductController extends Controller
             'quantity' => 'required|numeric'
         ]);
         $product = Product::findOrFail($id);
-        $product->product_quantity()->updateOrCreate([
-            'color_id' => $request->color_id,
-            'size_id' => $request->size_id,
-        ],[
-            'type' => 'increase',
-            'color_id' => $request->color_id,
-            'size_id' => $request->size_id,
-            'quantity' => $request->quantity,
-        ]);
+        $productQuantity = ProductQuantity::whereColorId($request->color_id)->whereSizeId($request->size_id)->first();
+        if ($productQuantity){
+            $productQuantity->update([
+                'quantity'=>$productQuantity->quantity + $request->quantity
+            ]);
+        }else{
+            $product->product_quantity()->create([
+                'color_id' => $request->color_id,
+                'size_id' => $request->size_id,
+                'quantity' => $request->quantity,
+            ]);
+        }
 
         return redirect()->route('admin.products.quantities',$product->id)->with('success', 'تم الاضافة بنجاح');
     }

@@ -16,7 +16,7 @@
             <div class="notification_wrapper">
                 <div class="flexx notif_top">
                     <h4 class="notif_title">الإشعارات</h4>
-                    <button type="button" class="rmv_all delete-notification">حذف جميع الإشعارات</button>
+                    <button type="button" class="rmv_all delete-all-notifications">حذف جميع الإشعارات</button>
                 </div>
                 @if(count($notifications) > 0)
                 <div class="notification">
@@ -29,10 +29,10 @@
                                             <div class="notif_body">
                                                 <p>
                                                     <b>
-                                                        {{$notify->type == 'cart_status_changed' ? $notify->data['title'] : ''}}
+                                                        {{$notify->type == 'cart_status_changed' ? (app()->getLocale() == 'ar' ? $notify->data['ar_title'] : $notify->data['en_title']) : ''}}
                                                         {{$notify->type == 'general_notification' ? (app()->getLocale() == 'ar' ? $notify->data['ar_name'] : $notify->data['en_name']) : ''}}
                                                     </b>
-                                                    {{$notify->type == 'cart_status_changed' ? $notify->data['body'] : ''}}
+                                                    {{$notify->type == 'cart_status_changed' ? (app()->getLocale() == 'ar' ? $notify->data['ar_body'] : $notify->data['en_body']) : ''}}
                                                     {{$notify->type == 'general_notification' ? (app()->getLocale() == 'ar' ? $notify->data['ar_desc'] :$notify->data['en_desc']) : ''}}
                                                 </p>
                                                 <span class="time">{{$notify->created_at->format('Y-m-d')}}</span>
@@ -66,41 +66,5 @@
     <!-- /////////////////////||||||||||||||||||||||||||||| End Section |||||||||||||||||||||||||||| -->
 @endsection
 @section('scripts')
-    <script>
-        $(".rmv_all").click(function () {
-            $(this).parents(".notification_wrapper").find(".notification").fadeOut(500);
-            $(this).fadeOut(500);
-        });
-
-
-        $(".delete-notification").click(function (e) {
-            //$(this).closest(".notifi1").fadeOut(500);
-                e.preventDefault();
-                let current = $(this);
-                let id = current.data('id');
-                $.ajax({
-                    url: "{{ url('user/notifications-destroy') }}/"+id,
-                    type: 'delete',
-                    success(response) {
-                        current.parents(".notifi1").fadeOut();
-                        toastr.success("تم الحذف بنجاح");
-                    },
-                    error(error) {
-                        toastr.error(error);
-                    }
-                })
-        });
-
-
-
-        $(".read-now").attr('title', 'تحديد كمقروء').click(function () {
-            $(this).closest(".notifi1").toggleClass("not-read", 700)
-            $(this).toggleClass('check-read');
-            var title = 'تحديد كمقروء';
-            if ($(this).hasClass('check-read')) {
-                title = 'تحديد كغير مقروء';
-            }
-            $(this).attr('title', title);
-        });
-    </script>
+    <script src="{{asset('website/js/user/user-notifications.js')}}"></script>
 @endsection
