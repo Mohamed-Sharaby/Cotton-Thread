@@ -10,6 +10,7 @@ use App\Models\RateComment;
 use App\Models\Size;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\DeclareDeclare;
 
 class ProductController extends Controller
 {
@@ -151,7 +152,8 @@ class ProductController extends Controller
             'quantity' => 'required|numeric'
         ]);
         $product = Product::findOrFail($id);
-        $productQuantity = ProductQuantity::whereColorId($request->color_id)->whereSizeId($request->size_id)->first();
+        $productQuantity = ProductQuantity::where('product_id',$product->id)->where('color_id',$request->color_id)->where('size_id',$request->size_id)->first();
+
         if ($productQuantity){
             $productQuantity->update([
                 'quantity'=>$productQuantity->quantity + $request->quantity
