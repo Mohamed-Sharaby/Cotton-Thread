@@ -53,7 +53,7 @@ class Product extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function product_colors(){
-        return $this->hasManyThrough(Color::class,ProductQuantity::class,'product_id','id','id','color_id')->where('is_ban',0);
+        return $this->hasManyThrough(Color::class,ProductQuantity::class,'product_id','id','id','color_id')->where('is_ban',0)->where('quantity','>',0);
     }
 
 
