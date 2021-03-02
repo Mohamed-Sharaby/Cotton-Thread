@@ -149,7 +149,7 @@ class ProductController extends Controller
         $request->validate([
             'size_id' => 'required|exists:sizes,id',
             'color_id' => 'required|exists:colors,id',
-            'quantity' => 'required|numeric'
+            'quantity' => 'required|numeric|min:1'
         ]);
         $product = Product::findOrFail($id);
         $productQuantity = ProductQuantity::where('product_id',$product->id)->where('color_id',$request->color_id)->where('size_id',$request->size_id)->first();
@@ -198,7 +198,7 @@ class ProductController extends Controller
         $request->validate([
             'size_id' => 'required|exists:sizes,id',
             'color_id' => 'required|exists:colors,id',
-            'quantity' => 'required|numeric'
+            'quantity' => 'required|numeric|min:1'
         ]);
         $quantity->update($request->all());
         return redirect()->route('admin.products.quantities',$quantity->product->id)->with('success', 'تم التعديل بنجاح');
