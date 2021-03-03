@@ -33,7 +33,7 @@ class PickersController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function categories(){
-        $categories = Category::all();
+        $categories = Category::where('is_ban',0)->get();
         return $this->apiResponse(new CategoryCollection($categories));
     }
 
@@ -47,7 +47,7 @@ class PickersController extends Controller
         ]);
         if ($validator->fails())
             return $this->apiResponse($validator->errors()->first(),422);
-        $categories = SubCategory::when(($request['category_id']!=null),function ($q)use($request){
+        $categories = SubCategory::where('is_ban',0)->when(($request['category_id']!=null),function ($q)use($request){
             $q->where('category_id',$request['category_id']);
         })->get();
         return $this->apiResponse(new SubcategoriesCollection($categories));

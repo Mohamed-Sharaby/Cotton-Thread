@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="de1d87b9-e7bc-433d-bd1d-972c1476a1c6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/NotificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/NotificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Traits/FireBase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Traits/FireBase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/notifications/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/notifications/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/PickersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/PickersController.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,6 +13,7 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -30,85 +28,6 @@
     </option>
     <expand />
     <select />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1134">
-              <caret line="65" column="50" selection-start-line="65" selection-start-column="50" selection-end-line="65" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="38" column="71" selection-start-line="38" selection-start-column="67" selection-end-line="38" selection-end-column="71" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="product-rates.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/site/products/product-rates.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FireBase.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Traits/FireBase.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="118" column="20" lean-forward="true" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
-              <folding>
-                <element signature="e#4385#5939#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/dashboard/notifications/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="49" column="98" selection-start-line="49" selection-start-column="98" selection-end-line="49" selection-end-column="98" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ChangeCartNotification.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Notifications/ChangeCartNotification.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NotificationController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/NotificationController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="56" column="94" selection-start-line="56" selection-start-column="94" selection-end-line="56" selection-end-column="94" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GeneralNotification.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Notifications/GeneralNotification.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-512">
-              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -356,6 +275,18 @@
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/justinrainbow/json-schema" />
+      <path value="$PROJECT_DIR$/vendor/seld/jsonlint" />
+      <path value="$PROJECT_DIR$/vendor/seld/phar-utils" />
+      <path value="$PROJECT_DIR$/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/vendor/league/oauth1-client" />
+      <path value="$PROJECT_DIR$/vendor/laravel/socialite" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -364,6 +295,7 @@
     <option name="width" value="980" />
     <option name="height" value="525" />
   </component>
+  <component name="ProjectId" id="1pF4qKrH6jek5euK48epkgNQWAN" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -461,14 +393,19 @@
       <pane id="Scope" />
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="notifications/&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/views/dashboard/notifications&#10;dashboard/products/rates&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/views/dashboard/products/rates.blade.php&#10;ProductController&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Controllers/Admin/ProductController.php&#10;single-product&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/views/site/products/single-product.blade.php&#10;web.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/web.php&#10;site/layout.blade.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/views/site/layout.blade.php&#10;User&#9;null&#9;null&#10;NotificationsCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/NotificationsCollection.php&#10;api.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;CartController&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Controllers/Admin/CartController.php&#10;composer.json&#9;FILE&#9;file://E:/Desktop/panorama/cotton/composer.json&#10;helper&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;notifications/create&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/views/dashboard/notifications/create.blade.php&#10;NotificationController&#9;null&#9;null&#10;Fir&#9;null&#9;null&#10;شحه&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;ar.json&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/lang/ar.json&#10;_carts&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_123559_create_carts_table.php&#10;2021_01_19_132959_alter_status_to_carts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_19_132959_alter_status_to_carts_table.php&#10;Resource/AddressResource&#9;null&#9;null&#10;app.js&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/js/app.js&#10;api&#9;FILE&#9;file://E:/Desktop/panorama/cotton/routes/api.php&#10;2021_01_07_144009_create_wallets_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_07_144009_create_wallets_table.php&#10;cart.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Models/Cart.php&#10;2021_01_06_123559_create_carts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_123559_create_carts_table.php&#10;ar.js&#9;FILE&#9;file://E:/Desktop/panorama/cotton/resources/lang/ar.json&#10;Api/CartsController&#9;null&#9;null&#10;Api/PickersController&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Controllers/Api/PickersController.php&#10;Product&#9;null&#9;null&#10;2021_01_06_090812_create_rate_comments_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_06_090812_create_rate_comments_table.php&#10;auth.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/auth.php&#10;2021_01_05_163320_drop_product_color_size_to_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_163320_drop_product_color_size_to_product_quantities_table.php&#10;2021_01_05_162907_add_color_id_size_id_to_product_quantities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162907_add_color_id_size_id_to_product_quantities_table.php&#10;2021_01_05_162117_create_sizes_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162117_create_sizes_table.php&#10;2021_01_05_162016_create_colors_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_162016_create_colors_table.php&#10;jwt.php&#9;FILE&#9;file://E:/Desktop/panorama/cotton/config/jwt.php&#10;JWTCheck&#9;null&#9;null&#10;2021_01_05_122255_add_street_house_num_to_addresses_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_05_122255_add_street_house_num_to_addresses_table.php&#10;AddressFactory&#9;null&#9;null&#10;help&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;user&#9;null&#9;null&#10;Collection/ProductColorsCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/ProductColorsCollection.php&#10;helpe&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Helpers/helpers.php&#10;Collection/CategoryCollection&#9;FILE&#9;file://E:/Desktop/panorama/cotton/app/Http/Resources/Collection/CategoryCollection.php&#10;2021_01_04_075023_create_contacts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_075023_create_contacts_table.php&#10;2021_01_04_073907_create_addresses_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_073907_create_addresses_table.php&#10;2021_01_04_072420_create_cities_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_072420_create_cities_table.php&#10;2021_01_04_072738_create_regions_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_072738_create_regions_table.php&#10;2021_01_04_073010_create_districts_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_04_073010_create_districts_table.php&#10;2021_01_03_154407_create_galleries_table&#9;FILE&#9;file://E:/Desktop/panorama/cotton/database/migrations/2021_01_03_154407_create_galleries_table.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../try/quasar_vue/new_chat" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -477,18 +414,13 @@
       <recent name="E:\Desktop\panorama\cotton\app\Http\Middleware" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+  <component name="RunManager">
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -540,6 +472,7 @@
       <workItem from="1613049593820" duration="2505000" />
       <workItem from="1613053333819" duration="5042000" />
       <workItem from="1613379688898" duration="2193000" />
+      <workItem from="1614765733415" duration="1187000" />
     </task>
     <servers />
   </component>
@@ -595,15 +528,21 @@
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="7" />
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/resources/lang/ar.json">

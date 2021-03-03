@@ -139,7 +139,7 @@ class AuthController extends Controller
     {
         $rules = [
             'phone'=>'required|numeric|exists:users,phone',
-            'password'=>'required|string|confirmed'
+            'password'=>'required|string|confirmed|min:6'
         ];
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails())
