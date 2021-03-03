@@ -28,7 +28,7 @@ class AuthController extends Controller
             'name'=>'required|string',
             'email'=>'required|email|unique:users,email',
             'phone'=>'required|numeric|unique:users,phone',
-            'password'=>'required|string|confirmed',
+            'password'=>'required|string|confirmed|min:6',
             'type'=>'required|string|in:android,ios',
             'fcm'=>'required|string',
         ]);
@@ -51,7 +51,7 @@ class AuthController extends Controller
     public function login(Request $request){
         $validate = Validator::make($request->all(),[
             'phone'=>'required|numeric|exists:users,phone',
-            'password'=>'required|string',
+            'password'=>'required|string|min:6',
             'type'=>'required|string|in:web,android,ios',
             'fcm'=>'required|string',
         ]);
@@ -139,7 +139,7 @@ class AuthController extends Controller
     {
         $rules = [
             'phone'=>'required|numeric|exists:users,phone',
-            'password'=>'required|string|confirmed'
+            'password'=>'required|string|confirmed|min:6'
         ];
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails())
