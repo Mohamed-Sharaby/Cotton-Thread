@@ -632,6 +632,7 @@
     "user forget Invalid process": "عملية استعادة كلمة المرور مرفوضة",
     "cannot access product": "لا يمكن الوصول للمنتج",
     "product not available": "المنتج غير متاح",
+    "not available": " غير متاح",
     "item not found": "الوحده غير موجوده",
     "product quantity not available": "الكمية غير متاحه",
     "cart access denied": "لايمكن الوصول للطلب",

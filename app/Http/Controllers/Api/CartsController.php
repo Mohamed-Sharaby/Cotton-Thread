@@ -148,7 +148,7 @@ class CartsController extends Controller
                         ->where('quantity','>=',$item['quantity']);
             $proQty = $productQuantity->first();
             if(!$productQuantity->exists() || $proQty->is_ban)
-                return $this->apiResponse(__('product not available'),422);
+                return $this->apiResponse(fix_null_string(optional($proQty->product)->name).' '.__('not available'),422);
             $openCart = $user->carts()->where('status','open');
             if($openCart->exists()){
                 $openCart = $openCart->first();
