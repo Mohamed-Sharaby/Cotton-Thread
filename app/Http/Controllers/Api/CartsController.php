@@ -14,6 +14,7 @@ use App\Models\Product;
 use App\Models\ProductQuantity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use function Illuminate\Support\Facades\Log;
 
 /**
  * Class CartsController
@@ -146,9 +147,14 @@ class CartsController extends Controller
                         ->where('color_id',$item['color_id'])
                         ->where('size_id',$item['size_id'])
                         ->where('quantity','>=',$item['quantity']);
+
             $proQty = $productQuantity->first();
+            Log::info($proQty);
+            Log::info('step 1');
             if(!$productQuantity->exists() || $proQty->is_ban)
-                return $this->apiResponse(fix_null_string(optional($proQty->product)->name).' '.__('not available'),422);
+                return $this->apiResponse(fix_null_string(optional($product)->name).' '.__('not available'),422);
+            Log::info('step 2');
+
             $openCart = $user->carts()->where('status','open');
             if($openCart->exists()){
                 $openCart = $openCart->first();

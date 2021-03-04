@@ -4,7 +4,6 @@
     <list default="true" id="de1d87b9-e7bc-433d-bd1d-972c1476a1c6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/CartsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/lang/ar.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/ar.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -482,7 +481,7 @@
       <workItem from="1613379688898" duration="2193000" />
       <workItem from="1614765733415" duration="2431000" />
       <workItem from="1614850198507" duration="1871000" />
-      <workItem from="1614854319769" duration="1873000" />
+      <workItem from="1614854319769" duration="3523000" />
     </task>
     <servers />
   </component>
