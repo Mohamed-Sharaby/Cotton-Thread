@@ -13,8 +13,8 @@ use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\ProductQuantity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use function Illuminate\Support\Facades\Log;
 
 /**
  * Class CartsController
