@@ -154,7 +154,7 @@ class Cart extends Model
     {
         $total = 0;
         foreach ($this->cartItems as $item) {
-            $total += $item->productQuantity->product->priceAfterDiscount * $item->quantity;
+            $total += fix_null_double(@$item->productQuantity->product->priceAfterDiscount) * fix_null_double(@$item->quantity);
         }
         return $total;
     }

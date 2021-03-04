@@ -61,7 +61,7 @@ class ProfileController extends Controller
     public function editPass(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'password'=>'required|confirmed'
+            'password'=>'required|confirmed|min:6'
         ]);
         if ($validator->fails())
             return $this->apiResponse($validator->errors()->first(),422);
