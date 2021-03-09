@@ -14,6 +14,7 @@ $(".pro_color").on('click',  function (event) {
             //console.log(response.pro_sizes)
 
             sizesDiv.empty();
+            $('.quantity').val(1);
             response.pro_sizes.forEach(size => {
                 sizesDiv.append(`
 <div class="rad_in">
@@ -30,7 +31,9 @@ $(".pro_color").on('click',  function (event) {
     color: #9c9c9c;
     font-weight: 100;
     text-transform: uppercase;">${size.size.size}</label></div>`);
+                $('.quantity').attr('max',size.quantity);
             });
+
         },
         error(error) {
             console.log('error get sizes', error)
